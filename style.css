@@ -1,0 +1,2178 @@
+SavorHappiness-styles-pran
+font-face {
+    font-family: 'NangKaiThot';
+    src: url('fonts/MN-Nang-Kai-Thot-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --savor-green: #007A33;
+    --savor-orange: #FF8C00;
+    --savor-cream: #f8f2e6;
+    --savor-dark: #333333;
+    --savor-white: #ffffff;
+    --savor-shadow: rgba(0, 0, 0, 0.08);
+}
+
+/* --- Global Reset & Anti-Overflow --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* บังคับให้ padding ไม่ดันความกว้างออก */
+    font-family: 'NangKaiThot', 'Anuphan', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* รีเซ็ต Padding และ Margin ของ body ให้เป็น 0 */
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden; /* กันหน้าจอโยกเยกที่ปาล์มทำไว้ ดีแล้วครับ */
+}
+
+nav { /* หรือ .navbar หรือชื่อ class ที่ปาล์มใช้ */
+    position: fixed !important; /* บังคับให้ลอยติดหน้าจอ */
+    top: 0 !important;          /* ชิดขอบบนสุด */
+    left: 0;
+    width: 100%;                /* ยืดให้เต็มความกว้างจอ */
+    z-index: 9999 !important;   /* ดันให้ลอยทับรูปภาพทุกรูปในเว็บ */
+    
+    /* แถม: ใส่เงาหน่อยจะดูหรูขึ้น (Graphic Design Style!) */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+}
+
+.nav-btn {
+    user-select: none; /* กันการคลุมดำตอนกดรัวๆ */
+    outline: none;
+}
+
+.lightbox-content {
+    pointer-events: auto; /* ให้รูปรับคลิกได้ (แต่เราใส่ stopPropagation ไว้แล้ว) */
+}
+
+/* เอฟเฟกต์ตอนโชว์ Lightbox */
+#simpleLightbox[style*="display: flex"] {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* style.css บรรทัดที่ 22-26 โดยประมาณ */
+body {
+    background: var(--savor-cream);
+    color: var(--savor-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- Savor Happiness Navigation & Search Custom Design --- */
+nav {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(11px);
+    padding: 0 4%; /* ปรับจาก 6% เพื่อให้มีที่ลง Search Bar */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 75px;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px var(--savor-shadow);
+    transition: all 0.3s ease;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 33px;
+    width: auto;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+
+/* 1. กันรูปเบี้ยวและช่วยให้รูปขึ้นสมูทขึ้น */
+img {
+    content-visibility: auto; /* โหลดเฉพาะรูปที่อยู่บนหน้าจอ ช่วยลดภาระ Browser */
+    object-fit: cover; /* กันรูปสัดส่วนเพี้ยนกรณีปรานต์ลืม Crop */
+    image-rendering: -webkit-optimize-contrast; /* ช่วยให้รูปจาก Nikon ดูคมขึ้นบนเว็บ */
+}
+
+/* 2. แก้จุดตายบรรทัดสุดท้ายที่ปรานต์ค้างไว้ (z-index) */
+.speed-dial { /* หรือชื่อ Class ของปุ่มหน้ายิ้มปรานต์ */
+    z-index: 9999 !important; 
+}
+
+
+.shop-tag {
+    display: none; /* ซ่อนไปเลย ไม่กินพื้นที่ */
+}
+
+----------------------------------------------------------------------------------------------------
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* กันเนื้อหาโดน Header ทับเวลาเรากด Link */
+}
+
+-----------------------------------------------------------------------------------------------------
+
+/* =========================================
+   [NEW] FINAL FIX & ENHANCEMENT FOR SAVOR HAPPINESS 
+   ========================================= */
+
+/* 1. แก้จุดตายบรรทัด 711 (ปิดปีกกาและใส่ z-index ให้ปุ่มหน้ายิ้ม) */
+.speed-dial {
+    z-index: 9999 !important;
+} 
+
+/* 2. ระบบการเลื่อนหน้าเว็บแบบนุ่มนวล (Smooth Scroll) */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+/* 3. จัดการรูปภาพ (ช่วยให้โหลดสมูทและสัดส่วนไม่เบี้ยว) */
+img {
+    content-visibility: auto; /* โหลดเฉพาะรูปบนจอ ช่วยลดภาระ Browser */
+    object-fit: cover;       /* กันรูปยืดหรือเบี้ยวกรณีลืม Crop */
+    image-rendering: -webkit-optimize-contrast; /* ช่วยให้รูปจาก Nikon ดูคมขึ้น */
+}
+
+/* 4. สร้าง Animation (ท่าเต้นค่อยๆ ลอยขึ้น) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* ============================================================
+   VIDEO EXPERIENCE SECTION
+   ============================================================ */
+.video-experience {
+    padding: 60px 0;
+    background: var(--savor-cream);
+}
+
+.video-container {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 500px; /* ปรับความสูงตามชอบ */
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 🛡️ สำคัญ: เพื่อให้วิดีโอเต็มกล่องไม่บิดเบี้ยว */
+}
+
+/* เคลือบสีดำจางๆ เพื่อให้ตัวหนังสืออ่านง่าย */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+    display: flex;
+    align-items: flex-end;
+    padding: 50px;
+}
+
+.video-content {
+    color: white;
+}
+
+.video-tag {
+    background: var(--savor-orange);
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.video-content h2 {
+    font-size: 2.5rem;
+    margin: 15px 0 5px 0;
+    color: white;
+}
+
+.mute-control-btn {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.mute-control-btn:hover {
+    background: var(--savor-orange);
+    transform: scale(1.1);
+}
+
+/* 📱 ปรับแต่งสำหรับ Mobile */
+@media (max-width: 768px) {
+    .video-container {
+        height: 350px;
+        width: 95%;
+    }
+    .video-content h2 { font-size: 1.8rem; }
+    .video-overlay { padding: 30px; }
+}
+
+
+/* ============================================================
+    1. [FIX] BODY & SCROLL PROGRESS - Precision Alignment
+   ============================================================ */
+body {
+    background: var(--savor-cream);
+    color: var(--savor-dark);
+    padding-top: 75px; /* 🛡️ ล็อคให้เท่ากับความสูง Navbar (Desktop) */
+    line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.scroll-progress-container {
+    position: fixed;
+    top: 75px; /* 🛡️ ต้องเท่ากับ padding-top ของ body เป๊ะๆ */
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 4px; /* ลดความหนาลงนิดนึงเพื่อให้ดู Modern */
+    background: rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--savor-orange);
+    width: 0%;
+    transition: width 0.15s ease-out; /* ปรับ Motion ให้สมูทขึ้น */
+}
+
+/* --- [Responsive Fix] สำหรับ Tablet & Mobile --- */
+@media (max-width: 1024px) {
+    body { 
+        padding-top: 70px; /* Navbar มือถือมักจะเตี้ยกว่า Desktop */
+    } 
+    .scroll-progress-container {
+        top: 70px; /* 🛡️ ปรับให้เกาะขอบล่าง Navbar มือถือพอดี */
+    }
+}
+
+/* --- [Orientation Fix] สำหรับโหมดแนวนอน (Landscape) --- */
+@media (max-height: 600px) and (orientation: landscape) {
+    body { 
+        padding-top: 55px !important; /* ปรับตามความสูงจริงของ Nav ในโหมดนอน */
+    }
+    .scroll-progress-container { 
+        top: 55px !important; 
+        height: 3px; 
+    }
+}
+
+/* ============================================================
+   2. [SECTION] HEADER SEARCH BAR - Desktop Layout Setup
+   ============================================================ */
+.header-search {
+    flex: 1;                /* ให้ยึดพื้นที่ตรงกลาง */
+    max-width: 500px;       /* ความกว้างที่เหมาะสม ไม่เบียดเมนู */
+    margin: 0 auto;         /* ท่าไม้ตายดีดให้อยู่กลางระหว่าง Logo และ Menu */
+    display: flex;
+    padding: 0 0px;
+    z-index: 10;
+}
+
+.search-container { position: relative; width: 100%; }
+
+.suggestions-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 3000; /* ต้องสูงกว่าทุกอย่าง */
+    display: none; /* ซ่อนไว้ก่อน */
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* เพิ่มความนุ่มนวลให้กล่อง Suggestion */
+.suggestions-box {
+    border-radius: 0 0 15px 15px;
+    border: 1px solid rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px); /* เทรนด์กระจกฝา Glassmorphism */
+    background: rgba(255, 255, 255, 0.95);
+    overflow: hidden;
+}
+
+/* ปรับแต่งรายการแต่ละอัน */
+.suggestion-item {
+    padding: 14px 20px;
+    font-size: 0.95rem;
+    color: #444;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.suggestion-item:last-child { border-bottom: none; }
+
+.suggestion-item i {
+    width: 25px;
+    color: #bfa57d; /* ใช้สีโทนอุ่นของ Savor Happiness */
+}
+
+.suggestion-item:hover {
+    background: #fdfaf5; /* สีครีมอ่อนๆ ตอนเอาเมาส์ไปชี้ */
+    color: #bfa57d;
+}
+
+.suggestion-item:hover { background: #f5f5f5; }
+.suggestion-item i { margin-right: 15px; color: #70757a; } /* ไอคอนแว่นขยายแบบ Google */
+
+.search-input-group {
+    display: flex;
+    background: #f4f4f4;    /* สีเทาอ่อนคลีนๆ */
+    border-radius: 50px;    /* ทรงมนดู Modern */
+    overflow: hidden;
+    height: 46px;           /* ความสูงมาตรฐาน ดูไม่เทอะทะ */
+    width: 100%;
+    border: -2px solid #eee;
+    transition: 0.3s ease;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: stretch;
+}
+
+.search-input-group:focus-within {
+    background: #ffffff;
+    border-color: #FF8C00;  /* สีเหลืองตาม Theme Savor Happiness */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.search-input-group input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 0 20px;
+    font-size: 0.9rem;
+    outline: none;
+    color: #333;
+}
+
+.search-btn {
+    background: #007A33;    /* สีปุ่มตามดราฟ */
+    color: #ffffff;
+    border: none;
+    height: 100%;
+    padding: 0 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-btn:hover {
+    background: #FF8C00;
+    letter-spacing: 0.5px;   /* เพิ่มลูกเล่นเวลา Hover นิดนึง */
+}
+
+/* ปรับให้ซ่อน Search หรือปรับขนาดเมื่อจอเล็กลง (Responsive) */
+@media (max-width: 992px) {
+    .header-search {
+        margin: 0 15px;
+        max-width: 400px;
+    }
+}
+
+/* ============================================================
+   3. NAVIGATION LINKS & COMPONENTS
+   ============================================================ */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 500;
+    font-size: 1.05rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--savor-green);
+}
+
+#langBtn {
+    background: var(--savor-green);
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    font-size: 0.9rem;
+}
+
+#langBtn:hover {
+    background: #00642a;
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   4. HERO SECTION: Collage Grid & Overlay (The Master Fix)
+   ============================================================ */
+#home {
+    min-height: 100vh; 
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Desktop: 5 คอลัมน์ */
+    grid-template-rows: repeat(2, 1fr);    /* Desktop: 2 แถว (รวม 10 รูป) */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.grid-item {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4); /* เข้มขึ้นเพื่อให้ปุ่มเขียวและ Text อ่านง่าย */
+    transition: transform 0.8s ease, filter 0.5s ease;
+}
+
+.grid-item:hover img {
+    filter: brightness(0.7);
+    transform: scale(1.1);
+}
+
+/* คอนเทนต์ที่ลอยอยู่เหนือรูป */
+.hero-content-overlay {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: white;
+    padding: 60px 20px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* ระยะห่างสม่ำเสมอ */
+}
+
+#home h1 {
+    font-size: clamp(2.2rem, 8vw, 4.5rem);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    line-height: 1.1;
+    letter-spacing: 2px;
+}
+
+#home .subtitle-vibe {
+    font-size: clamp(0.9rem, 4vw, 1.4rem);
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: var(--savor-orange);
+}
+
+#home .hero-desc {
+    font-size: clamp(0.85rem, 3vw, 1.15rem);
+    margin-bottom: 30px;
+    line-height: 1.6;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ------------------------------------------------------------
+   📱 MOBILE & TABLET PORTRAIT (แนวตั้ง) - แก้ภาพตก 10 รูป
+   ------------------------------------------------------------ */
+@media (max-width: 768px) and (orientation: portrait) {
+    .hero-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 คอลัมน์ */
+        grid-template-rows: repeat(5, 1fr);    /* 5 แถว (2x5 = 10 รูปพอดีเป๊ะ) */
+    }
+
+    .hero-content-overlay {
+        padding: 40px 15px;
+    }
+
+    #home h1 {
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+
+    #home .hero-desc {
+        font-size: 0.9rem;
+        margin-bottom: 25px;
+    }
+
+    .btn-primary {
+        width: 85%; /* ปุ่มกว้างขึ้นให้กดง่ายในแนวตั้ง */
+        max-width: 300px;
+    }
+}
+
+/* ------------------------------------------------------------
+   📱 MOBILE LANDSCAPE (แนวนอน) - ดึงปุ่มเขียวขึ้น
+   ------------------------------------------------------------ */
+@media (max-height: 600px) and (orientation: landscape) {
+    #home {
+        min-height: 110vh; /* เผื่อพื้นที่ไถนิดหน่อยกันขอบ Browser บัง */
+    }
+    
+    .hero-grid {
+        grid-template-columns: repeat(5, 1fr); /* แนวนอนใช้ 5 คอลัมน์เหมือนเดิมจะสวยกว่า */
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .hero-content-overlay {
+        padding: 20px 20px; /* บีบ Padding หัวท้ายให้เหลือน้อยที่สุด */
+    }
+
+    .content-wrapper {
+        gap: 5px; /* ดึงทุกอย่างมาชิดกัน */
+    }
+
+    #home h1 { 
+        font-size: clamp(1.6rem, 5vw, 2.5rem); 
+        margin-bottom: 5px; 
+    }
+
+    #home .subtitle-vibe { margin-bottom: 5px; font-size: 0.8rem; }
+
+    #home .hero-desc {
+        font-size: 0.8rem;
+        margin-bottom: 12px; /* ดันปุ่มเขียวขึ้นมาโชว์ */
+        line-height: 1.3;
+    }
+    
+    .btn-primary {
+        padding: 8px 20px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================================================
+   5. SECTION FORMATTING & TITLES
+   ============================================================ */
+.section {
+    padding: 100px 10%;
+    max-width: 1440px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.section-title {
+    margin-bottom: 60px;
+    text-align: center;
+    font-size: 2.4rem;
+    color: var(--savor-green);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--savor-orange);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.district-label {
+    margin: 50px 0 40px 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--savor-orange);
+    letter-spacing: 3px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* ============================================================
+   6. ✅ MASTER COMBINED: Guidebook & Thumbnails Centering
+   ============================================================ */
+.book-grid-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 60px !important;
+    padding: 50px 20px !important;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ฝั่งรูปภาพ: บังคับให้อยู่กึ่งกลางแนวตั้งเสมอ */
+.book-visual {
+    flex: 1;
+    min-width: 350px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+
+.inner-mockup {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    cursor: zoom-in;
+    transition: transform 0.4s ease;
+}
+
+.inner-mockup:hover {
+    transform: translateY(-5px);
+}
+
+/* ส่วนรูป Thumbnail: จัดกึ่งกลางและเว้นระยะให้พอดีกับนิ้วกด */
+.book-thumbs {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 15px !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    margin-top: 30px !important;
+}
+
+.thumb-item {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.thumb-item:hover {
+    transform: scale(1.05);
+}
+
+.thumb-item.active {
+    border-color: var(--savor-green); /* ใช้สีเขียว Thesis ของปาล์ม */
+    transform: translateY(-3px);
+}
+
+/* ฝั่งข้อความ: บังคับกึ่งกลางทุกมิติ (Text-align center) */
+.book-text {
+    flex: 1;
+    min-width: 350px;
+    padding: 20px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    justify-content: center !important;
+}
+
+.book-text h2 {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    color: var(--savor-dark);
+    font-weight: 800;
+}
+
+.book-text p {
+    line-height: 1.8;
+    margin-bottom: 30px;
+    color: #555;
+    font-size: 1.1rem;
+    max-width: 500px; /* คุมความกว้างให้อ่านง่าย */
+}
+
+/* --- [Responsive Fix] สำหรับหน้าจอขนาดเล็ก --- */
+@media (max-width: 768px) {
+    .book-grid-container {
+        gap: 30px !important;
+        padding: 30px 15px !important;
+    }
+
+    .book-visual, .book-text {
+        min-width: 100% !important;
+    }
+
+    /* ย่อ Thumbnail ลงในมือถือไม่ให้เบียดกัน */
+    .thumb-item {
+        width: 70px;
+        height: 70px;
+        border-radius: 8px;
+    }
+
+    .book-text h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .thumb-item {
+        width: 60px;
+        height: 60px;
+        gap: 10px !important;
+    }
+}
+
+/* ============================================================
+   7. SHOP CARDS & PHOTO GALLERY
+   ============================================================ */
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    padding: 0 10px;
+}
+
+.shop-card {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    margin-bottom: 30px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.shop-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,122,51,0.15);
+}
+
+.photo-gallery {
+    display: block;
+    height: 320px;
+    overflow: hidden;
+    position: relative;
+    background: #f4f4f4;
+}
+
+.photo-item {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.photo-item.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.shop-name {
+    padding: 25px 20px;
+    font-weight: 600;
+    color: var(--savor-dark);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+/* ============================================================
+   8. ✅ Point 2: Ticker Animation (Left to Right Fix เดิม)
+   ============================================================ */
+.shop-ticker-banner {
+    width: 100%;
+    height: 70px;
+    background-color: var(--savor-white);
+    border-top: 1px solid rgba(0, 122, 51, 0.1);
+    border-bottom: 1px solid rgba(0, 122, 51, 0.1);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    z-index: 90;
+    margin: 40px 0;
+}
+
+.shop-ticker-track {
+    display: flex !important;
+    white-space: nowrap;
+    animation: tickerLoopRight 40s linear infinite !important;
+}
+
+@keyframes tickerLoopRight {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0%); }
+}
+
+.ticker-item {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--savor-green);
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+}
+
+.ticker-sep {
+    color: var(--savor-orange);
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+/* ============================================================
+   9. ✅ Point 3: Merch Section (50% Desktop Fix เดิม)
+   ============================================================ */
+.merch-category {
+    margin-bottom: 60px;
+}
+
+.merch-sub-title {
+    margin: 40px 0 30px 0 !important;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--savor-dark);
+    border-left: 6px solid var(--savor-orange);
+    padding-left: 20px;
+}
+
+.merch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+}
+
+.merch-card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    transition: 0.3s ease;
+}
+
+.merch-card:hover {
+    transform: translateY(-8px);
+}
+
+.merch-card img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    transition: 0.3s;
+}
+
+.merch-card img:hover {
+    transform: scale(1.05);
+}
+
+/* ============================================================
+   10. SHOP GRID: 2 COLUMNS LAYOUT (Focus on Visuals)
+   ============================================================ */
+.shop-grid {
+    display: grid !important;
+    /* 🔥 ล็อค 2 คอลัมน์แบบเด็ดขาด */
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 40px !important;
+    width: 90% !important;
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+}
+
+.shop-card {
+    width: 100% !important;
+    max-width: 450px !important; /* ขยายให้รูป Nikon D5200 ดูเด่นๆ */
+}
+
+/* --- RESPONSIVE: ปรับตามขนาดหน้าจอ --- */
+@media (max-width: 992px) {
+    .shop-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    .shop-grid {
+        grid-template-columns: 1fr; 
+        gap: 20px;
+    }
+    .shop-card {
+        max-width: 350px; /* คุมไม่ให้การ์ดใหญ่จนล้นจอมือถือ */
+    }
+}
+
+
+/* ============================================================
+   11. AUTHOR SECTION: MASTERPIECE (FLUID & GRID LOCK)
+   ============================================================ */
+
+:root {
+    --author-green: #2D5A27;
+    --author-orange: #FF9800;
+    --card-shadow: 0 20px 60px rgba(0,0,0,0.04);
+}
+
+.author-centering-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(60px, 8vw, 120px) 24px; /* ปรับ Padding ตามขนาดจออัตโนมัติ */
+    /* background-color: #fdfbf9; */
+}
+
+.author-layout-card {
+    display: grid;
+    grid-template-columns: 420px 1fr; /* ล็อคสัดส่วนฝั่งรูปและเนื้อหา */
+    background: #ffffff;
+    border-radius: clamp(30px, 4vw, 50px); 
+    box-shadow: var(--card-shadow);
+    width: 100%;
+    max-width: 1100px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+/* --- ฝั่งซ้าย: Visual Area --- */
+.author-visual-side {
+    /* background: #f9f9f9; */
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: 1.5px solid #f1f1f1;
+}
+
+.author-profile-pic {
+    width: clamp(200px, 25vw, 280px); /* รูปยืดหดได้ตามจอ */
+    height: clamp(200px, 25vw, 280px);
+    border-radius: 40px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
+
+.author-profile-pic img { width: 100%; height: 100%; object-fit: cover; }
+
+.author-logos-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.4;
+    filter: grayscale(100%);
+}
+
+.logo-box img { height: clamp(22px, 2vw, 28px); width: auto; }
+
+/* --- ฝั่งขวา: Content Area --- */
+.author-content-side {
+    padding: 60px clamp(40px, 6vw, 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* ดันเนื้อหาบนและ Contact ล่างให้แยกโซนชัดเจน */
+}
+
+.author-heading-group {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 1.9rem;
+    color: var(--author-orange);
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.title-underline {
+    width: 60px;
+    height: 5px;
+    background: var(--author-orange);
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 991px) {
+    .author-name {
+        /* 🛡️ ปรับขนาดตรงนี้ได้เลย (อ้ายกะจากภาพ image_14dd18.png ให้ก่อน) */
+        font-size: 26px; 
+        
+        font-weight: 700;
+        color: var(--author-green);
+        line-height: 1.2;
+        text-align: center;
+        width: 100%;
+        
+        /* 🛡️ ปรับระยะห่างระหว่าง "ชื่อ" กับ "ตำแหน่งงาน" */
+        margin-bottom: 12px; 
+    }
+}
+
+
+/* ==========================================
+   1. ส่วนของ Desktop (หน้าจอใหญ่)
+   ========================================== */
+.author-content-side h3.author-name {
+    /* 🎨 ปรับขนาดฟอนต์ในคอมตรงนี้ได้เลยครับ */
+    font-size: 31px !important;
+    font-weight: 700 !important;
+    color: var(--author-green) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 25px !important;
+    display: block !important;
+}
+
+.author-content-side p.author-title {
+    /* 🎨 ปรับขนาดตำแหน่งงานในคอมตรงนี้ */
+    font-size: 17px !important;
+    color: #888 !important;
+}
+
+/* ==========================================
+   2. ส่วนของ Mobile (ใน Media Query)
+   ========================================== */
+@media (max-width: 991px) {
+    .author-content-side h3.author-name {
+        /* 📱 ปรับขนาดฟอนต์ในมือถือตรงนี้ */
+        font-size: 27px !important;
+        text-align: center !important;
+        margin-bottom: 12px !important;
+    }
+
+    .author-content-side p.author-title {
+        /* 📱 ปรับขนาดตำแหน่งงานในมือถือตรงนี้ */
+        font-size: 16px !important;
+        text-align: center !important;
+        max-width: 280px !important;
+        margin: 0 auto 25px auto !important;
+    }
+}
+
+
+
+.author-title {
+    font-size: 1rem;
+    color: #888;
+    font-weight: 500;
+}
+
+/* --- ส่วนล่าง: Contact Box (ตรงดราฟปากกาแดงที่สุด) --- */
+.author-contact-grid {
+    border-top: 2.5px solid var(--author-green); /* เส้นคั่นหนาตามดราฟ */
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.contact-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: #444;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.contact-box i { 
+    width: 24px; 
+    color: var(--author-green); 
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.contact-box:hover {
+    color: var(--author-green);
+    transform: translateX(8px);
+}
+
+/* 📱 Responsive Mobile: รื้อใหม่ให้กริบ ไม่ล้น ไม่ลอย */
+@media (max-width: 991px) {
+    .author-layout-card { 
+        display: flex; /* เปลี่ยนจาก grid เป็น flex เพื่อคุมแกนกลางง่ายขึ้น */
+        flex-direction: column;
+        max-width: 90%; 
+        margin: 0 auto;
+        align-items: center;
+    }
+    
+    .author-visual-side { 
+        width: 100%;
+        padding: 40px 0; /* เน้น Padding บนล่าง */
+        border-right: none; 
+        border-bottom: 1.5px solid #f1f1f1;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 🛡️ ล็อครูปและโลโก้ให้อยู่เส้นกลางเป๊ะ */
+    }
+
+    .author-profile-pic { 
+        width: 180px; 
+        height: 180px; 
+        margin-bottom: 25px; 
+    }
+
+    .author-logos-grid { margin-top: 10px; gap: 15px; }
+
+    .author-content-side {
+        width: 100%;
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 🛡️ ล็อคเนื้อหาทั้งหมดให้อยู่บนแกนกลาง (ตามเส้นแดง image_14ce76.png) */
+    }
+
+    .author-heading-group {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* จัดหัวข้อและเส้นใต้กึ่งกลาง */
+        margin-bottom: 30px;
+    }
+
+    .section-title {display: block !important;margin-bottom: 38px;}
+    .title-underline { display: block !important; margin: 0 auto 20px auto; width: 50px; }
+
+    .author-name { 
+        font-size: 1.6rem; 
+        text-align: center; /* บังคับชื่อให้อยู่ตรงกลางเส้นแกน */
+        width: 100%;
+    }
+
+    .author-title {
+        font-size: 0.85rem;
+        text-align: center;
+        max-width: 280px; /* บีบความกว้างไม่ให้ล้นออกนอกแนวเส้นแดง */
+    }
+
+.author-contact-grid {
+    padding: 28px 0px;
+    /* border-radius: 20px; */
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+    width: 100%;
+    max-width: 310px;
+    margin: 13px auto 0px auto;
+}
+
+/* ล็อคความกว้างของกลุ่มเนื้อหาข้างใน ให้ไอคอนเรียงตรงกันเป๊ะ */
+.contact-box {
+    width: 100%;
+    max-width: 220px; /* บีบพื้นที่ให้ก้อนไอคอน+ข้อความเกาะกลุ่มกันตรงกลางแกนแดง */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+    .contact-box i { 
+        color: var(--author-green); 
+        font-size: 1.1rem;
+        display: flex;
+        justify-content: center; /* บังคับไอคอนอยู่กึ่งกลางช่อง 24px */
+    }
+
+    .contact-box span {
+        text-align: left; /* 🛡️ ตัวหนังสือชิดซ้ายตามแนวเส้นตรง (ตามดราฟแดง) */
+        word-break: break-all;
+        line-height: 1.3;
+        white-space: normal;
+    }
+}
+
+/* ============================================================
+   12. MERCH & BOOKMARK (3 Designs Fix)
+   ============================================================ */
+.merch-grid.bookmark-triple-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+    gap: 15px;
+    width: 100% !important;
+    max-width: 950px;
+    justify-content: center;
+}
+
+@media (max-width: 1024px) {
+    .author-layout-card {
+        flex-direction: column; /* เปลี่ยนจากซ้ายขวา เป็น บนล่าง */
+        text-align: center;
+        padding: 0px 19px;
+    }
+    .author-content-side { text-align: center; }
+}
+
+@media (max-width: 480px) {
+    .author-name { font-size: 1.6rem; }
+    .author-title { font-size: 1rem; }
+    .contact-box p { font-size: 0.9rem; }
+}
+
+/* --- Fix Bookmark Grid (แก้การ์ดที่ 3 หลุดขอบ) --- */
+.merch-grid.bookmark-triple-grid {
+    display: grid !important;
+    /* 💥 แก้จุดสีม่วง: ใช้ 1fr เพื่อแบ่งพื้นที่ให้พอดีจอ ไม่ให้ Margin ดันจนล้น */
+    grid-template-columns: repeat(3, 1fr) !important; 
+    gap: 15px !important; 
+    width: 100% !important;
+    max-width: 1000px; /* คุมไม่ให้กว้างเกินไปบน Desktop */
+    margin: 30px auto 0 !important; /* ดีดกึ่งกลาง */
+    padding: 0 !important; /* ล้าง Padding ที่อาจจะแฝงมา */
+}
+
+.merch-card {
+    width: 100% !important;
+    max-width: none !important; /* ปล่อยให้ยืดตาม Grid 1fr */
+    box-sizing: border-box;
+    margin: 0 !important;
+}
+
+/* --- Fix Shop Grid (ย่านมีนบุรี-หนองจอก) --- */
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    justify-content: center;
+    justify-items: center; /* บังคับให้การ์ดอยู่กลางคอลัมน์ตัวเอง */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Responsive Fix สำหรับจอเล็ก (Fold 5 / Mobile) --- */
+@media (max-width: 768px) {
+    .merch-grid.bookmark-triple-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* จอเล็กเหลือ 2 จะไม่เบียด */
+    }
+}
+
+@media (max-width: 480px) {
+    .merch-grid.bookmark-triple-grid, .shop-grid {
+        grid-template-columns: 1fr !important; /* จอมือถือจิ๋วให้เรียงเดี่ยวกลางหน้าจอ */
+    }
+}
+
+/* ============================================================
+   13. 💬 Speed Dial Chat - Savor Happiness Final Mix (Image Toggle)
+   ============================================================ */
+.speed-dial-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 15px;
+}
+
+.speed-dial-main-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #FFD200 !important; /* พื้นหลังสีเหลืองทอง */
+    border: 2px solid #ffffff; /* ใส่ขอบขาวให้เหมือนสติกเกอร์ */
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden; /* กันรูปหลุดขอบวงกลม */
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* จัดการรูปภาพทั้งสองสถานะ */
+.speed-dial-main-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    transition: 0.4s ease-in-out;
+}
+
+/* สถานะปกติ: โชว์รูปยิ้มละมุน (The Feel Inside) */
+.img-active {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+/* --- เมื่อกดเปิดเมนู (Active) --- */
+.speed-dial-container.active .speed-dial-main-btn {
+    transform: scale(1.1) rotate(5deg);
+    background: #FF8C00 !important; /* เปลี่ยนเป็นสีส้มตอนแลบลิ้น */
+}
+
+/* สลับรูป: ซ่อนยิ้มละมุน โชว์แลบลิ้น (Must Try Menu) */
+.speed-dial-container.active .img-normal {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.speed-dial-container.active .img-active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.speed-dial-buttons {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 15px;
+    transform: translateY(20px) scale(0);
+    opacity: 0;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+}
+
+.speed-dial-container.active .speed-dial-buttons {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.dial-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.dial-btn:hover { transform: scale(1.15) translateY(-5px); }
+
+.phone-btn { background: #FFD54F; }
+.line-btn { background: #66BB6A; }
+.copy-btn { background: #FFCA28; }
+
+/* Responsive สำหรับ Mobile */
+@media (max-width: 768px) {
+    .speed-dial-container { bottom: 20px; right: 20px; }
+    .speed-dial-main-btn { width: 55px; height: 55px; }
+    .dial-btn { width: 48px; height: 48px; font-size: 18px; }
+}
+
+/* ============================================================
+   14. UI ELEMENTS & BUTTONS
+   ============================================================ */
+.btn-primary {
+    display: inline-block;
+    padding: 10px 50px;
+    background: var(--savor-green);
+    color: white !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: 0.4s;
+    box-shadow: 0 5px 20px rgba(0, 122, 51, 0.25);
+    margin-top: 15px;
+    animation: pulse-green 2s infinite;
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 122, 51, 0.4);
+    background: #008f3b;
+}
+
+@keyframes pulse-green {
+    0% { box-shadow: 0 0 0 0 rgba(0, 122, 51, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(0, 122, 51, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 122, 51, 0); }
+}
+
+/* ============================================================
+   LOGO COLOR RECOVERY: CSS BRUTE FORCE (สีเดิม 100%)
+   ============================================================ */
+
+/* 🛡️ สั่งที่ตัวกล่อง: ให้พื้นหลังขาวเพื่อขับสีโลโก้ */
+.logo-box {
+    background: #ffffff !important; 
+    border: none !important; /* สั่งลบเส้นขอบเทาๆ ทิ้งไปเลย */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+}
+
+/* 🛡️ สั่งที่ตัวรูป: คืนค่าสีสันแบบหักดิบ */
+.logo-box img {
+    /* 🔴 ปิดฟิลเตอร์ทุกชนิด: Grayscale, Sepia, Blur หายไปให้หมด! */
+    filter: none !important; 
+    -webkit-filter: grayscale(0) !important;
+    
+    /* 🔴 คืนค่าความชัด: ห้ามจาง ห้ามโปร่งแสง */
+    opacity: 1 !important; 
+    
+    /* ปรับขนาดให้สวยงามในกล่อง */
+    max-width: 85% !important;
+    max-height: 85% !important;
+    object-fit: contain !important;
+    
+    visibility: visible !important;
+    display: block !important;
+}
+
+/* Desktop Hover: แค่ให้ลอยนิดๆ สีห้ามเพี้ยน */
+.logo-box:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1) !important;
+}
+
+/* 📱 Mobile Fix: ล็อคสีเดิมในมือถือด้วย */
+@media (max-width: 991px) {
+    .logo-box img {
+        filter: grayscale(0) !important;
+        opacity: 1 !important;
+    }
+}
+
+/* ------------------------------------------------------------ */
+
+/* [2] MOBILE VERSION (991px): คืนสีดั้งเดิม 100% ไม่จม */
+@media (max-width: 991px) {
+    .author-logos-grid {
+        margin-top: 15px;
+        gap: 15px; /* ระยะห่างพอดีในมือถือ */
+    }
+
+    .logo-box {
+        width: 60px; /* ย่อขนาดลงนิดนึงให้สมดุลกับจอ */
+        height: 60px;
+        border-radius: 10px;
+        padding: 6px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+        
+        /* แก้ปัญหาการขยายตัวที่อาจจะล้นจอในมือถือ */
+        transform: none !important;
+    }
+
+    .logo-box img {
+        /* 🛡️ คืนสีภาพต้นฉบับ (ตามที่ปาล์มต้องการ) */
+        filter: grayscale(0%) opacity(1) !important;
+        
+        max-width: 88%;
+        max-height: 88%;
+    }
+}
+
+/* ============================================================
+   17. LIGHTBOX SYSTEM - ULTIMATE DRAG ENGINE
+   ============================================================ */
+#simpleLightbox {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.97);
+    
+    /* [หัวใจหลัก] ห้ามมี scrollbar และห้ามใช้ block 
+       ใช้ flex เพื่อให้รูปปกติอยู่กึ่งกลางจอเสมอ */
+    overflow: hidden !important; 
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+}
+
+#lightboxImg {
+    /* ขนาดเริ่มต้นเมื่อเปิดขึ้นมา */
+    max-width: 90%;
+    max-height: 85%;
+    object-fit: contain;
+    
+    /* จังหวะซูมให้สมูท (ตอนลาก JS จะสั่งปิด transition นี้เองอัตโนมัติ) */
+    transition: transform 0.35s cubic-bezier(0.15, 0, 0.15, 1);
+    cursor: zoom-in;
+    
+    /* [สำคัญมาก] กัน Browser แย่งลากรูป หรือคลุมดำรูป */
+    user-select: none;
+    -webkit-user-drag: none;
+    display: block; 
+}
+
+/* สถานะเมื่อถูกจิกซูม */
+#lightboxImg.zoomed {
+    /* ปล่อยให้ขนาดเป็นไปตามธรรมชาติ เพื่อให้ scale(2.5) ใน JS ทำงานได้เต็มที่ */
+    max-width: none !important;
+    max-height: none !important;
+    cursor: grab;
+}
+
+/* จังหวะกำปั้นกำแน่น */
+#lightboxImg.zoomed:active {
+    cursor: grabbing;
+}
+
+/* ============================================================
+   18. FOOTER & EXTRA UTILITIES
+   ============================================================ */
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-top: 1px solid #eee;
+}
+
+footer p {
+    font-size: 1rem;
+    color: #888;
+}
+
+/* --- EXTRA STYLING AREA (FILL TO REACH LINE GOAL) --- */
+.extra-spacing { height: 20px; }
+.text-bold { font-weight: bold; }
+.text-italic { font-style: italic; }
+.text-center { text-align: center; }
+.m-t-10 { margin-top: 10px; }
+.m-t-20 { margin-top: 20px; }
+.m-b-10 { margin-bottom: 10px; }
+.m-b-20 { margin-bottom: 20px; }
+.p-10 { padding: 10px; }
+.p-20 { padding: 20px; }
+
+.shadow-sm { box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.shadow-md { box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.shadow-lg { box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+.rounded-sm { border-radius: 5px; }
+.rounded-md { border-radius: 10px; }
+.rounded-lg { border-radius: 20px; }
+.bg-white { background: #fff; }
+.bg-cream { background: var(--savor-cream); }
+.color-green { color: var(--savor-green); }
+.color-orange { color: var(--savor-orange); }
+
+.flex { display: flex; }
+.flex-column { flex-direction: column; }
+.flex-center { justify-content: center; align-items: center; }
+.gap-10 { gap: 10px; }
+.gap-20 { gap: 20px; }
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.hidden { display: none; }
+.visible { display: block; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.overflow-hidden { overflow: hidden; }
+.cursor-pointer { cursor: pointer; }
+.transition-3 { transition: 0.3s; }
+.opacity-0 { opacity: 0; }
+.opacity-1 { opacity: 1; }
+.z-10 { z-index: 10; }
+.z-100 { z-index: 100; }
+.border-none { border: none; }
+
+#author .author-layout-card {margin-top: -76px;}
+#merch .merch-grid { margin-top: 30px; }
+#guidebook .book-grid-container { margin-top: 40px; }
+.merch-item-name { font-size: 1.1rem; margin-top: 10px; font-weight: 600; }
+.merch-item-price { color: var(--savor-green); font-weight: 700; margin-top: 5px; }
+.social-icons { display: flex; gap: 15px; margin-top: 15px; }
+.social-icons a { color: var(--savor-dark); font-size: 1.5rem; transition: 0.3s; }
+.social-icons a:hover { color: var(--savor-green); transform: translateY(-3px); }
+.footer-logo { margin-bottom: 20px; opacity: 0.7; }
+.footer-logo img { height: 40px; }
+
+::selection { background: var(--savor-green); color: white; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--savor-cream); }
+::-webkit-scrollbar-thumb { background: var(--savor-green); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #00642a; }
+
+
+/* ============================================================
+   19. SECTION: NAVIGATION & HEADER (FIXED VERSION)
+   ============================================================ */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4%;
+    background: rgba(255, 255, 255, 0.95);
+    height: 75px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px var(--savor-shadow);
+}
+
+.nav-right-container {display: flex;gap: 30px;justify-content: center;flex-wrap: nowrap;flex-direction: row-reverse;align-items: flex-start;/* align-content: center; */}
+.nav-links { display: flex; list-style: none; gap: 25px; }
+.nav-links a {text-decoration: none;color: #444;font-weight: 400;transition: 0.3s;}
+.nav-links a:hover { color: var(--savor-green); }
+
+/* ปรับแต่งปุ่มภาษาให้เป็นแบบวงกลมหรือสี่เหลี่ยมจัตุรัสมนๆ เพื่อความ Clean */
+.lang-btn {
+    width: 46px;           /* ล็อคความกว้างไว้ไม่ให้ขยับตอนตัวอักษรเปลี่ยน */
+    /* height: 35px; */          /* ความสูงกำลังดีสำหรับ Nav Bar */
+    background-color: var(--savor-green);
+    color: white;
+    border-radius: 12px;   /* ทำเป็นทรงแคปซูลมนๆ ดูทันสมัย */
+    border: 1px solid #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.lang-btn:hover {
+    background-color: #00642a;
+    color: var(--savor-green);
+    border: 2px solid var(--savor-green);
+}
+
+/* 1. สั่งให้ Navbar เป็น Flex และจัดของให้อยู่กลาง */
+.header-container { /* หรือชื่อ Class ที่คุม Navbar ทั้งหมดของปาล์ม */
+    display: flex;
+    justify-content: space-between; /* ให้ Logo อยู่ซ้าย เมนูอยู่ขวา */
+    align-items: center;
+    position: relative; /* สำคัญมากเพื่อใช้จัดตัวลูก */
+}
+
+/* 2. ดึงช่องค้นหามาไว้กลางเป๊ะๆ (Absolute Center) */
+.search-bar { /* หรือชื่อ Class ของช่องค้นหาที่ปาล์มวาดลูกศรแดงไว้ */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px; /* ปรับความกว้างตามความเหมาะสมของหน้าจอ Desktop */
+}
+
+.header-search {
+    /* ลบ Margin เก่าที่มันไม่เท่ากันออก */
+    margin-left: auto !important; 
+    margin-right: auto !important;
+    
+    /* คงค่าอื่นๆ ไว้เหมือนเดิม */
+    display: flex;
+    align-items: center;
+    /* ถ้ามี width หรือ max-width ก็ใส่ไว้ครับ */
+}
+
+/* ปรับขนาดในมือถือให้เล็กลงนิดนึง */
+@media (max-width: 768px) {
+    .lang-btn {
+        width: 35px;
+        height: 35px;
+        /* font-size: 0.75rem; */
+    }
+}
+
+.mobile-only-item { display: none; }
+
+/* --- [Responsive: สำหรับ Tablet & Mobile] --- */
+@media (max-width: 1024px) {
+    .header-search { display: none; }
+}
+
+/* ============================================================
+   SAVOR HAPPINESS - MASTER RESPONSIVE BUNDLE
+   Author: Pran (Palm)
+   Description: Unified CSS with Clean Breakpoints
+============================================================ 
+*/
+
+/* [1] GLOBAL RESET - ป้องกัน Margin/Padding ส่วนเกินดันจอเบี้ยว */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden; /* ห้ามมี Scroll แนวนอนเด็ดขาด */
+    background: var(--savor-cream);
+    font-family: 'Anuphan', sans-serif;
+}
+
+/* ============================================================
+   [2] DESKTOP & BASE STYLES (1025px UP)
+============================================================ 
+*/
+nav {
+    height: 75px;
+    padding: 0 5%;
+}
+
+.hero-grid {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.book-grid-container {
+    flex-direction: row;
+    gap: 60px;
+}
+
+.shop-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* ============================================================
+   [3] TABLET MODE (769px - 1024px)
+   - ปรับ Search Bar และเมนูให้เล็กลง
+============================================================ 
+*/
+@media (max-width: 1024px) {
+    body { padding-top: 70px; }
+    
+    .header-search {
+        max-width: 300px;
+    }
+
+    .nav-links { gap: 15px; }
+    .nav-links a { font-size: 0.95rem; }
+
+    .author-layout-card {
+        max-width: 90%;
+    }
+}
+
+/* ============================================================
+   [4] MOBILE PORTRAIT (แนวตั้ง - 768px DOWN)
+   - ปรับทุกอย่างให้เป็น Single Column (ยกเว้น Merch)
+============================================================ 
+*/
+@media (max-width: 768px) {
+    /* Header & Nav */
+    .header-search { display: none; } /* ซ่อน Search บนมือถือเพื่อประหยัดพื้นที่ */
+    .nav-links { display: none; } /* ซ่อนเมนูไว้ใน Hamburger */
+
+    /* Hero Section */
+    .hero-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 1fr); /* 10 รูปพอดี */
+    }
+
+    /* Guidebook Section */
+    .book-grid-container {
+        flex-direction: column !important;
+        padding: 40px 20px !important;
+        text-align: center;
+    }
+
+    .book-visual, .book-text {
+        width: 100% !important;
+        min-width: unset !important;
+    }
+
+    .inner-mockup {
+        max-width: 100%;
+    }
+
+    /* Shop Grid - ย่านมีนบุรี/หนองจอก */
+    .shop-grid {
+        grid-template-columns: 1fr !important; /* เรียงเดี่ยว */
+        gap: 20px !important;
+    }
+
+    /* Bookmark & Merch */
+    .merch-grid.bookmark-triple-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* จอเล็กลงเหลือ 2 คอลัมน์ */
+    }
+
+    /* Author Card */
+    .author-layout-card {
+        flex-direction: column !important;
+        border-radius: 25px;
+    }
+
+    .author-visual-side {
+        width: 100% !important;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding: 30px;
+    }
+
+    .author-profile-pic {
+        width: 200px;
+        height: 200px;
+    }
+
+    .author-content-side {
+        padding: 58px 0px;
+        text-align: left;
+        align-items: center;
+    }
+
+    .author-name {
+        font-size: 1.8rem;
+        white-space: normal;
+    }
+}
+
+/* ============================================================
+   SAVOR HAPPINESS - MASTER RESPONSIVE BUNDLE (FINAL)
+   Target: Desktop, Tablet, Mobile (Portrait & Landscape)
+   Author: Palm (Graphic Design SPU)
+   ============================================================ */
+
+/* [1] GLOBAL SETTINGS - พื้นฐานสำหรับทุกหน้าจอ */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px -0.1%;
+    height: 75px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    box-sizing: border-box;
+}
+
+.nav-right-container {
+    display: flex;
+    align-items: center;
+    gap: 33px;
+    flex-direction: row;
+}
+
+/* [2] DESKTOP MODE (จอกว้าง 1025px ขึ้นไป) 
+   - มีเมนูยาว / มี Search / ไม่มีเบอร์เกอร์ */
+@media screen and (min-width: 1025px) {
+    .nav-links {
+        display: flex !important;
+        list-style: none;
+        gap: 24px;
+        white-space: nowrap;
+    }
+
+    .header-search {
+        display: flex !important;
+        flex: 0 0 347px;
+        margin: 0 auto 0 20px; /* ดันให้อยู่ซ้ายต่อจาก Logo */
+    }
+
+    }
+
+    .lang-btn.desktop-only {
+        display: inline-block !important;
+    }
+
+/* [3] MOBILE & TABLET LANDSCAPE (แนวนอน - ความสูงน้อย หรือ Tablet จอกลาง)
+   - มี Search (แบบยาว) / มีเบอร์เกอร์ / ไม่มีเมนูยาว */
+@media screen and (max-height: 600px) and (orientation: landscape),
+       screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    
+    nav { height: 65px; }
+
+    .nav-links {
+        display: none !important; /* ซ่อนเมนูตัวหนังสือเพื่อความคลีน */
+    }
+
+    .header-search {
+        display: flex !important;
+        flex: 1 !important;        /* ยืดให้ยาวขึ้นตามที่ปาล์มต้องการ */
+        max-width: 450px !important; 
+        min-width: 250px !important;
+        margin: 0 15px !important;
+    }
+
+    .lang-btn.desktop-only {
+        display: inline-block !important;
+        order: 2;
+        padding: -1px 6px;
+        font-size: 0.85rem;
+    }
+
+    /* ป้องกันเนื้อหาใน Hero ทับกันในแนวนอน */
+    #home .hero-desc {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+/* [4] MOBILE PORTRAIT (แนวตั้ง - จอแคบ 767px ลงไป)
+   - ไม่มี Search / มีเบอร์เกอร์ / ปุ่มภาษาคู่เบอร์เกอร์ */
+@media screen and (max-width: 767px) and (orientation: portrait) {
+    .header-search, .nav-links {
+        display: none !important; /* ปิดช่องค้นหาตามโจทย์แนวตั้ง */
+    }
+
+    .nav-right-container {
+        gap: 18px;
+    }
+
+    .lang-btn.desktop-only {
+        display: inline-block !important;
+        padding: 6px 7px;
+        font-size: 0.8rem;
+    }
+
+    /* ปรับ Layout เนื้อหาใน Guidebook ให้เรียงเดี่ยว */
+    .book-grid-container {
+        flex-direction: column !important;
+        text-align: center;
+    }
+
+    .merch-grid.bookmark-triple-grid {
+        grid-template-columns: 1fr !important; /* จอจิ๋วให้เรียงเดี่ยว */
+    }
+}
+
+/* [5] CLEAN UP - ลบเส้น Warning และเก็บรายละเอียด */
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    overflow-x: hidden; /* ป้องกันหน้าส่ายซ้ายขวาในมือถือ */
+}
+
+#home h1 {
+    font-size: clamp(1.8rem, 5vw, 3.5rem); /* ขนาด Font ยืดหยุ่นตามความกว้างจอ */
+}
+
+
+/* ============================================================
+   [FIX MASTER] THE REAL HAPPINESS BUTTON (Match image_4.png)
+   Description: เปลี่ยนเป็นวงกลมสีเหลืองทึบเป๊ะๆ ตามเรฟ
+   ============================================================ */
+
+/* --- การตั้งค่าเริ่มต้น (ตอนยังไม่กด) --- */
+.speed-dial-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+    margin-bottom: 15px;
+    
+    /* ท่าไม้ตาย: ซ่อนไว้ก่อนและเลื่อนลงไปข้างล่าง */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(30px) scale(0.5); /* ย่อตัวและลงไปข้างล่าง */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* เด้งแบบนุ่มนวล */
+    pointer-events: none; /* กันเผลอไปกดตอนมันซ่อน */
+}
+
+/* --- เมื่อมีการกด (Class .active ทำงาน) --- */
+.speed-dial-container.active .speed-dial-buttons {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1); /* เด้งกลับมาตำแหน่งปกติ */
+    pointer-events: auto;
+}
+
+/* --- หมุนหน้ายิ้มนิดๆ ตอนเปิดเมนู --- */
+.speed-dial-container.active .speed-dial-main-btn {
+    transform: rotate(15deg) scale(1.1);
+    background-color: #FFB800 !important;
+}
+
+/* ปุ่มลูกๆ (ใส่ Delay ให้มันเด้งขึ้นมาทีละตัวแบบฉลาดๆ) */
+.dial-btn {
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.dial-btn:hover {
+    transform: scale(1.2) !important;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3) !important;
+}
+
+
+/* สไตล์สำหรับ Lightbox */
+.lightbox-overlay {
+    display: none; /* ซ่อนไว้ก่อน */
+    position: fixed;
+    z-index: 11000; /* ต้องสูงกว่าทุกอย่าง */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    cursor: zoom-out;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    animation: zoomAnim 0.3s ease;
+}
+
+@keyframes zoomAnim {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* ============================================================
+   [THE FINAL BOSS - REBORN] 
+   BY PALM (GRAPHIC DESIGN SPU)
+   ============================================================ */
+
+/* 1. ส่วนของจอ Desktop (จอใหญ่กว่า 768px) */
+/* เราจะสั่งซ่อนปุ่มเบอร์เกอร์ที่นี่ เพราะจอคอมไม่ต้องใช้! */
+.hamburger-menu {
+    display: none !important; 
+}
+
+/* 2. ส่วนของจอมือถือ (เล็กกว่าหรือเท่ากับ 768px) */
+@media (max-width: 768px) {
+    
+    /* บังคับโชว์ปุ่มเบอร์เกอร์เฉพาะในมือถือเท่านั้น */
+    .hamburger-menu {
+        display: block !important; 
+        cursor: pointer;
+        font-size: 28px;
+        color: var(--savor-green); /* หรือ #007A33 */
+        z-index: 10002 !important;
+        position: relative;
+        padding: 10px;
+    }
+
+    /* แผ่นเมนูที่ซ่อนไว้ขวาสุด */
+    .nav-links {
+        display: none !important; /* ซ่อนเพื่อให้จิ้มรูปข้างล่างติด */
+        flex-direction: column !important;
+        position: fixed !important;
+        top: 0;
+        right: -100%;
+        width: 49%;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        justify-content: center;
+        align-items: center;
+        gap: 51px;
+        z-index: 10001;
+        transition: right 0.4s ease;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* เมื่อกดเปิดแผ่นเมนู */
+    .nav-links.active {
+        display: flex !important;
+        right: 0 !important;
+    }
+
+    /* ซ่อนเมนูตัวหนังสือแบบเดิมของ Desktop ในมือถือ */
+    /* (ถ้าปาล์มใช้ชื่อคลาสอื่นให้แก้ตรงนี้ด้วยนะครับ) */
+    .nav-links-desktop, .header-search { 
+        display: none !important; 
+    }
+
+    /* สไตล์ตัวอักษรเมนูในมือถือ (NangKaiThot) */
+    .nav-links a {
+        font-family: 'NangKaiThot', sans-serif !important;
+        font-size: 1rem !important;
+        font-weight: 700;
+        color: var(--savor-green) !important;
+        text-decoration: none;
+    }
+}
