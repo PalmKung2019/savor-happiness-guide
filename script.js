@@ -148,7 +148,7 @@ function renderShops() {
     setTimeout(startAutoSlide, 300);
 }
 
-// 2. ระบบค้นหาและวาร์ป
+// 2. ระบบค้นหาและวาร์ป (เวอร์ชันแก้ไขให้วาร์ปไปเมนูได้)
 function executeSearch() {
     const searchInput = document.getElementById('shopSearchInput');
     const suggestionBox = document.getElementById('searchSuggestions');
@@ -157,33 +157,53 @@ function executeSearch() {
     const query = searchInput.value.toLowerCase().trim();
     const shopCards = document.querySelectorAll('.shop-card');
 
+    // 1. แผนผังคำค้นหาสำหรับวาร์ปไปตาม Section ต่างๆ
+    const navMap = [
+        { keywords: ['หนังสือ', 'book', 'guidebook', 'เล่ม'], target: '#book-feature' },
+        { keywords: ['ของที่ระลึก', 'merch', 'sticker', 'สติ๊กเกอร์'], target: '#merch' },
+        { keywords: ['ร้านแนะนำ', 'highlights', 'cafe', 'คาเฟ่'], target: '#highlights' },
+        { keywords: ['ผู้จัดทำ', 'creator', 'author', 'ปาล์ม', 'palm', 'ปรานต์'], target: '#author' },
+        { keywords: ['หน้าแรก', 'home', 'top'], target: '#home' }
+    ];
+
     if (query === "") {
         shopCards.forEach(card => { card.style.display = ""; card.style.opacity = "1"; });
         return;
     }
 
-    const navMap = [
-        { keywords: ['หนังสือ', 'book', 'guidebook', 'เล่ม'], target: '#book-feature' },
-        { keywords: ['ของที่ระลึก', 'merch', 'sticker', 'สติ๊กเกอร์'], target: '#merch' },
-        { keywords: ['ร้านแนะนำ', 'highlights', 'cafe', 'คาเฟ่'], target: '#highlights' },
-        { keywords: ['ผู้จัดทำ', 'creator', 'author', 'ปาล์ม', 'palm'], target: '#author' },
-        { keywords: ['หน้าแรก', 'home', 'top'], target: '#home' }
-    ];
-
+    // 2. ตรวจสอบว่าตรงกับเมนู (Section) ไหนไหม
     const navMatch = navMap.find(item => item.keywords.some(key => query.includes(key)));
+
+    // 3. ค้นหาร้านค้า (Shops)
     let firstMatch = null;
+    let foundAnyShop = false;
 
     shopCards.forEach(card => {
         const shopNameText = card.querySelector('.shop-name')?.innerText.toLowerCase() || "";
-        const shopData = realShops.find(s => s.name.toLowerCase() === shopNameText);
-        if (shopNameText.includes(query) || shopData?.nameTH?.includes(query)) {
-            card.style.display = ""; card.style.opacity = "1";
+        // หาข้อมูลจาก realShops มาเทียบชื่อภาษาไทยด้วย
+        const shopData = realShops.find(s => s.name.toLowerCase() === shopNameText || (s.nameTH && s.nameTH.toLowerCase().includes(query)));
+        
+        if (shopNameText.includes(query) || (shopData && shopData.nameTH.toLowerCase().includes(query))) {
+            card.style.display = ""; 
+            card.style.opacity = "1";
+            foundAnyShop = true;
             if (!firstMatch) firstMatch = card;
-        } else { card.style.display = "none"; }
+        } else { 
+            card.style.display = "none"; 
+        }
     });
 
-    if (firstMatch) firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    else if (navMatch) document.querySelector(navMatch.target)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // 4. ตัดสินใจว่าจะวาร์ปไปไหน
+    if (navMatch) {
+        // ถ้าเจอคำที่ตรงกับ Menu ให้วาร์ปไป Section นั้นก่อน (เช่น ผู้จัดทำ)
+        const targetSection = document.querySelector(navMatch.target);
+        if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    } else if (firstMatch) {
+        // ถ้าไม่เจอเมนู แต่เจอร้านค้า ให้วาร์ปไปที่ร้านแรกที่เจอ
+        firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 
     if (suggestionBox) suggestionBox.style.display = "none";
 }
@@ -289,16 +309,92 @@ document.addEventListener('DOMContentLoaded', () => {
         } else { suggestionBox.style.display = "none"; }
     });
 
+// [4] ระบบ Hamburger Menu (เปิด-ปิด และ หุบเมื่อคลิกเลือก)
     if (hamBtn && navMenu) {
+        // เมื่อกดปุ่มเบอร์เกอร์ (สามขีด)
         hamBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             const isOpen = navMenu.classList.toggle('active');
+            // สลับไอคอนระหว่าง สามขีด กับ กากบาท
             if (icon) icon.className = isOpen ? 'fas fa-times' : 'fas fa-bars';
+        });
+
+        // จิกหัว "ทุกลิงก์" และ "ทุกปุ่ม" ในแผ่นเมนู
+        // พอโดนจิ้มปุ๊บ ให้สั่งหุบแผ่นเมนูทันที
+        const menuItems = navMenu.querySelectorAll('a, .lang-btn, .theme-btn');
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navMenu.classList.remove('active'); // หุบแผ่นเมนู
+                if (icon) icon.className = 'fas fa-bars'; // คืนค่าไอคอนเป็นสามขีด
+            });
+        });
+
+        // แถม: คลิกพื้นที่ว่างๆ ข้างนอกเมนู ก็ให้หุบด้วย (UX จะได้เนียนๆ)
+        document.addEventListener('click', (e) => {
+            if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !hamBtn.contains(e.target)) {
+                navMenu.classList.remove('active');
+                if (icon) icon.className = 'fas fa-bars';
+            }
         });
     }
 
     if (typeof AOS !== 'undefined') {
         setTimeout(() => { AOS.init({ duration: 1000, once: true }); }, 100);
+    }
+}); // ปิดท้าย DOMContentLoaded
+
+// --- 1. ฟังก์ชันสลับโหมด (Optimized for New Structure) ---
+function toggleTheme() {
+    const html = document.documentElement;
+    const logoImg = document.getElementById('mainLogo');
+    const themeBtns = document.querySelectorAll('.theme-btn'); // ดึงทุกปุ่มที่มี Class นี้
+    
+    // เช็กสถานะจาก Attribute ของ HTML (แม่นยำกว่าเช็กจาก Text)
+    const isDark = html.getAttribute('data-theme') === 'dark';
+
+    if (!isDark) {
+        // --- เปลี่ยนเป็น DARK ---
+        html.setAttribute('data-theme', 'dark');
+        if (logoImg) logoImg.src = "img/logo/savorhappiness-2.png"; 
+        
+        themeBtns.forEach(btn => {
+            btn.innerText = "DARK";
+            btn.classList.add('active-dark'); // เผื่อพี่ปาล์มอยากแต่ง CSS ปุ่มตอนเป็น Dark
+        });
+        
+        localStorage.setItem('theme', 'dark');
+    } else {
+        // --- กลับเป็น LIGHT ---
+        html.removeAttribute('data-theme');
+        if (logoImg) logoImg.src = "img/logo/savorhappiness-1.png";
+        
+        themeBtns.forEach(btn => {
+            btn.innerText = "LIGHT";
+            btn.classList.remove('active-dark');
+        });
+        
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+// --- 2. ระบบเช็กค่าเดิม (Auto-Sync on Load) ---
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    const html = document.documentElement;
+    const logoImg = document.getElementById('mainLogo');
+    const themeBtns = document.querySelectorAll('.theme-btn');
+
+    if (savedTheme === 'dark') {
+        html.setAttribute('data-theme', 'dark');
+        if (logoImg) logoImg.src = "img/logo/savorhappiness-2.png";
+        
+        themeBtns.forEach(btn => {
+            btn.innerText = "DARK";
+            btn.classList.add('active-dark');
+            // ตัวอย่าง: ถ้าพี่อยากเปลี่ยนสีปุ่มทันที
+            btn.style.backgroundColor = "var(--author-orange)"; 
+            btn.style.color = "#fff";
+        });
     }
 });
 
@@ -313,12 +409,6 @@ function toggleLang() {
             el.innerHTML = translations[currentLang][key];
         }
     });
-
-    // 3. อัปเดต Placeholder
-    const searchInput = document.getElementById('shopSearchInput');
-    if (searchInput) {
-        searchInput.placeholder = (currentLang === 'th') ? 'ค้นหาร้านค้า หรือเมนู...' : 'Search shops or menu...';
-    }
 
     // 4. อัปเดต Title/Tooltip
     document.querySelectorAll('[data-title-key]').forEach(el => {
@@ -383,6 +473,15 @@ window.changeBookView = function(src, thumb) {
         thumb.classList.add('active');
     }
 };
+
+window.onscroll = function() { updateProgressBar() };
+
+function updateProgressBar() {
+    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var scrolled = (winScroll / height) * 100;
+    document.getElementById("myBar").style.width = scrolled + "%";
+}
 
 function closeMenu() {
     const navMenu = document.querySelector('.nav-menu'); 
