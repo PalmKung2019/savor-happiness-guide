@@ -842,6 +842,31 @@ body {
    11. AUTHOR SECTION: MASTERPIECE (FLUID & GRID LOCK)
    ============================================================ */
 
+.author-content-side {
+    /* ของเดิมอ้ายอาจจะเป็น padding: 60px 65.4px; */
+    padding: 5% 6%; /* ใส่แทนของเดิมไปเลยอ้าย! */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/* พอกว้างน้อยกว่า 1090px (จังหวะที่รูปอ้ายแคปมามันเริ่มเพี้ยน) ให้ทำตามนี้ */
+@media (max-width: 1090px) {
+    .author-layout-grid { 
+        display: flex;
+        flex-direction: column; /* สั่งให้รูปกับข้อความมาวางต่อกัน "บน-ล่าง" แทน "ซ้าย-ขวา" */
+        align-items: center;
+    }
+    
+    .author-content-side {
+        padding: 40px 20px; /* ลดพื้นที่ว่างลง จะได้ไม่ล้นกล่องขาว */
+        text-align: center; /* ตัวหนังสืออยู่ตรงกลาง จะดูหล่อเท่กว่าตอนจอเล็ก */
+    }
+}
+
+
+
 :root {
     --author-green: #2D5A27;
     --author-orange: #FF9800;
@@ -2710,6 +2735,36 @@ html:not([data-theme="dark"]) .shop-info span {
    SAVOR HAPPINESS | HIDE HAMBURGER ON LARGE SCREENS
    - ซ่อนปุ่มเมนูขีดสามขีดบน Desktop & Tablet Landscape
    ============================================================ */
+
+@media (max-width: 1090px) {
+    /* --- โค้ดเดิมเรื่อง Author อ้ายวางไว้ตรงนี้ --- */
+
+    /* --- ส่วนของ Burger Menu --- */
+    .nav-links { 
+        display: none; /* ซ่อนเมนูแถบยาวๆ ไปก่อนอ้าย! */
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* ปรับตามความสูง Navbar อ้าย */
+        right: 0;
+        background: #F4F1EA; /* สีครีมละมุนแบบในเล่ม */
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    /* คลาสที่จะเอาไว้ "สั่งให้เมนูโผล่" เวลาเรากดปุ่ม */
+    .nav-links.active {
+        display: flex; 
+    }
+
+    .burger-icon {
+        display: block; /* โชว์ไอคอน 3 ขีดเฉพาะตอนจอเล็ก */
+        cursor: pointer;
+        padding: 10px;
+    }
+}
+
 
 /* สำหรับหน้าจอคอมพิวเตอร์และ Tablet แนวนอน (1025px ขึ้นไป) */
 @media (min-width: 1025px) {
