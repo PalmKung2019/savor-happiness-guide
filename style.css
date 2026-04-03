@@ -1823,9 +1823,9 @@ nav {
 
 /* [2] 🟢 DARK MODE OVERRIDE (อิงตาม [data-theme="dark"] ของอ้าย) */
 [data-theme="dark"], 
-[data-theme="dark"] body { 
-    background-color: #007A33 !important; 
-    color: #ffffff !important; 
+[data-theme="dark"] body {
+    background-color: #93a35a !important;
+    color: #ffffff !important;
 }
 
 [data-theme="dark"] nav, 
