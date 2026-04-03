@@ -122,16 +122,17 @@ function renderShops() {
     nongGrid.innerHTML = "";
 
     realShops.forEach((shop, shopIdx) => {
-        let imgHtml = "";
-        for(let i = 0; i < 8; i++) {
-            const fullPath = `img/20ResCafe/${shop.folder}/${shop.file}${i}.jpg`;
-            imgHtml += `
-                <img class="photo-item ${i === 0 ? 'active' : ''}" 
-                     src="${fullPath}" 
-                     onclick="window.openSimpleLightbox(${i}, ${shopIdx})" 
-                     onerror="this.style.display='none';">
-            `;
-        }
+    let imgHtml = "";
+    for(let i = 0; i < 8; i++) {
+        const fullPath = `img/20ResCafe/${shop.folder}/${shop.file}${i}.jpg`; // แผนหลัก .jpg
+        
+        imgHtml += `
+            <img class="photo-item ${i === 0 ? 'active' : ''}" 
+                 src="${fullPath}" 
+                 onclick="window.openSimpleLightbox(${i}, ${shopIdx})" 
+                 onerror="if (this.src.endsWith('.jpg')) { this.src = this.src.replace('.jpg', '.JPG'); } else { this.style.display='none'; }">
+        `;
+    }
 
         const cardHtml = `
             <div class="shop-card" data-aos="fade-up">
