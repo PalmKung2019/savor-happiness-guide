@@ -842,6 +842,19 @@ body {
    11. AUTHOR SECTION: MASTERPIECE (FLUID & GRID LOCK)
    ============================================================ */
 
+/* เมื่อจอแคบลงกว่า 1024px (จุดอันตรายของกัปตัน) */
+@media (max-width: 992px) {
+    .author-layout-grid {
+        display: flex;
+        flex-direction: column; /* จากเดิมที่วางข้างกัน ให้มาต่อแถวตอนลึก */
+        align-items: center;
+    }
+    .author-image-side, .author-content-side {
+        width: 100%; /* ให้กางเต็มจอไปเลยอ้าย ไม่ต้องเบียดกัน */
+        padding: 20px;
+    }
+}
+
 .author-content-side {
     /* ของเดิมอ้ายอาจจะเป็น padding: 60px 65.4px; */
     padding: 5% 6%; /* ใส่แทนของเดิมไปเลยอ้าย! */
@@ -2735,36 +2748,6 @@ html:not([data-theme="dark"]) .shop-info span {
    SAVOR HAPPINESS | HIDE HAMBURGER ON LARGE SCREENS
    - ซ่อนปุ่มเมนูขีดสามขีดบน Desktop & Tablet Landscape
    ============================================================ */
-
-@media (max-width: 1090px) {
-    /* --- โค้ดเดิมเรื่อง Author อ้ายวางไว้ตรงนี้ --- */
-
-    /* --- ส่วนของ Burger Menu --- */
-    .nav-links { 
-        display: none; /* ซ่อนเมนูแถบยาวๆ ไปก่อนอ้าย! */
-        flex-direction: column;
-        position: absolute;
-        top: 60px; /* ปรับตามความสูง Navbar อ้าย */
-        right: 0;
-        background: #F4F1EA; /* สีครีมละมุนแบบในเล่ม */
-        width: 100%;
-        text-align: center;
-        padding: 20px 0;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    /* คลาสที่จะเอาไว้ "สั่งให้เมนูโผล่" เวลาเรากดปุ่ม */
-    .nav-links.active {
-        display: flex; 
-    }
-
-    .burger-icon {
-        display: block; /* โชว์ไอคอน 3 ขีดเฉพาะตอนจอเล็ก */
-        cursor: pointer;
-        padding: 10px;
-    }
-}
-
 
 /* สำหรับหน้าจอคอมพิวเตอร์และ Tablet แนวนอน (1025px ขึ้นไป) */
 @media (min-width: 1025px) {
