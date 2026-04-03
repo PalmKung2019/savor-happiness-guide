@@ -842,44 +842,6 @@ body {
    11. AUTHOR SECTION: MASTERPIECE (FLUID & GRID LOCK)
    ============================================================ */
 
-/* เมื่อจอแคบลงกว่า 1024px (จุดอันตรายของกัปตัน) */
-@media (max-width: 992px) {
-    .author-layout-grid {
-        display: flex;
-        flex-direction: column; /* จากเดิมที่วางข้างกัน ให้มาต่อแถวตอนลึก */
-        align-items: center;
-    }
-    .author-image-side, .author-content-side {
-        width: 100%; /* ให้กางเต็มจอไปเลยอ้าย ไม่ต้องเบียดกัน */
-        padding: 20px;
-    }
-}
-
-.author-content-side {
-    /* ของเดิมอ้ายอาจจะเป็น padding: 60px 65.4px; */
-    padding: 5% 6%; /* ใส่แทนของเดิมไปเลยอ้าย! */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-
-/* พอกว้างน้อยกว่า 1090px (จังหวะที่รูปอ้ายแคปมามันเริ่มเพี้ยน) ให้ทำตามนี้ */
-@media (max-width: 1090px) {
-    .author-layout-grid { 
-        display: flex;
-        flex-direction: column; /* สั่งให้รูปกับข้อความมาวางต่อกัน "บน-ล่าง" แทน "ซ้าย-ขวา" */
-        align-items: center;
-    }
-    
-    .author-content-side {
-        padding: 40px 20px; /* ลดพื้นที่ว่างลง จะได้ไม่ล้นกล่องขาว */
-        text-align: center; /* ตัวหนังสืออยู่ตรงกลาง จะดูหล่อเท่กว่าตอนจอเล็ก */
-    }
-}
-
-
-
 :root {
     --author-green: #2D5A27;
     --author-orange: #FF9800;
