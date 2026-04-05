@@ -361,19 +361,16 @@
     // --- [4] Initialize AOS ---
     AOS.init();
 
-    // --- [5] ระบบกันการลากรูปภาพ (เวอร์ชั่นกำจัดเส้นเหลืองใน CSS) ---
-    document.querySelectorAll('img').forEach(img => {
-        // ดักการลากรูป (Drag)
-        img.addEventListener('dragstart', (e) => {
-            e.preventDefault();
-            return false;
-        });
-        
-        // กันการคลิกขวาเฉพาะที่ตัวรูป (เผื่อตัวรวมมันหลุด)
-        img.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-        });
-    });
+// --- [5] ระบบล็อคตาย: ใครลากรูป... บล็อกทิ้งทันที! ---
+    window.onload = function() {
+        const allImages = document.getElementsByTagName('img');
+        for (let i = 0; i < allImages.length; i++) {
+            // ดักการลาก (Drag) แบบ Hardcore
+            allImages[i].setAttribute('draggable', 'false'); // ใส่ Attribute โดยตรง
+            allImages[i].oncontextmenu = function() { return false; }; // กันคลิกขวาที่รูป
+            allImages[i].ondragstart = function() { return false; }; // กันลาก (วิธีดั้งเดิมที่ชัวร์สุด)
+        }
+    };
 </script>
 <script src="script.js"></script>
 
