@@ -837,15 +837,24 @@ body {
     }
 }
 
-/* SAVOR HAPPINESS - AUTHOR SECTION (MEDIUM BALANCED) 
-   ขยับขนาดขึ้นมาให้พอดี ไม่เล็กจนโหวง และไม่ใหญ่จนล้น
-*/
+/* ============================================================
+   SAVOR HAPPINESS - AUTHOR SECTION (FINAL MASTERPIECE)
+   Support: Desktop, Tab S9, S22 Ultra
+   ============================================================ */
 
 :root {
     --author-green: #2D5A27;
     --author-orange: #FF9800;
 }
 
+/* 1. 🛡️ แก้ปัญหา Background ซ้อน (ล้างค่าตัวนอก) */
+#author.section {
+    padding: 0 !important;
+    background: none !important;
+    margin: 0 !important;
+}
+
+/* 2. ตัวคุมตำแหน่งหน้าจอ (สีครีมตัวเดียวเนียนๆ) */
 .author-centering-wrapper {
     width: 100%;
     min-height: 100vh;
@@ -853,10 +862,11 @@ body {
     justify-content: center;
     align-items: center;
     padding: 40px 20px;
-    background-color: #fdfbf9;
+    background-color: #fdfbf9; /* สีครีมเป้าหมาย */
+    box-sizing: border-box;
 }
 
-/* 1. ขยายความกว้างการ์ดกลับมาที่ 880px (กำลังสวยสำหรับ Tablet) */
+/* 3. การ์ดหลัก - ขนาด Medium Balanced (880px) */
 .author-layout-card {
     background: #ffffff;
     border-radius: 35px;
@@ -864,25 +874,25 @@ body {
     width: 100%;
     max-width: 880px; 
     display: flex;
-    flex-direction: row;
+    flex-direction: row; /* แนวนอนเป็นหลัก */
     overflow: hidden;
     border: 1px solid rgba(0,0,0,0.03);
 }
 
-/* --- ฝั่งซ้าย: รูปภาพและโลโก้ --- */
+/* --- [ฝั่งซ้าย: รูปภาพและโลโก้] --- */
 .author-visual-side {
-    flex: 0 0 280px; /* ขยับจาก 240 เป็น 280 */
+    flex: 0 0 280px;
     background: #fafafa;
     padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-right: 1px solid #f0f0f0;
+    border-right: 1.5px solid #f0f0f0;
 }
 
 .author-profile-pic {
-    width: 170px; /* ขยับจาก 130 เป็น 170 (ขนาดมาตรฐานรูปโปรไฟล์) */
+    width: 170px;
     height: 170px;
     border-radius: 25px;
     overflow: hidden;
@@ -890,9 +900,13 @@ body {
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-.author-profile-pic img { width: 100%; height: 100%; object-fit: cover; }
+.author-profile-pic img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* กันหน้ายืด */
+}
 
-/* โซนโลโก้ 3 อัน (ขยับขึ้นมาเป็น 20px ให้เห็นชัดขึ้นแต่ไม่แย่งซีน) */
+/* 🛡️ ปรับสเกลโลโก้ 3 อันให้พอดี (20px) */
 .author-logos-grid {
     display: flex;
     gap: 15px;
@@ -904,13 +918,13 @@ body {
 }
 
 .logo-box img {
-    height: 20px !important; /* จาก 16 เป็น 20 กำลังอ่านออก */
+    height: 20px !important;
     width: auto;
-    filter: grayscale(100%);
-    opacity: 0.6;
+    filter: none !important; /* คืนค่าสีโลโก้ให้ชัดเจน */
+    opacity: 0.8;
 }
 
-/* --- ฝั่งขวา: เนื้อหา --- */
+/* --- [ฝั่งขวา: เนื้อหา] --- */
 .author-content-side {
     flex: 1;
     padding: 45px 50px;
@@ -928,6 +942,7 @@ body {
     padding-bottom: 8px;
 }
 
+/* เส้นใต้ชื่อ "ผู้จัดทำ" */
 .section-title::after {
     content: "";
     position: absolute;
@@ -940,20 +955,20 @@ body {
 }
 
 .author-name {
-    font-size: 26px !important; /* จาก 20 เป็น 26 ให้ชื่อเด่นขึ้น */
+    font-size: 26px !important;
     font-weight: 700;
     color: var(--author-green);
     margin-bottom: 8px;
 }
 
 .author-title {
-    font-size: 14.5px !important; /* ขยับขึ้นมาหน่อย */
+    font-size: 14.5px !important;
     color: #888;
     line-height: 1.5;
     margin-bottom: 30px;
 }
 
-/* --- Contact Section --- */
+/* --- [Contact Section] --- */
 .author-contact-grid {
     border-top: 1.5px solid #eee;
     padding-top: 25px;
@@ -971,16 +986,21 @@ body {
     text-decoration: none;
 }
 
-.contact-box i { width: 18px; color: var(--author-green); text-align: center; font-size: 1.1rem; }
+.contact-box i { 
+    width: 18px; 
+    color: var(--author-green); 
+    text-align: center; 
+    font-size: 1.1rem; 
+}
 
 /* ==========================================
-   📱 RESPONSIVE: ปรับเฉพาะ Mobile (S22 Ultra)
+   📱 RESPONSIVE: ปรับเฉพาะมือถือ (S22 Ultra)
    ========================================== */
 
 @media (max-width: 800px) {
     .author-layout-card {
         flex-direction: column;
-        max-width: 380px; /* ขยับจาก 320 เป็น 380 ให้ดูเต็มจอขึ้นในมือถือ */
+        max-width: 380px; /* ขนาดมือถือที่พอดีตา */
     }
 
     .author-visual-side {
@@ -990,7 +1010,7 @@ body {
         border-bottom: 1px solid #f0f0f0;
     }
 
-    .author-profile-pic { width: 160px; height: 160px; } /* ในมือถือก็ขยายขึ้น */
+    .author-profile-pic { width: 160px; height: 160px; }
 
     .author-content-side {
         padding: 35px 25px;
@@ -1003,7 +1023,7 @@ body {
     .author-contact-grid {
         width: fit-content;
         margin: 0 auto;
-        align-items: flex-start;
+        align-items: flex-start; /* ไอคอนเรียงตรงกันแนวตั้ง */
     }
 }
 
@@ -2649,7 +2669,7 @@ html:not([data-theme="dark"]) .shop-info span {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* 5. รายการใน Suggestion */
+/* 5. Suggestion */
 .suggestion-item {
     padding: 18px 25px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.03);
