@@ -1466,16 +1466,16 @@ footer p {
 }
 
 img {
-    /* [1] กันการเลือกรูปภาพด้วยมาตรฐานที่เบราว์เซอร์ยอมรับ */
+    /* [1] กันการเลือกรูปภาพ (อันนี้มาตรฐาน VS Code ไม่บ่น) */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 
-    /* [2] ตั้งค่าเป็น auto เพื่อให้ปาล์มยังคลิกเปิดดูรูปขยาย (Lightbox) ได้ปกติ */
+    /* [2] เปิดให้คลิกเปิด Lightbox ได้ปกติ */
     pointer-events: auto; 
     
-    /* [3] กันการกดค้างเพื่อบันทึกภาพเมื่อดูผ่านมือถือ */
+    /* [3] กันกดค้างบันทึกภาพในมือถือ */
     -webkit-touch-callout: none;
 }
 
