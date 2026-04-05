@@ -163,11 +163,11 @@
                 <h3 class="merch-sub-title"><i class="fas fa-map-marked-alt"></i> Postcard Map | โปสการ์ดแผนที่ มีนบุรี-หนองจอก</h3>
                 <div class="merch-grid">
                     <div class="merch-card">
-                        <img src="img/PostcardMinburi.jpg" alt="Minburi Map" onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in;">
+                        <img src="img/PostcardMinburi.jpg" alt="Minburi Map" onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in;" loading="lazy">
                         <p>MinBuri Postcard Map | Savor Happiness</p>
                     </div>
                     <div class="merch-card">
-                        <img src="img/PostcardNongchok.jpg" alt="Nongchok Map" onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in;">
+                        <img src="img/PostcardNongchok.jpg" alt="Nongchok Map" onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in;" loading="lazy">
                         <p>NongChok Postcard Map | Savor Happiness</p>
                     </div>
                 </div>
@@ -177,7 +177,7 @@
                 <h3 class="merch-sub-title"><i class="fas fa-sticky-note"></i> Sticker | สติ๊กเกอร์</h3>
                 <div class="merch-grid">
                     <div class="merch-card">
-                        <img src="img/Sticker1.jpg" alt="Minburi Sticker" onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in;">
+                        <img src="img/Sticker1.jpg" alt="Minburi Sticker" onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in;" loading="lazy">
                         <p class="lang-text" data-key="merch-min-title">Savor Happiness Sticker set</p>
                     </div>
                 </div>
@@ -189,15 +189,15 @@
     <div class="merch-centering-wrapper">
         <div class="merch-grid bookmark-triple-grid">
             <div class="merch-card" data-aos="zoom-in" data-aos-delay="100">
-                <img src="img/Bookmarks1.jpg" alt="Bookmark Design 1" onclick="openSimpleLightbox(this.src)">
+                <img src="img/Bookmarks1.jpg" alt="Bookmark Design 1" onclick="openSimpleLightbox(this.src)" loading="lazy">
                 <p>Design 01 | Savor Happiness</p>
             </div>
             <div class="merch-card" data-aos="zoom-in" data-aos-delay="200">
-                <img src="img/Bookmarks2.jpg" alt="Bookmark Design 2" onclick="openSimpleLightbox(this.src)">
+                <img src="img/Bookmarks2.jpg" alt="Bookmark Design 2" onclick="openSimpleLightbox(this.src)" loading="lazy">
                 <p>Design 02 | Savor Happiness</p>
             </div>
             <div class="merch-card" data-aos="zoom-in" data-aos-delay="300">
-                <img src="img/Bookmarks3.jpg" alt="Bookmark Design 3" onclick="openSimpleLightbox(this.src)">
+                <img src="img/Bookmarks3.jpg" alt="Bookmark Design 3" onclick="openSimpleLightbox(this.src)" loading="lazy">
                 <p>Design 03 | Savor Happiness</p>
             </div>
         </div>
@@ -225,9 +225,9 @@
                     <img src="img/Author_Palm.jpg" alt="Pran Taewin (Palm)" class="profile-img">
                 </div>
                 <div class="author-logos-grid">
-                    <div class="logo-box"><img src="img/logo/spu.jpg" alt="SPU Logo"></div>
-                    <div class="logo-box"><img src="img/logo/sdm.jpg" alt="SDM Logo"></div>
-                    <div class="logo-box"><img src="img/logo/SavorHappiness.jpg" alt="Exhibition Logo"></div>
+                    <div class="logo-box"><img src="img/logo/spu.jpg" alt="SPU Logo" loading="lazy"></div>
+                    <div class="logo-box"><img src="img/logo/sdm.jpg" alt="SDM Logo" loading="lazy"></div>
+                    <div class="logo-box"><img src="img/logo/SavorHappiness.jpg" alt="Exhibition Logo" loading="lazy"></div>
                 </div>
             </div>
 
@@ -278,13 +278,12 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    // --- [1] Global Functions (เรียกใช้จาก HTML โดยตรง) ---
+    // --- [1] Global Functions (Copy Email & Toggle Speed Dial) ---
     window.toggleSpeedDial = function(e) {
         if(e) e.stopPropagation();
         const dial = document.getElementById('speedDialContainer');
         if (dial) {
             dial.classList.toggle('active');
-            console.log("Speed Dial Toggled!");
         }
     };
 
@@ -294,7 +293,7 @@
         });
     };
 
-    // --- [2] Main Event Listener (ตัวคุมทั้งหน้าจอ) ---
+    // --- [2] Main Event Listener (Menu, Video, Dial) ---
     document.addEventListener('click', function(e) {
         const btn = document.getElementById('hamburgerBtn');
         const menu = document.getElementById('navLinks');
@@ -302,9 +301,8 @@
         const muteBtn = document.getElementById('muteBtn');
         const video = document.getElementById('myVideo');
 
-        // --- 2.1 Logic สำหรับ Burger Menu ---
+        // Burger Menu Logic
         if (btn && btn.contains(e.target)) {
-            console.log("Burger Clicked!");
             menu.classList.toggle('active');
             const icon = btn.querySelector('i');
             if (icon) {
@@ -315,32 +313,49 @@
         else if (menu && menu.classList.contains('active') && !menu.contains(e.target)) {
             menu.classList.remove('active');
             const icon = btn.querySelector('i');
-            if (icon) {
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
-            }
+            if (icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-times'); }
         }
 
-        // --- 2.2 Logic สำหรับปุ่ม Mute Video (รวมไว้ที่นี่เลย) ---
+        // Mute/Unmute Video
         if (muteBtn && muteBtn.contains(e.target) && video) {
             const muteIcon = muteBtn.querySelector('i');
-            if (video.muted) {
-                video.muted = false;
-                muteIcon.classList.replace('fa-volume-mute', 'fa-volume-up');
-            } else {
-                video.muted = true;
-                muteIcon.classList.replace('fa-volume-up', 'fa-volume-mute');
-            }
-            console.log("Video Mute Toggled!");
+            video.muted = !video.muted;
+            muteIcon.classList.toggle('fa-volume-mute', video.muted);
+            muteIcon.classList.toggle('fa-volume-up', !video.muted);
         }
 
-        // --- 2.3 Logic สำหรับปิดปุ่มยิ้ม (Speed Dial) เมื่อคลิกที่อื่น ---
+        // Close Speed Dial when clicking outside
         if (dial && dial.classList.contains('active') && !dial.contains(e.target)) {
             dial.classList.remove('active');
         }
     });
 
-    // --- [3] Initialize อื่นๆ ---
+    // --- [3] Advanced Security ---
+    
+    // 1. กันคลิกขวา
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    // 2. กันปุ่มลัดแงะโค้ด (F12, Inspect, Source, Save)
+    document.onkeydown = function(e) {
+        if (e.keyCode == 123 || 
+            (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0))) || 
+            (e.ctrlKey && (e.keyCode == 'U'.charCodeAt(0) || e.keyCode == 'S'.charCodeAt(0)))) {
+            return false;
+        }
+    };
+
+    // 3. ท่าไม้ตาย: Debugger Loop + Console Spam (คนแงะมีมึน)
+    setInterval(function() {
+        // ก่อกวนหน้า Console
+        console.clear();
+        console.log("%cSTOP!", "color: red; font-size: 50px; font-weight: bold;");
+        console.log("%cThis is a protected Thesis project of Palm (Savor Happiness).", "font-size: 18px; color: orange;");
+        
+        // สั่งให้หน้าเว็บค้างถ้ามีคนเปิด DevTools
+        (function() {}.constructor("debugger")());
+    }, 500);
+
+    // --- [4] Initialize AOS ---
     AOS.init();
 </script>
 <script src="script.js"></script>
