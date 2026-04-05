@@ -371,6 +371,22 @@
             allImages[i].ondragstart = function() { return false; }; // กันลาก (วิธีดั้งเดิมที่ชัวร์สุด)
         }
     };
+    // --- [6] วิชาพรางตา: ดักจับการกดปุ่ม Print Screen ---
+    document.addEventListener('keyup', (e) => {
+        if (e.key === 'PrintScreen') {
+            // สั่งล้าง Clipboard (กันคนเอาไป Paste)
+            navigator.clipboard.writeText('');
+            alert('ขออภัยครับ งาน Thesis ชิ้นนี้ไม่อนุญาตให้แคปหน้าจอเพื่อรักษาลิขสิทธิ์');
+        }
+    });
+
+    // ดักจับ Ctrl + P (สั่งปริ้นเว็บเป็น PDF)
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.key === 'p') {
+            alert('ไม่อนุญาตให้สั่งพิมพ์หน้าเว็บนี้ครับ');
+            e.preventDefault();
+        }
+    });
 </script>
 <script src="script.js"></script>
 
