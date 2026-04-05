@@ -28,7 +28,8 @@ const translations = {
         'merch-min-title': 'สติ๊กเกอร์ ชุดดื่มด่ำกับความสุข',
         'zone-minburi': 'ย่านมีนบุรี', 'zone-nongchok': 'ย่านหนองจอก',
         'creator-title': 'ผู้จัดทำ',
-        'qr-title': 'อุดหนุนผลงาน', 'qr-subtitle': 'Thesis Project: Savor Happiness', 'qr-thanks': 'ขอบคุณทุกการสนับสนุนครับ ✨'
+        'qr-title': 'อุดหนุนผลงาน', 'qr-subtitle': 'ขอบคุณที่ร่วมเป็นส่วนหนึ่งในการสนับสนุน Thesis Project: Savor Happiness', 
+        'qr-thanks': 'ขอบคุณทุกการสนับสนุนครับ ✨', 'btn-support': 'แสดง QR Code สำหรับอุดหนุน'
     },
     'en': {
         'nav-home': 'Home', 'nav-book': 'The Book', 'nav-highlights': 'Highlights', 'nav-merch': 'Merchandise', 'nav-creator': 'Creator',
@@ -44,7 +45,8 @@ const translations = {
         'merch-min-title': 'Savor Happiness Sticker set',
         'zone-minburi': 'Min Buri District', 'zone-nongchok': 'Nong Chok District',
         'creator-title': 'Creator',
-        'qr-title': 'Support My Work', 'qr-subtitle': 'Thesis Project: Savor Happiness', 'qr-thanks': 'Thank you for your support! ✨'
+        'qr-title': 'Support My Work', 'qr-subtitle': 'Thank you for being a part of Savor Happiness Thesis Project.', 
+        'qr-thanks': 'Thank you for your support! ✨', 'btn-support': 'Show Support QR Code'
     }
 };
 
