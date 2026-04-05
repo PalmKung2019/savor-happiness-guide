@@ -837,8 +837,8 @@ body {
     }
 }
 
-/* SAVOR HAPPINESS - AUTHOR SECTION (SUPER MINIMAL) 
-   แก้ปัญหาโลโก้ใหญ่เกินไป และสัดส่วนการ์ดบวม
+/* SAVOR HAPPINESS - AUTHOR SECTION (MEDIUM BALANCED) 
+   ขยับขนาดขึ้นมาให้พอดี ไม่เล็กจนโหวง และไม่ใหญ่จนล้น
 */
 
 :root {
@@ -846,35 +846,34 @@ body {
     --author-orange: #FF9800;
 }
 
-/* 1. คลุมพื้นหลัง */
 .author-centering-wrapper {
     width: 100%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 40px 20px;
     background-color: #fdfbf9;
 }
 
-/* 2. การ์ดหลัก - บีบความกว้างให้ Compact ขึ้นอีก */
+/* 1. ขยายความกว้างการ์ดกลับมาที่ 880px (กำลังสวยสำหรับ Tablet) */
 .author-layout-card {
     background: #ffffff;
-    border-radius: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-radius: 35px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
     width: 100%;
-    max-width: 780px; /* ลดลงเหลือ 780px ให้ดูไม่เทอะทะ */
+    max-width: 880px; 
     display: flex;
     flex-direction: row;
     overflow: hidden;
     border: 1px solid rgba(0,0,0,0.03);
 }
 
-/* --- ฝั่งซ้าย: รูปภาพและโลโก้ (โซนที่ปาล์มบอกว่าใหญ่) --- */
+/* --- ฝั่งซ้าย: รูปภาพและโลโก้ --- */
 .author-visual-side {
-    flex: 0 0 240px; /* บีบความกว้างฝั่งซ้ายลง */
+    flex: 0 0 280px; /* ขยับจาก 240 เป็น 280 */
     background: #fafafa;
-    padding: 25px 15px; /* ลด Padding บนล่าง */
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -883,59 +882,50 @@ body {
 }
 
 .author-profile-pic {
-    width: 130px; /* ลดขนาดรูปโปรไฟล์ลงให้พอดี */
-    height: 130px;
-    border-radius: 18px;
+    width: 170px; /* ขยับจาก 130 เป็น 170 (ขนาดมาตรฐานรูปโปรไฟล์) */
+    height: 170px;
+    border-radius: 25px;
     overflow: hidden;
-    margin-bottom: 20px; /* เว้นระยะห่างก่อนถึงโลโก้ */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 .author-profile-pic img { width: 100%; height: 100%; object-fit: cover; }
 
-/* 🛡️ จุดตาย: แก้ไขโลโก้ 3 อันที่ใหญ่ไป */
+/* โซนโลโก้ 3 อัน (ขยับขึ้นมาเป็น 20px ให้เห็นชัดขึ้นแต่ไม่แย่งซีน) */
 .author-logos-grid {
     display: flex;
-    gap: 8px; /* บีบระยะห่างระหว่างโลโก้ให้ชิดกันขึ้น */
+    gap: 15px;
     justify-content: center;
     align-items: center;
-    padding-top: 10px;
-    border-top: 1px solid #eee; /* เพิ่มเส้นบางๆ ให้ดูเป็นระเบียบ */
-    width: 80%;
-}
-
-.logo-box {
-    flex: 1;
-    display: flex;
-    justify-content: center;
+    padding-top: 15px;
+    border-top: 1.5px solid #eee;
+    width: 85%;
 }
 
 .logo-box img {
-    height: 16px !important; /* บังคับความสูงโลโก้ให้จิ๋วลงเหลือแค่ 16px (ดูแพงมาก) */
+    height: 20px !important; /* จาก 16 เป็น 20 กำลังอ่านออก */
     width: auto;
     filter: grayscale(100%);
-    opacity: 0.5;
-    transition: 0.3s;
+    opacity: 0.6;
 }
 
-.logo-box img:hover { opacity: 1; filter: grayscale(0); }
-
-/* --- ฝั่งขวา: เนื้อหา (รีดขนาดฟอนต์) --- */
+/* --- ฝั่งขวา: เนื้อหา --- */
 .author-content-side {
     flex: 1;
-    padding: 30px 40px;
+    padding: 45px 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .section-title {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: var(--author-orange);
     font-weight: 800;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     position: relative;
-    padding-bottom: 6px;
+    padding-bottom: 8px;
 }
 
 .section-title::after {
@@ -943,68 +933,67 @@ body {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 30px;
-    height: 3px;
+    width: 40px;
+    height: 4px;
     background: var(--author-orange);
     border-radius: 10px;
 }
 
 .author-name {
-    font-size: 20px !important;
+    font-size: 26px !important; /* จาก 20 เป็น 26 ให้ชื่อเด่นขึ้น */
     font-weight: 700;
     color: var(--author-green);
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 }
 
 .author-title {
-    font-size: 12.5px !important;
+    font-size: 14.5px !important; /* ขยับขึ้นมาหน่อย */
     color: #888;
-    line-height: 1.4;
-    margin-bottom: 20px;
+    line-height: 1.5;
+    margin-bottom: 30px;
 }
 
 /* --- Contact Section --- */
 .author-contact-grid {
-    border-top: 1px solid #eee;
-    padding-top: 18px;
+    border-top: 1.5px solid #eee;
+    padding-top: 25px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
 }
 
 .contact-box {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 0.82rem;
-    color: #666;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: #555;
     text-decoration: none;
 }
 
-.contact-box i { width: 14px; color: var(--author-green); text-align: center; font-size: 0.85rem; }
+.contact-box i { width: 18px; color: var(--author-green); text-align: center; font-size: 1.1rem; }
 
 /* ==========================================
-   📱 ปรับสำหรับ Mobile (S22 Ultra)
+   📱 RESPONSIVE: ปรับเฉพาะ Mobile (S22 Ultra)
    ========================================== */
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
     .author-layout-card {
         flex-direction: column;
-        max-width: 320px;
+        max-width: 380px; /* ขยับจาก 320 เป็น 380 ให้ดูเต็มจอขึ้นในมือถือ */
     }
 
     .author-visual-side {
         width: 100%;
-        padding: 25px;
+        padding: 40px 20px;
         border-right: none;
         border-bottom: 1px solid #f0f0f0;
     }
 
-    .author-profile-pic { width: 110px; height: 110px; }
-    .logo-box img { height: 14px !important; }
+    .author-profile-pic { width: 160px; height: 160px; } /* ในมือถือก็ขยายขึ้น */
 
     .author-content-side {
-        padding: 20px;
+        padding: 35px 25px;
         align-items: center;
         text-align: center;
     }
