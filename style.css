@@ -134,50 +134,12 @@ nav {
 }
 
 .shop-grid {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 40px !important;
-    width: 90% !important;
-    max-width: 1000px !important;
-    margin: 40px auto !important;
-}
-
-.merch-grid.bookmark-triple-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 15px !important;
-    width: 100% !important;
-    max-width: 1000px !important;
-    margin: 30px auto !important;
-}
-
-/* [7] CORE RESPONSIVE FIXES */
-@media (max-width: 1024px) {
-    nav { height: 70px !important; }
-    body, .scroll-progress-container { padding-top: 70px !important; top: 70px !important; }
-}
-
-@media (max-width: 768px) {
-    .hero-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(5, 1fr);
-    }
-    .shop-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-    .merch-grid.bookmark-triple-grid { grid-template-columns: repeat(2, 1fr) !important; }
-}
-
-@media (max-width: 480px) {
-    .merch-grid.bookmark-triple-grid { grid-template-columns: 1fr !important; }
-}
-
-/* --- [Responsive Fix] สำหรับ Tablet & Mobile --- */
-@media (max-width: 1024px) {
-    body { 
-        padding-top: 70px; /* Navbar มือถือมักจะเตี้ยกว่า */
-    } 
-    .scroll-progress-container {
-        top: 70px; /* 🛡️ ปรับให้เกาะขอบล่าง Navbar มือถือพอดี */
-    }
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 4vw, 40px);
+    width: 92%;
+    max-width: 1100px;
+    margin: 40px auto;
 }
 
 /* ============================================================
@@ -1066,32 +1028,69 @@ nav {
 }
 
 /* ------------------------------------------------------------ */
+/* ============================================================
+   [CONSOLIDATED RESPONSIVE ENGINE]
+   - รวมทุก Media Query ให้เป็นระบบเดียวเพื่อป้องกันโค้ดซ้อนกัน
+   ============================================================ */
 
-/* [2] MOBILE VERSION (991px): คืนสีดั้งเดิม 100% ไม่จม */
-@media (max-width: 991px) {
-    .author-logos-grid {
-        margin-top: 15px;
-        gap: 15px; /* ระยะห่างพอดีในมือถือ */
-    }
+/* [1] TABLET & LARGE MOBILE (1024px) */
+@media screen and (max-width: 1024px) {
+    nav { height: 70px !important; padding: 0 20px !important; }
+    body, .scroll-progress-container { padding-top: 70px !important; top: 70px !important; }
+    
+    .author-layout-card { flex-direction: column !important; width: 95% !important; }
+    .author-visual-side { border-right: none; border-bottom: 1px solid #eee; width: 100%; flex: none; }
+    
+    .book-grid-container { gap: 30px !important; }
+    .search-wrapper { max-width: 90%; margin-top: 110px !important; }
+}
 
-    .logo-box {
-        width: 60px; /* ย่อขนาดลงนิดนึงให้สมดุลกับจอ */
-        height: 60px;
-        border-radius: 10px;
-        padding: 6px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-        
-        /* แก้ปัญหาการขยายตัวที่อาจจะล้นจอในมือถือ */
-        transform: none !important;
-    }
+/* [2] STANDARD MOBILE (768px) */
+@media screen and (max-width: 768px) {
+    /* Hero Grid 2x5 */
+    .hero-grid { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: repeat(5, 1fr) !important; }
+    
+    /* Grids to Single Column */
+    .shop-grid { grid-template-columns: 1fr !important; gap: 20px; }
+    .merch-grid.bookmark-triple-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    
+    /* Typography & Spacing */
+    .section { padding: 60px 5% !important; }
+    .section-title { font-size: 1.8rem; margin-bottom: 40px; }
+    
+    /* Video Scaling */
+    .video-wrapper { width: 100% !important; border-radius: 0 !important; }
+    .video-content-box { padding: 30px 20px !important; }
+    
+    .speed-dial-container { bottom: 20px; right: 20px; }
 
-    .logo-box img {
-        /* 🛡️ คืนสีภาพต้นฉบับ (ตามที่ปาล์มต้องการ) */
-        filter: grayscale(0%) opacity(1) !important;
-        
-        max-width: 88%;
-        max-height: 88%;
-    }
+    /* Logo Control */
+    .logo-box { width: 60px; height: 60px; padding: 6px; }
+    .logo-box img { filter: grayscale(0) !important; opacity: 1 !important; }
+}
+
+/* [3] SMALL MOBILE & FOLD (400px DOWN) */
+@media screen and (max-width: 400px) {
+    .merch-grid.bookmark-triple-grid { grid-template-columns: 1fr !important; } /* เรียงเดี่ยวให้หมดไม่ให้เบียด */
+    
+    #home h1 { font-size: 2rem !important; }
+    .hero-desc { font-size: 0.85rem; }
+    
+    .author-name { font-size: 24px !important; }
+    .contact-box { width: 100%; max-width: 260px; }
+    
+    .thumb-item { width: 60px; height: 60px; }
+    
+    .qr-card { padding: 25px 15px !important; }
+    .qr-header h3 { font-size: 1.3rem !important; }
+}
+
+/* --- Landscape Fix for Mobile --- */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    nav { height: 60px !important; }
+    body, .scroll-progress-container { padding-top: 60px !important; top: 60px !important; }
+    .hero-content-overlay { padding-top: 80px; }
+    .hero-grid { grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(2, 1fr); }
 }
 
 /* ============================================================
