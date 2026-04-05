@@ -837,52 +837,53 @@ body {
     }
 }
 
-/* ============================================================
-   SAVOR HAPPINESS - AUTHOR SECTION (FINAL MASTERPIECE)
-   Support: Desktop, Tab S9, S22 Ultra
-   ============================================================ */
+/* SAVOR HAPPINESS - AUTHOR SECTION (FIXED LAYOUT) 
+   ล็อคสัดส่วนฝั่งรูปภาพและข้อความให้คงที่ ไม่ดีดไปมา
+*/
 
 :root {
-    --author-green: #2D5A27;
+    --author-green-bg: #93a35a;
+    --author-text-green: #2D5A27;
     --author-orange: #FF9800;
 }
 
-/* 1. 🛡️ แก้ปัญหา Background ซ้อน (ล้างค่าตัวนอก) */
+/* 1. ล็อคพื้นหลัง Section */
 #author.section {
     padding: 0 !important;
-    background: none !important;
+    background-color: var(--author-green-bg) !important;
     margin: 0 !important;
 }
 
-/* 2. ตัวคุมตำแหน่งหน้าจอ (สีครีมตัวเดียวเนียนๆ) */
 .author-centering-wrapper {
     width: 100%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px;
-    background-color: #fdfbf9; /* สีครีมเป้าหมาย */
+    padding: 60px 20px;
+    background-color: var(--author-green-bg) !important;
     box-sizing: border-box;
 }
 
-/* 3. การ์ดหลัก - ขนาด Medium Balanced (880px) */
+/* 2. การ์ดหลัก - ล็อคขนาดให้ตายตัว */
 .author-layout-card {
-    background: #ffffff;
-    border-radius: 35px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+    background: #ffffff !important;
+    border-radius: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
     width: 100%;
-    max-width: 880px; 
+    max-width: 900px; /* ล็อคความกว้างสูงสุด */
+    height: auto;
+    min-height: 500px; /* ล็อคความสูงขั้นต่ำให้ดูสมดุล */
     display: flex;
-    flex-direction: row; /* แนวนอนเป็นหลัก */
+    flex-direction: row;
     overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.03);
+    border: none;
 }
 
-/* --- [ฝั่งซ้าย: รูปภาพและโลโก้] --- */
+/* --- [ฝั่งซ้าย: ล็อคพื้นที่รูปภาพ] --- */
 .author-visual-side {
-    flex: 0 0 280px;
-    background: #fafafa;
+    flex: 0 0 350px; /* 🛡️ ล็อคความกว้างฝั่งซ้ายให้คงที่ที่ 350px ไม่ให้ขยับตามรูป */
+    background: #fafafa !important;
     padding: 40px 20px;
     display: flex;
     flex-direction: column;
@@ -892,86 +893,59 @@ body {
 }
 
 .author-profile-pic {
-    width: 170px;
-    height: 170px;
-    border-radius: 25px;
+    width: 250px; /* ปรับขนาดรูปให้เด่น */
+    height: 250px;
+    border-radius: 30px;
     overflow: hidden;
     margin-bottom: 25px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-.author-profile-pic img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; /* กันหน้ายืด */
+.author-profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 🛡️ สำคัญ: รูปจะพอดีกรอบโดยไม่ดัน Layout */
 }
 
-/* 🛡️ ปรับสเกลโลโก้ 3 อันให้พอดี (20px) */
 .author-logos-grid {
     display: flex;
     gap: 15px;
     justify-content: center;
-    align-items: center;
-    padding-top: 15px;
-    border-top: 1.5px solid #eee;
-    width: 85%;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    width: 80%;
 }
 
-.logo-box img {
-    height: 20px !important;
-    width: auto;
-    filter: none !important; /* คืนค่าสีโลโก้ให้ชัดเจน */
-    opacity: 0.8;
-}
+.logo-box img { height: 22px !important; width: auto; }
 
-/* --- [ฝั่งขวา: เนื้อหา] --- */
+/* --- [ฝั่งขวา: ล็อคพื้นที่ข้อความ] --- */
 .author-content-side {
-    flex: 1;
-    padding: 45px 50px;
+    flex: 1; /* ให้ฝั่งนี้กินพื้นที่ที่เหลือทั้งหมด */
+    padding: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.section-title {
-    font-size: 1.2rem;
-    color: var(--author-orange);
-    font-weight: 800;
-    margin-bottom: 15px;
-    position: relative;
-    padding-bottom: 8px;
-}
-
-/* เส้นใต้ชื่อ "ผู้จัดทำ" */
-.section-title::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 40px;
-    height: 4px;
-    background: var(--author-orange);
-    border-radius: 10px;
+    background: #ffffff !important;
 }
 
 .author-name {
     font-size: 26px !important;
     font-weight: 700;
-    color: var(--author-green);
-    margin-bottom: 8px;
+    color: var(--author-text-green) !important;
+    margin-bottom: 10px;
 }
 
 .author-title {
-    font-size: 14.5px !important;
-    color: #888;
-    line-height: 1.5;
-    margin-bottom: 30px;
+    font-size: 14px !important;
+    color: #666 !important;
+    line-height: 1.6;
 }
 
 /* --- [Contact Section] --- */
 .author-contact-grid {
-    border-top: 1.5px solid #eee;
-    padding-top: 25px;
+    border-top: 1px solid #eee;
+    margin-top: 30px;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -980,51 +954,17 @@ body {
 .contact-box {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 0.95rem;
-    color: #555;
+    gap: 10px;
+    color: #444 !important;
     text-decoration: none;
+    font-size: 0.9rem;
 }
 
-.contact-box i { 
-    width: 18px; 
-    color: var(--author-green); 
-    text-align: center; 
-    font-size: 1.1rem; 
-}
-
-/* ==========================================
-   📱 RESPONSIVE: ปรับเฉพาะมือถือ (S22 Ultra)
-   ========================================== */
-
-@media (max-width: 800px) {
-    .author-layout-card {
-        flex-direction: column;
-        max-width: 380px; /* ขนาดมือถือที่พอดีตา */
-    }
-
-    .author-visual-side {
-        width: 100%;
-        padding: 40px 20px;
-        border-right: none;
-        border-bottom: 1px solid #f0f0f0;
-    }
-
-    .author-profile-pic { width: 160px; height: 160px; }
-
-    .author-content-side {
-        padding: 35px 25px;
-        align-items: center;
-        text-align: center;
-    }
-
-    .section-title::after { left: 50%; transform: translateX(-50%); }
-
-    .author-contact-grid {
-        width: fit-content;
-        margin: 0 auto;
-        align-items: flex-start; /* ไอคอนเรียงตรงกันแนวตั้ง */
-    }
+/* 📱 Responsive สำหรับมือถือ */
+@media (max-width: 850px) {
+    .author-layout-card { flex-direction: column; max-width: 400px; }
+    .author-visual-side { flex: none; width: 100%; }
+    .author-profile-pic { width: 200px; height: 200px; }
 }
 
 /* ============================================================
@@ -2669,7 +2609,7 @@ html:not([data-theme="dark"]) .shop-info span {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* 5. Suggestion */
+/* 5. รายการใน Suggestion */
 .suggestion-item {
     padding: 18px 25px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.03);
