@@ -363,7 +363,16 @@
 
     // --- [5] ระบบกันการลากรูปภาพ (เวอร์ชั่นกำจัดเส้นเหลืองใน CSS) ---
     document.querySelectorAll('img').forEach(img => {
-        img.ondragstart = () => false; // สั่งว่า "ห้ามลาก!"
+        // ดักการลากรูป (Drag)
+        img.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+            return false;
+        });
+        
+        // กันการคลิกขวาเฉพาะที่ตัวรูป (เผื่อตัวรวมมันหลุด)
+        img.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
     });
 </script>
 <script src="script.js"></script>
