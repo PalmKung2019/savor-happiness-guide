@@ -1,181 +1,173 @@
-SavorHappiness-styles-pran
-font-face {
+/* ============================================================
+   SAVOR HAPPINESS - MASTER INTEGRATED ENGINE (CSS)
+   Consolidated Global Reset, Navbar Blur, and Optimized Grids
+   ============================================================ */
+
+/* [1] FONTS & VARIABLES */
+@font-face {
     font-family: 'NangKaiThot';
     src: url('fonts/MN-Nang-Kai-Thot-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+    font-weight: normal; font-style: normal; font-display: swap;
 }
 
 :root {
-    --savor-green: #007A33;
-    --savor-orange: #FF8C00;
-    --savor-cream: #f8f2e6;
-    --savor-dark: #333333;
-    --savor-white: #ffffff;
-    --savor-shadow: rgba(0, 0, 0, 0.08);
+    /* [1] CI BRAND COLORS - นิยามรหัสสีต้นฉบับ Savor Happiness */
+    --ci-green:        #007A33; /* Primary Green */
+    --ci-olive:        #93a35a; /* Olive (Dark Mode BG) */
+    --ci-orange:       #FF8C00; /* Energy Orange */
+    --ci-yellow:       #f4e105; /* Happiness Yellow */
+    --ci-soft-yellow:  #fffbd3; /* Light Highlight */
+    --ci-cream:        #f8f2e6; /* Base Background */
+    --ci-white:        #ffffff; /* Card Background */
+
+    /* [2] SEMANTIC VARIABLES (LIGHT MODE) - กำหนดหน้าที่การใช้งาน */
+    --bg-main:         var(--ci-cream);
+    --bg-nav:          rgba(255, 255, 255, 0.95);
+    --bg-card: var(--savor-white);
+    --text-main:       #333333;
+    --text-nav:        #444444;
+    --accent-color:    var(--ci-orange);
+    --nav-border:      rgba(0, 122, 51, 0.1);
+    --shadow-color:    rgba(0, 0, 0, 0.08);
+
+    /* ตัวแปรสีเดิมที่คุณเคยใช้ (เพื่อให้โค้ดเก่าไม่พัง) */
+    --savor-green:     var(--ci-green);
+    --savor-orange:    var(--ci-orange);
+    --savor-cream:     var(--ci-cream);
+    --savor-white:     var(--ci-white);
+    --savor-yellow:    var(--ci-yellow);
+    --savor-olive:     var(--ci-olive);
 }
 
-/* --- Global Reset & Anti-Overflow --- */
+/* [3] DARK MODE ENGINE - สลับค่าสีที่จุดเดียว */
+[data-theme="dark"] {
+    --bg-main:         var(--ci-olive);   /* พื้นหลังเป็นสี Olive ตาม CI */
+    --bg-nav:          var(--ci-green);   /* Navbar เป็นสีเขียวหลัก */
+    --bg-card:         var(--ci-white);   /* Card ยังเป็นสีขาวตามที่คุณต้องการ */
+    --text-main:       #ffffff;
+    --text-nav: #ffffff;
+    --nav-border:      rgba(255, 255, 255, 0.1);
+    --shadow-color:    rgba(0, 0, 0, 0.3);
+}
+
+/* [2] GLOBAL RESET & ANTI-OVERFLOW */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* บังคับให้ padding ไม่ดันความกว้างออก */
+    margin: 0; padding: 0; box-sizing: border-box;
     font-family: 'NangKaiThot', 'Anuphan', sans-serif;
     -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* รีเซ็ต Padding และ Margin ของ body ให้เป็น 0 */
 html, body {
+    width: 100%;
     margin: 0 !important;
     padding: 0 !important;
-    overflow-x: hidden; /* กันหน้าจอโยกเยกที่ปาล์มทำไว้ ดีแล้วครับ */
-}
-
-nav { /* หรือ .navbar หรือชื่อ class ที่ปาล์มใช้ */
-    position: fixed !important; /* บังคับให้ลอยติดหน้าจอ */
-    top: 0 !important;          /* ชิดขอบบนสุด */
-    left: 0;
-    width: 100%;                /* ยืดให้เต็มความกว้างจอ */
-    z-index: 9999 !important;   /* ดันให้ลอยทับรูปภาพทุกรูปในเว็บ */
-    
-    /* แถม: ใส่เงาหน่อยจะดูหรูขึ้น (Graphic Design Style!) */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
-}
-
-.nav-btn {
-    user-select: none; /* กันการคลุมดำตอนกดรัวๆ */
-    outline: none;
-}
-
-.lightbox-content {
-    pointer-events: auto; /* ให้รูปรับคลิกได้ (แต่เราใส่ stopPropagation ไว้แล้ว) */
-}
-
-/* เอฟเฟกต์ตอนโชว์ Lightbox */
-#simpleLightbox[style*="display: flex"] {
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* style.css บรรทัดที่ 22-26 โดยประมาณ */
-body {
+    overflow-x: hidden;
     background: var(--savor-cream);
     color: var(--savor-dark);
     line-height: 1.6;
-    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 85px;
 }
 
-.logo {
+body {
+    padding-top: 75px; /* ล็อกความสูง Navbar สำหรับ Desktop */
+}
+
+/* [3] GLOBAL IMAGE SECURITY & OPTIMIZATION */
+img {
+    content-visibility: auto;
+    object-fit: cover;
+    image-rendering: -webkit-optimize-contrast;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    display: block;
+}
+
+/* [4] MASTER NAVIGATION BAR (Blur & Glassmorphism) */
+nav {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    padding: 0 40px;
+    background: var(--bg-nav);        /* สลับสีอัตโนมัติ */
+    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(13px);
+    height: 85px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    box-shadow: 0 2px 10px var(--savor-shadow);
+    transition: all 0.3s ease;
+    gap: 20px;
 }
 
 .logo img {
-    height: 33px;
-    width: auto;
+    height: 33px; width: auto; cursor: pointer;
     transition: transform 0.3s ease;
-    cursor: pointer;
 }
+.logo img:hover { transform: scale(1.05); }
 
-.logo img:hover {
-    transform: scale(1.05);
-}
-
-
-/* 1. กันรูปเบี้ยวและช่วยให้รูปขึ้นสมูทขึ้น */
-img {
-    content-visibility: auto; /* โหลดเฉพาะรูปที่อยู่บนหน้าจอ ช่วยลดภาระ Browser */
-    object-fit: cover; /* กันรูปสัดส่วนเพี้ยนกรณีปรานต์ลืม Crop */
-    image-rendering: -webkit-optimize-contrast; /* ช่วยให้รูปจาก Nikon ดูคมขึ้นบนเว็บ */
-}
-
-/* 2. แก้จุดตายบรรทัดสุดท้ายที่ปรานต์ค้างไว้ (z-index) */
-.speed-dial { /* หรือชื่อ Class ของปุ่มหน้ายิ้มปรานต์ */
-    z-index: 9999 !important; 
-}
-
-
-.shop-tag {
-    display: none; /* ซ่อนไปเลย ไม่กินพื้นที่ */
-}
-
-----------------------------------------------------------------------------------------------------
-
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px; /* กันเนื้อหาโดน Header ทับเวลาเรากด Link */
-}
-
------------------------------------------------------------------------------------------------------
-
-/* =========================================
-   [NEW] FINAL FIX & ENHANCEMENT FOR SAVOR HAPPINESS 
-   ========================================= */
-
-/* 1. แก้จุดตายบรรทัด 711 (ปิดปีกกาและใส่ z-index ให้ปุ่มหน้ายิ้ม) */
-.speed-dial {
-    z-index: 9999 !important;
-} 
-
-/* 2. ระบบการเลื่อนหน้าเว็บแบบนุ่มนวล (Smooth Scroll) */
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px;
-}
-
-/* 3. จัดการรูปภาพ (ช่วยให้โหลดสมูทและสัดส่วนไม่เบี้ยว) */
-img {
-    content-visibility: auto; /* โหลดเฉพาะรูปบนจอ ช่วยลดภาระ Browser */
-    object-fit: cover;       /* กันรูปยืดหรือเบี้ยวกรณีลืม Crop */
-    image-rendering: -webkit-optimize-contrast; /* ช่วยให้รูปจาก Nikon ดูคมขึ้น */
-}
-
-/* 4. สร้าง Animation (ท่าเต้นค่อยๆ ลอยขึ้น) */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ============================================================
-    1. [FIX] BODY & SCROLL PROGRESS - Precision Alignment
-   ============================================================ */
-body {
-    background: var(--savor-cream);
-    color: var(--savor-dark);
-    padding-top: 75px; /* 🛡️ ล็อกให้เท่ากับความสูง Navbar (Desktop) */
-    line-height: 1.6;
-    overflow-x: hidden;
-    width: 100%;
-}
-
+/* [5] SCROLL PROGRESS BAR */
 .scroll-progress-container {
-    position: fixed;
-    top: 75px; /* 🛡️ ต้องเท่ากับ padding-top ของ body เป๊ะๆ */
-    left: 0;
-    z-index: 1001; /* 🚀 ต้องสูงกว่า Navbar นิดนึงเพื่อให้ทับเส้นขอบล่างพอดี */
-    width: 100%;
-    height: 3px;   /* ปรับให้บางลง (3px) จะดูแพงและพรีเมียมกว่า 4px ครับ */
-    background: rgba(255, 255, 255, 0.1); /* พื้นหลังจางๆ */
-    pointer-events: none;
+    position: fixed; top: 75px; left: 0;
+    z-index: 10001; width: 100%; height: 3px;
+    background: rgba(255, 255, 255, 0.1); pointer-events: none;
+}
+.progress-bar {
+    height: 100%; background: var(--savor-orange); width: 0%;
+    box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+    transition: width 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-.progress-bar {
-    height: 100%;
-    background: var(--savor-orange); /* ใช้สีส้ม CI ของอ้าย */
-    width: 0%;
-    box-shadow: 0 0 10px rgba(255, 140, 0, 0.5); /* ✨ เพิ่มแสงเรืองรองนิดๆ ตอนวิ่ง */
-    transition: width 0.2s cubic-bezier(0.22, 0.61, 0.36, 1); /* Motion ที่นุ่มนวลกว่าเดิม */
+/* [6] MASTER LAYOUT GRIDS (Unified) */
+.hero-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: 100%; height: 100%; position: absolute;
+    top: 0; left: 0; z-index: 1;
+}
+
+.shop-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 40px !important;
+    width: 90% !important;
+    max-width: 1000px !important;
+    margin: 40px auto !important;
+}
+
+.merch-grid.bookmark-triple-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 15px !important;
+    width: 100% !important;
+    max-width: 1000px !important;
+    margin: 30px auto !important;
+}
+
+/* [7] CORE RESPONSIVE FIXES */
+@media (max-width: 1024px) {
+    nav { height: 70px !important; }
+    body, .scroll-progress-container { padding-top: 70px !important; top: 70px !important; }
+}
+
+@media (max-width: 768px) {
+    .hero-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+    }
+    .shop-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+    .merch-grid.bookmark-triple-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media (max-width: 480px) {
+    .merch-grid.bookmark-triple-grid { grid-template-columns: 1fr !important; }
 }
 
 /* --- [Responsive Fix] สำหรับ Tablet & Mobile --- */
@@ -530,7 +522,7 @@ body {
 .book-grid-container {
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: center !important; 
     gap: 60px !important;
     padding: 50px 20px !important;
     flex-wrap: wrap;
@@ -606,7 +598,7 @@ body {
 .book-text h2 {
     font-size: 2.2rem;
     margin-bottom: 25px;
-    color: var(--savor-dark);
+    color: var(--ci-green); /* แนะนำให้ใช้เขียว CI แทนสีเทา เพื่อให้หัวข้อเด่น */
     font-weight: 800;
 }
 
@@ -837,136 +829,6 @@ body {
     }
 }
 
-/* SAVOR HAPPINESS - AUTHOR SECTION (FIXED LAYOUT) 
-   ล็อคสัดส่วนฝั่งรูปภาพและข้อความให้คงที่ ไม่ดีดไปมา
-*/
-
-:root {
-    --author-green-bg: #93a35a;
-    --author-text-green: #2D5A27;
-    --author-orange: #FF9800;
-}
-
-/* 1. ล็อคพื้นหลัง Section */
-#author.section {
-    padding: 0 !important;
-    background-color: var(--author-green-bg) !important;
-    margin: 0 !important;
-}
-
-.author-centering-wrapper {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 60px 20px;
-    background-color: var(--author-green-bg) !important;
-    box-sizing: border-box;
-}
-
-/* 2. การ์ดหลัก - ล็อคขนาดให้ตายตัว */
-.author-layout-card {
-    background: #ffffff !important;
-    border-radius: 40px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-    width: 100%;
-    max-width: 900px; /* ล็อคความกว้างสูงสุด */
-    height: auto;
-    min-height: 500px; /* ล็อคความสูงขั้นต่ำให้ดูสมดุล */
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-    border: none;
-}
-
-/* --- [ฝั่งซ้าย: ล็อคพื้นที่รูปภาพ] --- */
-.author-visual-side {
-    flex: 0 0 350px; /* 🛡️ ล็อคความกว้างฝั่งซ้ายให้คงที่ที่ 350px ไม่ให้ขยับตามรูป */
-    background: #fafafa !important;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-right: 1.5px solid #f0f0f0;
-}
-
-.author-profile-pic {
-    width: 250px; /* ปรับขนาดรูปให้เด่น */
-    height: 250px;
-    border-radius: 30px;
-    overflow: hidden;
-    margin-bottom: 25px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-.author-profile-pic img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 🛡️ สำคัญ: รูปจะพอดีกรอบโดยไม่ดัน Layout */
-}
-
-.author-logos-grid {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-    width: 80%;
-}
-
-.logo-box img { height: 22px !important; width: auto; }
-
-/* --- [ฝั่งขวา: ล็อคพื้นที่ข้อความ] --- */
-.author-content-side {
-    flex: 1; /* ให้ฝั่งนี้กินพื้นที่ที่เหลือทั้งหมด */
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: #ffffff !important;
-}
-
-.author-name {
-    font-size: 26px !important;
-    font-weight: 700;
-    color: var(--author-text-green) !important;
-    margin-bottom: 10px;
-}
-
-.author-title {
-    font-size: 14px !important;
-    color: #666 !important;
-    line-height: 1.6;
-}
-
-/* --- [Contact Section] --- */
-.author-contact-grid {
-    border-top: 1px solid #eee;
-    margin-top: 30px;
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.contact-box {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #444 !important;
-    text-decoration: none;
-    font-size: 0.9rem;
-}
-
-/* 📱 Responsive สำหรับมือถือ */
-@media (max-width: 850px) {
-    .author-layout-card { flex-direction: column; max-width: 400px; }
-    .author-visual-side { flex: none; width: 100%; }
-    .author-profile-pic { width: 200px; height: 200px; }
-}
-
 /* ============================================================
    12. MERCH & BOOKMARK (3 Designs Fix)
    ============================================================ */
@@ -1040,7 +902,7 @@ body {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #FFD200 !important; /* พื้นหลังสีเหลืองทอง */
+    background: var(--savor-yellow) !important; /* ปรับให้ตรง CI #f4e105 */
     border: 2px solid #ffffff; /* ใส่ขอบขาวให้เหมือนสติกเกอร์ */
     cursor: pointer;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
@@ -1296,22 +1158,9 @@ footer p {
     color: #888;
 }
 
-/* --- [FINAL SECURITY] ระบบป้องกันขั้นสุด: ไม่เหลือง ไม่แดง ล็อคตาย --- */
-img {
-    /* [1] กันคนคลุมดำเลือกรูป (มาตรฐานสากล VS Code ไม่บ่น) */
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    /* [2] เปิดทางให้ Click ทะลุไปหา Lightbox ได้ปกติ */
-    pointer-events: auto !important; 
-    
-    /* [3] กันการกดค้างเพื่อบันทึกภาพในมือถือ (iOS/Safari) */
-    -webkit-touch-callout: none;
-
-    /* [4] กันการลากรูปเบื้องต้น (ใช้มาตรฐานที่ VS Code ยอมรับ) */
-    -webkit-user-drag: none;
+/* ล็อกสีตัวหนังสือ Footer ให้เข้มเสมอ แม้ใน Dark Mode เพราะพื้นหลัง Footer ยังเป็นสีขาว */
+[data-theme="dark"] footer p {
+    color: #888888 !important;
 }
 
 /* [5] พรางตา: ถ้าใครจะแอบสั่ง Print หรือ Save as PDF เนื้อหาจะหายไปทันที */
@@ -1319,23 +1168,6 @@ img {
     body { 
         display: none !important; 
     }
-}
-
-/* ============================================================
-   19. SECTION: NAVIGATION & HEADER (FIXED VERSION)
-   ============================================================ */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 4%;
-    background: rgba(255, 255, 255, 0.95);
-    height: 75px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px var(--savor-shadow);
 }
 
 .nav-right-container {display: flex;gap: 30px;justify-content: center;flex-wrap: nowrap;flex-direction: row-reverse;align-items: flex-start;/* align-content: center; */}
@@ -1415,18 +1247,199 @@ nav {
     padding: 0 5%;
 }
 
-.hero-grid {
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-}
-
 .book-grid-container {
     flex-direction: row;
     gap: 60px;
 }
 
-.shop-grid {
-    grid-template-columns: repeat(2, 1fr);
+/* ============================================================
+   SAVOR HAPPINESS - AUTHOR SECTION (ULTIMATE PREMIUM DESIGN)
+   + PERFECT CENTERING + SMOOTH INTERACTION
+   ============================================================ */
+
+.author-centering-wrapper {
+    background-color: transparent !important;
+    padding: 100px 20px; /* เพิ่มพื้นที่หายใจ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.author-layout-card {
+    background-color: var(--author-card, #ffffff) !important;
+    border-radius: 50px; /* มนขึ้นให้ดูพรีเมียม */
+    width: 100%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    /* เงาแบบ Soft Layered Shadow */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02), 0 30px 60px rgba(0,0,0,0.05); 
+    border: 1px solid rgba(0,0,0,0.03);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.author-layout-card:hover {
+    transform: translateY(-8px); /* ขยับขึ้นเบาๆ เวลาเมาส์ชี้ */
+}
+
+.author-visual-side {
+    flex: 0 0 380px;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, #ffffff, #fafafa); /* ไล่เฉดพื้นหลังเบาๆ */
+    border-right: 1px solid var(--author-line, #f0f0f0);
+}
+
+.author-profile-pic {
+    width: 240px;
+    height: 240px;
+    border-radius: 45px; /* มนสวยรับกับ Card */
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.author-profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.author-profile-pic:hover img {
+    transform: scale(1.1); /* Zoom รูปโปรไฟล์เบาๆ */
+}
+
+.author-logos-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding-top: 25px;
+    border-top: 1px dashed #ddd; /* เปลี่ยนเป็นเส้นประดูเป็นงาน Design มากขึ้น */
+    width: 80%;
+}
+
+.logo-box img {
+    height: 32px !important;
+    filter: grayscale(100%); /* ทำเป็นขาวดำก่อน */
+    opacity: 0.6;
+    transition: 0.3s ease;
+}
+
+.logo-box img:hover {
+    filter: grayscale(0%); /* กลับมามีสีเวลาชี้ */
+    opacity: 1;
+}
+
+.author-content-side {
+    flex: 1;
+    padding: 60px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+}
+
+.author-name {
+    color: var(--author-text-main, #007A33) !important;
+    font-size: 32px !important; /* ใหญ่ขึ้นนิดนึง */
+    font-weight: 850; /* หนาพิเศษ */
+    line-height: 1.1;
+    margin-bottom: 10px !important;
+    letter-spacing: -0.5px; /* บีบตัวอักษรนิดนึงให้ดู Modern */
+}
+
+.author-title {
+    color: var(--author-text-sub, #888) !important;
+    font-size: 16px !important;
+    line-height: 1.6;
+    margin-bottom: 40px !important;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+}
+
+/* ป้องกันตัวหนังสือสีขาวกลืนกับพื้นหลังการ์ดขาวใน Author Section เมื่ออยู่ในโหมด Dark */
+[data-theme="dark"] .author-name,
+[data-theme="dark"] .author-title,
+[data-theme="dark"] .contact-box p {
+    color: #444444 !important;
+}
+
+.author-contact-grid {
+    border-top: 1px solid #eee;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.contact-box {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: 280px; /* ล็อกความกว้างเพื่อให้ไอคอนเรียงตรงกันเป๊ะ */
+    padding: 12px 20px;
+    background: transparent;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #444;
+    transition: 0.3s all ease;
+}
+
+.contact-box:hover {
+    background: #f8f8f8; /* ไฮไลท์สีเทาอ่อนเวลาชี้ */
+    transform: translateX(5px); /* เลื่อนขวาเล็กน้อย */
+}
+
+.contact-box i {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--savor-orange, #FF8C00), #FFA500); /* ไล่เฉดสีส้ม */
+    color: white !important;
+    border-radius: 12px;
+    font-size: 16px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(255, 140, 0, 0.3);
+}
+
+.contact-box p {
+    margin: 0 !important;
+    font-weight: 600;
+    font-size: 14.5px;
+}
+
+/* --- Responsive (หน้าจอมือถือ) --- */
+@media (max-width: 850px) {
+    .author-layout-card {
+        flex-direction: column;
+        border-radius: 40px;
+        margin: 0 10px;
+    }
+    .author-visual-side {
+        flex: 0 0 auto;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding: 50px 20px;
+    }
+    .author-content-side {
+        padding: 50px 30px;
+    }
+    .author-name {
+        font-size: 26px !important;
+    }
 }
 
 /* ============================================================
@@ -1460,45 +1473,12 @@ nav {
         max-width: 100%;
     }
 
-    /* Shop Grid - ย่านมีนบุรี/หนองจอก */
-    .shop-grid {
-        grid-template-columns: 1fr !important; /* เรียงเดี่ยว */
-        gap: 20px !important;
-    }
 
     /* Bookmark & Merch */
     .merch-grid.bookmark-triple-grid {
         grid-template-columns: repeat(2, 1fr) !important; /* จอเล็กลงเหลือ 2 คอลัมน์ */
     }
 
-    /* Author Card */
-    .author-layout-card {
-        flex-direction: column !important;
-        border-radius: 25px;
-    }
-
-    .author-visual-side {
-        width: 100% !important;
-        border-right: none;
-        border-bottom: 1px solid #eee;
-        padding: 30px;
-    }
-
-    .author-profile-pic {
-        width: 200px;
-        height: 200px;
-    }
-
-    .author-content-side {
-        padding: 58px 0px;
-        text-align: left;
-        align-items: center;
-    }
-
-    .author-name {
-        font-size: 1.8rem;
-        white-space: normal;
-    }
 }
 
 /* ============================================================
@@ -1592,17 +1572,6 @@ nav {
    ============================================================ */
 
 /* [1] โครงสร้างพื้นฐาน Nav & Video Wrapper */
-nav {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    padding: 0 40px !important;
-    height: 85px !important;
-    background-color: #ffffff !important;
-    transition: 0.3s ease !important;
-    z-index: 10001 !important;
-    gap: 20px !important;
-}
 
 .video-wrapper {
     position: relative !important;
@@ -1618,7 +1587,7 @@ nav {
 /* [2] 🟢 DARK MODE OVERRIDE (อิงตาม [data-theme="dark"] ของอ้าย) */
 [data-theme="dark"], 
 [data-theme="dark"] body {
-    background-color: #93a35a !important;
+    background-color: var(--savor-olive) !important; /* ปรับให้เรียกจากตัวแปร */
     color: #ffffff !important;
 }
 
@@ -1894,7 +1863,7 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 }
 
 .badge {
-    background: #f8f8f8 !important;
+    background: var(--ci-soft-yellow) !important; /* ใช้สีเหลืองอ่อน CI จะดู Happiness กว่าสีเทา */
     color: #007A33 !important; /* เขียว CI */
     padding: 6px 18px !important;
     border-radius: 50px !important;
@@ -1941,9 +1910,16 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 }
 
 /* [4] จัดการพื้นหลัง Section ใน Dark Mode (ซ่อมจุดที่ทำให้แดง) */
-[data-theme="dark"] #highlights, 
 [data-theme="dark"] #book-feature {
-    background-color: #93a35a(0, 77, 33) !important; /* เขียวเข้ม CI */
+    background-color: #004d21 !important;
+}
+
+/* ล็อกสีหัวข้อใน Guidebook ให้เข้มเสมอ เพราะ Card เป็นสีขาว */
+[data-theme="dark"] .book-text h2,
+[data-theme="dark"] .book-description,
+[data-theme="dark"] .support-card .section-title,
+[data-theme="dark"] .support-card .support-desc {
+    color: #333333 !important; /* บังคับสีเข้มเพราะพื้นหลัง Support Card เป็นขาว */
 }
 
 /* [5] Responsive: ป้องกันตัวหนังสือเบียดในมือถือ */
@@ -2085,10 +2061,14 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 [data-theme="dark"] #highlights, 
 [data-theme="dark"] #book-feature,
 [data-theme="dark"] #video-section { 
-    background-color: #93a35a(0, 77, 33) !important; /* เขียวเข้ม CI */
+    background-color: #004d21 !important;
 }
 
 /* บังคับสีฟอนต์ใน Card วิดีโอให้ชัดเจนเมื่ออยู่ในโหมดมืด */
+[data-theme="dark"] .video-content-box .section-title {
+    color: #007A33 !important; /* ล็อกสีเขียว CI ตามความต้องการ */
+}
+
 [data-theme="dark"] .video-description p {
     color: #555 !important; /* เพราะ Card เป็นสีขาว ฟอนต์ต้องเข้มเสมอ */
 }
@@ -2184,14 +2164,20 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 
 /* 3. ปรับสีหัวข้อรอง (Postcard Map, Sticker, Bookmarks) */
 [data-theme="dark"] .merch-sub-title {
-    color: var(--author-orange, #ff8c00) !important; /* ใช้สีส้มเพื่อให้เด่นตัดกับพื้นเขียว */
-    border-left: 4px solid #ff8c00 !important; /* เส้นขีดข้างหัวข้อ */
+    color: #ffffff !important; /* ลองเปลี่ยนเป็นสีขาวตามที่ต้องการ เพื่อความคลีน */
+    border-left: 4px solid var(--ci-orange) !important; /* คงเส้นขีดสีส้ม CI ไว้เพื่อความสวยงาม */
     padding-left: 15px !important;
     margin-bottom: 25px !important;
 }
 
+/* [EXCLUDE] ส่วนของที่คั่นหนังสือ (Book Mark) ไม่ต้องไปยุ่ง ให้กลับเป็นสีส้มเดิม */
+/* สมมติว่า Section ของที่คั่นหนังสือมี ID หรือ Class เฉพาะ เช่น #bookmark-section */
+[data-theme="dark"] #bookmark-section .merch-sub-title {
+    color: var(--ci-orange) !important;
+}
+
 [data-theme="dark"] .merch-sub-title i {
-    color: #ffffff !important;
+    color: #ffffff !important; 
     margin-right: 10px;
 }
 
@@ -2215,6 +2201,11 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
    - มัดรวมแก้ปัญหา Card จม, ปรับ shop-info เป็นสีขาว
    - รองรับ Desktop, Tablet และ Mobile
    ============================================================ */
+
+/* ล็อกสีหัวข้อ Section ให้เป็นสีขาวในโหมดมืด เพื่อให้ตัดกับพื้นหลังเขียวเข้ม (โดยเฉพาะส่วนของที่ระลึก) */
+[data-theme="dark"] .section-title {
+    color: #ffffff !important;
+}
 
 /* 1. ปรับแต่ง Card ของร้านในโหมดมืด (ให้เป็นสีขาวตามสั่ง) */
 [data-theme="dark"] .shop-card {
@@ -2283,6 +2274,20 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 [data-theme="dark"] .merch-card p {
     color: #007A33 !important; /* ชื่อของที่ระลึกสีเขียว */
     font-weight: 600 !important;
+}
+
+/* ============================================================
+   MERCH DARK MODE PREMIUM LOOK
+   ============================================================ */
+[data-theme="dark"] .merch-card .merch-item-name {
+    color: var(--ci-orange) !important; /* ชื่อสินค้าสีส้ม: ให้ความรู้สึก Premium & Branded */
+    font-size: 1.15rem !important;
+    letter-spacing: 0.5px;
+}
+
+[data-theme="dark"] .merch-card .merch-item-price {
+    color: var(--ci-soft-yellow) !important; /* ราคาสีเหลืองอ่อน: ดูนุ่มนวลและแพงกว่าสีขาวล้วน */
+    opacity: 0.9;
 }
 
 /* 6. Responsive สำหรับ Mobile & Tablet */
@@ -2622,6 +2627,11 @@ html:not([data-theme="dark"]) .shop-info span {
     font-size: 1rem;
 }
 
+/* ล็อกสีตัวหนังสือใน Suggestion Box ให้เป็นสีเข้มเสมอ เพราะพื้นหลังขาวแบบ Glassmorphism */
+[data-theme="dark"] .suggestion-item {
+    color: #444444 !important;
+}
+
 .suggestion-item:last-child { border-bottom: none; }
 
 .suggestion-item:hover {
@@ -2640,4 +2650,167 @@ html:not([data-theme="dark"]) .shop-info span {
     .search-wrapper { margin-top: 100px !important; }
     .search-input-group { padding: 8px 8px 8px 20px; }
     #searchBtn { padding: 12px 20px; font-size: 0.95rem; }
+}
+
+/* ============================================================
+   QR SUPPORT MODAL SYSTEM (Savor Happiness CI)
+   ============================================================ */
+.qr-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 20000;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.qr-card {
+    background: rgba(255, 255, 255, 0.7) !important; /* กระจกโปร่งแสง */
+    backdrop-filter: blur(20px) saturate(180%); /* เอฟเฟกต์ Glassmorphism */
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    width: 90%;
+    max-width: 400px;
+    border-radius: 30px;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* เงาแบบฟุ้งกระจาย */
+    border: 1px solid rgba(255, 255, 255, 0.4); /* ขอบกระจก */
+}
+
+.qr-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: none; border: none;
+    font-size: 24px; color: #ccc;
+    cursor: pointer;
+}
+
+.qr-header h3 {
+    color: var(--ci-green);
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.qr-header p {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
+
+.qr-placeholder {
+    background: #ffffff !important; /* ล็อกสีขาวทึบเพื่อให้สแกนติดง่าย 100% */
+    border: none;
+    border-radius: 20px;
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    color: var(--ci-green);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* เพิ่มมิติให้พื้นที่สแกน */
+    padding: 20px; /* เพิ่มพื้นที่ว่างรอบรูป QR (Quiet Zone) เพื่อให้สแกนง่าย */
+    overflow: hidden;
+}
+
+.qr-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* บังคับให้รูปอยู่ในกรอบโดยไม่เสียสัดส่วน */
+    border-radius: 10px;
+    display: block;
+}
+
+.qr-placeholder i {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.qr-footer p {
+    color: var(--ci-orange);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* Dark Mode Fix for QR Card */
+[data-theme="dark"] .qr-card {
+    background: rgba(255, 255, 255, 0.9) !important; /* ปรับพื้นหลังให้ขาวนวลเพื่อให้สแกนง่าย */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .qr-card * {
+    color: #333333 !important; /* บังคับตัวหนังสือสีเข้มเพื่อให้เห็นชัดบนการ์ดขาว */
+}
+
+[data-theme="dark"] .qr-card .qr-header h3 {
+    color: var(--ci-green) !important; /* ล็อกหัวข้อ QR เป็นสีเขียว CI เพื่อความพรีเมียม */
+}
+
+[data-theme="dark"] .qr-card .qr-placeholder p {
+    color: #333333 !important; /* เฉพาะข้อความในพื้นที่ขาวที่ยังต้องเป็นสีเข้ม */
+}
+
+/* เพิ่มเติมส่วน Support Section */
+.support-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+.support-desc {
+    margin-bottom: 30px !important;
+}
+
+/* ============================================================
+   SUPPORT BUTTON ENHANCEMENT (Shimmer & Pulse)
+   ============================================================ */
+.btn-support-cta {
+    background: var(--ci-orange) !important; /* เปลี่ยนเป็นสีส้ม Energy Orange */
+    box-shadow: 0 5px 20px rgba(255, 140, 0, 0.3) !important;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    animation: pulse-orange 2s infinite !important; /* เปลี่ยนไปใช้ Pulse สีส้ม */
+}
+
+.btn-support-cta:hover {
+    background: #e67e00 !important;
+    transform: scale(1.05) translateY(-2px) !important;
+    box-shadow: 0 8px 30px rgba(255, 140, 0, 0.4) !important;
+}
+
+/* เอฟเฟกต์แสงวิ่งผ่าน (Shimmer) */
+.btn-support-cta::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(30deg);
+    transition: none;
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -60%; }
+    20% { left: 120%; }
+    100% { left: 120%; }
+}
+
+@keyframes pulse-orange {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 140, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 140, 0, 0);
+    }
 }
