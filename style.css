@@ -1465,18 +1465,30 @@ footer p {
     color: #888;
 }
 
+/* --- [FINAL SECURITY] ระบบป้องกันขั้นสุด: ไม่เหลือง ไม่แดง ล็อคตาย --- */
 img {
-    /* [1] กันคนคลุมดำเลือกรูป */
+    /* [1] กันคนคลุมดำเลือกรูป (มาตรฐานสากล VS Code ไม่บ่น) */
     -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 
-    /* [2] เปิดทางให้ Click ทะลุไปหา Lightbox ได้ */
+    /* [2] เปิดทางให้ Click ทะลุไปหา Lightbox ได้ปกติ */
     pointer-events: auto !important; 
     
-    /* [3] กันกดค้างบันทึกภาพในมือถือ */
+    /* [3] กันการกดค้างเพื่อบันทึกภาพในมือถือ (iOS/Safari) */
     -webkit-touch-callout: none;
+
+    /* [4] กันการลากรูปเบื้องต้น (ใช้มาตรฐานที่ VS Code ยอมรับ) */
+    -webkit-user-drag: none;
 }
 
+/* [5] พรางตา: ถ้าใครจะแอบสั่ง Print หรือ Save as PDF เนื้อหาจะหายไปทันที */
+@media print {
+    body { 
+        display: none !important; 
+    }
+}
 
 /* ============================================================
    19. SECTION: NAVIGATION & HEADER (FIXED VERSION)
