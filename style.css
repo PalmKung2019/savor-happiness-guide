@@ -1466,14 +1466,12 @@ footer p {
 }
 
 img {
-    /* [1] กันการเลือกรูปภาพ (อันนี้มาตรฐาน VS Code ไม่บ่น) */
+    /* [1] กันคนคลุมดำเลือกรูป */
     -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
 
-    /* [2] เปิดให้คลิกเปิด Lightbox ได้ปกติ */
-    pointer-events: auto; 
+    /* [2] เปิดทางให้ Click ทะลุไปหา Lightbox ได้ */
+    pointer-events: auto !important; 
     
     /* [3] กันกดค้างบันทึกภาพในมือถือ */
     -webkit-touch-callout: none;
