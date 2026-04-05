@@ -837,8 +837,8 @@ body {
     }
 }
 
-/* SAVOR HAPPINESS - AUTHOR SECTION (FINAL COMPACT MATCH) 
-   รีดขนาดให้จิ๋วแต่แจ๋ว ตามโครงสร้าง HTML ของปาล์ม
+/* SAVOR HAPPINESS - AUTHOR SECTION (SUPER MINIMAL) 
+   แก้ปัญหาโลโก้ใหญ่เกินไป และสัดส่วนการ์ดบวม
 */
 
 :root {
@@ -846,7 +846,7 @@ body {
     --author-orange: #FF9800;
 }
 
-/* 1. คุมพื้นหลัง */
+/* 1. คลุมพื้นหลัง */
 .author-centering-wrapper {
     width: 100%;
     min-height: 100vh;
@@ -857,24 +857,24 @@ body {
     background-color: #fdfbf9;
 }
 
-/* 2. การ์ดหลัก - รีดไขมันให้เพรียว (ลด Max-width เหลือ 800px) */
+/* 2. การ์ดหลัก - บีบความกว้างให้ Compact ขึ้นอีก */
 .author-layout-card {
     background: #ffffff;
     border-radius: 30px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     width: 100%;
-    max-width: 800px; 
+    max-width: 780px; /* ลดลงเหลือ 780px ให้ดูไม่เทอะทะ */
     display: flex;
     flex-direction: row;
     overflow: hidden;
     border: 1px solid rgba(0,0,0,0.03);
 }
 
-/* --- ฝั่งรูปภาพ (Visual Side) --- */
+/* --- ฝั่งซ้าย: รูปภาพและโลโก้ (โซนที่ปาล์มบอกว่าใหญ่) --- */
 .author-visual-side {
-    flex: 0 0 250px; /* บีบฝั่งซ้ายให้เล็กลง */
+    flex: 0 0 240px; /* บีบความกว้างฝั่งซ้ายลง */
     background: #fafafa;
-    padding: 30px 15px;
+    padding: 25px 15px; /* ลด Padding บนล่าง */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -883,31 +883,44 @@ body {
 }
 
 .author-profile-pic {
-    width: 140px; /* ขนาดรูปเล็กลงให้ดูแพง */
-    height: 140px;
-    border-radius: 20px;
+    width: 130px; /* ลดขนาดรูปโปรไฟล์ลงให้พอดี */
+    height: 130px;
+    border-radius: 18px;
     overflow: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* เว้นระยะห่างก่อนถึงโลโก้ */
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
 .author-profile-pic img { width: 100%; height: 100%; object-fit: cover; }
 
-/* โซนโลโก้ด้านล่างรูป */
+/* 🛡️ จุดตาย: แก้ไขโลโก้ 3 อันที่ใหญ่ไป */
 .author-logos-grid {
     display: flex;
-    gap: 12px;
+    gap: 8px; /* บีบระยะห่างระหว่างโลโก้ให้ชิดกันขึ้น */
     justify-content: center;
-    opacity: 0.7;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid #eee; /* เพิ่มเส้นบางๆ ให้ดูเป็นระเบียบ */
+    width: 80%;
+}
+
+.logo-box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 .logo-box img {
-    height: 20px; /* โลโก้จิ๋วๆ ไม่แย่งซีน */
+    height: 16px !important; /* บังคับความสูงโลโก้ให้จิ๋วลงเหลือแค่ 16px (ดูแพงมาก) */
     width: auto;
     filter: grayscale(100%);
+    opacity: 0.5;
+    transition: 0.3s;
 }
 
-/* --- ฝั่งเนื้อหา (Content Side) --- */
+.logo-box img:hover { opacity: 1; filter: grayscale(0); }
+
+/* --- ฝั่งขวา: เนื้อหา (รีดขนาดฟอนต์) --- */
 .author-content-side {
     flex: 1;
     padding: 30px 40px;
@@ -916,90 +929,82 @@ body {
     justify-content: center;
 }
 
-/* หัวข้อ "ผู้จัดทำ" */
 .section-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--author-orange);
     font-weight: 800;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
+    margin-bottom: 12px;
     position: relative;
-    padding-bottom: 8px;
+    padding-bottom: 6px;
 }
 
-/* สร้างเส้นใต้หลอกๆ แทน div เพราะใน HTML ปาล์มไม่มี title-underline */
 .section-title::after {
     content: "";
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 35px;
+    width: 30px;
     height: 3px;
     background: var(--author-orange);
     border-radius: 10px;
 }
 
-/* กลุ่มชื่อและตำแหน่ง */
-.author-info-text { margin-bottom: 20px; }
-
 .author-name {
-    font-size: 22px !important;
+    font-size: 20px !important;
     font-weight: 700;
     color: var(--author-green);
     margin-bottom: 4px;
 }
 
 .author-title {
-    font-size: 13px !important;
+    font-size: 12.5px !important;
     color: #888;
     line-height: 1.4;
+    margin-bottom: 20px;
 }
 
 /* --- Contact Section --- */
 .author-contact-grid {
     border-top: 1px solid #eee;
-    padding-top: 20px;
+    padding-top: 18px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .contact-box {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 0.85rem;
-    color: #555;
+    gap: 10px;
+    font-size: 0.82rem;
+    color: #666;
     text-decoration: none;
 }
 
-.contact-box i { 
-    width: 16px; 
-    color: var(--author-green); 
-    text-align: center; 
-}
-
-.contact-box p { margin: 0; }
+.contact-box i { width: 14px; color: var(--author-green); text-align: center; font-size: 0.85rem; }
 
 /* ==========================================
-   📱 RESPONSIVE: Tablet & Mobile
+   📱 ปรับสำหรับ Mobile (S22 Ultra)
    ========================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
     .author-layout-card {
         flex-direction: column;
-        max-width: 340px;
+        max-width: 320px;
     }
 
     .author-visual-side {
         width: 100%;
-        padding: 30px;
+        padding: 25px;
         border-right: none;
         border-bottom: 1px solid #f0f0f0;
     }
 
+    .author-profile-pic { width: 110px; height: 110px; }
+    .logo-box img { height: 14px !important; }
+
     .author-content-side {
-        padding: 25px 20px;
+        padding: 20px;
         align-items: center;
         text-align: center;
     }
