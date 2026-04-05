@@ -205,6 +205,40 @@
 </div>
         </section>
 
+        <!-- QR Support Section (Moved after Merchandise) -->
+        <section id="support" class="section" data-aos="fade-up">
+            <div class="support-container">
+                <div class="book-card support-card">
+                    <h2 class="section-title lang-text" data-key="qr-title">อุดหนุนผลงาน</h2>
+                    <p class="lang-text support-desc" data-key="qr-subtitle">ขอบคุณที่ร่วมเป็นส่วนหนึ่งในการสนับสนุน Thesis Project: Savor Happiness</p>
+                    <div class="btn-group">
+                        <button class="btn-primary btn-support-cta" onclick="openQRModal()">
+                            <i class="fas fa-qrcode"></i> <span data-key="btn-support">แสดง QR Code สำหรับอุดหนุน</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QR Support Modal (Moved up as requested) -->
+            <div id="qrModal" class="qr-modal" onclick="closeQRModal()">
+                <div class="qr-card" onclick="event.stopPropagation()">
+                    <button class="qr-close" onclick="closeQRModal()">&times;</button>
+                    <div class="qr-header">
+                        <h3 data-key="qr-title">อุดหนุนผลงาน</h3>
+                        <p>Savor Happiness Thesis Project</p>
+                    </div>
+                    <div class="qr-body">
+                        <div class="qr-placeholder">
+                            <img src="img/qr-placeholder.png" alt="Support QR Code" class="qr-image">
+                        </div>
+                    </div>
+                    <div class="qr-footer">
+                        <p data-key="qr-thanks">ขอบคุณทุกการสนับสนุนครับ ✨</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="highlights" class="section">
             <div id="minburi-section" data-aos="fade-up">
                 <div class="district-label">MINBURI</div>
@@ -372,13 +406,22 @@
         }
     };
     // --- [6] วิชาพรางตา: ดักจับการกดปุ่ม Print Screen ---
-    document.addEventListener('keyup', (e) => {
-        if (e.key === 'PrintScreen') {
-            // สั่งล้าง Clipboard (กันคนเอาไป Paste)
-            navigator.clipboard.writeText('');
-            alert('ขออภัยครับ งาน Thesis ชิ้นนี้ไม่อนุญาตให้แคปหน้าจอเพื่อรักษาลิขสิทธิ์');
-        }
-    });
+    // ดักจับการกดปุ่ม Print Screen แล้วล้างค่าทิ้งทันที
+document.addEventListener('keyup', (e) => {
+    if (e.key === 'PrintScreen') {
+        navigator.clipboard.writeText('ไม่อนุญาตให้แคปภาพลิขสิทธิ์ครับ');
+        alert('ระบบความปลอดภัย: ตรวจพบการแคปหน้าจอ เนื้อหาถูกล็อค');
+    }
+});
+
+// ทุกครั้งที่ User สลับหน้าต่าง (แอบไปเปิดโปรแกรมแคป) ให้หน้าเว็บเบลอ!
+window.onblur = function() {
+    document.body.style.filter = "blur(20px)";
+    document.body.style.transition = "0.3s";
+};
+window.onfocus = function() {
+    document.body.style.filter = "none";
+};
 
     // ดักจับ Ctrl + P (สั่งปริ้นเว็บเป็น PDF)
     document.addEventListener('keydown', (e) => {
