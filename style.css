@@ -837,43 +837,44 @@ body {
     }
 }
 
-/* SAVOR HAPPINESS - AUTHOR SECTION (FINAL MASTERPIECE)
-   Support: Desktop (1920), Tablet (Tab S9), Mobile (S22 Ultra)
-   Design System: Fluid & Grid Lock
-*/
+/* SAVOR HAPPINESS - AUTHOR SECTION (ULTIMATE FIXED) */
 
 :root {
     --author-green: #2D5A27;
     --author-orange: #FF9800;
-    --card-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    --card-shadow: 0 15px 50px rgba(0,0,0,0.1);
 }
 
-/* 1. ส่วนคุมตำแหน่งหน้าจอ (Center Wrapper) */
+/* 1. คุมพื้นหลังให้เต็มจอแบบพอดี ไม่ไถล */
 .author-centering-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: clamp(30px, 5vw, 80px) 20px;
+    width: 100%;
+    min-height: 100vh; /* ให้สูงเท่าจอพอดี */
+    padding: 20px;
     background-color: #fdfbf9;
+    box-sizing: border-box;
 }
 
-/* 2. การ์ดหลัก (The Layout Card) */
+/* 2. การ์ดหลัก: เปลี่ยนจาก Grid เป็น Flex เพื่อคุมหน้าจอแนวตั้งได้นิ่งกว่า */
 .author-layout-card {
-    display: grid;
-    grid-template-columns: 420px 1fr; /* ล็อคสัดส่วนซ้าย-ขวาใน Desktop */
+    display: flex;
+    flex-direction: row; /* Desktop เป็นแนวนอน */
     background: #ffffff;
-    border-radius: clamp(30px, 4vw, 50px); 
+    border-radius: clamp(30px, 4vw, 45px);
     box-shadow: var(--card-shadow);
     width: 100%;
-    max-width: 1100px;
-    overflow: hidden;
+    max-width: 1000px;
+    max-height: 90vh; /* กันการ์ดยาวล้นจอแนวตั้ง (สำหรับ Tablet) */
+    overflow-y: auto; /* ถ้าเนื้อหาล้นจริงๆ ให้เลื่อนในตัวการ์ดได้ */
     border: 1px solid rgba(0,0,0,0.03);
 }
 
-/* --- [ฝั่งซ้าย: รูปภาพและโลโก้] --- */
+/* --- ฝั่งซ้าย: รูปภาพ --- */
 .author-visual-side {
-    padding: 60px 40px;
+    flex: 0 0 380px; /* ล็อคความกว้างฝั่งรูปใน Desktop */
+    padding: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -883,148 +884,121 @@ body {
 }
 
 .author-profile-pic {
-    width: clamp(200px, 25vw, 280px);
-    height: clamp(200px, 25vw, 280px);
-    border-radius: 40px;
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1 / 1;
+    border-radius: 35px;
     overflow: hidden;
-    margin-bottom: 40px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-.author-profile-pic img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-}
+.author-profile-pic img { width: 100%; height: 100%; object-fit: cover; }
 
-.author-logos-grid {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    opacity: 0.6;
-}
-
-.logo-box img { 
-    height: clamp(22px, 2vw, 28px); 
-    width: auto; 
-}
-
-/* --- [ฝั่งขวา: เนื้อหาและ Contact] --- */
+/* --- ฝั่งขวา: เนื้อหา --- */
 .author-content-side {
-    padding: 60px clamp(40px, 6vw, 80px);
+    flex: 1;
+    padding: clamp(30px, 5vw, 60px);
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .section-title {
-    font-size: 1.9rem;
+    font-size: 1.5rem;
     color: var(--author-orange);
     font-weight: 800;
-    margin-bottom: 15px;
-    text-transform: uppercase;
+    margin-bottom: 8px;
 }
 
 .title-underline {
-    width: 60px;
-    height: 5px;
+    width: 50px;
+    height: 4px;
     background: var(--author-orange);
     border-radius: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .author-name {
-    font-size: 31px !important;
+    font-size: clamp(22px, 3vw, 30px) !important;
     font-weight: 700;
     color: var(--author-green);
+    margin-bottom: 12px;
     line-height: 1.2;
-    margin-bottom: 20px;
 }
 
 .author-title {
-    font-size: 17px !important;
+    font-size: 16px !important;
     color: #888;
-    font-weight: 500;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
-/* --- ส่วน Contact (ไฮไลท์ปากกาแดง) --- */
+/* --- Contact Box --- */
 .author-contact-grid {
-    border-top: 2.5px solid var(--author-green);
-    padding-top: 40px;
+    border-top: 2px solid var(--author-green);
+    padding-top: 30px;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 15px;
 }
 
 .contact-box {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     text-decoration: none;
     color: #444;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+    font-size: 0.95rem;
 }
 
-.contact-box i { 
-    width: 24px; 
-    color: var(--author-green); 
-    font-size: 1.2rem;
-    text-align: center;
-}
+.contact-box i { width: 20px; color: var(--author-green); text-align: center; }
 
 /* ==========================================
-   📱 RESPONSIVE: TABLET & MOBILE (แก้จุดเพี้ยน)
+   📱 RESPONSIVE: ปรับ Tablet & Mobile (จุดที่ปาล์มติด)
    ========================================== */
 
-@media (max-width: 1024px) {
+@media (max-width: 991px) {
     .author-layout-card {
-        grid-template-columns: 1fr; /* เปลี่ยนเป็นแนวตั้ง */
-        max-width: 580px; /* คุมไม่ให้ Tablet บวม */
-        margin: 0 auto;
+        flex-direction: column; /* เปลี่ยนเป็นแนวตั้ง */
+        max-width: 450px; /* บีบการ์ดให้เพรียว ไม่บวมใน Tablet */
+        max-height: 85vh; /* ล็อคความสูงไม่ให้ล้นจอ Tab S9 */
     }
 
     .author-visual-side {
+        flex: 0 0 auto;
+        width: 100%;
+        padding: 30px 20px;
         border-right: none;
-        border-bottom: 1.5px solid #f1f1f1;
-        padding: 40px 20px;
+        border-bottom: 1px solid #f1f1f1;
+    }
+
+    .author-profile-pic {
+        width: 160px; /* ลดขนาดรูปลงหน่อยเพื่อให้พื้นที่แนวตั้งเหลือ */
+        height: 160px;
+        margin-bottom: 0; /* เอา margin ล่างออกเพราะมี padding ช่วยแล้ว */
     }
 
     .author-content-side {
-        padding: 40px 25px;
-        align-items: center; /* จัดทุกอย่างกึ่งกลางหน้าจอ */
+        padding: 30px 20px;
+        align-items: center;
         text-align: center;
     }
 
-    .title-underline { margin: 0 auto 25px auto !important; }
+    .title-underline { margin: 0 auto 20px auto !important; }
 
-    .author-name {
-        font-size: 26px !important;
-        margin-bottom: 12px;
-    }
-
-    .author-title {
-        font-size: 16px !important;
-        max-width: 300px;
-        margin: 0 auto 25px auto;
-    }
-
-    /* ล็อคกลุ่ม Contact ให้อยู่กึ่งกลาง แต่ไอคอนเรียงตรงกัน (ตามดราฟแดง) */
+    /* จัดกลุ่ม Contact ให้เกาะกลุ่มกลางจอแบบกริบๆ */
     .author-contact-grid {
-        width: fit-content;
-        min-width: 240px;
+        width: 100%;
+        max-width: 240px;
         margin: 0 auto;
-        align-items: flex-start; /* ไอคอนเรียงตรงกันแนวตั้งเป๊ะ */
+        align-items: flex-start;
+        padding-top: 20px;
     }
 }
 
-/* จูนละเอียดสำหรับ S22 Ultra (Small Screens) */
-@media (max-width: 480px) {
-    .author-name { font-size: 24px !important; }
-    .author-profile-pic { width: 180px; height: 180px; }
-    .author-layout-card { border-radius: 35px; }
+/* สำหรับมือถือจอเล็ก (S22 Ultra แนวตั้ง) */
+@media (max-height: 700px) {
+    .author-profile-pic { width: 140px; height: 140px; } /* ถ้ายอแนวตั้งสั้น ให้ลดขนาดรูปลงอีก */
+    .author-content-side { padding: 20px; }
 }
 
 /* ============================================================
