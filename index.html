@@ -361,9 +361,9 @@
     // --- [4] Initialize AOS ---
     AOS.init();
 
-    // --- [5] ระบบกันการลากรูปภาพ (ทดแทน CSS user-drag เพื่อความคลีน) ---
+    // --- [5] ระบบกันการลากรูปภาพ (เวอร์ชั่นกำจัดเส้นเหลืองใน CSS) ---
     document.querySelectorAll('img').forEach(img => {
-        img.addEventListener('dragstart', e => e.preventDefault());
+        img.ondragstart = () => false; // สั่งว่า "ห้ามลาก!"
     });
 </script>
 <script src="script.js"></script>
