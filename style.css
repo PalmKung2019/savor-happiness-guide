@@ -1465,30 +1465,18 @@ footer p {
     color: #888;
 }
 
-/* ANTI-COPY SYSTEM (ล็อคการก๊อปรูปและข้อความ) --- */
-body {
-    -webkit-user-select: none;  /* กันคลุมดำใน Chrome/Safari */
-    -moz-user-select: none;     /* กันคลุมดำใน Firefox */
-    -ms-user-select: none;      /* กันคลุมดำใน IE/Edge */
-    user-select: none;          /* ค่ามาตรฐาน */
-    -webkit-touch-callout: none; /* กันการกดค้างเพื่อก๊อปในมือถือ */
-}
-
 img {
-    /* กันการลากรูปไปวางที่อื่น */
-    -webkit-user-drag: none; 
-    -khtml-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
-    /* ล็อคไม่ให้เมาส์ไปยุ่งกับรูป (กันคลิกขวาเซฟรูปได้ในตัว) */
-    pointer-events: none; 
-}
+    /* [1] กันการเลือกรูปภาพด้วยมาตรฐานที่เบราว์เซอร์ยอมรับ */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
-/* ปลดล็อคให้ส่วนที่จำเป็นยังใช้งานได้ (สำคัญมาก!) */
-a, button, .cursor-pointer, input, textarea, .dial-btn, i, .contact-box {
-    -webkit-user-select: auto;
-    user-select: auto;
-    pointer-events: auto; /* ให้กลับมาคลิกและพิมพ์ได้ปกติ */
+    /* [2] ตั้งค่าเป็น auto เพื่อให้ปาล์มยังคลิกเปิดดูรูปขยาย (Lightbox) ได้ปกติ */
+    pointer-events: auto; 
+    
+    /* [3] กันการกดค้างเพื่อบันทึกภาพเมื่อดูผ่านมือถือ */
+    -webkit-touch-callout: none;
 }
 
 
