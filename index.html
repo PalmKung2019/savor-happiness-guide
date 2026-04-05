@@ -409,7 +409,7 @@
     // ดักจับการกดปุ่ม Print Screen แล้วล้างค่าทิ้งทันที
 document.addEventListener('keyup', (e) => {
     if (e.key === 'PrintScreen') {
-        navigator.clipboard.writeText('ไม่อนุญาตให้แคปภาพลิขสิทธิ์ครับ');
+        navigator.clipboard.writeText('ไม่อนุญาตให้แคปภาพลิขสิทธิ์');
         alert('ระบบความปลอดภัย: ตรวจพบการแคปหน้าจอ เนื้อหาถูกล็อค');
     }
 });
@@ -426,7 +426,7 @@ window.onfocus = function() {
     // ดักจับ Ctrl + P (สั่งปริ้นเว็บเป็น PDF)
     document.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.key === 'p') {
-            alert('ไม่อนุญาตให้สั่งพิมพ์หน้าเว็บนี้ครับ');
+            alert('ไม่อนุญาตให้สั่งพิมพ์หน้าเว็บนี้');
             e.preventDefault();
         }
     });
