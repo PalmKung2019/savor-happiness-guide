@@ -330,28 +330,31 @@
         }
     });
 
-    // --- [3] Advanced Security ---
+    // --- [3] ระบบความปลอดภัยขั้นสูง (Advanced Security) ---
     
+// --- [3] ระบบกันก๊อป & กันส่องโค้ด (Anti-Copy & Inspect) ---
     // 1. กันคลิกขวา
     document.addEventListener('contextmenu', e => e.preventDefault());
 
-    // 2. กันปุ่มลัดแงะโค้ด (F12, Inspect, Source, Save)
+    // 2. กันปุ่มลัด (ดักทุกทาง)
     document.onkeydown = function(e) {
+        // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (ส่องโค้ด)
         if (e.keyCode == 123 || 
-            (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0))) || 
-            (e.ctrlKey && (e.keyCode == 'U'.charCodeAt(0) || e.keyCode == 'S'.charCodeAt(0)))) {
+            (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0)))) {
+            return false;
+        }
+        // Ctrl+U (ดู Source), Ctrl+S (บันทึกเว็บ)
+        if (e.ctrlKey && (e.keyCode == 'U'.charCodeAt(0) || e.keyCode == 'S'.charCodeAt(0))) {
+            return false;
+        }
+        // Ctrl+C (ก๊อปปี้), Ctrl+A (เลือกทั้งหมด) ***ตัวที่ปาล์มเจอ!***
+        if (e.ctrlKey && (e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'A'.charCodeAt(0))) {
             return false;
         }
     };
 
-    // 3. ท่าไม้ตาย: Debugger Loop + Console Spam (คนแงะมีมึน)
+    // 3. ท่าไม้ตาย Debugger (ถ้าเปิด Inspect ได้ เว็บจะค้างทันที)
     setInterval(function() {
-        // ก่อกวนหน้า Console
-        console.clear();
-        console.log("%cSTOP!", "color: red; font-size: 50px; font-weight: bold;");
-        console.log("%cThis is a protected Thesis project of Palm (Savor Happiness).", "font-size: 18px; color: orange;");
-        
-        // สั่งให้หน้าเว็บค้างถ้ามีคนเปิด DevTools
         (function() {}.constructor("debugger")());
     }, 500);
 
