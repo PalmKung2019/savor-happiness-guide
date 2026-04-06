@@ -7,58 +7,73 @@
 @font-face {
     font-family: 'NangKaiThot';
     src: url('fonts/MN-Nang-Kai-Thot-Regular.ttf') format('truetype');
-    font-weight: normal; font-style: normal; font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 :root {
     /* [1] CI BRAND COLORS - นิยามรหัสสีต้นฉบับ Savor Happiness */
-    --ci-green:        #007A33; /* Primary Green */
-    --ci-olive:        #93a35a; /* Olive (Dark Mode BG) */
-    --ci-orange:       #FF8C00; /* Energy Orange */
-    --ci-yellow:       #f4e105; /* Happiness Yellow */
-    --ci-soft-yellow:  #fffbd3; /* Light Highlight */
-    --ci-cream:        #f8f2e6; /* Base Background */
-    --ci-white:        #ffffff; /* Card Background */
+    --ci-green: #007A33;
+    /* Primary Green */
+    --ci-olive: #93a35a;
+    /* Olive (Dark Mode BG) */
+    --ci-orange: #FF8C00;
+    /* Energy Orange */
+    --ci-yellow: #f4e105;
+    /* Happiness Yellow */
+    --ci-soft-yellow: #fffbd3;
+    /* Light Highlight */
+    --ci-cream: #f8f2e6;
+    /* Base Background */
+    --ci-white: #ffffff;
+    /* Card Background */
 
     /* [2] SEMANTIC VARIABLES (LIGHT MODE) - กำหนดหน้าที่การใช้งาน */
-    --bg-main:         var(--ci-cream);
-    --bg-nav:          rgba(255, 255, 255, 0.95);
+    --bg-main: var(--ci-cream);
+    --bg-nav: rgba(255, 255, 255, 0.95);
     --bg-card: var(--savor-white);
-    --text-main:       #333333;
-    --text-nav:        #444444;
-    --accent-color:    var(--ci-orange);
-    --nav-border:      rgba(0, 122, 51, 0.1);
-    --shadow-color:    rgba(0, 0, 0, 0.08);
+    --text-main: #333333;
+    --text-nav: #444444;
+    --accent-color: var(--ci-orange);
+    --nav-border: rgba(0, 122, 51, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.08);
 
     /* ตัวแปรสีเดิมที่คุณเคยใช้ (เพื่อให้โค้ดเก่าไม่พัง) */
-    --savor-green:     var(--ci-green);
-    --savor-orange:    var(--ci-orange);
-    --savor-cream:     var(--ci-cream);
-    --savor-white:     var(--ci-white);
-    --savor-yellow:    var(--ci-yellow);
-    --savor-olive:     var(--ci-olive);
+    --savor-green: var(--ci-green);
+    --savor-orange: var(--ci-orange);
+    --savor-cream: var(--ci-cream);
+    --savor-white: var(--ci-white);
+    --savor-yellow: var(--ci-yellow);
+    --savor-olive: var(--ci-olive);
 }
 
 /* [3] DARK MODE ENGINE - สลับค่าสีที่จุดเดียว */
 [data-theme="dark"] {
-    --bg-main:         var(--ci-olive);   /* พื้นหลังเป็นสี Olive ตาม CI */
-    --bg-nav:          var(--ci-green);   /* Navbar เป็นสีเขียวหลัก */
-    --bg-card:         var(--ci-white);   /* Card ยังเป็นสีขาวตามที่คุณต้องการ */
-    --text-main:       #ffffff;
+    --bg-main: var(--ci-olive);
+    /* พื้นหลังเป็นสี Olive ตาม CI */
+    --bg-nav: var(--ci-green);
+    /* Navbar เป็นสีเขียวหลัก */
+    --bg-card: var(--ci-white);
+    /* Card ยังเป็นสีขาวตามที่คุณต้องการ */
+    --text-main: #ffffff;
     --text-nav: #ffffff;
-    --nav-border:      rgba(255, 255, 255, 0.1);
-    --shadow-color:    rgba(0, 0, 0, 0.3);
+    --nav-border: rgba(255, 255, 255, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
 /* [2] GLOBAL RESET & ANTI-OVERFLOW */
 * {
-    margin: 0; padding: 0; box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'NangKaiThot', 'Anuphan', sans-serif;
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     margin: 0 !important;
     padding: 0 !important;
@@ -71,7 +86,8 @@ html, body {
 }
 
 body {
-    padding-top: 75px; /* ล็อกความสูง Navbar สำหรับ Desktop */
+    padding-top: 75px;
+    /* ล็อกความสูง Navbar สำหรับ Desktop */
 }
 
 /* [3] GLOBAL IMAGE SECURITY & OPTIMIZATION */
@@ -92,7 +108,8 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 0 40px;
-    background: var(--bg-nav);        /* สลับสีอัตโนมัติ */
+    background: var(--bg-nav);
+    /* สลับสีอัตโนมัติ */
     backdrop-filter: blur(13px);
     -webkit-backdrop-filter: blur(13px);
     height: 85px;
@@ -107,19 +124,32 @@ nav {
 }
 
 .logo img {
-    height: 33px; width: auto; cursor: pointer;
+    height: 33px;
+    width: auto;
+    cursor: pointer;
     transition: transform 0.3s ease;
 }
-.logo img:hover { transform: scale(1.05); }
+
+.logo img:hover {
+    transform: scale(1.05);
+}
 
 /* [5] SCROLL PROGRESS BAR */
 .scroll-progress-container {
-    position: fixed; top: 75px; left: 0;
-    z-index: 10001; width: 100%; height: 3px;
-    background: rgba(255, 255, 255, 0.1); pointer-events: none;
+    position: fixed;
+    top: 75px;
+    left: 0;
+    z-index: 10001;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
 }
+
 .progress-bar {
-    height: 100%; background: var(--savor-orange); width: 0%;
+    height: 100%;
+    background: var(--savor-orange);
+    width: 0%;
     box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
     transition: width 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -129,8 +159,12 @@ nav {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    width: 100%; height: 100%; position: absolute;
-    top: 0; left: 0; z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
 .shop-grid {
@@ -155,16 +189,18 @@ nav {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    height: 500px; /* ปรับความสูงตามชอบ */
+    height: 500px;
+    /* ปรับความสูงตามชอบ */
     border-radius: 30px;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
 }
 
 .video-container video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 🛡️ สำคัญ: เพื่อให้วิดีโอเต็มกล่องไม่บิดเบี้ยว */
+    object-fit: cover;
+    /* 🛡️ สำคัญ: เพื่อให้วิดีโอเต็มกล่องไม่บิดเบี้ยว */
 }
 
 /* เคลือบสีดำจางๆ เพื่อให้ตัวหนังสืออ่านง่าย */
@@ -174,7 +210,7 @@ nav {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
     display: flex;
     align-items: flex-end;
     padding: 50px;
@@ -220,19 +256,27 @@ nav {
         height: 350px;
         width: 95%;
     }
-    .video-content h2 { font-size: 1.8rem; }
-    .video-overlay { padding: 30px; }
+
+    .video-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .video-overlay {
+        padding: 30px;
+    }
 }
 
 
 /* --- [Orientation Fix] สำหรับโหมดแนวนอน (Landscape) --- */
 @media (max-height: 600px) and (orientation: landscape) {
-    body { 
-        padding-top: 55px !important; /* ปรับตามความสูงจริงของ Nav ในโหมดนอน */
+    body {
+        padding-top: 55px !important;
+        /* ปรับตามความสูงจริงของ Nav ในโหมดนอน */
     }
-    .scroll-progress-container { 
-        top: 55px !important; 
-        height: 3px; 
+
+    .scroll-progress-container {
+        top: 55px !important;
+        height: 3px;
     }
 }
 
@@ -284,7 +328,7 @@ nav {
    4. HERO SECTION: Collage Grid & Overlay (The Master Fix)
    ============================================================ */
 #home {
-    min-height: 100vh; 
+    min-height: 100vh;
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -296,8 +340,10 @@ nav {
 
 .hero-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Desktop: 5 คอลัมน์ */
-    grid-template-rows: repeat(2, 1fr);    /* Desktop: 2 แถว (รวม 10 รูป) */
+    grid-template-columns: repeat(5, 1fr);
+    /* Desktop: 5 คอลัมน์ */
+    grid-template-rows: repeat(2, 1fr);
+    /* Desktop: 2 แถว (รวม 10 รูป) */
     width: 100%;
     height: 100%;
     position: absolute;
@@ -317,7 +363,8 @@ nav {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.4); /* เข้มขึ้นเพื่อให้ปุ่มเขียวและ Text อ่านง่าย */
+    filter: brightness(0.4);
+    /* เข้มขึ้นเพื่อให้ปุ่มเขียวและ Text อ่านง่าย */
     transition: transform 0.8s ease, filter 0.5s ease;
 }
 
@@ -348,7 +395,7 @@ nav {
     font-size: clamp(2.2rem, 8vw, 4.5rem);
     margin-bottom: 10px;
     text-transform: uppercase;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
     line-height: 1.1;
     letter-spacing: 2px;
 }
@@ -377,8 +424,10 @@ nav {
    ------------------------------------------------------------ */
 @media (max-width: 768px) and (orientation: portrait) {
     .hero-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 คอลัมน์ */
-        grid-template-rows: repeat(5, 1fr);    /* 5 แถว (2x5 = 10 รูปพอดีเป๊ะ) */
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 คอลัมน์ */
+        grid-template-rows: repeat(5, 1fr);
+        /* 5 แถว (2x5 = 10 รูปพอดีเป๊ะ) */
     }
 
     .hero-content-overlay {
@@ -395,7 +444,8 @@ nav {
     }
 
     .btn-primary {
-        width: 85%; /* ปุ่มกว้างขึ้นให้กดง่ายในแนวตั้ง */
+        width: 85%;
+        /* ปุ่มกว้างขึ้นให้กดง่ายในแนวตั้ง */
         max-width: 300px;
     }
 }
@@ -405,35 +455,43 @@ nav {
    ------------------------------------------------------------ */
 @media (max-height: 600px) and (orientation: landscape) {
     #home {
-        min-height: 110vh; /* เผื่อพื้นที่ไถนิดหน่อยกันขอบ Browser บัง */
+        min-height: 110vh;
+        /* เผื่อพื้นที่ไถนิดหน่อยกันขอบ Browser บัง */
     }
-    
+
     .hero-grid {
-        grid-template-columns: repeat(5, 1fr); /* แนวนอนใช้ 5 คอลัมน์เหมือนเดิมจะสวยกว่า */
+        grid-template-columns: repeat(5, 1fr);
+        /* แนวนอนใช้ 5 คอลัมน์เหมือนเดิมจะสวยกว่า */
         grid-template-rows: repeat(2, 1fr);
     }
 
     .hero-content-overlay {
-        padding: 20px 20px; /* บีบ Padding หัวท้ายให้เหลือน้อยที่สุด */
+        padding: 20px 20px;
+        /* บีบ Padding หัวท้ายให้เหลือน้อยที่สุด */
     }
 
     .content-wrapper {
-        gap: 5px; /* ดึงทุกอย่างมาชิดกัน */
+        gap: 5px;
+        /* ดึงทุกอย่างมาชิดกัน */
     }
 
-    #home h1 { 
-        font-size: clamp(1.6rem, 5vw, 2.5rem); 
-        margin-bottom: 5px; 
+    #home h1 {
+        font-size: clamp(1.6rem, 5vw, 2.5rem);
+        margin-bottom: 5px;
     }
 
-    #home .subtitle-vibe { margin-bottom: 5px; font-size: 0.8rem; }
+    #home .subtitle-vibe {
+        margin-bottom: 5px;
+        font-size: 0.8rem;
+    }
 
     #home .hero-desc {
         font-size: 0.8rem;
-        margin-bottom: 12px; /* ดันปุ่มเขียวขึ้นมาโชว์ */
+        margin-bottom: 12px;
+        /* ดันปุ่มเขียวขึ้นมาโชว์ */
         line-height: 1.3;
     }
-    
+
     .btn-primary {
         padding: 8px 20px;
         font-size: 0.85rem;
@@ -484,7 +542,7 @@ nav {
 .book-grid-container {
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important; 
+    justify-content: center !important;
     gap: 60px !important;
     padding: 50px 20px !important;
     flex-wrap: wrap;
@@ -506,7 +564,7 @@ nav {
     width: 100%;
     max-width: 500px;
     border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
     cursor: zoom-in;
     transition: transform 0.4s ease;
 }
@@ -533,7 +591,7 @@ nav {
     cursor: pointer;
     border: 3px solid transparent;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .thumb-item:hover {
@@ -541,7 +599,8 @@ nav {
 }
 
 .thumb-item.active {
-    border-color: var(--savor-green); /* ใช้สีเขียว Thesis ของปาล์ม */
+    border-color: var(--savor-green);
+    /* ใช้สีเขียว Thesis ของปาล์ม */
     transform: translateY(-3px);
 }
 
@@ -560,7 +619,8 @@ nav {
 .book-text h2 {
     font-size: 2.2rem;
     margin-bottom: 25px;
-    color: var(--ci-green); /* แนะนำให้ใช้เขียว CI แทนสีเทา เพื่อให้หัวข้อเด่น */
+    color: var(--ci-green);
+    /* แนะนำให้ใช้เขียว CI แทนสีเทา เพื่อให้หัวข้อเด่น */
     font-weight: 800;
 }
 
@@ -569,7 +629,8 @@ nav {
     margin-bottom: 30px;
     color: #555;
     font-size: 1.1rem;
-    max-width: 500px; /* คุมความกว้างให้อ่านง่าย */
+    max-width: 500px;
+    /* คุมความกว้างให้อ่านง่าย */
 }
 
 /* --- [Responsive Fix] สำหรับหน้าจอขนาดเล็ก --- */
@@ -579,7 +640,8 @@ nav {
         padding: 30px 15px !important;
     }
 
-    .book-visual, .book-text {
+    .book-visual,
+    .book-text {
         min-width: 100% !important;
     }
 
@@ -617,14 +679,14 @@ nav {
     background: white;
     border-radius: 25px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
     margin-bottom: 30px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .shop-card:hover {
     transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0,122,51,0.15);
+    box-shadow: 0 20px 40px rgba(0, 122, 51, 0.15);
 }
 
 .photo-gallery {
@@ -685,8 +747,13 @@ nav {
 }
 
 @keyframes tickerLoopRight {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(0%); }
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
 }
 
 .ticker-item {
@@ -734,7 +801,7 @@ nav {
     padding: 25px;
     border-radius: 20px;
     text-align: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
     transition: 0.3s ease;
 }
 
@@ -760,7 +827,7 @@ nav {
 .shop-grid {
     display: grid !important;
     /* 🔥 ล็อค 2 คอลัมน์แบบเด็ดขาด */
-    grid-template-columns: repeat(2, 1fr) !important; 
+    grid-template-columns: repeat(2, 1fr) !important;
     gap: 40px !important;
     width: 90% !important;
     max-width: 1000px !important;
@@ -769,25 +836,44 @@ nav {
 
 .shop-card {
     width: 100% !important;
-    max-width: 450px !important; /* ขยายให้รูป Nikon D5200 ดูเด่นๆ */
+    max-width: 450px !important;
+    /* ขยายให้รูป Nikon D5200 ดูเด่นๆ */
 }
 
 /* --- RESPONSIVE: ปรับตามขนาดหน้าจอ --- */
 @media (max-width: 992px) {
     .shop-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
-        max-width: 90%;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 25px !important;
+        max-width: 95% !important;
     }
 }
 
 @media (max-width: 600px) {
     .shop-grid {
-        grid-template-columns: 1fr; 
-        gap: 20px;
+        grid-template-columns: 1fr !important;
+        gap: 25px !important;
+        width: 100% !important;
+        padding: 0 5% !important;
     }
+
     .shop-card {
-        max-width: 350px; /* คุมไม่ให้การ์ดใหญ่จนล้นจอมือถือ */
+        max-width: 380px !important;
+        /* คุมไม่ให้การ์ดใหญ่จนล้นจอมือถือ */
+        margin: 0 auto 20px auto !important;
+        /* จัดให้อยู่กึ่งกลางหน้าจอ */
+    }
+
+    .photo-gallery {
+        height: 250px !important;
+        /* ปรับขนาดรูปไม่ให้ใหญ่เกินไป */
+    }
+
+    .shop-name {
+        word-break: break-word !important;
+        /* ป้องกันข้อความล้น */
+        white-space: normal !important;
+        font-size: 1.1rem !important;
     }
 }
 
@@ -806,17 +892,21 @@ nav {
 .merch-grid.bookmark-triple-grid {
     display: grid !important;
     /* 💥 แก้จุดสีม่วง: ใช้ 1fr เพื่อแบ่งพื้นที่ให้พอดีจอ ไม่ให้ Margin ดันจนล้น */
-    grid-template-columns: repeat(3, 1fr) !important; 
-    gap: 15px !important; 
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 15px !important;
     width: 100% !important;
-    max-width: 1000px; /* คุมไม่ให้กว้างเกินไปบน Desktop */
-    margin: 30px auto 0 !important; /* ดีดกึ่งกลาง */
-    padding: 0 !important; /* ล้าง Padding ที่อาจจะแฝงมา */
+    max-width: 1000px;
+    /* คุมไม่ให้กว้างเกินไปบน Desktop */
+    margin: 30px auto 0 !important;
+    /* ดีดกึ่งกลาง */
+    padding: 0 !important;
+    /* ล้าง Padding ที่อาจจะแฝงมา */
 }
 
 .merch-card {
     width: 100% !important;
-    max-width: none !important; /* ปล่อยให้ยืดตาม Grid 1fr */
+    max-width: none !important;
+    /* ปล่อยให้ยืดตาม Grid 1fr */
     box-sizing: border-box;
     margin: 0 !important;
 }
@@ -827,7 +917,8 @@ nav {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 25px;
     justify-content: center;
-    justify-items: center; /* บังคับให้การ์ดอยู่กลางคอลัมน์ตัวเอง */
+    justify-items: center;
+    /* บังคับให้การ์ดอยู่กลางคอลัมน์ตัวเอง */
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -836,13 +927,17 @@ nav {
 /* --- Responsive Fix สำหรับจอเล็ก (Fold 5 / Mobile) --- */
 @media (max-width: 768px) {
     .merch-grid.bookmark-triple-grid {
-        grid-template-columns: repeat(2, 1fr) !important; /* จอเล็กเหลือ 2 จะไม่เบียด */
+        grid-template-columns: repeat(2, 1fr) !important;
+        /* จอเล็กเหลือ 2 จะไม่เบียด */
     }
 }
 
 @media (max-width: 480px) {
-    .merch-grid.bookmark-triple-grid, .shop-grid {
-        grid-template-columns: 1fr !important; /* จอมือถือจิ๋วให้เรียงเดี่ยวกลางหน้าจอ */
+
+    .merch-grid.bookmark-triple-grid,
+    .shop-grid {
+        grid-template-columns: 1fr !important;
+        /* จอมือถือจิ๋วให้เรียงเดี่ยวกลางหน้าจอ */
     }
 }
 
@@ -864,15 +959,18 @@ nav {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: var(--savor-yellow) !important; /* ปรับให้ตรง CI #f4e105 */
-    border: 2px solid #ffffff; /* ใส่ขอบขาวให้เหมือนสติกเกอร์ */
+    background: var(--savor-yellow) !important;
+    /* ปรับให้ตรง CI #f4e105 */
+    border: 2px solid #ffffff;
+    /* ใส่ขอบขาวให้เหมือนสติกเกอร์ */
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden; /* กันรูปหลุดขอบวงกลม */
+    overflow: hidden;
+    /* กันรูปหลุดขอบวงกลม */
     transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -894,7 +992,8 @@ nav {
 /* --- เมื่อกดเปิดเมนู (Active) --- */
 .speed-dial-container.active .speed-dial-main-btn {
     transform: scale(1.1) rotate(5deg);
-    background: #FF8C00 !important; /* เปลี่ยนเป็นสีส้มตอนแลบลิ้น */
+    background: #FF8C00 !important;
+    /* เปลี่ยนเป็นสีส้มตอนแลบลิ้น */
 }
 
 /* สลับรูป: ซ่อนยิ้มละมุน โชว์แลบลิ้น (Must Try Menu) */
@@ -934,21 +1033,43 @@ nav {
     color: white;
     text-decoration: none;
     font-size: 22px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: 0.3s;
 }
 
-.dial-btn:hover { transform: scale(1.15) translateY(-5px); }
+.dial-btn:hover {
+    transform: scale(1.15) translateY(-5px);
+}
 
-.phone-btn { background: #FFD54F; }
-.line-btn { background: #66BB6A; }
-.copy-btn { background: #FFCA28; }
+.phone-btn {
+    background: #FFD54F;
+}
+
+.line-btn {
+    background: #66BB6A;
+}
+
+.copy-btn {
+    background: #FFCA28;
+}
 
 /* Responsive สำหรับ Mobile */
 @media (max-width: 768px) {
-    .speed-dial-container { bottom: 20px; right: 20px; }
-    .speed-dial-main-btn { width: 55px; height: 55px; }
-    .dial-btn { width: 48px; height: 48px; font-size: 18px; }
+    .speed-dial-container {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .speed-dial-main-btn {
+        width: 55px;
+        height: 55px;
+    }
+
+    .dial-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
+    }
 }
 
 /* ============================================================
@@ -975,9 +1096,17 @@ nav {
 }
 
 @keyframes pulse-green {
-    0% { box-shadow: 0 0 0 0 rgba(0, 122, 51, 0.4); }
-    70% { box-shadow: 0 0 0 15px rgba(0, 122, 51, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(0, 122, 51, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 122, 51, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(0, 122, 51, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 122, 51, 0);
+    }
 }
 
 /* ============================================================
@@ -986,9 +1115,10 @@ nav {
 
 /* 🛡️ สั่งที่ตัวกล่อง: ให้พื้นหลังขาวเพื่อขับสีโลโก้ */
 .logo-box {
-    background: #ffffff !important; 
-    border: none !important; /* สั่งลบเส้นขอบเทาๆ ทิ้งไปเลย */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
+    background: #ffffff !important;
+    border: none !important;
+    /* สั่งลบเส้นขอบเทาๆ ทิ้งไปเลย */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -998,17 +1128,17 @@ nav {
 /* 🛡️ สั่งที่ตัวรูป: คืนค่าสีสันแบบหักดิบ */
 .logo-box img {
     /* 🔴 ปิดฟิลเตอร์ทุกชนิด: Grayscale, Sepia, Blur หายไปให้หมด! */
-    filter: none !important; 
+    filter: none !important;
     -webkit-filter: grayscale(0) !important;
-    
+
     /* 🔴 คืนค่าความชัด: ห้ามจาง ห้ามโปร่งแสง */
-    opacity: 1 !important; 
-    
+    opacity: 1 !important;
+
     /* ปรับขนาดให้สวยงามในกล่อง */
     max-width: 85% !important;
     max-height: 85% !important;
     object-fit: contain !important;
-    
+
     visibility: visible !important;
     display: block !important;
 }
@@ -1016,7 +1146,7 @@ nav {
 /* Desktop Hover: แค่ให้ลอยนิดๆ สีห้ามเพี้ยน */
 .logo-box:hover {
     transform: translateY(-3px) !important;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* 📱 Mobile Fix: ล็อคสีเดิมในมือถือด้วย */
@@ -1035,62 +1165,172 @@ nav {
 
 /* [1] TABLET & LARGE MOBILE (1024px) */
 @media screen and (max-width: 1024px) {
-    nav { height: 70px !important; padding: 0 20px !important; }
-    body, .scroll-progress-container { padding-top: 70px !important; top: 70px !important; }
-    
-    .author-layout-card { flex-direction: column !important; width: 95% !important; }
-    .author-visual-side { border-right: none; border-bottom: 1px solid #eee; width: 100%; flex: none; }
-    
-    .book-grid-container { gap: 30px !important; }
-    .search-wrapper { max-width: 90%; margin-top: 110px !important; }
+    nav {
+        height: 70px !important;
+        padding: 0 20px !important;
+    }
+
+    body,
+    .scroll-progress-container {
+        padding-top: 70px !important;
+        top: 70px !important;
+    }
+
+    .author-layout-card {
+        flex-direction: column !important;
+        width: 95% !important;
+    }
+
+    .author-visual-side {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        width: 100%;
+        flex: none;
+    }
+
+    .book-grid-container {
+        gap: 30px !important;
+    }
+
+    .search-wrapper {
+        max-width: 90%;
+        margin-top: 110px !important;
+    }
 }
 
 /* [2] STANDARD MOBILE (768px) */
 @media screen and (max-width: 768px) {
+
     /* Hero Grid 2x5 */
-    .hero-grid { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: repeat(5, 1fr) !important; }
-    
+    .hero-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-rows: repeat(5, 1fr) !important;
+    }
+
     /* Grids to Single Column */
-    .shop-grid { grid-template-columns: 1fr !important; gap: 20px; }
-    .merch-grid.bookmark-triple-grid { grid-template-columns: repeat(2, 1fr) !important; }
-    
+    .shop-grid {
+        grid-template-columns: 1fr !important;
+        gap: 25px !important;
+        width: 100% !important;
+        padding: 0 5% !important;
+        box-sizing: border-box !important;
+    }
+
+    .shop-card {
+        margin: 0 auto 20px auto !important;
+        max-width: 380px !important;
+    }
+
+    .photo-gallery {
+        height: 260px !important;
+    }
+
+    .shop-name {
+        word-break: break-word !important;
+        white-space: normal !important;
+    }
+
+    .merch-grid.bookmark-triple-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
     /* Typography & Spacing */
-    .section { padding: 60px 5% !important; }
-    .section-title { font-size: 1.8rem; margin-bottom: 40px; }
-    
+    .section {
+        padding: 60px 5% !important;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+    }
+
     /* Video Scaling */
-    .video-wrapper { width: 100% !important; border-radius: 0 !important; }
-    .video-content-box { padding: 30px 20px !important; }
-    
-    .speed-dial-container { bottom: 20px; right: 20px; }
+    .video-wrapper {
+        width: 100% !important;
+        border-radius: 0 !important;
+    }
+
+    .video-content-box {
+        padding: 30px 20px !important;
+    }
+
+    .speed-dial-container {
+        bottom: 20px;
+        right: 20px;
+    }
 
     /* Logo Control */
-    .logo-box { width: 60px; height: 60px; padding: 6px; }
-    .logo-box img { filter: grayscale(0) !important; opacity: 1 !important; }
+    .logo-box {
+        width: 60px;
+        height: 60px;
+        padding: 6px;
+    }
+
+    .logo-box img {
+        filter: grayscale(0) !important;
+        opacity: 1 !important;
+    }
 }
 
 /* [3] SMALL MOBILE & FOLD (400px DOWN) */
 @media screen and (max-width: 400px) {
-    .merch-grid.bookmark-triple-grid { grid-template-columns: 1fr !important; } /* เรียงเดี่ยวให้หมดไม่ให้เบียด */
-    
-    #home h1 { font-size: 2rem !important; }
-    .hero-desc { font-size: 0.85rem; }
-    
-    .author-name { font-size: 24px !important; }
-    .contact-box { width: 100%; max-width: 260px; }
-    
-    .thumb-item { width: 60px; height: 60px; }
-    
-    .qr-card { padding: 25px 15px !important; }
-    .qr-header h3 { font-size: 1.3rem !important; }
+    .merch-grid.bookmark-triple-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* เรียงเดี่ยวให้หมดไม่ให้เบียด */
+
+    #home h1 {
+        font-size: 2rem !important;
+    }
+
+    .hero-desc {
+        font-size: 0.85rem;
+    }
+
+    .author-name {
+        font-size: 24px !important;
+    }
+
+    .contact-box {
+        width: 100%;
+        max-width: 260px;
+    }
+
+    .thumb-item {
+        width: 60px;
+        height: 60px;
+    }
+
+    .qr-card {
+        padding: 25px 15px !important;
+    }
+
+    .qr-header h3 {
+        font-size: 1.3rem !important;
+    }
 }
 
 /* --- Landscape Fix for Mobile --- */
 @media screen and (max-height: 500px) and (orientation: landscape) {
-    nav { height: 60px !important; }
-    body, .scroll-progress-container { padding-top: 60px !important; top: 60px !important; }
-    .hero-content-overlay { padding-top: 80px; }
-    .hero-grid { grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(2, 1fr); }
+    nav {
+        height: 60px !important;
+    }
+
+    body,
+    .scroll-progress-container {
+        padding-top: 60px !important;
+        top: 60px !important;
+    }
+
+    .hero-content-overlay {
+        padding-top: 80px;
+    }
+
+    .hero-grid {
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
 }
 
 /* ============================================================
@@ -1100,14 +1340,15 @@ nav {
     display: none;
     position: fixed;
     z-index: 2000;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.97);
-    
+    background: rgba(0, 0, 0, 0.97);
+
     /* [หัวใจหลัก] ห้ามมี scrollbar และห้ามใช้ block 
        ใช้ flex เพื่อให้รูปปกติอยู่กึ่งกลางจอเสมอ */
-    overflow: hidden !important; 
+    overflow: hidden !important;
     align-items: center;
     justify-content: center;
     cursor: zoom-out;
@@ -1118,15 +1359,15 @@ nav {
     max-width: 90%;
     max-height: 85%;
     object-fit: contain;
-    
+
     /* จังหวะซูมให้สมูท (ตอนลาก JS จะสั่งปิด transition นี้เองอัตโนมัติ) */
     transition: transform 0.35s cubic-bezier(0.15, 0, 0.15, 1);
     cursor: zoom-in;
-    
+
     /* [สำคัญมาก] กัน Browser แย่งลากรูป หรือคลุมดำรูป */
     user-select: none;
     -webkit-user-drag: none;
-    display: block; 
+    display: block;
 }
 
 /* สถานะเมื่อถูกจิกซูม */
@@ -1164,23 +1405,48 @@ footer p {
 
 /* [5] พรางตา: ถ้าใครจะแอบสั่ง Print หรือ Save as PDF เนื้อหาจะหายไปทันที */
 @media print {
-    body { 
-        display: none !important; 
+    body {
+        display: none !important;
     }
 }
 
-.nav-right-container {display: flex;gap: 30px;justify-content: center;flex-wrap: nowrap;flex-direction: row-reverse;align-items: flex-start;/* align-content: center; */}
-.nav-links { display: flex; list-style: none; gap: 25px; }
-.nav-links a {text-decoration: none;color: #444;font-weight: 400;transition: 0.3s;}
-.nav-links a:hover { color: var(--savor-green); }
+.nav-right-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    /* align-content: center; */
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 400;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--savor-green);
+}
 
 /* ปรับแต่งปุ่มภาษาให้เป็นแบบวงกลมหรือสี่เหลี่ยมจัตุรัสมนๆ เพื่อความ Clean */
 .lang-btn {
-    width: 46px;           /* ล็อคความกว้างไว้ไม่ให้ขยับตอนตัวอักษรเปลี่ยน */
-    /* height: 35px; */          /* ความสูงกำลังดีสำหรับ Nav Bar */
+    width: 46px;
+    /* ล็อคความกว้างไว้ไม่ให้ขยับตอนตัวอักษรเปลี่ยน */
+    /* height: 35px; */
+    /* ความสูงกำลังดีสำหรับ Nav Bar */
     background-color: var(--savor-green);
     color: white;
-    border-radius: 12px;   /* ทำเป็นทรงแคปซูลมนๆ ดูทันสมัย */
+    border-radius: 12px;
+    /* ทำเป็นทรงแคปซูลมนๆ ดูทันสมัย */
     border: 1px solid #ffffff;
     font-weight: bold;
     cursor: pointer;
@@ -1197,11 +1463,14 @@ footer p {
 }
 
 /* 1. สั่งให้ Navbar เป็น Flex และจัดของให้อยู่กลาง */
-.header-container { /* หรือชื่อ Class ที่คุม Navbar ทั้งหมด */
+.header-container {
+    /* หรือชื่อ Class ที่คุม Navbar ทั้งหมด */
     display: flex;
-    justify-content: space-between; /* ให้ Logo อยู่ซ้าย เมนูอยู่ขวา */
+    justify-content: space-between;
+    /* ให้ Logo อยู่ซ้าย เมนูอยู่ขวา */
     align-items: center;
-    position: relative; /* สำคัญมากเพื่อใช้จัดตัวลูก */
+    position: relative;
+    /* สำคัญมากเพื่อใช้จัดตัวลูก */
 }
 
 /* ปรับขนาดในมือถือให้เล็กลงนิดนึง */
@@ -1213,7 +1482,9 @@ footer p {
     }
 }
 
-.mobile-only-item { display: none; }
+.mobile-only-item {
+    display: none;
+}
 
 /* ============================================================
    SAVOR HAPPINESS - MASTER RESPONSIVE BUNDLE
@@ -1230,9 +1501,11 @@ footer p {
     -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
+html,
+body {
     width: 100%;
-    overflow-x: hidden; /* ห้ามมี Scroll แนวนอนเด็ดขาด */
+    overflow-x: hidden;
+    /* ห้ามมี Scroll แนวนอนเด็ดขาด */
     background: var(--savor-cream);
     font-family: 'Anuphan', sans-serif;
 }
@@ -1258,7 +1531,8 @@ nav {
 
 .author-centering-wrapper {
     background-color: transparent !important;
-    padding: 100px 20px; /* เพิ่มพื้นที่หายใจ */
+    padding: 100px 20px;
+    /* เพิ่มพื้นที่หายใจ */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1267,20 +1541,22 @@ nav {
 
 .author-layout-card {
     background-color: var(--author-card, #ffffff) !important;
-    border-radius: 50px; /* มนขึ้นให้ดูพรีเมียม */
+    border-radius: 50px;
+    /* มนขึ้นให้ดูพรีเมียม */
     width: 100%;
     max-width: 960px;
     display: flex;
     flex-direction: row;
     overflow: hidden;
     /* เงาแบบ Soft Layered Shadow */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.02), 0 30px 60px rgba(0,0,0,0.05); 
-    border: 1px solid rgba(0,0,0,0.03);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02), 0 30px 60px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.03);
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .author-layout-card:hover {
-    transform: translateY(-8px); /* ขยับขึ้นเบาๆ เวลาเมาส์ชี้ */
+    transform: translateY(-8px);
+    /* ขยับขึ้นเบาๆ เวลาเมาส์ชี้ */
 }
 
 .author-visual-side {
@@ -1290,17 +1566,19 @@ nav {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to bottom, #ffffff, #fafafa); /* ไล่เฉดพื้นหลังเบาๆ */
+    background: linear-gradient(to bottom, #ffffff, #fafafa);
+    /* ไล่เฉดพื้นหลังเบาๆ */
     border-right: 1px solid var(--author-line, #f0f0f0);
 }
 
 .author-profile-pic {
     width: 240px;
     height: 240px;
-    border-radius: 45px; /* มนสวยรับกับ Card */
+    border-radius: 45px;
+    /* มนสวยรับกับ Card */
     overflow: hidden;
     margin-bottom: 30px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 .author-profile-pic img {
@@ -1311,7 +1589,8 @@ nav {
 }
 
 .author-profile-pic:hover img {
-    transform: scale(1.1); /* Zoom รูปโปรไฟล์เบาๆ */
+    transform: scale(1.1);
+    /* Zoom รูปโปรไฟล์เบาๆ */
 }
 
 .author-logos-grid {
@@ -1319,19 +1598,22 @@ nav {
     gap: 20px;
     justify-content: center;
     padding-top: 25px;
-    border-top: 1px dashed #ddd; /* เปลี่ยนเป็นเส้นประดูเป็นงาน Design มากขึ้น */
+    border-top: 1px dashed #ddd;
+    /* เปลี่ยนเป็นเส้นประดูเป็นงาน Design มากขึ้น */
     width: 80%;
 }
 
 .logo-box img {
     height: 32px !important;
-    filter: grayscale(100%); /* ทำเป็นขาวดำก่อน */
+    filter: grayscale(100%);
+    /* ทำเป็นขาวดำก่อน */
     opacity: 0.6;
     transition: 0.3s ease;
 }
 
 .logo-box img:hover {
-    filter: grayscale(0%); /* กลับมามีสีเวลาชี้ */
+    filter: grayscale(0%);
+    /* กลับมามีสีเวลาชี้ */
     opacity: 1;
 }
 
@@ -1348,11 +1630,14 @@ nav {
 
 .author-name {
     color: var(--author-text-main, #007A33) !important;
-    font-size: 32px !important; /* ใหญ่ขึ้นนิดนึง */
-    font-weight: 850; /* หนาพิเศษ */
+    font-size: 32px !important;
+    /* ใหญ่ขึ้นนิดนึง */
+    font-weight: 850;
+    /* หนาพิเศษ */
     line-height: 1.1;
     margin-bottom: 10px !important;
-    letter-spacing: -0.5px; /* บีบตัวอักษรนิดนึงให้ดู Modern */
+    letter-spacing: -0.5px;
+    /* บีบตัวอักษรนิดนึงให้ดู Modern */
 }
 
 .author-title {
@@ -1385,7 +1670,8 @@ nav {
     display: flex;
     align-items: center;
     gap: 18px;
-    width: 280px; /* ล็อกความกว้างเพื่อให้ไอคอนเรียงตรงกันเป๊ะ */
+    width: 280px;
+    /* ล็อกความกว้างเพื่อให้ไอคอนเรียงตรงกันเป๊ะ */
     padding: 12px 20px;
     background: transparent;
     border-radius: 15px;
@@ -1395,8 +1681,10 @@ nav {
 }
 
 .contact-box:hover {
-    background: #f8f8f8; /* ไฮไลท์สีเทาอ่อนเวลาชี้ */
-    transform: translateX(5px); /* เลื่อนขวาเล็กน้อย */
+    background: #f8f8f8;
+    /* ไฮไลท์สีเทาอ่อนเวลาชี้ */
+    transform: translateX(5px);
+    /* เลื่อนขวาเล็กน้อย */
 }
 
 .contact-box i {
@@ -1405,7 +1693,8 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--savor-orange, #FF8C00), #FFA500); /* ไล่เฉดสีส้ม */
+    background: linear-gradient(135deg, var(--savor-orange, #FF8C00), #FFA500);
+    /* ไล่เฉดสีส้ม */
     color: white !important;
     border-radius: 12px;
     font-size: 16px;
@@ -1426,6 +1715,7 @@ nav {
         border-radius: 40px;
         margin: 0 10px;
     }
+
     .author-visual-side {
         flex: 0 0 auto;
         width: 100%;
@@ -1433,9 +1723,11 @@ nav {
         border-bottom: 1px solid #eee;
         padding: 50px 20px;
     }
+
     .author-content-side {
         padding: 50px 30px;
     }
+
     .author-name {
         font-size: 26px !important;
     }
@@ -1447,13 +1739,19 @@ nav {
 ============================================================ 
 */
 @media (max-width: 768px) {
+
     /* Header & Nav */
-    .nav-links { display: none; } /* ซ่อนเมนูไว้ใน Hamburger */
+    .nav-links {
+        display: none;
+    }
+
+    /* ซ่อนเมนูไว้ใน Hamburger */
 
     /* Hero Section */
     .hero-grid {
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(5, 1fr); /* 10 รูปพอดี */
+        grid-template-rows: repeat(5, 1fr);
+        /* 10 รูปพอดี */
     }
 
     /* Guidebook Section */
@@ -1463,7 +1761,8 @@ nav {
         text-align: center;
     }
 
-    .book-visual, .book-text {
+    .book-visual,
+    .book-text {
         width: 100% !important;
         min-width: unset !important;
     }
@@ -1475,7 +1774,8 @@ nav {
 
     /* Bookmark & Merch */
     .merch-grid.bookmark-triple-grid {
-        grid-template-columns: repeat(2, 1fr) !important; /* จอเล็กลงเหลือ 2 คอลัมน์ */
+        grid-template-columns: repeat(2, 1fr) !important;
+        /* จอเล็กลงเหลือ 2 คอลัมน์ */
     }
 
 }
@@ -1491,20 +1791,24 @@ nav {
     flex-direction: column !important;
     gap: 15px !important;
     margin-bottom: 15px;
-    
+
     /* ท่าไม้ตาย: ซ่อนไว้ก่อนและเลื่อนลงไปข้างล่าง */
     opacity: 0;
     visibility: hidden;
-    transform: translateY(30px) scale(0.5); /* ย่อตัวและลงไปข้างล่าง */
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* เด้งแบบนุ่มนวล */
-    pointer-events: none; /* กันเผลอไปกดตอนมันซ่อน */
+    transform: translateY(30px) scale(0.5);
+    /* ย่อตัวและลงไปข้างล่าง */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* เด้งแบบนุ่มนวล */
+    pointer-events: none;
+    /* กันเผลอไปกดตอนมันซ่อน */
 }
 
 /* --- เมื่อมีการกด (Class .active ทำงาน) --- */
 .speed-dial-container.active .speed-dial-buttons {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0) scale(1); /* เด้งกลับมาตำแหน่งปกติ */
+    transform: translateY(0) scale(1);
+    /* เด้งกลับมาตำแหน่งปกติ */
     pointer-events: auto;
 }
 
@@ -1521,20 +1825,22 @@ nav {
 
 .dial-btn:hover {
     transform: scale(1.2) !important;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.3) !important;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3) !important;
 }
 
 
 /* สไตล์สำหรับ Lightbox */
 .lightbox-overlay {
-    display: none; /* ซ่อนไว้ก่อน */
+    display: none;
+    /* ซ่อนไว้ก่อน */
     position: fixed;
-    z-index: 11000; /* ต้องสูงกว่าทุกอย่าง */
+    z-index: 11000;
+    /* ต้องสูงกว่าทุกอย่าง */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0, 0, 0, 0.9);
     cursor: zoom-out;
     justify-content: center;
     align-items: center;
@@ -1544,13 +1850,20 @@ nav {
     max-width: 90%;
     max-height: 80%;
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     animation: zoomAnim 0.3s ease;
 }
 
 @keyframes zoomAnim {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .close-lightbox {
@@ -1576,21 +1889,26 @@ nav {
     position: relative !important;
     width: 100% !important;
     aspect-ratio: 16 / 9 !important;
-    background: rgba(0,0,0,0.06) !important;
+    background: rgba(0, 0, 0, 0.06) !important;
     border-radius: 15px !important;
     overflow: hidden !important;
 }
 
-#myVideo { width: 100% !important; height: 100% !important; object-fit: cover !important; }
+#myVideo {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
 
 /* [2] 🟢 DARK MODE OVERRIDE (อิงตาม [data-theme="dark"] ของอ้าย) */
-[data-theme="dark"], 
+[data-theme="dark"],
 [data-theme="dark"] body {
-    background-color: var(--savor-olive) !important; /* ปรับให้เรียกจากตัวแปร */
+    background-color: var(--savor-olive) !important;
+    /* ปรับให้เรียกจากตัวแปร */
     color: #ffffff !important;
 }
 
-[data-theme="dark"] nav, 
+[data-theme="dark"] nav,
 [data-theme="dark"] .nav-links {
     background-color: #007A33 !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -1598,14 +1916,19 @@ nav {
 
 [data-theme="dark"] .nav-links li a,
 [data-theme="dark"] #hamburgerBtn i,
-[data-theme="dark"] .hamburger-menu i { 
-    color: #ffffff !important; 
+[data-theme="dark"] .hamburger-menu i {
+    color: #ffffff !important;
 }
 
 /* [3] ดีไซน์ปุ่มภาษา (Lang) & ปุ่มโหมด (Theme) - รวบตึงแก้ปัญหาปุ่มล่องหน */
-.nav-controls-wrapper { display: flex !important; gap: 10px !important; align-items: center !important; }
+.nav-controls-wrapper {
+    display: flex !important;
+    gap: 10px !important;
+    align-items: center !important;
+}
 
-.lang-btn, .theme-btn {
+.lang-btn,
+.theme-btn {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -1644,11 +1967,15 @@ html:not([data-theme="dark"]) .theme-btn {
 
 /* [4] DESKTOP FIX (ล็อกขนาดปุ่มบน Nav บาร์) */
 @media (min-width: 1025px) {
-    .hamburger-menu { display: none !important; }
-    
-    nav .nav-right-container .nav-controls-wrapper { width: auto !important; }
-    
-    nav .nav-right-container .lang-btn, 
+    .hamburger-menu {
+        display: none !important;
+    }
+
+    nav .nav-right-container .nav-controls-wrapper {
+        width: auto !important;
+    }
+
+    nav .nav-right-container .lang-btn,
     nav .nav-right-container .theme-btn {
         width: 65px !important;
         height: 35px !important;
@@ -1660,24 +1987,31 @@ html:not([data-theme="dark"]) .theme-btn {
 
 /* [5] MOBILE & TABLET SPECIAL (Burger Menu) */
 @media (max-width: 1024px) {
-    nav { padding: 0 15px !important; }
-    
-    .hamburger-menu { 
-        display: block !important; 
+    nav {
+        padding: 0 15px !important;
+    }
+
+    .hamburger-menu {
+        display: block !important;
         font-size: 28px;
         color: #007A33;
         z-index: 10002 !important;
         cursor: pointer;
     }
 
-    .nav-right-container .nav-controls-wrapper { display: none !important; } /* ซ่อนปุ่มนอกบาร์ในมือถือ */
+    .nav-right-container .nav-controls-wrapper {
+        display: none !important;
+    }
+
+    /* ซ่อนปุ่มนอกบาร์ในมือถือ */
 
     .nav-links {
-        display: none !important; 
+        display: none !important;
         position: fixed !important;
         top: 0;
         right: -100%;
-        width: 60%; /* ปรับความกว้างให้พอดี */
+        width: 60%;
+        /* ปรับความกว้างให้พอดี */
         height: 100vh;
         background: rgba(255, 255, 255, 0.98) !important;
         backdrop-filter: blur(10px);
@@ -1693,7 +2027,10 @@ html:not([data-theme="dark"]) .theme-btn {
         list-style: none;
     }
 
-    .nav-links.active { display: flex !important; right: 0 !important; }
+    .nav-links.active {
+        display: flex !important;
+        right: 0 !important;
+    }
 
     /* ปรับแต่งปุ่มในแผ่น Burger Menu */
     .nav-links .nav-controls-wrapper {
@@ -1703,7 +2040,7 @@ html:not([data-theme="dark"]) .theme-btn {
         gap: 15px !important;
     }
 
-    .nav-links .lang-btn, 
+    .nav-links .lang-btn,
     .nav-links .theme-btn {
         width: 110px !important;
         height: 45px !important;
@@ -1713,9 +2050,18 @@ html:not([data-theme="dark"]) .theme-btn {
     }
 
     /* Video & Content Center Mobile */
-    .video-text-side { padding: 30px 15px !important; text-align: center !important; }
-    .video-flex-container { flex-direction: column !important; }
-    .video-content-box { max-width: 100% !important; }
+    .video-text-side {
+        padding: 30px 15px !important;
+        text-align: center !important;
+    }
+
+    .video-flex-container {
+        flex-direction: column !important;
+    }
+
+    .video-content-box {
+        max-width: 100% !important;
+    }
 }
 
 /* [6] Miscellaneous (Tag & Speed Dial) */
@@ -1735,13 +2081,18 @@ html:not([data-theme="dark"]) .theme-btn {
    ============================================================ */
 
 .video-tag {
-    display: none !important; /* ซ่อนถาวรในทุกอุปกรณ์ */
+    display: none !important;
+    /* ซ่อนถาวรในทุกอุปกรณ์ */
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
 }
 
-.speed-dial-main-btn img { width: 40px !important; height: 40px !important; object-fit: contain !important; }
+.speed-dial-main-btn img {
+    width: 40px !important;
+    height: 40px !important;
+    object-fit: contain !important;
+}
 
 /* ============================================================
    SAVOR HAPPINESS | MOBILE MENU FINAL FIX
@@ -1749,13 +2100,17 @@ html:not([data-theme="dark"]) .theme-btn {
    ============================================================ */
 
 @media (max-width: 1024px) {
+
     /* 1. ตัวถาดเมนู (Mobile) */
     .nav-links {
-        display: flex !important; /* เปิด Flex ไว้เลย */
+        display: flex !important;
+        /* เปิด Flex ไว้เลย */
         position: fixed !important;
         top: 0;
-        right: -100%; /* ซ่อนไว้ทางขวา */
-        width: 70% !important; /* ปรับให้กว้างขึ้นหน่อยจะได้กดง่าย */
+        right: -100%;
+        /* ซ่อนไว้ทางขวา */
+        width: 70% !important;
+        /* ปรับให้กว้างขึ้นหน่อยจะได้กดง่าย */
         height: 100vh !important;
         flex-direction: column !important;
         justify-content: center !important;
@@ -1769,7 +2124,8 @@ html:not([data-theme="dark"]) .theme-btn {
 
     /* 2. เมื่อกดปุ่มเบอร์เกอร์แล้วสั่งเปิด */
     .nav-links.active {
-        right: 0 !important; /* เลื่อนออกมาจากขวา */
+        right: 0 !important;
+        /* เลื่อนออกมาจากขวา */
     }
 
     /* 3. ล็อกสีพื้นหลังแผ่นเมนู (ตามโหมด) */
@@ -1778,6 +2134,7 @@ html:not([data-theme="dark"]) .theme-btn {
         background-color: rgba(255, 255, 255, 0.98) !important;
         backdrop-filter: blur(10px);
     }
+
     /* Dark Mode: พื้นเขียว CI */
     [data-theme="dark"] .nav-links {
         background-color: #007A33 !important;
@@ -1789,6 +2146,7 @@ html:not([data-theme="dark"]) .theme-btn {
         color: #007A33 !important;
         font-weight: 700 !important;
     }
+
     /* Dark Mode: ตัวหนังสือขาว */
     [data-theme="dark"] .nav-links li a {
         color: #ffffff !important;
@@ -1820,13 +2178,19 @@ html:not([data-theme="dark"]) .theme-btn {
 .hamburger-menu {
     display: block !important;
     position: relative;
-    z-index: 10002 !important; /* ต้องสูงกว่า .nav-links */
+    z-index: 10002 !important;
+    /* ต้องสูงกว่า .nav-links */
     cursor: pointer;
 }
 
 /* สีไอคอนเบอร์เกอร์ตามโหมด */
-html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
-[data-theme="dark"] .hamburger-menu i { color: #ffffff !important; }
+html:not([data-theme="dark"]) .hamburger-menu i {
+    color: #007A33 !important;
+}
+
+[data-theme="dark"] .hamburger-menu i {
+    color: #ffffff !important;
+}
 
 /* ============================================================
     SAVOR HAPPINESS | GUIDEBOOK CARD DESIGN (FIXED)
@@ -1837,12 +2201,14 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 /* [1] ตัว Card หลัก */
 .book-card {
     background: #ffffff !important;
-    padding: 50px 60px !important; /* เพิ่มพื้นที่หายใจให้อ่านลื่นขึ้นใน Desktop */
+    padding: 50px 60px !important;
+    /* เพิ่มพื้นที่หายใจให้อ่านลื่นขึ้นใน Desktop */
     border-radius: 24px !important;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06) !important;
     border: 1px solid #f0f0f0 !important;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-    max-width: 850px !important; /* ขยายความกว้างให้ข้อความกางออกตามที่คุยกัน */
+    max-width: 850px !important;
+    /* ขยายความกว้างให้ข้อความกางออกตามที่คุยกัน */
     width: 90% !important;
     margin: 40px auto !important;
     text-align: center;
@@ -1862,8 +2228,10 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 }
 
 .badge {
-    background: var(--ci-soft-yellow) !important; /* ใช้สีเหลืองอ่อน CI จะดู Happiness กว่าสีเทา */
-    color: #007A33 !important; /* เขียว CI */
+    background: var(--ci-soft-yellow) !important;
+    /* ใช้สีเหลืองอ่อน CI จะดู Happiness กว่าสีเทา */
+    color: #007A33 !important;
+    /* เขียว CI */
     padding: 6px 18px !important;
     border-radius: 50px !important;
     font-size: 0.85rem !important;
@@ -1872,7 +2240,8 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 }
 
 .book-spec-detail {
-    color: #ff8c00 !important; /* ส้ม CI */
+    color: #ff8c00 !important;
+    /* ส้ม CI */
     font-weight: 800 !important;
     letter-spacing: 1.5px !important;
     margin-bottom: 15px !important;
@@ -1881,7 +2250,8 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 
 .book-description {
     color: #444 !important;
-    line-height: 1.8 !important; /* ระยะบรรทัดเพื่อความไหลลื่น */
+    line-height: 1.8 !important;
+    /* ระยะบรรทัดเพื่อความไหลลื่น */
     margin-bottom: 35px !important;
     max-width: 100% !important;
 }
@@ -1918,7 +2288,8 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 [data-theme="dark"] .book-description,
 [data-theme="dark"] .support-card .section-title,
 [data-theme="dark"] .support-card .support-desc {
-    color: #333333 !important; /* บังคับสีเข้มเพราะพื้นหลัง Support Card เป็นขาว */
+    color: #333333 !important;
+    /* บังคับสีเข้มเพราะพื้นหลัง Support Card เป็นขาว */
 }
 
 /* [5] Responsive: ป้องกันตัวหนังสือเบียดในมือถือ */
@@ -1928,13 +2299,14 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
         margin: 20px 15px !important;
         width: auto !important;
     }
-    
+
     .book-badge-row {
         flex-wrap: wrap;
     }
 
     .btn-primary {
-        width: 100% !important; /* ปุ่มเต็มความกว้างในมือถือ */
+        width: 100% !important;
+        /* ปุ่มเต็มความกว้างในมือถือ */
     }
 }
 
@@ -1946,17 +2318,23 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 .video-description {
     width: 100% !important;
     display: flex !important;
-    justify-content: center !important; /* จัดกึ่งกลางแนวนอน (Flex) */
-    text-align: center !important;      /* จัดกึ่งกลางตัวอักษร */
-    margin: 20px auto 0 !important;     /* เว้นระยะบนและจัดกึ่งกลาง Margin */
+    justify-content: center !important;
+    /* จัดกึ่งกลางแนวนอน (Flex) */
+    text-align: center !important;
+    /* จัดกึ่งกลางตัวอักษร */
+    margin: 20px auto 0 !important;
+    /* เว้นระยะบนและจัดกึ่งกลาง Margin */
 }
 
 .video-description p {
-    max-width: 800px !important;        /* คุมความกว้างไม่ให้บรรทัดยาวเกินไป */
+    max-width: 800px !important;
+    /* คุมความกว้างไม่ให้บรรทัดยาวเกินไป */
     margin: 0 auto !important;
-    line-height: 1.8 !important;        /* เพิ่มระยะบรรทัดให้ดูโปรสไตล์ Graphic Design */
+    line-height: 1.8 !important;
+    /* เพิ่มระยะบรรทัดให้ดูโปรสไตล์ Graphic Design */
     font-size: 1.1rem !important;
-    color: #555 !important;             /* สีเทาเข้มอ่านง่าย */
+    color: #555 !important;
+    /* สีเทาเข้มอ่านง่าย */
 }
 
 /* กรณีอยู่ใน Dark Mode */
@@ -1969,7 +2347,12 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
     .video-description p {
         font-size: 0.95rem !important;
         padding: 0 20px !important;
-        br { display: none; } /* ในมือถือไม่ต้องตัดบรรทัดตาม <br> เพื่อให้ Flow สวยๆ */
+
+        br {
+            display: none;
+        }
+
+        /* ในมือถือไม่ต้องตัดบรรทัดตาม <br> เพื่อให้ Flow สวยๆ */
     }
 }
 
@@ -1981,14 +2364,15 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 /* [1] ดีไซน์ Card ขาว (The Guidebook) */
 .book-card {
     background: #ffffff !important;
-    padding: 50px 60px !important; /* เพิ่ม padding ซ้ายขวาให้ดูพรีเมียมในคอม */
+    padding: 50px 60px !important;
+    /* เพิ่ม padding ซ้ายขวาให้ดูพรีเมียมในคอม */
     border-radius: 24px !important;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06) !important;
     border: 1px solid #f0f0f0 !important;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-    
+
     /* ขยายความกว้าง Card เพื่อให้ข้อความกางออกได้มากขึ้น */
-    max-width: 850px !important; 
+    max-width: 850px !important;
     width: 90% !important;
     margin: 40px auto !important;
     text-align: center;
@@ -2003,7 +2387,8 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 .book-description {
     max-width: 100% !important;
     margin: 0 auto 30px !important;
-    line-height: 1.8 !important; /* เพิ่มระยะบรรทัดให้อ่านลื่น */
+    line-height: 1.8 !important;
+    /* เพิ่มระยะบรรทัดให้อ่านลื่น */
     letter-spacing: 0.2px !important;
     color: #555 !important;
 }
@@ -2020,7 +2405,8 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
     border-radius: 24px !important;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06) !important;
     border: 1px solid #f0f0f0 !important;
-    max-width: 850px !important; /* ขยายความกว้างให้สัมพันธ์กับ Book Card */
+    max-width: 850px !important;
+    /* ขยายความกว้างให้สัมพันธ์กับ Book Card */
     margin: 0 auto 40px !important;
     text-align: center;
 }
@@ -2032,7 +2418,8 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 
 /* หัวข้อหลักใน Card วิดีโอ */
 .video-content-box .section-title {
-    color: #007A33 !important; /* เขียว CI */
+    color: #007A33 !important;
+    /* เขียว CI */
     font-size: 2.5rem !important;
     font-weight: 800 !important;
     margin-bottom: 20px !important;
@@ -2049,7 +2436,8 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 }
 
 .video-description p {
-    max-width: 900px !important; /* ขยายความกว้างข้อความคำโปรย */
+    max-width: 900px !important;
+    /* ขยายความกว้างข้อความคำโปรย */
     margin: 0 auto !important;
     line-height: 1.8 !important;
     font-size: 1.15rem !important;
@@ -2057,19 +2445,21 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 }
 
 /* [3] การตั้งค่า Dark Mode (ซ่อมจุดที่แดง) */
-[data-theme="dark"] #highlights, 
+[data-theme="dark"] #highlights,
 [data-theme="dark"] #book-feature,
-[data-theme="dark"] #video-section { 
+[data-theme="dark"] #video-section {
     background-color: #004d21 !important;
 }
 
 /* บังคับสีฟอนต์ใน Card วิดีโอให้ชัดเจนเมื่ออยู่ในโหมดมืด */
 [data-theme="dark"] .video-content-box .section-title {
-    color: #007A33 !important; /* ล็อกสีเขียว CI ตามความต้องการ */
+    color: #007A33 !important;
+    /* ล็อกสีเขียว CI ตามความต้องการ */
 }
 
 [data-theme="dark"] .video-description p {
-    color: #555 !important; /* เพราะ Card เป็นสีขาว ฟอนต์ต้องเข้มเสมอ */
+    color: #555 !important;
+    /* เพราะ Card เป็นสีขาว ฟอนต์ต้องเข้มเสมอ */
 }
 
 /* [4] Responsive สำหรับมือถือ */
@@ -2098,7 +2488,8 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
     gap: 12px !important;
     background: #007A33 !important;
     color: #ffffff !important;
-    padding: 16px 35px !important; /* ปรับปุ่มให้ยาวขึ้นนิดนึงเข้ากับ Card ใหม่ */
+    padding: 16px 35px !important;
+    /* ปรับปุ่มให้ยาวขึ้นนิดนึงเข้ากับ Card ใหม่ */
     border-radius: 12px !important;
     text-decoration: none !important;
     font-weight: 700 !important;
@@ -2111,7 +2502,7 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 @media (max-width: 768px) {
     .book-card {
         /* แก้ปัญหาจากรูป image_52eea8: ลด padding ที่บีบข้อความออก */
-        padding: 35px 25px !important; 
+        padding: 35px 25px !important;
         margin: 20px 15px !important;
         width: auto !important;
     }
@@ -2119,7 +2510,8 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
     .book-description {
         font-size: 0.95rem !important;
         line-height: 1.6 !important;
-        padding: 0 !important; /* คืนพื้นที่ให้ตัวหนังสือในมือถือ */
+        padding: 0 !important;
+        /* คืนพื้นที่ให้ตัวหนังสือในมือถือ */
     }
 
     .btn-primary {
@@ -2140,7 +2532,8 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 
 /* 1. ปรับสี Card ในโหมดมืดให้ดูมีมิติ ไม่จมกับพื้นหลัง */
 [data-theme="dark"] .merch-card {
-    background: rgba(255, 255, 255, 0.05) !important; /* ใช้ขาวจางๆ ครอบ */
+    background: rgba(255, 255, 255, 0.05) !important;
+    /* ใช้ขาวจางๆ ครอบ */
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     padding: 15px !important;
     border-radius: 18px !important;
@@ -2154,7 +2547,8 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 
 /* 2. จัดการตัวหนังสือใน Card โหมดมืด */
 [data-theme="dark"] .merch-card p {
-    color: #ffffff !important; /* ล็อกสีขาวให้ชัด */
+    color: #ffffff !important;
+    /* ล็อกสีขาวให้ชัด */
     font-weight: 400 !important;
     margin-top: 12px !important;
     font-size: 0.9rem !important;
@@ -2163,8 +2557,10 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 
 /* 3. ปรับสีหัวข้อรอง (Postcard Map, Sticker, Bookmarks) */
 [data-theme="dark"] .merch-sub-title {
-    color: #ffffff !important; /* ลองเปลี่ยนเป็นสีขาวตามที่ต้องการ เพื่อความคลีน */
-    border-left: 4px solid var(--ci-orange) !important; /* คงเส้นขีดสีส้ม CI ไว้เพื่อความสวยงาม */
+    color: #ffffff !important;
+    /* ลองเปลี่ยนเป็นสีขาวตามที่ต้องการ เพื่อความคลีน */
+    border-left: 4px solid var(--ci-orange) !important;
+    /* คงเส้นขีดสีส้ม CI ไว้เพื่อความสวยงาม */
     padding-left: 15px !important;
     margin-bottom: 25px !important;
 }
@@ -2176,7 +2572,7 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 }
 
 [data-theme="dark"] .merch-sub-title i {
-    color: #ffffff !important; 
+    color: #ffffff !important;
     margin-right: 10px;
 }
 
@@ -2208,11 +2604,13 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 
 /* 1. ปรับแต่ง Card ของร้านในโหมดมืด (ให้เป็นสีขาวตามสั่ง) */
 [data-theme="dark"] .shop-card {
-    background-color: #ffffff !important; /* พื้นหลัง Card เป็นสีขาว */
+    background-color: #ffffff !important;
+    /* พื้นหลัง Card เป็นสีขาว */
     border: none !important;
     border-radius: 22px !important;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important; /* เงาเข้มหน่อยให้ลอยจากพื้นเขียว */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+    /* เงาเข้มหน่อยให้ลอยจากพื้นเขียว */
     transition: all 0.3s ease !important;
 }
 
@@ -2223,30 +2621,34 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 
 /* 2. จัดการส่วนข้อมูลร้าน (shop-info) ให้เป็นสีขาวและอ่านง่าย */
 [data-theme="dark"] .shop-info {
-    background-color: #ffffff !important; /* บังคับพื้นหลังขาว */
+    background-color: #ffffff !important;
+    /* บังคับพื้นหลังขาว */
     padding: 22px !important;
     text-align: left;
 }
 
 /* 3. ล็อกสีตัวหนังสือใน shop-info (เมื่อพื้นหลังเป็นขาว) */
 [data-theme="dark"] .shop-info .shop-name {
-    color: #007A33 !important; /* ชื่อร้านสีเขียว CI ของอ้าย */
+    color: #007A33 !important;
+    /* ชื่อร้านสีเขียว CI ของอ้าย */
     font-weight: 800 !important;
     font-size: 1.25rem !important;
     margin-bottom: 6px !important;
 }
 
 [data-theme="dark"] .shop-info .shop-tag {
-    color: #ff8c00 !important; /* Tag ย่านสีส้ม CI */
+    color: #ff8c00 !important;
+    /* Tag ย่านสีส้ม CI */
     font-weight: 600 !important;
     font-size: 0.9rem !important;
     display: inline-block;
     margin-bottom: 10px;
 }
 
-[data-theme="dark"] .shop-info p, 
+[data-theme="dark"] .shop-info p,
 [data-theme="dark"] .shop-info span {
-    color: #333333 !important; /* รายละเอียดอื่นๆ สีเทาเข้มอ่านง่าย */
+    color: #333333 !important;
+    /* รายละเอียดอื่นๆ สีเทาเข้มอ่านง่าย */
     line-height: 1.5;
 }
 
@@ -2271,7 +2673,8 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 }
 
 [data-theme="dark"] .merch-card p {
-    color: #007A33 !important; /* ชื่อของที่ระลึกสีเขียว */
+    color: #007A33 !important;
+    /* ชื่อของที่ระลึกสีเขียว */
     font-weight: 600 !important;
 }
 
@@ -2279,13 +2682,15 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
    MERCH DARK MODE PREMIUM LOOK
    ============================================================ */
 [data-theme="dark"] .merch-card .merch-item-name {
-    color: var(--ci-orange) !important; /* ชื่อสินค้าสีส้ม: ให้ความรู้สึก Premium & Branded */
+    color: var(--ci-orange) !important;
+    /* ชื่อสินค้าสีส้ม: ให้ความรู้สึก Premium & Branded */
     font-size: 1.15rem !important;
     letter-spacing: 0.5px;
 }
 
 [data-theme="dark"] .merch-card .merch-item-price {
-    color: var(--ci-soft-yellow) !important; /* ราคาสีเหลืองอ่อน: ดูนุ่มนวลและแพงกว่าสีขาวล้วน */
+    color: var(--ci-soft-yellow) !important;
+    /* ราคาสีเหลืองอ่อน: ดูนุ่มนวลและแพงกว่าสีขาวล้วน */
     opacity: 0.9;
 }
 
@@ -2300,7 +2705,8 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 @media (max-width: 768px) {
     [data-theme="dark"] .shop-info {
         padding: 18px !important;
-        text-align: center; /* ในมือถือจัดชื่อร้านไว้กลางจะดูสมดุลกว่า */
+        text-align: center;
+        /* ในมือถือจัดชื่อร้านไว้กลางจะดูสมดุลกว่า */
     }
 
     [data-theme="dark"] .shop-card {
@@ -2309,9 +2715,10 @@ html:not([data-theme="dark"]) .hamburger-menu i { color: #007A33 !important; }
 }
 
 /* ปรับสีพื้นหลัง Section หลักในโหมดมืดให้ดูพรีเมียม */
-[data-theme="dark"] #highlights, 
+[data-theme="dark"] #highlights,
 [data-theme="dark"] #merch {
-    background-color: #004d21 !important; /* เขียวเข้มลึกๆ เพื่อให้ Card ขาวเด้งออกมา */
+    background-color: #004d21 !important;
+    /* เขียวเข้มลึกๆ เพื่อให้ Card ขาวเด้งออกมา */
 }
 
 /* ============================================================
@@ -2332,7 +2739,8 @@ html:not([data-theme="dark"]) .merch-card {
 html:not([data-theme="dark"]) .shop-card:hover,
 html:not([data-theme="dark"]) .merch-card:hover {
     transform: translateY(-8px) !important;
-    box-shadow: 0 15px 35px rgba(0, 122, 51, 0.08) !important; /* เงาอมเขียวจางๆ */
+    box-shadow: 0 15px 35px rgba(0, 122, 51, 0.08) !important;
+    /* เงาอมเขียวจางๆ */
 }
 
 /* 2. จัดการส่วนข้อมูลใน Card (shop-info) */
@@ -2343,12 +2751,14 @@ html:not([data-theme="dark"]) .shop-info {
 
 /* 3. ล็อกสีตัวหนังสือ CI สำหรับโหมดสว่าง */
 html:not([data-theme="dark"]) .shop-info .shop-name {
-    color: #007A33 !important; /* เขียว CI */
+    color: #007A33 !important;
+    /* เขียว CI */
     font-weight: 800 !important;
 }
 
 html:not([data-theme="dark"]) .shop-info .shop-tag {
-    color: #ff8c00 !important; /* ส้ม CI */
+    color: #ff8c00 !important;
+    /* ส้ม CI */
     font-weight: 600 !important;
 }
 
@@ -2371,9 +2781,10 @@ html:not([data-theme="dark"]) .merch-card p {
 }
 
 /* 6. แก้ไขสีพื้นหลัง Section ในโหมดสว่าง (ให้ดูละมุนขึ้น) */
-html:not([data-theme="dark"]) #highlights, 
+html:not([data-theme="dark"]) #highlights,
 html:not([data-theme="dark"]) #merch {
-    background-color: #fcfcfc !important; /* พื้นหลังขาวนวลๆ เพื่อให้ Card ขาวเด้งออกมา */
+    background-color: #fcfcfc !important;
+    /* พื้นหลังขาวนวลๆ เพื่อให้ Card ขาวเด้งออกมา */
 }
 
 /* 7. ปรับปรุงตัวหนังสือทั่วไปในโหมดสว่างให้อ่านง่าย */
@@ -2393,27 +2804,32 @@ html:not([data-theme="dark"]) .shop-info span {
 @media (min-width: 1025px) {
     #myVideo {
         /* display: block !important; */
-        /* width: 70% !important; */        /* ลดความกว้างลงเหลือ 70% ให้ดูไม่บานเต็มจอ */
-        /* max-width: 950px !important; */  /* ล็อกขนาดสูงสุดไว้ไม่ให้ใหญ่เกินไป */
-        /* margin: 40px auto !important; */  /* จัดกึ่งกลางหน้าจอ */
-        /* border-radius: 14px !important; */ /* ขอบมนให้เข้ากับดีไซน์ Card */
-        
+        /* width: 70% !important; */
+        /* ลดความกว้างลงเหลือ 70% ให้ดูไม่บานเต็มจอ */
+        /* max-width: 950px !important; */
+        /* ล็อกขนาดสูงสุดไว้ไม่ให้ใหญ่เกินไป */
+        /* margin: 40px auto !important; */
+        /* จัดกึ่งกลางหน้าจอ */
+        /* border-radius: 14px !important; */
+        /* ขอบมนให้เข้ากับดีไซน์ Card */
+
         /* เอาพื้นหลังดำออก */
         background: transparent !important;
         background-color: transparent !important;
-        
+
         /* เพิ่มเงาจางๆ ให้วิดีโอดูมีมิติแทนการใช้พื้นหลังดำ */
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1) !important;
         transition: transform 0.3s ease !important;
     }
 
     #myVideo:hover {
-        transform: scale(1.02) !important; /* ให้วิดีโอขยับนิดๆ ตอนเอาเมาส์ชี้ */
+        transform: scale(1.02) !important;
+        /* ให้วิดีโอขยับนิดๆ ตอนเอาเมาส์ชี้ */
     }
 }
 
 /* 2. ลบพื้นหลังดำออกถาวรในทุกโหมด (Global Fix) */
-#myVideo, 
+#myVideo,
 .video-container {
     background: transparent !important;
     background-color: transparent !important;
@@ -2440,15 +2856,20 @@ html:not([data-theme="dark"]) .shop-info span {
    ============================================================ */
 
 @media (min-width: 1025px) {
+
     /* 1. คุมตัวครอบ (Wrapper) ให้มีขนาดตามที่ต้องการ */
     .video-wrapper {
         position: relative;
-        width: 70% !important;        /* ความกว้าง 70% ของจอ */
-        max-width: 1000px !important; /* ไม่ให้กว้างเกิน 1000px */
-        max-height: 75vh !important;  /* ล็อกความสูงห้ามเกิน 75% ของหน้าจอคอม */
+        width: 70% !important;
+        /* ความกว้าง 70% ของจอ */
+        max-width: 1000px !important;
+        /* ไม่ให้กว้างเกิน 1000px */
+        max-height: 75vh !important;
+        /* ล็อกความสูงห้ามเกิน 75% ของหน้าจอคอม */
         margin: 40px auto !important;
         border-radius: 24px !important;
-        overflow: hidden;             /* ตัดส่วนที่ล้นออก */
+        overflow: hidden;
+        /* ตัดส่วนที่ล้นออก */
         background: transparent !important;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
     }
@@ -2458,7 +2879,8 @@ html:not([data-theme="dark"]) .shop-info span {
         width: 100% !important;
         height: 100% !important;
         max-height: 75vh !important;
-        object-fit: cover !important; /* ให้วิดีโอเต็มกรอบโดยไม่เบี้ยว */
+        object-fit: cover !important;
+        /* ให้วิดีโอเต็มกรอบโดยไม่เบี้ยว */
         display: block !important;
         background: transparent !important;
     }
@@ -2479,7 +2901,7 @@ html:not([data-theme="dark"]) .shop-info span {
         cursor: pointer;
         transition: 0.3s;
     }
-    
+
     .mute-control-btn:hover {
         background: rgba(255, 255, 255, 0.4) !important;
         transform: scale(1.1);
@@ -2487,7 +2909,8 @@ html:not([data-theme="dark"]) .shop-info span {
 }
 
 /* ลบพื้นหลังดำถาวร */
-.video-wrapper, #myVideo {
+.video-wrapper,
+#myVideo {
     background-color: transparent !important;
 }
 
@@ -2498,6 +2921,7 @@ html:not([data-theme="dark"]) .shop-info span {
         margin: 0 !important;
         border-radius: 0 !important;
     }
+
     #myVideo {
         width: 100% !important;
         height: auto !important;
@@ -2511,9 +2935,11 @@ html:not([data-theme="dark"]) .shop-info span {
 
 /* สำหรับหน้าจอคอมพิวเตอร์และ Tablet แนวนอน (1025px ขึ้นไป) */
 @media (min-width: 1025px) {
-    #hamburgerBtn, 
+
+    #hamburgerBtn,
     .hamburger-menu {
-        display: none !important; /* สั่งหายตัวทันที */
+        display: none !important;
+        /* สั่งหายตัวทันที */
         visibility: hidden !important;
         pointer-events: none !important;
     }
@@ -2521,7 +2947,8 @@ html:not([data-theme="dark"]) .shop-info span {
 
 /* เพิ่มเติม: สำหรับ iPad/Tablet ทั่วไปที่วางแนวนอน */
 @media (min-width: 769px) and (orientation: landscape) {
-    #hamburgerBtn, 
+
+    #hamburgerBtn,
     .hamburger-menu {
         display: none !important;
     }
@@ -2534,7 +2961,8 @@ html:not([data-theme="dark"]) .shop-info span {
 
 .search-wrapper {
     max-width: 850px;
-    margin: 120px auto 50px !important; /* ดันลงมาให้พ้น Nav และมีพื้นที่หายใจ */
+    margin: 120px auto 50px !important;
+    /* ดันลงมาให้พ้น Nav และมีพื้นที่หายใจ */
     padding: 0 20px;
     position: relative;
     z-index: 100;
@@ -2545,16 +2973,19 @@ html:not([data-theme="dark"]) .shop-info span {
     display: flex;
     align-items: center;
     background: #ffffff;
-    border-radius: 16px; /* มนรับกับ Book Card */
+    border-radius: 16px;
+    /* มนรับกับ Book Card */
     padding: 10px 10px 10px 30px;
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12); /* เงาฟุ้งๆ ให้ดูมีมิติ */
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+    /* เงาฟุ้งๆ ให้ดูมีมิติ */
     border: 1px solid rgba(0, 0, 0, 0.05);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .search-input-group:focus-within {
     transform: translateY(-2px);
-    border-color: #FF8C00; /* สีส้มหัวข้อของอ้าย */
+    border-color: #FF8C00;
+    /* สีส้มหัวข้อของอ้าย */
     box-shadow: 0 20px 50px rgba(255, 140, 0, 0.15);
 }
 
@@ -2575,7 +3006,8 @@ html:not([data-theme="dark"]) .shop-info span {
 
 /* 3. ปุ่มค้นหา (Search Button) */
 #searchBtn {
-    background: #007A33 !important; /* เขียว CI */
+    background: #007A33 !important;
+    /* เขียว CI */
     color: #ffffff !important;
     border: none;
     padding: 14px 35px;
@@ -2587,18 +3019,21 @@ html:not([data-theme="dark"]) .shop-info span {
 }
 
 #searchBtn:hover {
-    background: #FF8C00 !important; /* Hover แล้วเป็นส้ม */
+    background: #FF8C00 !important;
+    /* Hover แล้วเป็นส้ม */
     transform: scale(1.02);
 }
 
 /* 4. กล่อง Suggestion (ที่โผล่มาแล้วไม่สวย) */
 #searchSuggestions {
     position: absolute;
-    top: calc(100% + 15px); /* เว้นระยะห่างจากช่อง Input เล็กน้อย */
+    top: calc(100% + 15px);
+    /* เว้นระยะห่างจากช่อง Input เล็กน้อย */
     left: 20px;
     right: 20px;
     background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(15px); /* เทรนด์กระจกฝ้า Glassmorphism */
+    backdrop-filter: blur(15px);
+    /* เทรนด์กระจกฝ้า Glassmorphism */
     border-radius: 20px;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -2609,8 +3044,15 @@ html:not([data-theme="dark"]) .shop-info span {
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* 5. รายการใน Suggestion */
@@ -2631,24 +3073,38 @@ html:not([data-theme="dark"]) .shop-info span {
     color: #444444 !important;
 }
 
-.suggestion-item:last-child { border-bottom: none; }
+.suggestion-item:last-child {
+    border-bottom: none;
+}
 
 .suggestion-item:hover {
-    background: #fdfaf5; /* สีครีมอ่อนๆ ของอ้าย */
+    background: #fdfaf5;
+    /* สีครีมอ่อนๆ ของอ้าย */
     color: #007A33;
-    padding-left: 35px; /* ลูกเล่นเลื่อนนิ้ว */
+    padding-left: 35px;
+    /* ลูกเล่นเลื่อนนิ้ว */
 }
 
 .suggestion-item i {
-    color: #FF8C00; /* ไอคอนสีส้ม */
+    color: #FF8C00;
+    /* ไอคอนสีส้ม */
     font-size: 1.1rem;
 }
 
 /* --- Responsive สำหรับมือถือ --- */
 @media (max-width: 768px) {
-    .search-wrapper { margin-top: 100px !important; }
-    .search-input-group { padding: 8px 8px 8px 20px; }
-    #searchBtn { padding: 12px 20px; font-size: 0.95rem; }
+    .search-wrapper {
+        margin-top: 100px !important;
+    }
+
+    .search-input-group {
+        padding: 8px 8px 8px 20px;
+    }
+
+    #searchBtn {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
 }
 
 /* ============================================================
@@ -2657,8 +3113,10 @@ html:not([data-theme="dark"]) .shop-info span {
 .qr-modal {
     display: none;
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(8px);
     z-index: 20000;
@@ -2668,8 +3126,10 @@ html:not([data-theme="dark"]) .shop-info span {
 }
 
 .qr-card {
-    background: rgba(255, 255, 255, 0.7) !important; /* กระจกโปร่งแสง */
-    backdrop-filter: blur(20px) saturate(180%); /* เอฟเฟกต์ Glassmorphism */
+    background: rgba(255, 255, 255, 0.7) !important;
+    /* กระจกโปร่งแสง */
+    backdrop-filter: blur(20px) saturate(180%);
+    /* เอฟเฟกต์ Glassmorphism */
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     width: 90%;
     max-width: 400px;
@@ -2677,15 +3137,20 @@ html:not([data-theme="dark"]) .shop-info span {
     padding: 40px;
     text-align: center;
     position: relative;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* เงาแบบฟุ้งกระจาย */
-    border: 1px solid rgba(255, 255, 255, 0.4); /* ขอบกระจก */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    /* เงาแบบฟุ้งกระจาย */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    /* ขอบกระจก */
 }
 
 .qr-close {
     position: absolute;
-    top: 20px; right: 20px;
-    background: none; border: none;
-    font-size: 24px; color: #ccc;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #ccc;
     cursor: pointer;
 }
 
@@ -2702,7 +3167,8 @@ html:not([data-theme="dark"]) .shop-info span {
 }
 
 .qr-placeholder {
-    background: #ffffff !important; /* ล็อกสีขาวทึบเพื่อให้สแกนติดง่าย 100% */
+    background: #ffffff !important;
+    /* ล็อกสีขาวทึบเพื่อให้สแกนติดง่าย 100% */
     border: none;
     border-radius: 20px;
     aspect-ratio: 1/1;
@@ -2712,15 +3178,18 @@ html:not([data-theme="dark"]) .shop-info span {
     justify-content: center;
     margin-bottom: 25px;
     color: var(--ci-green);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* เพิ่มมิติให้พื้นที่สแกน */
-    padding: 20px; /* เพิ่มพื้นที่ว่างรอบรูป QR (Quiet Zone) เพื่อให้สแกนง่าย */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* เพิ่มมิติให้พื้นที่สแกน */
+    padding: 20px;
+    /* เพิ่มพื้นที่ว่างรอบรูป QR (Quiet Zone) เพื่อให้สแกนง่าย */
     overflow: hidden;
 }
 
 .qr-image {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* บังคับให้รูปอยู่ในกรอบโดยไม่เสียสัดส่วน */
+    object-fit: contain;
+    /* บังคับให้รูปอยู่ในกรอบโดยไม่เสียสัดส่วน */
     border-radius: 10px;
     display: block;
 }
@@ -2738,20 +3207,24 @@ html:not([data-theme="dark"]) .shop-info span {
 
 /* Dark Mode Fix for QR Card */
 [data-theme="dark"] .qr-card {
-    background: rgba(255, 255, 255, 0.9) !important; /* ปรับพื้นหลังให้ขาวนวลเพื่อให้สแกนง่าย */
+    background: rgba(255, 255, 255, 0.9) !important;
+    /* ปรับพื้นหลังให้ขาวนวลเพื่อให้สแกนง่าย */
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 [data-theme="dark"] .qr-card * {
-    color: #333333 !important; /* บังคับตัวหนังสือสีเข้มเพื่อให้เห็นชัดบนการ์ดขาว */
+    color: #333333 !important;
+    /* บังคับตัวหนังสือสีเข้มเพื่อให้เห็นชัดบนการ์ดขาว */
 }
 
 [data-theme="dark"] .qr-card .qr-header h3 {
-    color: var(--ci-green) !important; /* ล็อกหัวข้อ QR เป็นสีเขียว CI เพื่อความพรีเมียม */
+    color: var(--ci-green) !important;
+    /* ล็อกหัวข้อ QR เป็นสีเขียว CI เพื่อความพรีเมียม */
 }
 
 [data-theme="dark"] .qr-card .qr-placeholder p {
-    color: #333333 !important; /* เฉพาะข้อความในพื้นที่ขาวที่ยังต้องเป็นสีเข้ม */
+    color: #333333 !important;
+    /* เฉพาะข้อความในพื้นที่ขาวที่ยังต้องเป็นสีเข้ม */
 }
 
 /* เพิ่มเติมส่วน Support Section */
@@ -2760,6 +3233,7 @@ html:not([data-theme="dark"]) .shop-info span {
     justify-content: center;
     padding: 20px 0;
 }
+
 .support-desc {
     margin-bottom: 30px !important;
 }
@@ -2768,12 +3242,14 @@ html:not([data-theme="dark"]) .shop-info span {
    SUPPORT BUTTON ENHANCEMENT (Shimmer & Pulse)
    ============================================================ */
 .btn-support-cta {
-    background: var(--ci-orange) !important; /* เปลี่ยนเป็นสีส้ม Energy Orange */
+    background: var(--ci-orange) !important;
+    /* เปลี่ยนเป็นสีส้ม Energy Orange */
     box-shadow: 0 5px 20px rgba(255, 140, 0, 0.3) !important;
     position: relative;
     overflow: hidden;
     border: none;
-    animation: pulse-orange 2s infinite !important; /* เปลี่ยนไปใช้ Pulse สีส้ม */
+    animation: pulse-orange 2s infinite !important;
+    /* เปลี่ยนไปใช้ Pulse สีส้ม */
 }
 
 .btn-support-cta:hover {
@@ -2797,18 +3273,28 @@ html:not([data-theme="dark"]) .shop-info span {
 }
 
 @keyframes shimmer {
-    0% { left: -60%; }
-    20% { left: 120%; }
-    100% { left: 120%; }
+    0% {
+        left: -60%;
+    }
+
+    20% {
+        left: 120%;
+    }
+
+    100% {
+        left: 120%;
+    }
 }
 
 @keyframes pulse-orange {
     0% {
         box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.5);
     }
+
     70% {
         box-shadow: 0 0 0 15px rgba(255, 140, 0, 0);
     }
+
     100% {
         box-shadow: 0 0 0 0 rgba(255, 140, 0, 0);
     }
