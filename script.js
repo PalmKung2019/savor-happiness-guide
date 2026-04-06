@@ -10,34 +10,34 @@ let isDragging = false;
 let startX, startY, scrollLeft, scrollTop;
 let translateX = 0, translateY = 0, lastX = 0, lastY = 0;
 let currentLang = 'th';
-let currentGallery = []; 
+let currentGallery = [];
 let currentImgIdx = 0;
 
 const translations = {
     'th': {
         'nav-home': 'หน้าแรก', 'nav-book': 'หนังสือ', 'nav-highlights': 'ร้านแนะนำ', 'nav-merch': 'ของที่ระลึก', 'nav-creator': 'ผู้จัดทำ',
         'hero-subtitle': 'DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS',
-        'hero-title': 'SAVOR HAPPINESS', 
+        'hero-title': 'SAVOR HAPPINESS',
         'hero-vibe': 'สัมผัส มุมมอง รสชาติ.',
         'hero-desc': 'ไกด์บุ๊คที่จะพาคุณตกหลุมรักชานเมือง',
-        'book-title': 'THE GUIDEBOOK', 
+        'book-title': 'THE GUIDEBOOK',
         'book-desc': 'Savor Happiness: 20 ร้านเด็ดย่านมีนบุรี–หนองจอก ผ่านภาพและดีไซน์',
         'btn-read': 'อ่านออนไลน์ (PDF)', 'btn-gallery': 'ดูรูปเล่มเพิ่มเติม', 'btn-start': 'กดเริ่มเพื่อลิ้มรสความสุข', 'btn-pdf': 'อ่านตัวอย่างไฟล์ PDF',
         'author-name': 'ปรานต์ แถวอินทร์ (ปาล์ม)', 'author-info': 'นักออกแบบกราฟิก | คณะดิจิทัลมีเดีย มหาวิทยาลัยศรีปทุม #67',
-        'merch-section-title': 'ของที่ระลึก', 
+        'merch-section-title': 'ของที่ระลึก',
         'merch-min-title': 'สติ๊กเกอร์ ชุดดื่มด่ำกับความสุข',
         'zone-minburi': 'ย่านมีนบุรี', 'zone-nongchok': 'ย่านหนองจอก',
         'creator-title': 'ผู้จัดทำ',
-        'qr-title': 'อุดหนุนผลงาน', 'qr-subtitle': 'ขอบคุณที่ร่วมเป็นส่วนหนึ่งในการสนับสนุน Thesis Project: Savor Happiness', 
+        'qr-title': 'อุดหนุนผลงาน', 'qr-subtitle': 'ขอบคุณที่ร่วมเป็นส่วนหนึ่งในการสนับสนุน Thesis Project: Savor Happiness',
         'qr-thanks': 'ขอบคุณทุกการสนับสนุนครับ ✨', 'btn-support': 'แสดง QR Code สำหรับอุดหนุน'
     },
     'en': {
         'nav-home': 'Home', 'nav-book': 'The Book', 'nav-highlights': 'Highlights', 'nav-merch': 'Merchandise', 'nav-creator': 'Creator',
         'hero-subtitle': 'DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS',
-        'hero-title': 'SAVOR HAPPINESS', 
+        'hero-title': 'SAVOR HAPPINESS',
         'hero-vibe': 'VIBE. VISUAL. FLAVOR.',
         'hero-desc': 'A guidebook that lets you fall in love with the suburbs.',
-        'book-title': 'THE GUIDEBOOK', 
+        'book-title': 'THE GUIDEBOOK',
         'book-desc': 'Savor Happiness: 20 Must-Visit Spots in Minburi-Nong Chok Through Photography and Design',
         'btn-read': 'Read Online (PDF)', 'btn-gallery': 'View Book Details', 'btn-start': 'Press Start to Savor Happiness', 'btn-pdf': 'Preview PDF',
         'author-name': 'Pran Taewin (Palm)', 'author-info': 'Graphic Designer | School of Digital Media, SPU #67',
@@ -45,7 +45,7 @@ const translations = {
         'merch-min-title': 'Savor Happiness Sticker set',
         'zone-minburi': 'Min Buri District', 'zone-nongchok': 'Nong Chok District',
         'creator-title': 'Creator',
-        'qr-title': 'Support My Work', 'qr-subtitle': 'Thank you for being a part of Savor Happiness Thesis Project.', 
+        'qr-title': 'Support My Work', 'qr-subtitle': 'Thank you for being a part of Savor Happiness Thesis Project.',
         'qr-thanks': 'Thank you for your support! ✨', 'btn-support': 'Show Support QR Code'
     }
 };
@@ -56,21 +56,21 @@ const realShops = [
     { name: "Chomna Bar & Terrace", nameTH: "ชมนา บาร์ แอนด์ เทอร์เรซ (มีนบุรี)", zone: "minburi", folder: "Chomna", file: "chomna" },
     { name: "Prakai Cafe & Cuisine", nameTH: "ประกาย คาเฟ่ แอน คูซีน (มีนบุรี)", zone: "minburi", folder: "Prakai", file: "prakai" },
     { name: "Trees & Co.", nameTH: "ทรี แอนด์ โค (มีนบุรี)", zone: "minburi", folder: "TreesCo", file: "trees" },
-    { name: "Rim Lagoon Café", nameTH: "ริม ลากูน คาเฟ่ (มีนบุรี)",   zone: "minburi", folder: "RimLagoon", file: "rim" },
-    { name: "James 500 City Camp", nameTH: "เจมส์ 500 ซิตี้ แคมป์ (มีนบุรี)",  zone: "minburi", folder: "James500", file: "james" },
-    { name: "Cat's Eye Cafe", nameTH: "แคท อาย คาเฟ่ (มีนบุรี)",  zone: "minburi", folder: "CatsEye", file: "cat" },
+    { name: "Rim Lagoon Café", nameTH: "ริม ลากูน คาเฟ่ (มีนบุรี)", zone: "minburi", folder: "RimLagoon", file: "rim" },
+    { name: "James 500 City Camp", nameTH: "เจมส์ 500 ซิตี้ แคมป์ (มีนบุรี)", zone: "minburi", folder: "James500", file: "james" },
+    { name: "Cat's Eye Cafe", nameTH: "แคท อาย คาเฟ่ (มีนบุรี)", zone: "minburi", folder: "CatsEye", file: "cat" },
     { name: "Daylight", nameTH: "เดย์ไลท์ (มีนบุรี)", zone: "minburi", folder: "Daylight", file: "day" },
-    { name: "Wild Duck Cafe", nameTH: "ไวล์ด ดัค คาเฟ่ (มีนบุรี)",  zone: "minburi", folder: "WildDuck", file: "duck" },
-    { name: "Voodoo Cafe", nameTH: "วูดู คาเฟ่ (หนองจอก)",   zone: "nongchok", folder: "Voodoo", file: "voodoo" },
-    { name: "All of Me Home Cafe", nameTH: "ออล ออฟ มี โฮม คาเฟ่ (หนองจอก)",   zone: "nongchok", folder: "AllOfMe", file: "all" },
-    { name: "Barakat Lunla Land", nameTH: "บารอกัต ลัลลา แลนด์ (หนองจอก)",   zone: "nongchok", folder: "Barakat", file: "barakat" },
-    { name: "Chill Out Farm & Cafe", nameTH: "ชิลล์ เอาท์ ฟาร์ม แอนด์ คาเฟ่ (หนองจอก)",   zone: "nongchok", folder: "ChillOut", file: "chill" },
-    { name: "Nine Than Cafe", nameTH: "นายท่าน คาเฟ่ (หนองจอก)",   zone: "nongchok", folder: "NineThan", file: "nine" },
-    { name: "Fairy Tale Cafe", nameTH: "แฟรี่ เทล คาเฟ่ (หนองจอก)",   zone: "nongchok", folder: "FairyTale", file: "fairy" },
-    { name: "Again Please", nameTH: "อะเกน พลีส (หนองจอก)",   zone: "nongchok", folder: "AgainPlease", file: "again" },
-    { name: "Wang Wela Café", nameTH: "วางเวลา คาเฟ่ (หนองจอก)",   zone: "nongchok", folder: "WangWela", file: "wang" },
-    { name: "Minna Cafe", nameTH: "มินนา คาเฟ่ (หนองจอก)",   zone: "nongchok", folder: "Minna", file: "minna" },
-    { name: "Home Vintage Cafe", nameTH: "โฮม วินเทจ คาเฟ่ (หนองจอก)",   zone: "nongchok", folder: "HomeVintage", file: "home" }
+    { name: "Wild Duck Cafe", nameTH: "ไวล์ด ดัค คาเฟ่ (มีนบุรี)", zone: "minburi", folder: "WildDuck", file: "duck" },
+    { name: "Voodoo Cafe", nameTH: "วูดู คาเฟ่ (หนองจอก)", zone: "nongchok", folder: "Voodoo", file: "voodoo" },
+    { name: "All of Me Home Cafe", nameTH: "ออล ออฟ มี โฮม คาเฟ่ (หนองจอก)", zone: "nongchok", folder: "AllOfMe", file: "all" },
+    { name: "Barakat Lunla Land", nameTH: "บารอกัต ลัลลา แลนด์ (หนองจอก)", zone: "nongchok", folder: "Barakat", file: "barakat" },
+    { name: "Chill Out Farm & Cafe", nameTH: "ชิลล์ เอาท์ ฟาร์ม แอนด์ คาเฟ่ (หนองจอก)", zone: "nongchok", folder: "ChillOut", file: "chill" },
+    { name: "Nine Than Cafe", nameTH: "นายท่าน คาเฟ่ (หนองจอก)", zone: "nongchok", folder: "NineThan", file: "nine" },
+    { name: "Fairy Tale Cafe", nameTH: "แฟรี่ เทล คาเฟ่ (หนองจอก)", zone: "nongchok", folder: "FairyTale", file: "fairy" },
+    { name: "Again Please", nameTH: "อะเกน พลีส (หนองจอก)", zone: "nongchok", folder: "AgainPlease", file: "again" },
+    { name: "Wang Wela Café", nameTH: "วางเวลา คาเฟ่ (หนองจอก)", zone: "nongchok", folder: "WangWela", file: "wang" },
+    { name: "Minna Cafe", nameTH: "มินนา คาเฟ่ (หนองจอก)", zone: "nongchok", folder: "Minna", file: "minna" },
+    { name: "Home Vintage Cafe", nameTH: "โฮม วินเทจ คาเฟ่ (หนองจอก)", zone: "nongchok", folder: "HomeVintage", file: "home" }
 ];
 
 // --- [2. Lifecycle: Initialization] ---
@@ -148,9 +148,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         lbImg.addEventListener('mousedown', startDragging);
-        lbImg.addEventListener('touchstart', startDragging, {passive: false});
+        lbImg.addEventListener('touchstart', startDragging, { passive: false });
         window.addEventListener('mousemove', move);
-        window.addEventListener('touchmove', move, {passive: false});
+        window.addEventListener('touchmove', move, { passive: false });
         window.addEventListener('mouseup', stopDragging);
         window.addEventListener('touchend', stopDragging);
     }
@@ -164,15 +164,15 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'ผู้จัดทำ (Creator)', target: '#author', icon: 'fa-user', keywords: ['ผู้จัดทำ', 'ปาล์ม'] }
     ];
 
-    searchInput?.addEventListener('input', function() {
+    searchInput?.addEventListener('input', function () {
         const query = this.value.toLowerCase().trim();
         if (!suggestionBox) return;
-        suggestionBox.innerHTML = ""; 
+        suggestionBox.innerHTML = "";
         if (query === "") { suggestionBox.style.display = "none"; return; }
         const matchedNav = navItems.filter(item => item.keywords.some(key => key.includes(query)) || item.name.toLowerCase().includes(query));
         const matchedShops = realShops.filter(shop => shop.name.toLowerCase().includes(query) || (shop.nameTH && shop.nameTH.includes(query))).slice(0, 6);
         const allResults = [...matchedNav, ...matchedShops];
-        
+
         if (allResults.length > 0) {
             allResults.forEach((item) => {
                 const div = document.createElement('div');
@@ -224,13 +224,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function renderShops() {
     const minGrid = document.getElementById('minburi-list');
     const nongGrid = document.getElementById('nongchok-list');
-    if(!minGrid || !nongGrid) return;
-    
+    if (!minGrid || !nongGrid) return;
+
     minGrid.innerHTML = ""; nongGrid.innerHTML = "";
 
     realShops.forEach((shop, shopIdx) => {
         let imgHtml = "";
-        for(let i = 0; i < 8; i++) {
+        for (let i = 0; i < 8; i++) {
             const fullPath = `img/20ResCafe/${shop.folder}/${shop.file}${i}.jpg`;
             imgHtml += `
                 <img class="photo-item ${i === 0 ? 'active' : ''}" 
@@ -240,7 +240,7 @@ function renderShops() {
             `;
         }
         const cardHtml = `<div class="shop-card" data-aos="fade-up"><div class="photo-gallery">${imgHtml}</div><div class="shop-info"><div class="shop-name">${shop.name}</div><div class="shop-tag">${shop.zone === 'minburi' ? 'Min Buri' : 'Nong Chok'}</div></div></div>`;
-        if(shop.zone === 'minburi') minGrid.insertAdjacentHTML('beforeend', cardHtml);
+        if (shop.zone === 'minburi') minGrid.insertAdjacentHTML('beforeend', cardHtml);
         else nongGrid.insertAdjacentHTML('beforeend', cardHtml);
     });
     setTimeout(startAutoSlide, 300);
@@ -281,7 +281,7 @@ function executeSearch() {
     else if (firstMatch) { firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
 }
 
-window.openSimpleLightbox = function(indexOrSrc, shopIdx) {
+window.openSimpleLightbox = function (indexOrSrc, shopIdx) {
     if (!lbContainer || !lbImg) {
         lbImg = document.getElementById('lightboxImg');
         lbContainer = document.getElementById('simpleLightbox');
@@ -291,7 +291,7 @@ window.openSimpleLightbox = function(indexOrSrc, shopIdx) {
     } else {
         const shop = realShops[shopIdx];
         if (!shop) return;
-        currentGallery = [0,1,2,3,4,5,6,7].map(i => `img/20ResCafe/${shop.folder}/${shop.file}${i}.jpg`);
+        currentGallery = [0, 1, 2, 3, 4, 5, 6, 7].map(i => `img/20ResCafe/${shop.folder}/${shop.file}${i}.jpg`);
         currentImgIdx = indexOrSrc;
     }
     lbImg.src = currentGallery[currentImgIdx];
@@ -302,11 +302,11 @@ window.openSimpleLightbox = function(indexOrSrc, shopIdx) {
     document.body.style.overflow = 'hidden';
 };
 
-window.closeSimpleLightbox = function() {
+window.closeSimpleLightbox = function () {
     if (lbContainer) { lbContainer.style.display = 'none'; document.body.style.overflow = 'auto'; }
 };
 
-window.changeImg = function(step) {
+window.changeImg = function (step) {
     if (!currentGallery.length) return;
     currentImgIdx = (currentImgIdx + step + currentGallery.length) % currentGallery.length;
     if (lbImg) lbImg.src = currentGallery[currentImgIdx];
@@ -354,13 +354,13 @@ function startAutoSlide() {
             images[idx].classList.remove('active');
             idx = (idx + 1) % images.length;
             images[idx].classList.add('active');
-        }, 3000); 
+        }, 3000);
     });
 }
 
 function renderTicker() {
     const t1 = document.getElementById('shopTickerInner'), t2 = document.getElementById('shopTickerInnerDup');
-    if(!t1 || !t2) return;
+    if (!t1 || !t2) return;
     const content = realShops.map(shop => `<div class="ticker-item">${shop.name}</div><div class="ticker-sep">SAVOR HAPPINESS 🍴</div>`).join('');
     t1.innerHTML = content; t2.innerHTML = content;
 }
@@ -375,7 +375,7 @@ function copyContact() {
     });
 }
 
-window.onscroll = function() {
+window.onscroll = function () {
     let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     let scrolled = (winScroll / height) * 100;
@@ -383,7 +383,7 @@ window.onscroll = function() {
     if (myBar) myBar.style.width = scrolled + "%";
 };
 
-window.changeBookView = function(src, thumb) {
+window.changeBookView = function (src, thumb) {
     const mainImg = document.getElementById('mainBookImg');
     if (mainImg) {
         mainImg.src = src;
@@ -393,12 +393,12 @@ window.changeBookView = function(src, thumb) {
 };
 
 // --- QR Support Functions ---
-window.openQRModal = function() {
+window.openQRModal = function () {
     const modal = document.getElementById('qrModal');
     if (modal) modal.style.display = 'flex';
 };
 
-window.closeQRModal = function() {
+window.closeQRModal = function () {
     const modal = document.getElementById('qrModal');
     if (modal) modal.style.display = 'none';
 };
