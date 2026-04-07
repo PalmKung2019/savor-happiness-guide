@@ -18,7 +18,10 @@
 </head>
 <nav>
     <div class="logo">
-        <a href="#home"><img id="mainLogo" src="img/logo/savorhappiness-1.png" alt="Savor Happiness"></a>
+        <a href="#home">
+            <img src="img/logo/savorhappiness-1.png" class="logo-light" alt="Savor Happiness">
+            <img src="img/logo/savorhappiness-2.png" class="logo-dark" alt="Savor Happiness">
+        </a>
     </div>
 
     <div class="nav-right-container">
@@ -57,16 +60,16 @@
 
     <section id="home">
         <div class="hero-grid">
-            <div class="grid-item item-1"><img src="img/SavorPic6.jpg" alt="Savor Image 1"></div>
-            <div class="grid-item item-2"><img src="img/SavorPic11.jpg" alt="Savor Image 2"></div>
-            <div class="grid-item item-3"><img src="img/SavorPic21.JPG" alt="Savor Image 3"></div>
-            <div class="grid-item item-4"><img src="img/SavorPic7.jpg" alt="Savor Image 4"></div>
-            <div class="grid-item item-5"><img src="img/SavorPic23.jpg" alt="Savor Image 5"></div>
-            <div class="grid-item item-6"><img src="img/SavorPic4.jpg" alt="Savor Image 6"></div>
-            <div class="grid-item item-7"><img src="img/SavorPic17.JPG" alt="Savor Image 7"></div>
-            <div class="grid-item item-8"><img src="img/SavorPic19.JPG" alt="Savor Image 8"></div>
-            <div class="grid-item item-9"><img src="img/SavorPic10.jpg" alt="Savor Image 9"></div>
-            <div class="grid-item item-10"><img src="img/SavorPic20.JPG" alt="Savor Image 10"></div>
+            <div class="grid-item item-1"><img src="img/SavorPic6.jpg" alt="Savor Image 1" loading="lazy"></div>
+            <div class="grid-item item-2"><img src="img/SavorPic11.jpg" alt="Savor Image 2" loading="lazy"></div>
+            <div class="grid-item item-3"><img src="img/SavorPic21.JPG" alt="Savor Image 3" loading="lazy"></div>
+            <div class="grid-item item-4"><img src="img/SavorPic7.jpg" alt="Savor Image 4" loading="lazy"></div>
+            <div class="grid-item item-5"><img src="img/SavorPic23.jpg" alt="Savor Image 5" loading="lazy"></div>
+            <div class="grid-item item-6"><img src="img/SavorPic4.jpg" alt="Savor Image 6" loading="lazy"></div>
+            <div class="grid-item item-7"><img src="img/SavorPic17.JPG" alt="Savor Image 7" loading="lazy"></div>
+            <div class="grid-item item-8"><img src="img/SavorPic19.JPG" alt="Savor Image 8" loading="lazy"></div>
+            <div class="grid-item item-9"><img src="img/SavorPic10.jpg" alt="Savor Image 9" loading="lazy"></div>
+            <div class="grid-item item-10"><img src="img/SavorPic20.JPG" alt="Savor Image 10" loading="lazy"></div>
         </div>
 
         <div class="hero-content-overlay" data-aos="zoom-in" data-aos-duration="1200">
@@ -114,24 +117,24 @@
         </div>
     </section>
 
-
     <section id="book-feature" class="section">
         <div class="book-grid-container">
             <div class="book-visual" data-aos="fade-right">
                 <div class="main-img-container">
                     <img src="img/SavorHappiness-Cover.jpg" id="mainBookImg" class="inner-mockup fade-in"
-                        alt="Savor Happiness Guidebook" onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in;">
+                        alt="Savor Happiness Guidebook" onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in;"
+                        loading="lazy">
                 </div>
 
                 <div class="book-thumbs">
                     <img src="img/SavorHappiness-Cover.jpg" class="thumb-item active" alt="Cover"
-                        onclick="changeBookView(this.src, this)">
+                        onclick="changeBookView(this.src, this)" loading="lazy">
                     <img src="img/SavorHappiness-Back.jpg" class="thumb-item" alt="Back"
-                        onclick="changeBookView(this.src, this)">
+                        onclick="changeBookView(this.src, this)" loading="lazy">
                     <img src="img/SavorHappiness-Inside1.jpg" class="thumb-item" alt="Inside 1"
-                        onclick="changeBookView(this.src, this)">
+                        onclick="changeBookView(this.src, this)" loading="lazy">
                     <img src="img/SavorHappiness-Inside2.jpg" class="thumb-item" alt="Inside 2"
-                        onclick="changeBookView(this.src, this)">
+                        onclick="changeBookView(this.src, this)" loading="lazy">
                 </div>
             </div>
 
@@ -158,7 +161,9 @@
                     </div>
                 </div>
             </div>
+        </div>
     </section>
+
 
     <section id="merch" class="section">
         <h2 class="section-title lang-text" data-key="nav-merch" data-aos="fade-up">ของที่ระลึก</h2>
@@ -180,36 +185,37 @@
             </div>
         </div>
 
-        <div class="merch-category" style="margin-top: 40px;" data-aos="fade-up">
-            <h3 class="merch-sub-title"><i class="fas fa-sticky-note"></i> Sticker | สติ๊กเกอร์</h3>
-            <div class="merch-grid">
-                <div class="merch-card">
-                    <img src="img/Stickers.jpg" alt="Minburi Sticker" onclick="openSimpleLightbox(this.src)"
-                        style="cursor: zoom-in;" loading="lazy">
-                    <p class="lang-text" data-key="merch-min-title">Savor Happiness Sticker set</p>
+        <div class="merch-split-row" data-aos="fade-up">
+            <!-- Stickers (Left) -->
+            <div class="merch-category sticker-side">
+                <h3 class="merch-sub-title"><i class="fas fa-sticky-note"></i> Sticker | สติ๊กเกอร์</h3>
+                <div class="merch-grid single-item-grid">
+                    <div class="merch-card">
+                        <img src="img/Sticker1.jpg" alt="Minburi Sticker" onclick="openSimpleLightbox(this.src)"
+                            style="cursor: zoom-in;" loading="lazy">
+                        <p class="lang-text" data-key="merch-min-title">Savor Happiness Sticker set</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="merch-category" style="margin-top: 40px;" data-aos="fade-up">
-            <h3 class="merch-sub-title"><i class="fas fa-bookmark"></i> Bookmarks | ที่คั่นหนังสือ (3 Designs)</h3>
-
-            <div class="merch-centering-wrapper">
+            <!-- Bookmarks (Right) -->
+            <div class="merch-category bookmarks-side">
+                <h3 class="merch-sub-title"><i class="fas fa-bookmark"></i> Bookmarks | ที่คั่นหนังสือ</h3>
                 <div class="merch-grid bookmark-triple-grid">
                     <div class="merch-card" data-aos="zoom-in" data-aos-delay="100">
                         <img src="img/Bookmarks1.jpg" alt="Bookmark Design 1" onclick="openSimpleLightbox(this.src)"
                             loading="lazy">
-                        <p>Design 01 | Savor Happiness</p>
+                        <p>Design 01</p>
                     </div>
                     <div class="merch-card" data-aos="zoom-in" data-aos-delay="200">
                         <img src="img/Bookmarks2.jpg" alt="Bookmark Design 2" onclick="openSimpleLightbox(this.src)"
                             loading="lazy">
-                        <p>Design 02 | Savor Happiness</p>
+                        <p>Design 02</p>
                     </div>
                     <div class="merch-card" data-aos="zoom-in" data-aos-delay="300">
                         <img src="img/Bookmarks3.jpg" alt="Bookmark Design 3" onclick="openSimpleLightbox(this.src)"
                             loading="lazy">
-                        <p>Design 03 | Savor Happiness</p>
+                        <p>Design 03</p>
                     </div>
                 </div>
             </div>
@@ -268,7 +274,7 @@
 
                 <div class="author-visual-side">
                     <div class="author-profile-pic">
-                        <img src="img/Author_Palm.jpg" alt="Pran Taewin (Palm)" class="profile-img">
+                        <img src="img/Author_Palm.jpg" alt="Pran Taewin (Palm)" class="profile-img" loading="lazy">
                     </div>
                     <div class="author-logos-grid">
                         <div class="logo-box"><img src="img/logo/spu.jpg" alt="SPU Logo" loading="lazy"></div>
