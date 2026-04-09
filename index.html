@@ -16,41 +16,43 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
-<nav>
-    <div class="logo">
-        <a href="#home">
-            <img src="img/logo/savorhappiness-1.png" class="logo-light" alt="Savor Happiness">
-            <img src="img/logo/savorhappiness-2.png" class="logo-dark" alt="Savor Happiness">
-        </a>
-    </div>
-
-    <div class="nav-right-container">
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home" onclick="closeMenu()" data-key="nav-home">หน้าแรก</a></li>
-            <li><a href="#book-feature" onclick="closeMenu()" data-key="nav-book">หนังสือ</a></li>
-            <li><a href="#merch" onclick="closeMenu()" data-key="nav-merch">ของที่ระลึก</a></li>
-            <li><a href="#highlights" onclick="closeMenu()" data-key="nav-highlights">ร้านแนะนำ</a></li>
-            <li><a href="#author" onclick="closeMenu()" data-key="nav-creator">ผู้จัดทำ</a></li>
-
-            <li class="nav-controls-wrapper">
-                <button class="lang-btn" onclick="toggleLang()">TH</button>
-                <button class="theme-btn" onclick="toggleTheme()">LIGHT</button>
-            </li>
-        </ul>
-
-        <div class="hamburger-menu" id="hamburgerBtn">
-            <i class="fas fa-bars"></i>
+<header class="site-header">
+    <nav>
+        <div class="logo">
+            <a href="#home">
+                <img src="img/logo/savorhappiness-1.png" class="logo-img" alt="Savor Happiness">
+            </a>
         </div>
-    </div>
-</nav>
 
-<div class="search-wrapper">
-    <div class="search-input-group">
-        <input type="text" id="shopSearchInput" placeholder="ค้นหาร้านค้าที่นี่...">
-        <button id="searchBtn">ค้นหา</button>
+        <div class="nav-right-container">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="closeMenu()" data-key="nav-home">หน้าแรก</a></li>
+                <li><a href="#book-feature" onclick="closeMenu()" data-key="nav-book">หนังสือ</a></li>
+                <li><a href="#merch" onclick="closeMenu()" data-key="nav-merch">ของที่ระลึก</a></li>
+                <li><a href="#highlights" onclick="closeMenu()" data-key="nav-highlights">ร้านแนะนำ</a></li>
+                <li><a href="#author" onclick="closeMenu()" data-key="nav-creator">ผู้จัดทำ</a></li>
+
+                <li class="nav-controls-wrapper">
+                    <button class="lang-btn" onclick="toggleLang()">TH</button>
+                    <button class="theme-btn" onclick="toggleTheme()">LIGHT</button>
+                </li>
+            </ul>
+
+            <div class="hamburger-menu" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="search-wrapper">
+        <div class="search-input-group">
+            <input type="text" id="shopSearchInput" placeholder="ค้นหาร้านค้าที่นี่...">
+            <button id="searchBtn">ค้นหา</button>
+        </div>
+        <div id="searchSuggestions"></div>
     </div>
-    <div id="searchSuggestions"></div>
-</div>
+</header>
+
 
 <div class="scroll-progress-container">
     <div class="progress-bar" id="myBar"></div>
@@ -191,7 +193,7 @@
                 <h3 class="merch-sub-title"><i class="fas fa-sticky-note"></i> Sticker | สติ๊กเกอร์</h3>
                 <div class="merch-grid single-item-grid">
                     <div class="merch-card">
-                        <img src="img/Sticker1.jpg" alt="Minburi Sticker" onclick="openSimpleLightbox(this.src)"
+                        <img src="img/Stickers.jpg" alt="Minburi Sticker" onclick="openSimpleLightbox(this.src)"
                             style="cursor: zoom-in;" loading="lazy">
                         <p class="lang-text" data-key="merch-min-title">Savor Happiness Sticker set</p>
                     </div>
@@ -202,17 +204,17 @@
             <div class="merch-category bookmarks-side">
                 <h3 class="merch-sub-title"><i class="fas fa-bookmark"></i> Bookmarks | ที่คั่นหนังสือ</h3>
                 <div class="merch-grid bookmark-triple-grid">
-                    <div class="merch-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="merch-card is-hero" data-aos="zoom-in" data-aos-delay="100">
                         <img src="img/Bookmarks1.jpg" alt="Bookmark Design 1" onclick="openSimpleLightbox(this.src)"
                             loading="lazy">
                         <p>Design 01</p>
                     </div>
-                    <div class="merch-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="merch-card is-secondary" data-aos="zoom-in" data-aos-delay="200">
                         <img src="img/Bookmarks2.jpg" alt="Bookmark Design 2" onclick="openSimpleLightbox(this.src)"
                             loading="lazy">
                         <p>Design 02</p>
                     </div>
-                    <div class="merch-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="merch-card is-secondary" data-aos="zoom-in" data-aos-delay="300">
                         <img src="img/Bookmarks3.jpg" alt="Bookmark Design 3" onclick="openSimpleLightbox(this.src)"
                             loading="lazy">
                         <p>Design 03</p>
@@ -262,7 +264,7 @@
             <div class="district-label">MINBURI</div>
             <div class="shop-grid" id="minburi-list"></div>
         </div>
-        <div id="nongchok-section" style="margin-top: 80px;" data-aos="fade-up">
+        <div id="nongchok-section" style="margin-top: var(--space-10);" data-aos="fade-up">
             <div class="district-label">NONGCHOK</div>
             <div class="shop-grid" id="nongchok-list"></div>
         </div>
@@ -317,8 +319,7 @@
 
 <div class="speed-dial-container" id="speedDialContainer">
     <button class="speed-dial-main-btn" onclick="toggleSpeedDial()">
-        <img src="img/smile-normal.png" class="img-normal" alt="The Feel Inside">
-        <img src="img/smile-tongue.png" class="img-active" alt="Must Try Menu">
+        <img src="img/smile-normal.png" class="speed-dial-img" alt="Contact">
     </button>
 
     <div class="speed-dial-buttons">
@@ -328,9 +329,39 @@
     </div>
 </div>
 
-<footer>
-    <p>© 2026 SAVOR HAPPINESS | ลิ้มรสความสุข</p>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <img src="img/logo/savorhappiness-1.png" alt="Savor Happiness" class="footer-logo">
+            <p class="footer-desc">DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS.
+                บันทึกความทรงจำผ่านเลนส์และรสชาติที่ลงตัวย่านมีนบุรี-หนองจอก</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#book-feature">The Book</a></li>
+                <li><a href="#merch">Merchandise</a></li>
+                <li><a href="#highlights">Highlights</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-connect">
+            <h4>Connect</h4>
+            <div class="footer-socials">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>097-946-5925</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 SAVOR HAPPINESS | Made with ❤️ for SPU Thesis</p>
+    </div>
 </footer>
+
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
