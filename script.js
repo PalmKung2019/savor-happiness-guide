@@ -4,16 +4,13 @@
     Author: Pran (Palm) - Graphic Design SPU
     ============================================================ */
 
-// --- [1. Global State & Data] ---
-let lbImg, lbContainer;
-let isDragging = false;
-let startX, startY, scrollLeft, scrollTop;
-let translateX = 0, translateY = 0, lastX = 0, lastY = 0;
-let currentLang = 'th';
-let currentGallery = [];
-let currentImgIdx = 0;
+// --- [1. Configuration & Data] ---
 
-const translations = {
+/**
+ * [1.1] Translations Data
+ * เก็บชุดข้อมูลการแปลภาษาทั้งหมด (Dictionary)
+ */
+const TRANSLATIONS = {
     'th': {
         'nav-home': 'หน้าแรก', 'nav-book': 'หนังสือ', 'nav-highlights': 'ร้านแนะนำ', 'nav-merch': 'ของที่ระลึก', 'nav-creator': 'ผู้จัดทำ',
         'hero-subtitle': 'DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS',
@@ -21,7 +18,7 @@ const translations = {
         'hero-vibe': 'สัมผัส มุมมอง รสชาติ.',
         'hero-desc': 'ไกด์บุ๊คที่จะพาคุณตกหลุมรักชานเมือง',
         'book-title': 'THE GUIDEBOOK',
-        'book-desc': 'Savor Happiness: 20 ร้านเด็ดย่านมีนบุรี–หนองจอก ผ่านภาพและดีไซน์',
+        'book-desc': 'Savor Happiness: 20 ร้านเด็ดย่านมีนบุรี–หนอกจอก ผ่านภาพและดีไซน์',
         'btn-read': 'อ่านออนไลน์ (PDF)', 'btn-gallery': 'ดูรูปเล่มเพิ่มเติม', 'btn-start': 'กดเริ่มเพื่อลิ้มรสความสุข', 'btn-pdf': 'อ่านตัวอย่างไฟล์ PDF',
         'author-name': 'ปรานต์ แถวอินทร์ (ปาล์ม)', 'author-info': 'นักออกแบบกราฟิก | คณะดิจิทัลมีเดีย มหาวิทยาลัยศรีปทุม #67',
         'merch-section-title': 'ของที่ระลึก',
@@ -50,7 +47,11 @@ const translations = {
     }
 };
 
-const realShops = [
+/**
+ * [1.2] Real Shops Data
+ * ชุดข้อมูลร้านค้าและคาเฟ่ทั้งหมด 20 แห่ง
+ */
+const REAL_SHOPS = [
     { name: "The Lobby Boy Coffee", nameTH: "เดอะ ล็อบบี้ บอย คอฟฟี่", zone: "minburi", folder: "LobbyBoy", file: "lobby" },
     { name: "De Wila Cat Hotel & Café", nameTH: "เดอ วิลา แคท โฮเทล แอนด์ คาเฟ่ (มีนบุรี)", zone: "minburi", folder: "DeWila", file: "dewila" },
     { name: "Chomna Bar & Terrace", nameTH: "ชมนา บาร์ แอนด์ เทอร์เรซ (มีนบุรี)", zone: "minburi", folder: "Chomna", file: "chomna" },
@@ -73,9 +74,142 @@ const realShops = [
     { name: "Home Vintage Cafe", nameTH: "โฮม วินเทจ คาเฟ่ (หนองจอก)", zone: "nongchok", folder: "HomeVintage", file: "home" }
 ];
 
-// --- [2. Lifecycle: Initialization] ---
+// --- [2. System Managers] ---
+
+/**
+ * [2.1] LocalizationManager
+ * จัดการระบบภาษาและการอัปเดตข้อความในหน้าเว็บ
+ */
+const LocalizationManager = {
+    currentLanguage: 'th',
+
+    /**
+     * เริ่มต้นระบบภาษา (ดึงค่าจาก LocalStorage)
+     */
+    init() {
+        this.currentLanguage = localStorage.getItem('preferredLang') || 'th';
+        this.apply();
+    },
+
+    /**
+     * สลับภาษาไปมา (TH <-> EN)
+     */
+    toggle() {
+        this.currentLanguage = (this.currentLanguage === 'th') ? 'en' : 'th';
+        localStorage.setItem('preferredLang', this.currentLanguage);
+        this.apply();
+        ThemeManager.syncBrandedUI(); // ซิงค์ UI อื่นๆ ที่เกี่ยวข้อง
+    },
+
+    /**
+     * อัปเดตข้อความทั้งหมดที่มี attribute [data-key]
+     */
+    apply() {
+        document.querySelectorAll('[data-key]').forEach(element => {
+            const translationKey = element.getAttribute('data-key');
+            if (TRANSLATIONS[this.currentLanguage][translationKey]) {
+                element.innerHTML = TRANSLATIONS[this.currentLanguage][translationKey];
+            }
+        });
+
+        // อัปเดต Placeholder ของ Search Input
+        const searchInput = document.getElementById('shopSearchInput');
+        if (searchInput) {
+            searchInput.placeholder = (this.currentLanguage === 'th')
+                ? 'ค้นหาร้านค้า หรือเมนู...'
+                : 'Search shops or menu...';
+        }
+    }
+};
+
+/**
+ * [2.2] ThemeManager
+ * จัดการระบบธีม (Light/Dark) และการปรับแต่ง UI ตามแบรนด์
+ */
+const ThemeManager = {
+    /**
+     * เริ่มต้นระบบธีม
+     */
+    init() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+        this.syncBrandedUI();
+    },
+
+    /**
+     * สลับโหมด Light/Dark
+     */
+    toggle() {
+        const html = document.documentElement;
+        const isDark = html.getAttribute('data-theme') === 'dark';
+
+        if (!isDark) {
+            html.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            html.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+        }
+        this.syncBrandedUI();
+    },
+
+    /**
+     * ซิงค์องค์ประกอบ UI ของแบรนด์ (เช่น โลโก้, สถานะปุ่ม)
+     */
+    syncBrandedUI() {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const logoImg = document.getElementById('mainLogo') || document.querySelector('.nav-logo-container img');
+        const langBtns = document.querySelectorAll('.lang-btn');
+        const themeBtns = document.querySelectorAll('.theme-btn');
+
+        // [Logic] สลับภาพโลโก้ตามสภาพแสงของธีม
+        if (logoImg) {
+            logoImg.src = isDark ? "img/logo/savorhappiness-2.png" : "img/logo/savorhappiness-1.png";
+        }
+
+        // อัปเดตข้อความบนปุ่มสถานะ
+        langBtns.forEach(btn => {
+            btn.innerText = LocalizationManager.currentLanguage.toUpperCase();
+            btn.classList.add('active');
+        });
+
+        themeBtns.forEach(btn => {
+            if (isDark) {
+                btn.innerText = "DARK";
+                btn.classList.add('active');
+            } else {
+                btn.innerText = "LIGHT";
+                btn.classList.remove('active');
+            }
+        });
+    }
+};
+
+/**
+ * [2.3] Public Wrappers (สำหรับเรียกใช้ใน HTML)
+ * ฟังก์ชันเหล่านี้ทำหน้าที่เป็นสะพานเชื่อมระหว่าง HTML และ System Managers
+ */
+function toggleLang() {
+    LocalizationManager.toggle();
+}
+
+function toggleTheme() {
+    ThemeManager.toggle();
+}
+
+// --- [3. Global State & DOM References] ---
+let lbImg, lbContainer;
+let isDragging = false;
+let startX, startY;
+let translateX = 0, translateY = 0, lastX = 0, lastY = 0;
+let currentGallery = [];
+let currentImgIdx = 0;
+
+// --- [4. Lifecycle: Initialization] ---
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Reset Scroll
+    // 1. Reset Scroll (เพื่อประสบการณ์แบบรีโหลดใหม่คลีนๆ)
     if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
     window.scrollTo(0, 0);
 
@@ -87,20 +221,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamBtn = document.getElementById('hamburgerBtn');
     const navMenu = document.getElementById('navLinks');
     const hamIcon = document.querySelector('#hamburgerBtn i');
-    const logoImg = document.getElementById('mainLogo');
-    const themeBtns = document.querySelectorAll('.theme-btn');
 
-    // 3. Theme & Lang Recovery (Branded Sync)
-    const savedTheme = localStorage.getItem('theme');
-    const savedLang = localStorage.getItem('preferredLang') || 'th';
-    currentLang = savedLang;
-
-    if (savedTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    }
-
-    updateLangUI(); // Sync text
-    syncBrandedUI(); // Sync Logo & Buttons
+    // 3. Initialize Domain Managers (Clean Init)
+    LocalizationManager.init();
+    ThemeManager.init();
 
     // 4. Content Rendering
     renderShops();
@@ -231,27 +355,39 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- [3. Core Functions] ---
 
 function renderShops() {
-    const minGrid = document.getElementById('minburi-list');
-    const nongGrid = document.getElementById('nongchok-list');
-    if (!minGrid || !nongGrid) return;
+    const minburiGrid = document.getElementById('minburi-list');
+    const nongchokGrid = document.getElementById('nongchok-list');
+    if (!minburiGrid || !nongchokGrid) return;
 
-    minGrid.innerHTML = ""; nongGrid.innerHTML = "";
+    minburiGrid.innerHTML = "";
+    nongchokGrid.innerHTML = "";
 
-    realShops.forEach((shop, shopIdx) => {
-        let imgHtml = "";
+    REAL_SHOPS.forEach((shop, shopIndex) => {
+        let galleryHtml = "";
         for (let i = 0; i < 8; i++) {
-            const fullPath = `img/20ResCafe/${shop.folder}/${shop.file}${i}.jpg`;
-            imgHtml += `
+            const imagePath = `img/20ResCafe/${shop.folder}/${shop.file}${i}.jpg`;
+            galleryHtml += `
                 <img class="photo-item ${i === 0 ? 'active' : ''}" 
-                     src="${fullPath}" 
+                     src="${imagePath}" 
                      loading="lazy"
-                     onclick="window.openSimpleLightbox(${i}, ${shopIdx})" 
+                     onclick="window.openSimpleLightbox(${i}, ${shopIndex})" 
                      onerror="if (this.src.endsWith('.jpg')) { this.src = this.src.replace('.jpg', '.JPG'); } else { this.style.display='none'; }">
             `;
         }
-        const cardHtml = `<div class="shop-card" data-aos="fade-up"><div class="photo-gallery">${imgHtml}</div><div class="shop-info"><div class="shop-name">${shop.name}</div><div class="shop-tag">${shop.zone === 'minburi' ? 'Min Buri' : 'Nong Chok'}</div></div></div>`;
-        if (shop.zone === 'minburi') minGrid.insertAdjacentHTML('beforeend', cardHtml);
-        else nongGrid.insertAdjacentHTML('beforeend', cardHtml);
+        const shopCardHtml = `
+            <div class="shop-card" data-aos="fade-up">
+                <div class="photo-gallery">${galleryHtml}</div>
+                <div class="shop-info">
+                    <div class="shop-name">${shop.name}</div>
+                    <div class="shop-tag">${shop.zone === 'minburi' ? 'Min Buri' : 'Nong Chok'}</div>
+                </div>
+            </div>`;
+
+        if (shop.zone === 'minburi') {
+            minburiGrid.insertAdjacentHTML('beforeend', shopCardHtml);
+        } else {
+            nongchokGrid.insertAdjacentHTML('beforeend', shopCardHtml);
+        }
     });
     setTimeout(startAutoSlide, 300);
 }
@@ -259,15 +395,19 @@ function renderShops() {
 function executeSearch() {
     const searchInput = document.getElementById('shopSearchInput');
     if (!searchInput) return;
-    const query = searchInput.value.toLowerCase().trim();
+
+    const searchQuery = searchInput.value.toLowerCase().trim();
     const shopCards = document.querySelectorAll('.shop-card');
 
-    if (query === "") {
-        shopCards.forEach(card => { card.style.display = ""; card.style.opacity = "1"; });
+    if (searchQuery === "") {
+        shopCards.forEach(card => {
+            card.style.display = "";
+            card.style.opacity = "1";
+        });
         return;
     }
 
-    const navMap = [
+    const navigationKeywords = [
         { keywords: ['หนังสือ', 'book', 'guidebook'], target: '#book-feature' },
         { keywords: ['ของที่ระลึก', 'merch', 'sticker'], target: '#merch' },
         { keywords: ['ร้านแนะนำ', 'highlights', 'cafe'], target: '#highlights' },
@@ -275,35 +415,45 @@ function executeSearch() {
         { keywords: ['หน้าแรก', 'home'], target: '#home' }
     ];
 
-    const navMatch = navMap.find(item => item.keywords.some(key => query.includes(key)));
-    let firstMatch = null;
+    const navigationMatch = navigationKeywords.find(item => item.keywords.some(key => searchQuery.includes(key)));
+    let firstMatchingCard = null;
 
     shopCards.forEach(card => {
-        const nameText = card.querySelector('.shop-name')?.innerText.toLowerCase() || "";
-        const shopData = realShops.find(s => s.name.toLowerCase() === nameText || (s.nameTH && s.nameTH.toLowerCase().includes(query)));
-        if (nameText.includes(query) || (shopData && shopData.nameTH.toLowerCase().includes(query))) {
-            card.style.display = ""; card.style.opacity = "1";
-            if (!firstMatch) firstMatch = card;
-        } else { card.style.display = "none"; }
+        const shopNameInCard = card.querySelector('.shop-name')?.innerText.toLowerCase() || "";
+        const associatedShopData = REAL_SHOPS.find(s => s.name.toLowerCase() === shopNameInCard || (s.nameTH && s.nameTH.toLowerCase().includes(searchQuery)));
+
+        if (shopNameInCard.includes(searchQuery) || (associatedShopData && associatedShopData.nameTH.toLowerCase().includes(searchQuery))) {
+            card.style.display = "";
+            card.style.opacity = "1";
+            if (!firstMatchingCard) firstMatchingCard = card;
+        } else {
+            card.style.display = "none";
+        }
     });
 
-    if (navMatch) { document.querySelector(navMatch.target)?.scrollIntoView({ behavior: 'smooth' }); }
-    else if (firstMatch) { firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    if (navigationMatch) {
+        document.querySelector(navigationMatch.target)?.scrollIntoView({ behavior: 'smooth' });
+    } else if (firstMatchingCard) {
+        firstMatchingCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 }
 
-window.openSimpleLightbox = function (indexOrSrc, shopIdx) {
+window.openSimpleLightbox = function (imageIndex, shopIndex) {
     if (!lbContainer || !lbImg) {
         lbImg = document.getElementById('lightboxImg');
         lbContainer = document.getElementById('simpleLightbox');
     }
-    if (typeof indexOrSrc === 'string' && shopIdx === undefined) {
-        currentGallery = [indexOrSrc]; currentImgIdx = 0;
+
+    if (typeof imageIndex === 'string' && shopIndex === undefined) {
+        currentGallery = [imageIndex];
+        currentImgIdx = 0;
     } else {
-        const shop = realShops[shopIdx];
+        const shop = REAL_SHOPS[shopIndex];
         if (!shop) return;
         currentGallery = [0, 1, 2, 3, 4, 5, 6, 7].map(i => `img/20ResCafe/${shop.folder}/${shop.file}${i}.jpg`);
-        currentImgIdx = indexOrSrc;
+        currentImgIdx = imageIndex;
     }
+
     lbImg.src = currentGallery[currentImgIdx];
     lbImg.classList.remove('zoomed');
     translateX = 0; translateY = 0; lastX = 0; lastY = 0;
@@ -322,129 +472,103 @@ window.changeImg = function (step) {
     if (lbImg) lbImg.src = currentGallery[currentImgIdx];
 };
 
-function syncBrandedUI() {
-    const html = document.documentElement;
-    const isDark = html.getAttribute('data-theme') === 'dark';
-    const logoImg = document.getElementById('mainLogo');
-    const langBtns = document.querySelectorAll('.lang-btn');
-    const themeBtns = document.querySelectorAll('.theme-btn');
 
-    // 1. Logo Swap Logic (Contrast Focus)
-    // savorhappiness-2 has White "SAVOR" -> Best for Dark Mode / Green Header Contrast
-    // savorhappiness-1 has Green/Black "SAVOR" -> Best for Light Mode
-    if (logoImg) {
-        if (isDark) {
-            logoImg.src = "img/logo/savorhappiness-2.png";
-        } else {
-            logoImg.src = "img/logo/savorhappiness-1.png";
-        }
-    }
-
-    // 2. Button States (Text & Active Color)
-    langBtns.forEach(btn => {
-        btn.innerText = currentLang.toUpperCase();
-        btn.classList.add('active'); // Language is always 'active' since it's a toggle showing current state
-    });
-
-    themeBtns.forEach(btn => {
-        if (isDark) {
-            btn.innerText = "DARK";
-            btn.classList.add('active');
-        } else {
-            btn.innerText = "LIGHT";
-            btn.classList.remove('active');
-        }
-    });
-}
-
-function toggleTheme() {
-    const html = document.documentElement;
-    const isDark = html.getAttribute('data-theme') === 'dark';
-
-    if (!isDark) {
-        html.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-    } else {
-        html.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
-    }
-    syncBrandedUI();
-}
-
-function toggleLang() {
-    currentLang = (currentLang === 'th') ? 'en' : 'th';
-    updateLangUI();
-    localStorage.setItem('preferredLang', currentLang);
-    syncBrandedUI();
-}
-
-function updateLangUI() {
-    document.querySelectorAll('[data-key]').forEach(el => {
-        const key = el.getAttribute('data-key');
-        if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
-    });
-    const searchInput = document.getElementById('shopSearchInput');
-    if (searchInput) {
-        searchInput.placeholder = (currentLang === 'th') ? 'ค้นหาร้านค้า หรือเมนู...' : 'Search shops or menu...';
-    }
-}
 
 // --- [4. Utilities] ---
 
+/**
+ * [4.1] Auto Slide Engine
+ * ระบบเปลี่ยนรูปภาพอัตโนมัติในการ์ดร้านค้า
+ */
 function startAutoSlide() {
     document.querySelectorAll('.photo-gallery').forEach(gallery => {
-        const images = gallery.querySelectorAll('.photo-item');
-        if (images.length <= 1) return;
-        let idx = 0;
+        const photoItems = gallery.querySelectorAll('.photo-item');
+        if (photoItems.length <= 1) return;
+
+        let currentIndex = 0;
         setInterval(() => {
-            images[idx].classList.remove('active');
-            idx = (idx + 1) % images.length;
-            images[idx].classList.add('active');
+            photoItems[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % photoItems.length;
+            photoItems[currentIndex].classList.add('active');
         }, 3000);
     });
 }
 
+/**
+ * [4.2] Ticker Renderer
+ * ระบบแสดงชื่อร้านค้าแบบวิ่ง (Ticker) ท้ายหน้า
+ */
 function renderTicker() {
-    const t1 = document.getElementById('shopTickerInner'), t2 = document.getElementById('shopTickerInnerDup');
-    if (!t1 || !t2) return;
-    const content = realShops.map(shop => `<div class="ticker-item">${shop.name}</div><div class="ticker-sep">SAVOR HAPPINESS 🍴</div>`).join('');
-    t1.innerHTML = content; t2.innerHTML = content;
+    const tickerTrackMain = document.getElementById('shopTickerInner');
+    const tickerTrackDuplicate = document.getElementById('shopTickerInnerDup');
+
+    if (!tickerTrackMain || !tickerTrackDuplicate) return;
+
+    const tickerContent = REAL_SHOPS.map(shop => `
+        <div class="ticker-item">${shop.name}</div>
+        <div class="ticker-sep">SAVOR HAPPINESS 🍴</div>
+    `).join('');
+
+    tickerTrackMain.innerHTML = tickerContent;
+    tickerTrackDuplicate.innerHTML = tickerContent;
 }
 
+/**
+ * [4.3] Copy Contact Info
+ * คัดลอกอีเมลลงคลิปบอร์ด
+ */
 function copyContact() {
-    navigator.clipboard.writeText('palmy1983ch@gmail.com').then(() => {
-        const btn = document.querySelector('.copy-btn');
-        if (btn) {
-            const old = btn.innerHTML; btn.innerHTML = '<i class="fas fa-check"></i>';
-            setTimeout(() => btn.innerHTML = old, 2000);
+    const contactEmail = 'palmy1983ch@gmail.com';
+    navigator.clipboard.writeText(contactEmail).then(() => {
+        const copyButton = document.querySelector('.copy-btn');
+        if (copyButton) {
+            const originalContent = copyButton.innerHTML;
+            copyButton.innerHTML = '<i class="fas fa-check"></i>';
+            setTimeout(() => {
+                copyButton.innerHTML = originalContent;
+            }, 2000);
         }
     });
 }
 
+/**
+ * [4.4] Scroll Progress Bar
+ * แถบแสดงสถานะการเลื่อนหน้าเว็บ
+ */
 window.onscroll = function () {
-    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    let scrolled = (winScroll / height) * 100;
-    let myBar = document.getElementById("myBar");
-    if (myBar) myBar.style.width = scrolled + "%";
-};
+    const windowScrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolledPercentage = (windowScrollTop / documentHeight) * 100;
 
-window.changeBookView = function (src, thumb) {
-    const mainImg = document.getElementById('mainBookImg');
-    if (mainImg) {
-        mainImg.src = src;
-        document.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
-        thumb.classList.add('active');
+    const progressBar = document.getElementById("myBar");
+    if (progressBar) {
+        progressBar.style.width = scrolledPercentage + "%";
     }
 };
 
-// --- QR Support Functions ---
+/**
+ * [4.5] Book Viewer Switcher
+ * เปลี่ยนรูปภาพตัวอย่างหนังสือในส่วน Guidebook
+ */
+window.changeBookView = function (imageSource, thumbnailElement) {
+    const mainBookDisplay = document.getElementById('mainBookImg');
+    if (mainBookDisplay) {
+        mainBookDisplay.src = imageSource;
+        document.querySelectorAll('.thumb-item').forEach(thumb => thumb.classList.remove('active'));
+        thumbnailElement.classList.add('active');
+    }
+};
+
+/**
+ * [4.6] QR Modal Logic
+ * เปิด-ปิด หน้าต่าง QR Code สำหรับสนับสนุนผลงาน
+ */
 window.openQRModal = function () {
-    const modal = document.getElementById('qrModal');
-    if (modal) modal.style.display = 'flex';
+    const qrModalOverlay = document.getElementById('qrModal');
+    if (qrModalOverlay) qrModalOverlay.style.display = 'flex';
 };
 
 window.closeQRModal = function () {
-    const modal = document.getElementById('qrModal');
-    if (modal) modal.style.display = 'none';
+    const qrModalOverlay = document.getElementById('qrModal');
+    if (qrModalOverlay) qrModalOverlay.style.display = 'none';
 };
