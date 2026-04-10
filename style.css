@@ -268,7 +268,7 @@ html:not([data-theme="dark"]) .hamburger-menu i {
    [9] HERO SECTION
    ============================================================ */
 #home {
-  min-height: 100vh;
+  min-height: 58vh;
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -427,7 +427,7 @@ html:not([data-theme="dark"]) .hamburger-menu i {
 /* Modern wrapper (used with #myVideo) */
 .video-wrapper {
   position: relative;
-  width: 70%;
+  width: 64%;
   max-width: 1000px;
   aspect-ratio: 16 / 9; /* lock ratio → prevents letterbox gap */
   margin: 40px auto;
@@ -751,8 +751,8 @@ html:not([data-theme="dark"]) .hamburger-menu i {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 60px !important;
-  padding: 50px 20px !important;
+  gap: 50px !important;
+  padding: 18px 12px !important;
   flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
@@ -783,7 +783,7 @@ html:not([data-theme="dark"]) .hamburger-menu i {
 .book-thumbs {
   display: flex !important;
   justify-content: center !important;
-  gap: 15px !important;
+  gap: 28px !important;
   flex-wrap: wrap !important;
   width: 100% !important;
   margin-top: 30px !important;
@@ -1118,117 +1118,6 @@ html:not([data-theme="dark"]) .hamburger-menu i {
 }
 
 /* ============================================================
-   [20] SPEED DIAL CHAT BUTTON
-   ============================================================ */
-.speed-dial-container {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  gap: 15px;
-}
-
-/* Main button — single consolidated block */
-.speed-dial-main-btn {
-  width: 55px;
-  height: 55px;
-  border-radius: 10px;
-  background: var(--savor-yellow) !important;
-  border: 2px solid #ffffff;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.speed-dial-main-btn img {
-  width: 40px !important;
-  height: 40px !important;
-  object-fit: contain !important;
-  position: absolute;
-  transition: 0.4s ease-in-out;
-}
-
-/* Normal/active image swap */
-.img-active {
-  opacity: 0;
-  transform: scale(0.5);
-}
-
-.speed-dial-container.active .img-normal {
-  opacity: 0;
-  transform: scale(0.5);
-}
-
-.speed-dial-container.active .img-active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.speed-dial-container.active .speed-dial-main-btn {
-  transform: rotate(15deg) scale(1.1);
-  background-color: #ffb800 !important;
-}
-
-/* Child buttons */
-.speed-dial-buttons {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 15px !important;
-  margin-bottom: 15px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(30px) scale(0.5);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  pointer-events: none;
-}
-
-.speed-dial-container.active .speed-dial-buttons {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
-}
-
-.dial-btn {
-  width: 55px;
-  height: 55px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-decoration: none;
-  font-size: 22px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease !important;
-}
-
-.dial-btn:hover {
-  transform: scale(1.2) !important;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3) !important;
-}
-
-.phone-btn {
-  background: #ffd54f;
-}
-.line-btn {
-  background: #66bb6a;
-}
-.copy-btn {
-  background: #ffca28;
-}
-
-/* ============================================================
    [21] LIGHTBOX SYSTEM
    ============================================================ */
 #simpleLightbox {
@@ -1389,7 +1278,7 @@ footer {
    ============================================================ */
 .search-wrapper {
   max-width: 850px;
-  margin: 120px auto 50px !important;
+  margin: 37px auto 50px !important;
   padding: 0 20px;
   position: relative;
   z-index: 100;
@@ -2306,18 +2195,6 @@ html:not([data-theme="dark"]) .merch-card p {
     padding: 6px;
   }
 
-  /* Speed dial */
-  .speed-dial-container {
-    bottom: 20px;
-    right: 20px;
-  }
-
-  .dial-btn {
-    width: 48px;
-    height: 48px;
-    font-size: 18px;
-  }
-
   /* Language button */
   .lang-btn {
     width: 35px;
@@ -2524,7 +2401,7 @@ body {
   /* Video wrapper: คุมไม่ให้กว้างเกิน 1000px */
   .video-wrapper {
     max-width: 1000px;
-    margin: 60px auto !important;
+    margin: 68px auto !important;
   }
 
   /* Author card: ขยาย max-width ตาม viewport กว้าง */
@@ -2596,12 +2473,6 @@ body {
   .thumb-item {
     width: 80px;
     height: 80px;
-  }
-
-  /* Speed dial: ย้าย bottom/right ให้ชิดจอพอดี */
-  .speed-dial-container {
-    bottom: 24px;
-    right: 24px;
   }
 
   /* Ticker banner: ลดความสูงนิดในแนวนอน */
@@ -2747,12 +2618,6 @@ body {
 
   .footer-brand {
     min-width: unset;
-  }
-
-  /* Speed dial: ติดขอบจอพอดี */
-  .speed-dial-container {
-    bottom: 16px;
-    right: 16px;
   }
 
   /* Ticker: ปิดแสดงในจอเล็กมากเพื่อ performance */
