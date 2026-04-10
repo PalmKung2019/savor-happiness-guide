@@ -1,3424 +1,3232 @@
 /* ============================================================
-   SAVOR HAPPINESS - MASTER INTEGRATED ENGINE (CSS)
-   Consolidated Global Reset, Navbar Blur, and Optimized Grids
+   SAVOR HAPPINESS — MASTER STYLESHEET
+   Consolidated: No Duplicate Selectors, Clean Responsive,
+   Video Black-Bar Fix, Book Card Centering, Dark Mode Contrast
    ============================================================ */
 
-/* [1] FONTS & VARIABLES */
+/* ============================================================
+   [1] FONTS & CSS VARIABLES
+   ============================================================ */
 @font-face {
-    font-family: 'NangKaiThot';
-    src: url('fonts/MN-Nang-Kai-Thot-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: "NangKaiThot";
+  src: url("fonts/MN-Nang-Kai-Thot-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 :root {
-    /* [1] CI BRAND COLORS - นิยามรหัสสีต้นฉบับ Savor Happiness */
-    --ci-green: #007A33;
-    /* Primary Green */
-    --ci-olive: #93a35a;
-    /* Olive (Dark Mode BG) */
-    --ci-orange: #FF8C00;
-    /* Energy Orange */
-    --ci-yellow: #f4e105;
-    /* Happiness Yellow */
-    --ci-soft-yellow: #fffbd3;
-    /* Light Highlight */
-    --ci-cream: #f8f2e6;
-    /* Base Background */
-    --ci-white: #ffffff;
-    /* Card Background */
+  /* CI BRAND COLORS */
+  --ci-green: #007a33;
+  --ci-olive: #93a35a;
+  --ci-orange: #ff8c00;
+  --ci-yellow: #f4e105;
+  --ci-soft-yellow: #fffbd3;
+  --ci-cream: #f8f2e6;
+  --ci-white: #ffffff;
 
-    /* [2] SEMANTIC VARIABLES (LIGHT MODE) - กำหนดหน้าที่การใช้งาน */
-    --bg-main: var(--ci-cream);
-    --bg-nav: rgba(255, 255, 255, 0.95);
-    --bg-card: var(--savor-white);
-    --text-main: #333333;
-    --text-nav: #444444;
-    --accent-color: var(--ci-orange);
-    --nav-border: rgba(0, 122, 51, 0.1);
-    --shadow-color: rgba(0, 0, 0, 0.08);
+  /* SEMANTIC (LIGHT MODE) */
+  --bg-main: var(--ci-cream);
+  --bg-nav: rgba(255, 255, 255, 0.95);
+  --bg-card: var(--savor-white);
+  --text-main: #333333;
+  --text-nav: #444444;
+  --accent-color: var(--ci-orange);
+  --nav-border: rgba(0, 122, 51, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.08);
 
-    /* ตัวแปรสีเดิมที่คุณเคยใช้ (เพื่อให้โค้ดเก่าไม่พัง) */
-    --savor-green: var(--ci-green);
-    --savor-orange: var(--ci-orange);
-    --savor-cream: var(--ci-cream);
-    --savor-white: var(--ci-white);
-    --savor-yellow: var(--ci-yellow);
-    --savor-olive: var(--ci-olive);
+  /* Legacy aliases (ให้โค้ดเก่าไม่พัง) */
+  --savor-green: var(--ci-green);
+  --savor-orange: var(--ci-orange);
+  --savor-cream: var(--ci-cream);
+  --savor-white: var(--ci-white);
+  --savor-yellow: var(--ci-yellow);
+  --savor-olive: var(--ci-olive);
 }
 
-/* [3] DARK MODE ENGINE - สลับค่าสีที่จุดเดียว */
+/* ============================================================
+   [2] DARK MODE ENGINE
+   ============================================================ */
 [data-theme="dark"] .logo-img {
-    content: url('img/logo/savorhappiness-2.png') !important;
+  content: url("img/logo/savorhappiness-2.png") !important;
 }
 
 [data-theme="dark"] {
-    --bg-main: var(--ci-olive);
-    /* พื้นหลังเป็นสี Olive ตาม CI */
-    --bg-nav: var(--ci-green);
-    /* Navbar เป็นสีเขียวหลัก */
-    --bg-card: var(--ci-white);
-    /* Card ยังเป็นสีขาวตามที่คุณต้องการ */
-    --text-main: #ffffff;
-    --text-nav: #ffffff;
-    --nav-border: rgba(255, 255, 255, 0.1);
-    --shadow-color: rgba(0, 0, 0, 0.3);
+  --bg-main: var(--ci-olive);
+  --bg-nav: var(--ci-green);
+  --bg-card: var(--ci-white);
+  --text-main: #ffffff;
+  --text-nav: #ffffff;
+  --nav-border: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
-/* [2] GLOBAL RESET & ANTI-OVERFLOW */
+/* ============================================================
+   [3] GLOBAL RESET & ANTI-OVERFLOW
+   ============================================================ */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'NangKaiThot', 'Anuphan', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "NangKaiThot", "Anuphan", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
 body {
-    width: 100%;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow-x: hidden;
-    background: var(--savor-cream);
-    color: var(--savor-dark);
-    line-height: 1.8;
-    scroll-behavior: smooth;
-    scroll-padding-top: 85px;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden;
+  background: var(--savor-cream);
+  color: var(--text-main);
+  line-height: 1.8;
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
 }
 
 body {
-    padding-top: 85px !important;
+  padding-top: 85px !important;
 }
 
-/* [3] GLOBAL IMAGE SECURITY & OPTIMIZATION */
+/* ============================================================
+   [4] GLOBAL IMAGE SECURITY & OPTIMIZATION
+   ============================================================ */
 img {
-    content-visibility: auto;
-    object-fit: cover;
-    image-rendering: -webkit-optimize-contrast;
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-user-drag: none;
-    -webkit-touch-callout: none;
-    display: block;
+  content-visibility: auto;
+  object-fit: cover;
+  image-rendering: -webkit-optimize-contrast;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  display: block;
 }
 
-/* [4] MASTER NAVIGATION BAR (Blur & Glassmorphism) */
+/* ============================================================
+   [5] MASTER NAVIGATION BAR
+   ============================================================ */
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
-    background: transparent;
-    transition: background 0.4s ease, box-shadow 0.4s ease;
-    backdrop-filter: blur(13px);
-    -webkit-backdrop-filter: blur(13px);
-    height: 85px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 10000;
-    box-shadow: 0 2px 10px var(--savor-shadow);
-    transition: all 0.3s ease;
-    gap: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  gap: 32px;
+  background: transparent;
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  height: 85px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  box-shadow: 0 2px 10px var(--shadow-color);
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
 nav.scrolled {
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .logo img {
-    height: 33px;
-    width: auto;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+  height: 33px;
+  width: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .logo img:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
-/* [5] SCROLL PROGRESS BAR */
+/* ============================================================
+   [6] SCROLL PROGRESS BAR
+   ============================================================ */
 .scroll-progress-container {
-    position: fixed;
-    top: 75px;
-    left: 0;
-    z-index: 10001;
-    width: 100%;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.1);
-    pointer-events: none;
+  position: fixed;
+  top: 75px;
+  left: 0;
+  z-index: 10001;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
 }
 
 .progress-bar {
-    height: 100%;
-    background: var(--savor-orange);
-    width: 0%;
-    box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
-    transition: width 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-/* [6] MASTER LAYOUT GRIDS (Unified) */
-.hero-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-
-.shop-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(20px, 4vw, 40px);
-    width: 92%;
-    max-width: 1100px;
-    margin: 40px auto;
+  height: 100%;
+  background: var(--savor-orange);
+  width: 0%;
+  box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+  transition: width 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 /* ============================================================
-   VIDEO EXPERIENCE SECTION
+   [7] NAV LINKS & CONTROLS
    ============================================================ */
-.video-experience {
-    padding-top: 100px;
-    padding-bottom: 100px;
-    background: var(--savor-cream);
+.nav-right-container {
+  display: flex;
+  gap: 30px;
+  flex-direction: row-reverse;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
-.video-container {
-    position: relative;
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 500px;
-    /* ปรับความสูงตามชอบ */
-    border-radius: 10px !important;
-    overflow: hidden !important;
-    isolation: isolate !important;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-}
-
-.video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* 🛡️ สำคัญ: เพื่อให้วิดีโอเต็มกล่องไม่บิดเบี้ยว */
-}
-
-/* เคลือบสีดำจางๆ เพื่อให้ตัวหนังสืออ่านง่าย */
-.video-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
-    display: flex;
-    align-items: flex-end;
-    padding: 50px;
-}
-
-.video-content {
-    color: white;
-}
-
-.video-content h2 {
-    font-size: 2.5rem;
-    margin: 15px 0 5px 0;
-    color: white;
-}
-
-.mute-control-btn {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    width: 45px;
-    height: 45px;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.mute-control-btn:hover {
-    background: var(--savor-orange);
-    transform: scale(1.1);
-}
-
-/* 📱 ปรับแต่งสำหรับ Mobile */
-@media (max-width: 768px) {
-    .video-container {
-        height: 350px;
-        width: 95%;
-    }
-
-    .video-content h2 {
-        font-size: 1.8rem;
-    }
-
-    .video-overlay {
-        padding: 30px;
-    }
-}
-
-
-/* --- [Orientation Fix] สำหรับโหมดแนวนอน (Landscape) --- */
-@media (max-height: 600px) and (orientation: landscape) {
-    body {
-        padding-top: 55px !important;
-        /* ปรับตามความสูงจริงของ Nav ในโหมดนอน */
-    }
-
-    .scroll-progress-container {
-        top: 55px !important;
-        height: 3px;
-    }
-}
-
-
-/* ============================================================
-   3. NAVIGATION LINKS & COMPONENTS
-   ============================================================ */
 .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 32px;
-    align-items: center;
+  display: flex;
+  list-style: none;
+  gap: 32px;
+  align-items: center;
 }
 
 .nav-links li {
-    position: relative;
+  position: relative;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: #444;
-    font-weight: 500;
-    font-size: 1.05rem;
-    transition: color 0.3s ease;
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+  font-size: 1.05rem;
+  transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: var(--savor-green);
+  color: var(--savor-green);
 }
 
-#langBtn {
-    background: var(--savor-green);
-    color: white;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-    font-size: 0.9rem;
+.nav-controls-wrapper {
+  display: flex !important;
+  gap: 10px !important;
+  align-items: center !important;
 }
 
-#langBtn:hover {
-    background: #00642a;
-    transform: translateY(-2px);
+.lang-btn,
+.theme-btn {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  transition: 0.3s !important;
+  font-weight: 600 !important;
+  border-radius: 10px;
+}
+
+/* Light Mode button styles */
+html:not([data-theme="dark"]) .lang-btn {
+  border: 1.5px solid #007a33 !important;
+  color: #007a33 !important;
+  background: transparent !important;
+}
+
+html:not([data-theme="dark"]) .theme-btn {
+  background-color: #f0f0f0 !important;
+  border: 1.5px solid #ccc !important;
+  color: #333 !important;
+}
+
+/* Dark Mode button styles */
+[data-theme="dark"] .lang-btn,
+[data-theme="dark"] .theme-btn {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Active dark button */
+.theme-btn.active-dark {
+  background-color: var(--ci-orange) !important;
+  border-color: var(--ci-orange) !important;
+  color: #ffffff !important;
 }
 
 /* ============================================================
-   4. HERO SECTION: Collage Grid & Overlay (The Master Fix)
+   [8] HAMBURGER MENU
    ============================================================ */
-#home {
-    min-height: 100vh;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #000;
+.hamburger-menu {
+  display: none; /* hidden by default (desktop) */
+  position: relative;
+  z-index: 10002;
+  cursor: pointer;
 }
 
+html:not([data-theme="dark"]) .hamburger-menu i {
+  color: #007a33 !important;
+}
+
+[data-theme="dark"] .hamburger-menu i {
+  color: #ffffff !important;
+}
+
+/* ============================================================
+   [9] HERO SECTION
+   ============================================================ */
+#home {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+/* One unified .hero-grid declaration */
 .hero-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    /* Desktop: 5 คอลัมน์ */
-    grid-template-rows: repeat(2, 1fr);
-    /* Desktop: 2 แถว (รวม 10 รูป) */
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .grid-item {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
 .grid-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.4);
-    /* เข้มขึ้นเพื่อให้ปุ่มเขียวและ Text อ่านง่าย */
-    transition: transform 0.8s ease, filter 0.5s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.4);
+  transition:
+    transform 0.8s ease,
+    filter 0.5s ease;
 }
 
 .grid-item:hover img {
-    filter: brightness(0.7);
-    transform: scale(1.1);
+  filter: brightness(0.7);
+  transform: scale(1.1);
 }
 
-/* คอนเทนต์ที่ลอยอยู่เหนือรูป */
 .hero-content-overlay {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    color: white;
-    padding: 60px 20px;
-    max-width: 1000px;
-    width: 100%;
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: white;
+  padding: 60px 20px;
+  max-width: 1000px;
+  width: 100%;
 }
 
 .content-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
 #home h1 {
-    font-size: clamp(2.2rem, 8vw, 4.5rem);
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-    line-height: 1.1;
-    letter-spacing: 2px;
+  font-size: clamp(2.2rem, 8vw, 4.5rem);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  line-height: 1.1;
+  letter-spacing: 2px;
 }
 
 #home .subtitle-vibe {
-    font-size: clamp(0.9rem, 4vw, 1.4rem);
-    letter-spacing: 4px;
-    margin-bottom: 15px;
-    font-weight: 400;
-    text-transform: uppercase;
-    color: var(--savor-orange);
+  font-size: clamp(0.9rem, 4vw, 1.4rem);
+  letter-spacing: 4px;
+  margin-bottom: 15px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--savor-orange);
 }
 
 #home .hero-desc {
-    font-size: clamp(0.85rem, 3vw, 1.15rem);
-    margin-bottom: 30px;
-    line-height: 1.8;
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-/* ------------------------------------------------------------
-   📱 MOBILE & TABLET PORTRAIT (แนวตั้ง) - แก้ภาพตก 10 รูป
-   ------------------------------------------------------------ */
-@media (max-width: 768px) and (orientation: portrait) {
-    .hero-grid {
-        grid-template-columns: repeat(2, 1fr);
-        /* 2 คอลัมน์ */
-        grid-template-rows: repeat(5, 1fr);
-        /* 5 แถว (2x5 = 10 รูปพอดีเป๊ะ) */
-    }
-
-    .hero-content-overlay {
-        padding: 40px 15px;
-    }
-
-    #home h1 {
-        font-size: clamp(2rem, 10vw, 3rem);
-    }
-
-    #home .hero-desc {
-        font-size: 0.9rem;
-        margin-bottom: 25px;
-    }
-
-    .btn-primary {
-        width: 85%;
-        /* ปุ่มกว้างขึ้นให้กดง่ายในแนวตั้ง */
-        max-width: 300px;
-    }
-}
-
-/* ------------------------------------------------------------
-   📱 MOBILE LANDSCAPE (แนวนอน) - ดึงปุ่มเขียวขึ้น
-   ------------------------------------------------------------ */
-@media (max-height: 600px) and (orientation: landscape) {
-    #home {
-        min-height: 110vh;
-        /* เผื่อพื้นที่ไถนิดหน่อยกันขอบ Browser บัง */
-    }
-
-    .hero-grid {
-        grid-template-columns: repeat(5, 1fr);
-        /* แนวนอนใช้ 5 คอลัมน์เหมือนเดิมจะสวยกว่า */
-        grid-template-rows: repeat(2, 1fr);
-    }
-
-    .hero-content-overlay {
-        padding: 20px 20px;
-        /* บีบ Padding หัวท้ายให้เหลือน้อยที่สุด */
-    }
-
-    .content-wrapper {
-        gap: 5px;
-        /* ดึงทุกอย่างมาชิดกัน */
-    }
-
-    #home h1 {
-        font-size: clamp(1.6rem, 5vw, 2.5rem);
-        margin-bottom: 5px;
-    }
-
-    #home .subtitle-vibe {
-        margin-bottom: 5px;
-        font-size: 0.8rem;
-    }
-
-    #home .hero-desc {
-        font-size: 0.8rem;
-        margin-bottom: 12px;
-        /* ดันปุ่มเขียวขึ้นมาโชว์ */
-        line-height: 1.3;
-    }
-
-    .btn-primary {
-        padding: 8px 20px;
-        font-size: 0.85rem;
-    }
+  font-size: clamp(0.85rem, 3vw, 1.15rem);
+  margin-bottom: 30px;
+  line-height: 1.8;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* ============================================================
-   5. SECTION FORMATTING & TITLES
+   [10] SECTION FORMATTING & TITLES
    ============================================================ */
 .section {
-    padding: 100px 15%;
-    /* max-width: 1440px; */
-    margin: 0 auto;
-    position: relative;
+  padding: 100px 15%;
+  margin: 0 auto;
+  position: relative;
 }
 
 .section-title {
-    margin-bottom: 60px;
-    text-align: center;
-    font-size: 2.4rem;
-    color: var(--savor-green);
-    position: relative;
+  margin-bottom: 60px;
+  text-align: center;
+  font-size: 2.4rem;
+  color: var(--savor-green);
+  position: relative;
 }
 
 .section-title::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 4px;
-    background: var(--savor-orange);
-    margin: 15px auto 0;
-    border-radius: 10px;
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--savor-orange);
+  margin: 15px auto 0;
+  border-radius: 10px;
 }
 
 .district-label {
-    margin: 50px 0 40px 0;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--savor-orange);
-    letter-spacing: 3px;
-    text-align: center;
-    text-transform: uppercase;
+  margin: 50px 0 40px 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--savor-orange);
+  letter-spacing: 3px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 /* ============================================================
-   6. ✅ MASTER COMBINED: Guidebook & Thumbnails Centering
+   [11] VIDEO EXPERIENCE SECTION
+   (aspect-ratio lock + no black bar)
    ============================================================ */
-.book-grid-container {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 60px !important;
-    padding: 50px 20px !important;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* ฝั่งรูปภาพ: บังคับให้อยู่กึ่งกลางแนวตั้งเสมอ */
-.book-visual {
-    flex: 1;
-    min-width: 350px;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    width: 100% !important;
-}
-
-.inner-mockup {
-    width: 100%;
-    max-width: 500px;
-    border-radius: 10px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-    cursor: zoom-in;
-    transition: transform 0.4s ease;
-}
-
-.inner-mockup:hover {
-    transform: translateY(-5px);
-}
-
-/* ส่วนรูป Thumbnail: จัดกึ่งกลางและเว้นระยะให้พอดีกับนิ้วกด */
-.book-thumbs {
-    display: flex !important;
-    justify-content: center !important;
-    gap: 15px !important;
-    flex-wrap: wrap !important;
-    width: 100% !important;
-    margin-top: 30px !important;
-}
-
-.photo-gallery img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 10px !important;
-    transition: transform 0.4s ease;
-    cursor: zoom-in;
-}
-
-.thumb-item {
-    width: 90px;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 10px;
-    cursor: pointer;
-    border: 3px solid transparent;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.thumb-item:hover {
-    transform: scale(1.05);
-}
-
-.thumb-item.active {
-    border-color: var(--savor-green);
-    /* ใช้สีเขียว Thesis ของปาล์ม */
-    transform: translateY(-3px);
-}
-
-/* ฝั่งข้อความ: บังคับกึ่งกลางทุกมิติ (Text-align center) */
-.book-text {
-    flex: 1;
-    min-width: 350px;
-    padding: 20px;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
-    justify-content: center !important;
-}
-
-.book-text h2 {
-    font-size: 2.2rem;
-    margin-bottom: 25px;
-    color: var(--ci-green);
-    /* แนะนำให้ใช้เขียว CI แทนสีเทา เพื่อให้หัวข้อเด่น */
-    font-weight: 800;
-}
-
-.book-text p {
-    line-height: 1.8;
-    margin-bottom: 30px;
-    color: #555;
-    font-size: 1.1rem;
-    max-width: 500px;
-    /* คุมความกว้างให้อ่านง่าย */
-}
-
-/* --- [Responsive Fix] สำหรับหน้าจอขนาดเล็ก --- */
-@media (max-width: 768px) {
-    .book-grid-container {
-        gap: 30px !important;
-        padding: 30px 15px !important;
-    }
-
-    .book-visual,
-    .book-text {
-        min-width: 100% !important;
-    }
-
-    /* ย่อ Thumbnail ลงในมือถือไม่ให้เบียดกัน */
-    .thumb-item {
-        width: 70px;
-        height: 70px;
-        border-radius: 10px;
-    }
-
-    .book-text h2 {
-        font-size: 1.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .thumb-item {
-        width: 60px;
-        height: 60px;
-        gap: 10px !important;
-    }
-}
-
-/* ============================================================
-   7. SHOP CARDS & PHOTO GALLERY
-   ============================================================ */
-.shop-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
-    padding: 0 10px;
-}
-
-.shop-card {
-    background: white;
-    border-radius: 10px !important;
-    overflow: hidden !important;
-    isolation: isolate !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-    margin-bottom: 30px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.shop-card:hover {
-    transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0, 122, 51, 0.15);
-}
-
-.photo-gallery {
-    display: block;
-    height: 320px;
-    overflow: hidden;
-    position: relative;
-    background: #f4f4f4;
-    border-radius: 10px !important;
-    isolation: isolate;
-}
-
-.photo-item {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 1.2s ease-in-out;
-    z-index: 1;
-    cursor: pointer;
-    border-radius: 10px !important;
-}
-
-.photo-item.active {
-    opacity: 1;
-    z-index: 2;
-}
-
-.shop-name {
-    padding: 25px 30px !important;
-    line-height: 1.4;
-    color: var(--savor-dark);
-    font-size: 1.2rem;
-    text-align: center;
-    font-weight: 700;
-}
-
-/* ============================================================
-   8. ✅ Point 2: Ticker Animation (Left to Right Fix เดิม)
-   ============================================================ */
-.shop-ticker-banner {
-    width: 100%;
-    height: 70px;
-    background-color: var(--savor-white);
-    border-top: 1px solid rgba(0, 122, 51, 0.1);
-    border-bottom: 1px solid rgba(0, 122, 51, 0.1);
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    align-items: center;
-    z-index: 90;
-    margin: 40px 0;
-}
-
-.shop-ticker-track {
-    display: flex !important;
-    white-space: nowrap;
-    animation: tickerLoopRight 40s linear infinite !important;
-}
-
-@keyframes tickerLoopRight {
-    from {
-        transform: translateX(-100%);
-    }
-
-    to {
-        transform: translateX(0%);
-    }
-}
-
-.ticker-item {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--savor-green);
-    padding: 0 30px;
-    display: flex;
-    align-items: center;
-}
-
-.ticker-sep {
-    color: var(--savor-orange);
-    font-weight: bold;
-    margin: 0 10px;
-}
-
-/* ============================================================
-   9. ✅ Point 3: Merch Section (50% Desktop Fix เดิม)
-   ============================================================ */
-.merch-category {
-    margin-bottom: 60px;
-}
-
-.merch-sub-title {
-    margin: 40px 0 30px 0 !important;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: var(--savor-dark);
-    border-left: 6px solid var(--savor-orange);
-    padding-left: 20px;
-}
-
-.merch-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 35px;
-}
-
-.merch-card {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-    transition: 0.3s ease;
-}
-
-.merch-card:hover {
-    transform: translateY(-8px);
-}
-
-.shop-card img,
-.merch-card img,
-.photo-gallery img,
-.author-profile-pic img {
-    border-radius: 10px !important;
-    object-fit: cover !important;
-}
-
-.merch-card img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    object-fit: cover;
-    transition: 0.3s;
-}
-
-.merch-card img:hover {
-    transform: scale(1.05);
-}
-
-/* ============================================================
-   10. SHOP GRID: 2 COLUMNS LAYOUT (Focus on Visuals)
-   ============================================================ */
-.shop-grid {
-    display: grid !important;
-    /* 🔥 ล็อค 2 คอลัมน์แบบเด็ดขาด */
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 40px !important;
-    width: 90% !important;
-    max-width: 1000px !important;
-    margin: 0 auto !important;
-}
-
-.shop-card {
-    width: 100% !important;
-    max-width: 450px !important;
-    /* ขยายให้รูป Nikon D5200 ดูเด่นๆ */
-}
-
-/* --- RESPONSIVE: ปรับตามขนาดหน้าจอ --- */
-@media (max-width: 992px) {
-    .shop-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 32px;
-        max-width: 90%;
-    }
-}
-
-@media (max-width: 600px) {
-    .shop-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-    }
-
-    .shop-card {
-        max-width: 350px;
-        /* คุมไม่ให้การ์ดใหญ่จนล้นจอมือถือ */
-    }
-}
-
-/* ============================================================
-   12. MERCH & BOOKMARK (3 Designs Fix)
-   ============================================================ */
-.merch-grid.bookmark-triple-grid {
-    display: grid !important;
-    /* 💥 แก้จุดสีม่วง: ใช้ 1fr เพื่อแบ่งพื้นที่ให้พอดีจอ ไม่ให้ Margin ดันจนล้น */
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 15px !important;
-    width: 100% !important;
-    max-width: 1000px;
-    /* คุมไม่ให้กว้างเกินไปบน Desktop */
-    margin: 30px auto 0 !important;
-    /* ดีดกึ่งกลาง */
-    padding: 0 !important;
-    /* ล้าง Padding ที่อาจจะแฝงมา */
-}
-
-.speed-dial-main-btn {
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    background: var(--savor-yellow) !important;
-    border: 3px solid #ffffff;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.speed-dial-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: 0.4s ease-in-out;
-}
-
-.speed-dial-container.active .speed-dial-img {
-    content: url('img/smile-tongue.png') !important;
-}
-
-.speed-dial-container.active .speed-dial-main-btn {
-    transform: scale(1.1) rotate(5deg);
-    background: #FF8C00 !important;
-}
-
-.merch-card {
-    width: 100% !important;
-    max-width: none !important;
-    /* ปล่อยให้ยืดตาม Grid 1fr */
-    box-sizing: border-box;
-    margin: 0 !important;
-}
-
-/* --- Fix Shop Grid (ย่านมีนบุรี-หนองจอก) --- */
-.shop-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 32px;
-    justify-content: center;
-    justify-items: center;
-    /* บังคับให้การ์ดอยู่กลางคอลัมน์ตัวเอง */
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* --- Responsive Fix สำหรับจอเล็ก (Fold 5 / Mobile) --- */
-@media (max-width: 768px) {
-    .merch-grid.bookmark-triple-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        /* จอเล็กเหลือ 2 จะไม่เบียด */
-    }
-}
-
-@media (max-width: 480px) {
-
-    .merch-grid.bookmark-triple-grid,
-    .shop-grid {
-        grid-template-columns: 1fr !important;
-        /* จอมือถือจิ๋วให้เรียงเดี่ยวกลางหน้าจอ */
-    }
-}
-
-/* ============================================================
-   13. 💬 Speed Dial Chat - Savor Happiness Final Mix (Image Toggle)
-   ============================================================ */
-.speed-dial-container {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    gap: 15px;
-}
-
-.speed-dial-main-btn {
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
-    background: var(--savor-yellow) !important;
-    /* ปรับให้ตรง CI #f4e105 */
-    border: 2px solid #ffffff;
-    /* ใส่ขอบขาวให้เหมือนสติกเกอร์ */
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    /* กันรูปหลุดขอบวงกลม */
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* จัดการรูปภาพทั้งสองสถานะ */
-.speed-dial-main-btn img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    transition: 0.4s ease-in-out;
-}
-
-/* สถานะปกติ: โชว์รูปยิ้มละมุน (The Feel Inside) */
-.img-active {
-    opacity: 0;
-    transform: scale(0.5);
-}
-
-/* --- เมื่อกดเปิดเมนู (Active) --- */
-.speed-dial-container.active .speed-dial-main-btn {
-    transform: scale(1.1) rotate(5deg);
-    background: #FF8C00 !important;
-    /* เปลี่ยนเป็นสีส้มตอนแลบลิ้น */
-}
-
-/* สลับรูป: ซ่อนยิ้มละมุน โชว์แลบลิ้น (Must Try Menu) */
-.speed-dial-container.active .img-normal {
-    opacity: 0;
-    transform: scale(0.5);
-}
-
-.speed-dial-container.active .img-active {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.speed-dial-buttons {
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 15px;
-    transform: translateY(20px) scale(0);
-    opacity: 0;
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    pointer-events: none;
-}
-
-.speed-dial-container.active .speed-dial-buttons {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.dial-btn {
-    width: 55px;
-    height: 55px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-decoration: none;
-    font-size: 22px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: 0.3s;
-}
-
-.dial-btn:hover {
-    transform: scale(1.15) translateY(-5px);
-}
-
-.phone-btn {
-    background: #FFD54F;
-}
-
-.line-btn {
-    background: #66BB6A;
-}
-
-.copy-btn {
-    background: #FFCA28;
-}
-
-/* Responsive สำหรับ Mobile */
-@media (max-width: 768px) {
-    .speed-dial-container {
-        bottom: 20px;
-        right: 20px;
-    }
-
-    .speed-dial-main-btn {
-        width: 55px;
-        height: 55px;
-    }
-
-    .dial-btn {
-        width: 48px;
-        height: 48px;
-        font-size: 18px;
-    }
-}
-
-/* ============================================================
-   14. UI ELEMENTS & BUTTONS
-   ============================================================ */
-.btn-primary {
-    display: inline-block;
-    padding: 10px 50px;
-    background: var(--savor-green);
-    color: white !important;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-    transition: 0.4s;
-    box-shadow: 0 5px 20px rgba(0, 122, 51, 0.25);
-    margin-top: 15px;
-    animation: pulse-green 2s infinite;
-}
-
-.btn-primary:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 122, 51, 0.4);
-    background: #008f3b;
-}
-
-@keyframes pulse-green {
-    0% {
-        box-shadow: 0 0 0 0 rgba(0, 122, 51, 0.4);
-    }
-
-    70% {
-        box-shadow: 0 0 0 15px rgba(0, 122, 51, 0);
-    }
-
-    100% {
-        box-shadow: 0 0 0 0 rgba(0, 122, 51, 0);
-    }
-}
-
-/* ============================================================
-   LOGO COLOR RECOVERY: CSS BRUTE FORCE (สีเดิม 100%)
-   ============================================================ */
-
-/* 🛡️ สั่งที่ตัวกล่อง: ให้พื้นหลังขาวเพื่อขับสีโลโก้ */
-.logo-box {
-    background: #ffffff !important;
-    border: none !important;
-    /* สั่งลบเส้นขอบเทาๆ ทิ้งไปเลย */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    transition: all 0.3s ease !important;
-}
-
-/* 🛡️ สั่งที่ตัวรูป: คืนค่าสีสันแบบหักดิบ */
-.logo-box img {
-    /* 🔴 ปิดฟิลเตอร์ทุกชนิด: Grayscale, Sepia, Blur หายไปให้หมด! */
-    filter: none !important;
-    -webkit-filter: grayscale(0) !important;
-
-    /* 🔴 คืนค่าความชัด: ห้ามจาง ห้ามโปร่งแสง */
-    opacity: 1 !important;
-
-    /* ปรับขนาดให้สวยงามในกล่อง */
-    max-width: 85% !important;
-    max-height: 85% !important;
-    object-fit: contain !important;
-
-    visibility: visible !important;
-    display: block !important;
-}
-
-/* Desktop Hover: แค่ให้ลอยนิดๆ สีห้ามเพี้ยน */
-.logo-box:hover {
-    transform: translateY(-3px) !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
-}
-
-/* 📱 Mobile Fix: ล็อคสีเดิมในมือถือด้วย */
-@media (max-width: 991px) {
-    .logo-box img {
-        filter: grayscale(0) !important;
-        opacity: 1 !important;
-    }
-}
-
-/* ------------------------------------------------------------ */
-/* ============================================================
-   [CONSOLIDATED RESPONSIVE ENGINE]
-   - รวมทุก Media Query ให้เป็นระบบเดียวเพื่อป้องกันโค้ดซ้อนกัน
-   ============================================================ */
-
-/* [1] TABLET & LARGE MOBILE (1024px) */
-@media screen and (max-width: 1024px) {
-    nav {
-        height: 70px !important;
-        padding: 0 20px !important;
-        display: flex !important;
-        justify-content: center !important;
-        position: relative !important;
-    }
-
-    .logo {
-        position: absolute !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-    }
-
-    .nav-right-container {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: flex-end !important;
-        align-items: center !important;
-    }
-
-    body,
-    .scroll-progress-container {
-        padding-top: 70px !important;
-        top: 70px !important;
-    }
-
-    .author-layout-card {
-        flex-direction: column !important;
-        width: 95% !important;
-    }
-
-    .author-visual-side {
-        border-right: none;
-        border-bottom: 1px solid #eee;
-        width: 100%;
-        flex: none;
-    }
-
-    .book-grid-container {
-        gap: 30px !important;
-    }
-
-    .search-wrapper {
-        max-width: 90%;
-        margin-top: 110px !important;
-    }
-}
-
-/* [2] STANDARD MOBILE (768px) */
-@media screen and (max-width: 768px) {
-
-    /* Hero Grid 2x5 */
-    .hero-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        grid-template-rows: repeat(5, 1fr) !important;
-    }
-
-    /* Grids to Single Column */
-    .shop-grid {
-        grid-template-columns: 1fr !important;
-        gap: 32px;
-    }
-
-    .merch-grid.bookmark-triple-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-    }
-
-    /* Typography & Spacing */
-    .section {
-        padding: 60px 5% !important;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-        margin-bottom: 40px;
-    }
-
-    /* Video Scaling */
-    .video-wrapper {
-        width: 100% !important;
-        border-radius: 0 !important;
-    }
-
-    .video-content-box {
-        padding: 30px 20px !important;
-    }
-
-    .speed-dial-container {
-        bottom: 20px;
-        right: 20px;
-    }
-
-    /* Logo Control */
-    .logo-box {
-        width: 60px;
-        height: 60px;
-        padding: 6px;
-    }
-
-    .logo-box img {
-        filter: grayscale(0) !important;
-        opacity: 1 !important;
-    }
-}
-
-/* [3] SMALL MOBILE & FOLD (400px DOWN) */
-@media screen and (max-width: 400px) {
-    .merch-grid.bookmark-triple-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    /* เรียงเดี่ยวให้หมดไม่ให้เบียด */
-
-    #home h1 {
-        font-size: 2rem !important;
-    }
-
-    .hero-desc {
-        font-size: 0.85rem;
-    }
-
-    .author-name {
-        font-size: 24px !important;
-    }
-
-    .contact-box {
-        width: 100%;
-        max-width: 260px;
-    }
-
-    .thumb-item {
-        width: 60px;
-        height: 60px;
-    }
-
-    .qr-card {
-        padding: 25px 15px !important;
-    }
-
-    .qr-header h3 {
-        font-size: 1.3rem !important;
-    }
-}
-
-/* --- Landscape Fix for Mobile --- */
-@media screen and (max-height: 500px) and (orientation: landscape) {
-    nav {
-        height: 60px !important;
-    }
-
-    body,
-    .scroll-progress-container {
-        padding-top: 60px !important;
-        top: 60px !important;
-    }
-
-    .hero-content-overlay {
-        padding-top: 80px;
-    }
-
-    .hero-grid {
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-    }
-}
-
-/* ============================================================
-   17. LIGHTBOX SYSTEM - ULTIMATE DRAG ENGINE
-   ============================================================ */
-#simpleLightbox {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.97);
-
-    /* [หัวใจหลัก] ห้ามมี scrollbar และห้ามใช้ block 
-       ใช้ flex เพื่อให้รูปปกติอยู่กึ่งกลางจอเสมอ */
-    overflow: hidden !important;
-    align-items: center;
-    justify-content: center;
-    cursor: zoom-out;
-}
-
-#lightboxImg {
-    /* ขนาดเริ่มต้นเมื่อเปิดขึ้นมา */
-    max-width: 90%;
-    max-height: 85%;
-    object-fit: contain;
-
-    /* จังหวะซูมให้สมูท (ตอนลาก JS จะสั่งปิด transition นี้เองอัตโนมัติ) */
-    transition: transform 0.35s cubic-bezier(0.15, 0, 0.15, 1);
-    cursor: zoom-in;
-
-    /* [สำคัญมาก] กัน Browser แย่งลากรูป หรือคลุมดำรูป */
-    user-select: none;
-    -webkit-user-drag: none;
-    display: block;
-}
-
-/* สถานะเมื่อถูกจิกซูม */
-#lightboxImg.zoomed {
-    /* ปล่อยให้ขนาดเป็นไปตามธรรมชาติ เพื่อให้ scale(2.5) ใน JS ทำงานได้เต็มที่ */
-    max-width: none !important;
-    max-height: none !important;
-    cursor: grab;
-}
-
-/* จังหวะกำปั้นกำแน่น */
-#lightboxImg.zoomed:active {
-    cursor: grabbing;
-}
-
-/* ============================================================
-   18. FOOTER & EXTRA UTILITIES
-   ============================================================ */
-footer {
-    background: #ffffff;
-    padding: 80px 0;
-    border-top: 1px solid #f0f0f0;
-    margin-top: 60px;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 40px;
-}
-
-.footer-brand {
-    flex: 1;
-    min-width: 300px;
-}
-
-.footer-logo {
-    height: 45px;
-    margin-bottom: 25px;
-}
-
-.footer-desc {
-    color: #888;
-    line-height: 1.8;
-    font-size: 0.95rem;
-}
-
-.footer-socials {
-    display: flex;
-    gap: 15px;
-}
-
-.footer-socials a {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f8f8f8;
-    color: var(--savor-green);
-    border-radius: 10px;
-    transition: 0.3s;
-}
-
-.footer-socials a:hover {
-    background: var(--savor-green);
-    color: #ffffff;
-    transform: translateY(-3px);
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 60px;
-    border-top: 1px solid #f8f8f8;
-    margin-top: 60px;
-    color: #bbb;
-    font-size: 0.85rem;
-}
-
-/* ล็อกสีตัวหนังสือ Footer ให้เข้มเสมอ แม้ใน Dark Mode เพราะพื้นหลัง Footer ยังเป็นสีขาว */
-[data-theme="dark"] footer p {
-    color: #888888 !important;
-}
-
-/* [5] พรางตา: ถ้าใครจะแอบสั่ง Print หรือ Save as PDF เนื้อหาจะหายไปทันที */
-@media print {
-    body {
-        display: none !important;
-    }
-}
-
-.nav-right-container {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    flex-wrap: nowrap;
-    flex-direction: row-reverse;
-    align-items: flex-start;
-    /* align-content: center; */
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 32px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #444;
-    font-weight: 400;
-    transition: 0.3s;
-}
-
-.nav-links a:hover {
-    color: var(--savor-green);
-}
-
-/* ปรับแต่งปุ่มภาษาให้เป็นแบบวงกลมหรือสี่เหลี่ยมจัตุรัสมนๆ เพื่อความ Clean */
-.lang-btn {
-    width: 46px;
-    /* ล็อคความกว้างไว้ไม่ให้ขยับตอนตัวอักษรเปลี่ยน */
-    /* height: 35px; */
-    /* ความสูงกำลังดีสำหรับ Nav Bar */
-    background-color: var(--savor-green);
-    color: white;
-    border-radius: 10px;
-    /* ทำเป็นทรงแคปซูลมนๆ ดูทันสมัย */
-    border: 1px solid #ffffff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.lang-btn:hover {
-    background-color: #00642a;
-    color: var(--savor-green);
-    border: 2px solid var(--savor-green);
-}
-
-/* 1. สั่งให้ Navbar เป็น Flex และจัดของให้อยู่กลาง */
-.header-container {
-    /* หรือชื่อ Class ที่คุม Navbar ทั้งหมด */
-    display: flex;
-    justify-content: space-between;
-    /* ให้ Logo อยู่ซ้าย เมนูอยู่ขวา */
-    align-items: center;
-    position: relative;
-    /* สำคัญมากเพื่อใช้จัดตัวลูก */
-}
-
-/* ปรับขนาดในมือถือให้เล็กลงนิดนึง */
-@media (max-width: 768px) {
-    .lang-btn {
-        width: 35px;
-        height: 35px;
-        /* font-size: 0.75rem; */
-    }
-}
-
-.mobile-only-item {
-    display: none;
-}
-
-/* ============================================================
-   SAVOR HAPPINESS - MASTER RESPONSIVE BUNDLE
-   Author: Pran (Palm)
-   Description: Unified CSS with Clean Breakpoints
-============================================================ 
-*/
-
-/* [1] GLOBAL RESET - ป้องกัน Margin/Padding ส่วนเกินดันจอเบี้ยว */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-
-html,
-body {
-    width: 100%;
-    overflow-x: hidden;
-    /* ห้ามมี Scroll แนวนอนเด็ดขาด */
-    background: var(--savor-cream);
-    font-family: 'Anuphan', sans-serif;
-}
-
-/* ============================================================
-   [2] DESKTOP & BASE STYLES (1025px UP)
-============================================================ 
-*/
-nav {
-    height: 75px;
-    padding: 0 5%;
-}
-
-.book-grid-container {
-    flex-direction: row;
-    gap: 60px;
-}
-
-/* ============================================================
-   SAVOR HAPPINESS - AUTHOR SECTION (ULTIMATE PREMIUM DESIGN)
-   + PERFECT CENTERING + SMOOTH INTERACTION
-   ============================================================ */
-
-.author-centering-wrapper {
-    background-color: transparent !important;
-    padding: 100px 20px;
-    /* เพิ่มพื้นที่หายใจ */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-.author-layout-card {
-    background-color: var(--author-card, #ffffff) !important;
-    border-radius: 10px;
-    /* มนขึ้นให้ดูพรีเมียม */
-    width: 100%;
-    max-width: 960px;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-    /* เงาแบบ Soft Layered Shadow */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02), 0 30px 60px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.author-layout-card:hover {
-    transform: translateY(-8px);
-    /* ขยับขึ้นเบาๆ เวลาเมาส์ชี้ */
-}
-
-.author-visual-side {
-    flex: 0 0 380px;
-    padding: 60px 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to bottom, #ffffff, #fafafa);
-    /* ไล่เฉดพื้นหลังเบาๆ */
-    border-right: 1px solid var(--author-line, #f0f0f0);
-}
-
-.author-profile-pic {
-    width: 240px;
-    height: 240px;
-    border-radius: 10px;
-    /* มนสวยรับกับ Card */
-    overflow: hidden;
-    margin-bottom: 30px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-}
-
-.author-profile-pic img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
-
-.author-profile-pic:hover img {
-    transform: scale(1.1);
-    /* Zoom รูปโปรไฟล์เบาๆ */
-}
-
-.author-logos-grid {
-    display: flex;
-    gap: 32px;
-    justify-content: center;
-    padding-top: 25px;
-    border-top: 1px dashed #ddd;
-    /* เปลี่ยนเป็นเส้นประดูเป็นงาน Design มากขึ้น */
-    width: 80%;
-}
-
-.logo-box img {
-    height: 32px !important;
-    filter: grayscale(100%);
-    /* ทำเป็นขาวดำก่อน */
-    opacity: 0.6;
-    transition: 0.3s ease;
-}
-
-.logo-box img:hover {
-    filter: grayscale(0%);
-    /* กลับมามีสีเวลาชี้ */
-    opacity: 1;
-}
-
-.author-content-side {
-    flex: 1;
-    padding: 60px 70px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    -webkit-font-smoothing: antialiased;
-}
-
-.author-name {
-    color: var(--author-text-main, #007A33) !important;
-    font-size: 32px !important;
-    /* ใหญ่ขึ้นนิดนึง */
-    font-weight: 850;
-    /* หนาพิเศษ */
-    line-height: 1.1;
-    margin-bottom: 10px !important;
-    letter-spacing: -0.5px;
-    /* บีบตัวอักษรนิดนึงให้ดู Modern */
-}
-
-.author-title {
-    color: var(--author-text-sub, #888) !important;
-    font-size: 16px !important;
-    line-height: 1.8;
-    margin-bottom: 40px !important;
-    font-weight: 400;
-    letter-spacing: 0.2px;
-}
-
-/* ป้องกันตัวหนังสือสีขาวกลืนกับพื้นหลังการ์ดขาวใน Author Section เมื่ออยู่ในโหมด Dark */
-[data-theme="dark"] .author-name,
-[data-theme="dark"] .author-title,
-[data-theme="dark"] .contact-box p {
-    color: #444444 !important;
-}
-
-.author-contact-grid {
-    border-top: 1px solid #eee;
-    padding-top: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-}
-
-.contact-box {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    width: 280px;
-    /* ล็อกความกว้างเพื่อให้ไอคอนเรียงตรงกันเป๊ะ */
-    padding: 12px 20px;
-    background: transparent;
-    border-radius: 10px;
-    text-decoration: none;
-    color: #444;
-    transition: 0.3s all ease;
-}
-
-.contact-box:hover {
-    background: #f8f8f8;
-    /* ไฮไลท์สีเทาอ่อนเวลาชี้ */
-    transform: translateX(5px);
-    /* เลื่อนขวาเล็กน้อย */
-}
-
-.contact-box i {
-    width: 38px;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--savor-orange, #FF8C00), #FFA500);
-    /* ไล่เฉดสีส้ม */
-    color: white !important;
-    border-radius: 10px;
-    font-size: 16px;
-    flex-shrink: 0;
-    box-shadow: 0 4px 10px rgba(255, 140, 0, 0.3);
-}
-
-.contact-box p {
-    margin: 0 !important;
-    font-weight: 600;
-    font-size: 14.5px;
-}
-
-/* --- Responsive (หน้าจอมือถือ) --- */
-@media (max-width: 850px) {
-    .author-layout-card {
-        flex-direction: column;
-        border-radius: 10px;
-        margin: 0 10px;
-    }
-
-    .author-visual-side {
-        flex: 0 0 auto;
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #eee;
-        padding: 50px 20px;
-    }
-
-    .author-content-side {
-        padding: 50px 30px;
-    }
-
-    .author-name {
-        font-size: 26px !important;
-    }
-}
-
-/* ============================================================
-   [4] MOBILE PORTRAIT (แนวตั้ง - 768px DOWN)
-   - ปรับทุกอย่างให้เป็น Single Column (ยกเว้น Merch)
-============================================================ 
-*/
-@media (max-width: 768px) {
-
-    /* Header & Nav */
-    .nav-links {
-        display: none;
-    }
-
-    /* ซ่อนเมนูไว้ใน Hamburger */
-
-    /* Hero Section */
-    .hero-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(5, 1fr);
-        /* 10 รูปพอดี */
-    }
-
-    /* Guidebook Section */
-    .book-grid-container {
-        flex-direction: column !important;
-        padding: 40px 20px !important;
-        text-align: center;
-    }
-
-    .book-visual,
-    .book-text {
-        width: 100% !important;
-        min-width: unset !important;
-    }
-
-    .inner-mockup {
-        max-width: 100%;
-    }
-
-
-    /* Bookmark & Merch */
-    .merch-grid.bookmark-triple-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        /* จอเล็กลงเหลือ 2 คอลัมน์ */
-    }
-
-}
-
-/* ============================================================
-   [FIX MASTER] THE REAL HAPPINESS BUTTON (Match image_4.png)
-   Description: เปลี่ยนเป็นวงกลมสีเหลืองทึบเป๊ะๆ ตามเรฟ
-   ============================================================ */
-
-/* --- การตั้งค่าเริ่มต้น (ตอนยังไม่กด) --- */
-.speed-dial-buttons {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 15px !important;
-    margin-bottom: 15px;
-
-    /* ท่าไม้ตาย: ซ่อนไว้ก่อนและเลื่อนลงไปข้างล่าง */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(30px) scale(0.5);
-    /* ย่อตัวและลงไปข้างล่าง */
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    /* เด้งแบบนุ่มนวล */
-    pointer-events: none;
-    /* กันเผลอไปกดตอนมันซ่อน */
-}
-
-/* --- เมื่อมีการกด (Class .active ทำงาน) --- */
-.speed-dial-container.active .speed-dial-buttons {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-    /* เด้งกลับมาตำแหน่งปกติ */
-    pointer-events: auto;
-}
-
-/* --- หมุนหน้ายิ้มนิดๆ ตอนเปิดเมนู --- */
-.speed-dial-container.active .speed-dial-main-btn {
-    transform: rotate(15deg) scale(1.1);
-    background-color: #FFB800 !important;
-}
-
-/* ปุ่มลูกๆ (ใส่ Delay ให้มันเด้งขึ้นมาทีละตัวแบบฉลาดๆ) */
-.dial-btn {
-    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-}
-
-.dial-btn:hover {
-    transform: scale(1.2) !important;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3) !important;
-}
-
-
-/* สไตล์สำหรับ Lightbox */
-.lightbox-overlay {
-    display: none;
-    /* ซ่อนไว้ก่อน */
-    position: fixed;
-    z-index: 11000;
-    /* ต้องสูงกว่าทุกอย่าง */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    cursor: zoom-out;
-    justify-content: center;
-    align-items: center;
-}
-
-.lightbox-content {
-    max-width: 90%;
-    max-height: 80%;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    animation: zoomAnim 0.3s ease;
-}
-
-@keyframes zoomAnim {
-    from {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.close-lightbox {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-
-/* ============================================================
-   [THE FINAL BOSS - REBORN] 
-   BY PALM (GRAPHIC DESIGN SPU)
-   SAVOR HAPPINESS | ALL-IN-ONE STABILIZER
-   ============================================================ */
-
-/* [1] โครงสร้างพื้นฐาน Nav & Video Wrapper */
-
+.video-experience {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background: var(--savor-cream);
+}
+
+/* Old-style container (used directly in some sections) */
+.video-container {
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  background: transparent; /* no black bar */
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Modern wrapper (used with #myVideo) */
 .video-wrapper {
-    position: relative !important;
-    width: 100% !important;
-    aspect-ratio: 16 / 9 !important;
-    background: rgba(0, 0, 0, 0.06) !important;
-    border-radius: 10px;
-    overflow: hidden !important;
+  position: relative;
+  width: 70%;
+  max-width: 1000px;
+  aspect-ratio: 16 / 9; /* lock ratio → prevents letterbox gap */
+  margin: 40px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  background: transparent; /* ✅ no black bar ever */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
 #myVideo {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important; /* fill wrapper, no letterbox */
+  display: block !important;
+  background: transparent !important;
 }
 
-/* [2] 🟢 DARK MODE OVERRIDE (อิงตาม [data-theme="dark"] ของอ้าย) */
+#myVideo:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+/* Overlay gradient for readability */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+  display: flex;
+  align-items: flex-end;
+  padding: 50px;
+}
+
+.video-content {
+  color: white;
+}
+
+.video-content h2 {
+  font-size: 2.5rem;
+  margin: 15px 0 5px 0;
+  color: white;
+}
+
+/* Mute button */
+.mute-control-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.mute-control-btn:hover {
+  background: rgba(255, 255, 255, 0.4) !important;
+  transform: scale(1.1);
+}
+
+/* Video content card */
+.video-content-box {
+  background: #ffffff !important;
+  padding: 50px 40px !important;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid #f0f0f0 !important;
+  max-width: 850px !important;
+  margin: 0 auto 40px !important;
+  text-align: center;
+}
+
+.video-content-box .section-title {
+  color: #007a33 !important;
+  font-size: 2.5rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 20px !important;
+  line-height: 1.2 !important;
+}
+
+/* Video description — single consolidated rule */
+.video-description {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin: 30px auto 10px !important;
+}
+
+.video-description p {
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  line-height: 1.8 !important;
+  font-size: 1.15rem !important;
+  color: #555 !important; /* dark on white card → readable in both modes */
+}
+
+/* Video tag — hidden permanently */
+.video-tag {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ============================================================
+   [12] SHOP GRID (2-col desktop / 1-col mobile)
+   ============================================================ */
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+.shop-card {
+  width: 100%;
+  max-width: 450px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  margin-bottom: 30px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.shop-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 122, 51, 0.15);
+}
+
+/* ============================================================
+   [13] PHOTO GALLERY
+   ============================================================ */
+.photo-gallery {
+  display: block;
+  height: 320px;
+  overflow: hidden;
+  position: relative;
+  background: #f4f4f4;
+  border-radius: 10px !important;
+  isolation: isolate;
+}
+
+.photo-gallery img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px !important;
+  transition: transform 0.4s ease;
+  cursor: zoom-in;
+}
+
+.photo-item {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  z-index: 1;
+  cursor: pointer;
+  border-radius: 10px !important;
+}
+
+.photo-item.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.shop-name {
+  padding: 25px 30px !important;
+  line-height: 1.4;
+  color: var(--savor-dark);
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* combined border-radius override for card images */
+.shop-card img,
+.merch-card img,
+.author-profile-pic img {
+  border-radius: 10px !important;
+  object-fit: cover !important;
+}
+
+/* ============================================================
+   [14] TICKER BANNER
+   ============================================================ */
+.shop-ticker-banner {
+  width: 100%;
+  height: 70px;
+  background-color: var(--savor-white);
+  border-top: 1px solid rgba(0, 122, 51, 0.1);
+  border-bottom: 1px solid rgba(0, 122, 51, 0.1);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 90;
+  margin: 40px 0;
+}
+
+.shop-ticker-track {
+  display: flex !important;
+  white-space: nowrap;
+  animation: tickerLoopRight 40s linear infinite !important;
+}
+
+@keyframes tickerLoopRight {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.ticker-item {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--savor-green);
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+}
+
+.ticker-sep {
+  color: var(--savor-orange);
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+/* ============================================================
+   [15] MERCH SECTION
+   ============================================================ */
+.merch-category {
+  margin-bottom: 60px;
+}
+
+.merch-sub-title {
+  margin: 40px 0 30px 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--savor-dark);
+  border-left: 6px solid var(--savor-orange);
+  padding-left: 20px;
+}
+
+/* Auto-fit grid for general merch */
+.merch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+}
+
+/* Bookmark triple grid override */
+.merch-grid.bookmark-triple-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 15px !important;
+  width: 100% !important;
+  max-width: 1000px;
+  margin: 30px auto 0 !important;
+  padding: 0 !important;
+}
+
+.merch-card {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box;
+  margin: 0 !important;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: 0.3s ease;
+}
+
+.merch-card:hover {
+  transform: translateY(-8px);
+}
+
+.merch-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  object-fit: cover;
+  transition: 0.3s;
+}
+
+.merch-card img:hover {
+  transform: scale(1.05);
+}
+
+/* ============================================================
+   [16] GUIDEBOOK (BOOK SECTION) — Centering fixed
+   ============================================================ */
+.book-grid-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 60px !important;
+  padding: 50px 20px !important;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.book-visual {
+  flex: 1;
+  min-width: 300px; /* reduced from 350px to flex-wrap sooner */
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+.inner-mockup {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  cursor: zoom-in;
+  transition: transform 0.4s ease;
+}
+
+.inner-mockup:hover {
+  transform: translateY(-5px);
+}
+
+.book-thumbs {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 15px !important;
+  flex-wrap: wrap !important;
+  width: 100% !important;
+  margin-top: 30px !important;
+}
+
+.thumb-item {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.thumb-item:hover {
+  transform: scale(1.05);
+}
+
+.thumb-item.active {
+  border-color: var(--savor-green);
+  transform: translateY(-3px);
+}
+
+.book-text {
+  flex: 1;
+  min-width: 300px; /* reduced from 350px */
+  padding: 20px;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  justify-content: center !important;
+}
+
+.book-text h2 {
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  color: var(--ci-green);
+  font-weight: 800;
+}
+
+.book-text p {
+  line-height: 1.8;
+  margin-bottom: 30px;
+  color: #555;
+  font-size: 1.1rem;
+  max-width: 500px;
+}
+
+/* Book Card (single consolidated block) */
+.book-card {
+  background: #ffffff !important;
+  padding: 50px 60px !important;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid #f0f0f0 !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  max-width: 850px !important;
+  width: 90% !important;
+  margin: 40px auto !important;
+  text-align: center;
+}
+
+.book-card:hover {
+  transform: translateY(-10px) !important;
+  box-shadow: 0 20px 50px rgba(0, 122, 51, 0.12) !important;
+}
+
+.book-badge-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.badge {
+  background: var(--ci-soft-yellow) !important;
+  color: #007a33 !important;
+  padding: 6px 18px !important;
+  border-radius: 10px;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  border: 1px solid #eee !important;
+}
+
+.book-spec-detail {
+  color: #ff8c00 !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.5px !important;
+  margin-bottom: 15px !important;
+  text-transform: uppercase;
+}
+
+/* Single consolidated .book-description */
+.book-description {
+  color: #444 !important;
+  line-height: 1.8 !important;
+  margin-bottom: 35px !important;
+  max-width: 100% !important;
+  letter-spacing: 0.2px !important;
+}
+
+/* ============================================================
+   [17] PRIMARY BUTTON (single block)
+   ============================================================ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #007a33 !important;
+  color: #ffffff !important;
+  padding: 16px 35px !important;
+  border-radius: 10px;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  white-space: nowrap;
+  transition: 0.3s ease !important;
+  box-shadow: 0 5px 20px rgba(0, 122, 51, 0.25) !important;
+  margin-top: 15px;
+  animation: pulse-green 2s infinite;
+}
+
+.btn-primary:hover {
+  background: #005c26 !important;
+  transform: scale(1.03) translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(0, 122, 51, 0.4) !important;
+}
+
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 122, 51, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(0, 122, 51, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 122, 51, 0);
+  }
+}
+
+/* ============================================================
+   [18] LOGO BOX
+   ============================================================ */
+.logo-box {
+  background: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Logo box image — full color, no grayscale */
+.logo-box img {
+  filter: none !important;
+  -webkit-filter: grayscale(0) !important;
+  opacity: 1 !important;
+  max-width: 85% !important;
+  max-height: 85% !important;
+  object-fit: contain !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+.logo-box:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Author logos grid — grayscale hover effect */
+.author-logos-grid {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  padding-top: 25px;
+  border-top: 1px dashed #ddd;
+  width: 80%;
+}
+
+.author-logos-grid .logo-box img {
+  height: 32px !important;
+  filter: grayscale(100%) !important;
+  opacity: 0.6;
+}
+
+.author-logos-grid .logo-box img:hover {
+  filter: grayscale(0%) !important;
+  opacity: 1;
+}
+
+/* ============================================================
+   [19] AUTHOR SECTION
+   ============================================================ */
+.author-centering-wrapper {
+  background-color: transparent !important;
+  padding: 100px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.author-layout-card {
+  background-color: var(--author-card, #ffffff) !important;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.02),
+    0 30px 60px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.author-layout-card:hover {
+  transform: translateY(-8px);
+}
+
+.author-visual-side {
+  flex: 0 0 380px;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #ffffff, #fafafa);
+  border-right: 1px solid var(--author-line, #f0f0f0);
+}
+
+.author-profile-pic {
+  width: 240px;
+  height: 240px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.author-profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.author-profile-pic:hover img {
+  transform: scale(1.1);
+}
+
+.author-content-side {
+  flex: 1;
+  padding: 60px 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+.author-name {
+  color: var(--author-text-main, #007a33) !important;
+  font-size: 32px !important;
+  font-weight: 850;
+  line-height: 1.1;
+  margin-bottom: 10px !important;
+  letter-spacing: -0.5px;
+}
+
+.author-title {
+  color: var(--author-text-sub, #888) !important;
+  font-size: 16px !important;
+  line-height: 1.8;
+  margin-bottom: 40px !important;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+.author-contact-grid {
+  border-top: 1px solid #eee;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.contact-box {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 280px;
+  padding: 12px 20px;
+  background: transparent;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #444;
+  transition: 0.3s all ease;
+}
+
+.contact-box:hover {
+  background: #f8f8f8;
+  transform: translateX(5px);
+}
+
+.contact-box i {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--savor-orange, #ff8c00), #ffa500);
+  color: white !important;
+  border-radius: 10px;
+  font-size: 16px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(255, 140, 0, 0.3);
+}
+
+.contact-box p {
+  margin: 0 !important;
+  font-weight: 600;
+  font-size: 14.5px;
+}
+
+/* ============================================================
+   [20] SPEED DIAL CHAT BUTTON
+   ============================================================ */
+.speed-dial-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Main button — single consolidated block */
+.speed-dial-main-btn {
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  background: var(--savor-yellow) !important;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.speed-dial-main-btn img {
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: contain !important;
+  position: absolute;
+  transition: 0.4s ease-in-out;
+}
+
+/* Normal/active image swap */
+.img-active {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.speed-dial-container.active .img-normal {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.speed-dial-container.active .img-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.speed-dial-container.active .speed-dial-main-btn {
+  transform: rotate(15deg) scale(1.1);
+  background-color: #ffb800 !important;
+}
+
+/* Child buttons */
+.speed-dial-buttons {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 15px !important;
+  margin-bottom: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px) scale(0.5);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+}
+
+.speed-dial-container.active .speed-dial-buttons {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.dial-btn {
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease !important;
+}
+
+.dial-btn:hover {
+  transform: scale(1.2) !important;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.phone-btn {
+  background: #ffd54f;
+}
+.line-btn {
+  background: #66bb6a;
+}
+.copy-btn {
+  background: #ffca28;
+}
+
+/* ============================================================
+   [21] LIGHTBOX SYSTEM
+   ============================================================ */
+#simpleLightbox {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.97);
+  overflow: hidden !important;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+#lightboxImg {
+  max-width: 90%;
+  max-height: 85%;
+  object-fit: contain;
+  transition: transform 0.35s cubic-bezier(0.15, 0, 0.15, 1);
+  cursor: zoom-in;
+  user-select: none;
+  -webkit-user-drag: none;
+  display: block;
+}
+
+#lightboxImg.zoomed {
+  max-width: none !important;
+  max-height: none !important;
+  cursor: grab;
+}
+
+#lightboxImg.zoomed:active {
+  cursor: grabbing;
+}
+
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  z-index: 11000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  cursor: zoom-out;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  animation: zoomAnim 0.3s ease;
+}
+
+@keyframes zoomAnim {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ============================================================
+   [22] FOOTER
+   ============================================================ */
+footer {
+  background: #ffffff;
+  padding: 80px 0;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 60px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.footer-brand {
+  flex: 1;
+  min-width: 300px;
+}
+
+.footer-logo {
+  height: 45px;
+  margin-bottom: 25px;
+}
+
+.footer-desc {
+  color: #888;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-socials a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
+  color: var(--savor-green);
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.footer-socials a:hover {
+  background: var(--savor-green);
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 60px;
+  border-top: 1px solid #f8f8f8;
+  margin-top: 60px;
+  color: #bbb;
+  font-size: 0.85rem;
+}
+
+/* Footer text stays dark in dark mode (footer bg is always white) */
+[data-theme="dark"] footer p {
+  color: #888888 !important;
+}
+
+/* ============================================================
+   [23] SEARCH BAR (Luxury Style)
+   ============================================================ */
+.search-wrapper {
+  max-width: 850px;
+  margin: 120px auto 50px !important;
+  padding: 0 20px;
+  position: relative;
+  z-index: 100;
+}
+
+.search-input-group {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 10px 10px 10px 30px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-input-group:focus-within {
+  transform: translateY(-2px);
+  border-color: #ff8c00;
+  box-shadow: 0 20px 50px rgba(255, 140, 0, 0.15);
+}
+
+#shopSearchInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  color: var(--savor-dark, #333);
+  background: transparent;
+  font-weight: 500;
+}
+
+#shopSearchInput::placeholder {
+  color: #bbb;
+}
+
+#searchBtn {
+  background: #007a33 !important;
+  color: #ffffff !important;
+  border: none;
+  padding: 14px 35px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+  letter-spacing: 0.5px;
+}
+
+#searchBtn:hover {
+  background: #ff8c00 !important;
+  transform: scale(1.02);
+}
+
+#searchSuggestions {
+  position: absolute;
+  top: calc(100% + 15px);
+  left: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  z-index: 1001;
+  display: none;
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.suggestion-item {
+  padding: 18px 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: 0.2s;
+  color: #444;
+  font-size: 1rem;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background: #fdfaf5;
+  color: #007a33;
+  padding-left: 35px;
+}
+
+.suggestion-item i {
+  color: #ff8c00;
+  font-size: 1.1rem;
+}
+
+/* Suggestion box text stays dark → white glass bg */
+[data-theme="dark"] .suggestion-item {
+  color: #444444 !important;
+}
+
+/* ============================================================
+   [24] QR SUPPORT MODAL
+   ============================================================ */
+.qr-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 20000;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.qr-card {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  width: 90%;
+  max-width: 400px;
+  border-radius: 30px;
+  padding: 40px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.qr-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.qr-header h3 {
+  color: var(--ci-green);
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.qr-header p {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+}
+
+.qr-placeholder {
+  background: #ffffff !important;
+  border: none;
+  border-radius: 10px;
+  aspect-ratio: 1/1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  color: var(--ci-green);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow: hidden;
+}
+
+.qr-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
+}
+
+.qr-placeholder i {
+  font-size: 4rem;
+  margin-bottom: 10px;
+}
+
+.qr-footer p {
+  color: var(--ci-orange);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* QR Card dark mode — white card, dark text */
+[data-theme="dark"] .qr-card {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .qr-card * {
+  color: #333333 !important;
+}
+
+[data-theme="dark"] .qr-card .qr-header h3 {
+  color: var(--ci-green) !important;
+}
+
+[data-theme="dark"] .qr-card .qr-placeholder p {
+  color: #333333 !important;
+}
+
+/* ============================================================
+   [25] SUPPORT SECTION
+   ============================================================ */
+.support-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.support-desc {
+  margin-bottom: 30px !important;
+}
+
+.btn-support-cta {
+  background: var(--ci-orange) !important;
+  box-shadow: 0 5px 20px rgba(255, 140, 0, 0.3) !important;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  animation: pulse-orange 2s infinite !important;
+}
+
+.btn-support-cta:hover {
+  background: #e67e00 !important;
+  transform: scale(1.05) translateY(-2px) !important;
+  box-shadow: 0 8px 30px rgba(255, 140, 0, 0.4) !important;
+}
+
+.btn-support-cta::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 20%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: rotate(30deg);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -60%;
+  }
+  20% {
+    left: 120%;
+  }
+  100% {
+    left: 120%;
+  }
+}
+
+@keyframes pulse-orange {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(255, 140, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0);
+  }
+}
+
+/* ============================================================
+   [26] DARK MODE — COMPREHENSIVE OVERRIDES
+   ============================================================ */
+
+/* Body & global */
 [data-theme="dark"],
 [data-theme="dark"] body {
-    background-color: var(--savor-olive) !important;
-    /* ปรับให้เรียกจากตัวแปร */
-    color: #ffffff !important;
+  background-color: var(--savor-olive) !important;
+  color: #ffffff !important;
 }
 
+/* Nav */
 [data-theme="dark"] nav,
 [data-theme="dark"] .nav-links {
-    background-color: #007A33 !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background-color: #007a33 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 [data-theme="dark"] .nav-links li a,
 [data-theme="dark"] #hamburgerBtn i,
 [data-theme="dark"] .hamburger-menu i {
-    color: #ffffff !important;
+  color: #ffffff !important;
 }
 
-/* [3] ดีไซน์ปุ่มภาษา (Lang) & ปุ่มโหมด (Theme) - รวบตึงแก้ปัญหาปุ่มล่องหน */
-.nav-controls-wrapper {
-    display: flex !important;
-    gap: 10px !important;
-    align-items: center !important;
+/* Section titles */
+[data-theme="dark"] .section-title {
+  color: #ffffff !important;
 }
 
-.lang-btn,
-.theme-btn {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    cursor: pointer !important;
-    transition: 0.3s !important;
-    font-weight: 600 !important;
-}
-
-/* สไตล์เมื่อเป็น LIGHT MODE (กันปุ่มหาย) */
-html:not([data-theme="dark"]) .lang-btn {
-    border: 1.5px solid #007A33 !important;
-    color: #007A33 !important;
-    background: transparent !important;
-}
-
-html:not([data-theme="dark"]) .theme-btn {
-    background-color: #f0f0f0 !important;
-    border: 1.5px solid #ccc !important;
-    color: #333 !important;
-}
-
-/* สไตล์เมื่อเป็น DARK MODE */
-[data-theme="dark"] .lang-btn,
-[data-theme="dark"] .theme-btn {
-    color: #ffffff !important;
-    border-color: rgba(255, 255, 255, 0.4) !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
-}
-
-/* ปุ่ม Active (ส้ม CI) */
-.theme-btn.active-dark {
-    background-color: var(--author-orange, #ff8c00) !important;
-    border-color: var(--author-orange, #ff8c00) !important;
-    color: #ffffff !important;
-}
-
-/* [4] DESKTOP FIX (ล็อกขนาดปุ่มบน Nav บาร์) */
-@media (min-width: 1025px) {
-    .hamburger-menu {
-        display: none !important;
-    }
-
-    nav .nav-right-container .nav-controls-wrapper {
-        width: auto !important;
-    }
-
-    nav .nav-right-container .lang-btn,
-    nav .nav-right-container .theme-btn {
-        width: 65px !important;
-        height: 35px !important;
-        font-size: 0.75rem !important;
-        border-radius: 10px !important;
-        flex: none !important;
-    }
-}
-
-/* [5] MOBILE & TABLET SPECIAL (Burger Menu) */
-@media (max-width: 1024px) {
-    nav {
-        padding: 0 15px !important;
-    }
-
-    .hamburger-menu {
-        display: block !important;
-        font-size: 28px;
-        color: #007A33;
-        z-index: 10002 !important;
-        cursor: pointer;
-    }
-
-    .nav-right-container .nav-controls-wrapper {
-        display: none !important;
-    }
-
-    /* ซ่อนปุ่มนอกบาร์ในมือถือ */
-
-    .nav-links {
-        display: none !important;
-        position: fixed !important;
-        top: 0;
-        right: -100%;
-        width: 60%;
-        /* ปรับความกว้างให้พอดี */
-        height: 100vh;
-        background: rgba(255, 255, 255, 0.98) !important;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        flex-direction: column !important;
-        justify-content: center;
-        align-items: center;
-        gap: 40px;
-        z-index: 10001;
-        transition: right 0.4s ease;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-    }
-
-    .nav-links.active {
-        display: flex !important;
-        right: 0 !important;
-    }
-
-    /* ปรับแต่งปุ่มในแผ่น Burger Menu */
-    .nav-links .nav-controls-wrapper {
-        margin-top: 20px !important;
-        width: 100% !important;
-        justify-content: center !important;
-        gap: 15px !important;
-    }
-
-    .nav-links .lang-btn,
-    .nav-links .theme-btn {
-        width: 110px !important;
-        height: 45px !important;
-        border-radius: 10px;
-        font-size: 0.9rem !important;
-        flex: none !important;
-    }
-
-    /* Video & Content Center Mobile */
-    .video-text-side {
-        padding: 30px 15px !important;
-        text-align: center !important;
-    }
-
-    .video-flex-container {
-        flex-direction: column !important;
-    }
-
-    .video-content-box {
-        max-width: 100% !important;
-    }
-}
-
-/* [6] Miscellaneous (Tag & Speed Dial) */
-.video-tag {
-    display: inline-block !important;
-    background: var(--savor-orange) !important;
-    color: #fff !important;
-    padding: 6px 18px !important;
-    border-radius: 10px;
-    font-size: 0.85rem !important;
-    margin-bottom: 20px !important;
-}
-
-/* ============================================================
-   SAVOR HAPPINESS | HIDE VIDEO TAG
-   - ซ่อนส่วน Tag ของวิดีโอออกจากการแสดงผล
-   ============================================================ */
-
-.video-tag {
-    display: none !important;
-    /* ซ่อนถาวรในทุกอุปกรณ์ */
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-}
-
-.speed-dial-main-btn img {
-    width: 40px !important;
-    height: 40px !important;
-    object-fit: contain !important;
-}
-
-/* ============================================================
-   SAVOR HAPPINESS | MOBILE MENU FINAL FIX
-   - แก้ปัญหาเมนูไม่โผล่ / โผล่แล้วมองไม่เห็นตัวหนังสือ
-   ============================================================ */
-
-@media (max-width: 1024px) {
-    body {
-        padding-top: 0 !important;
-    }
-
-    nav {
-        height: 70px !important;
-        padding: 0 20px !important;
-        position: fixed !important;
-        top: 0 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        background: var(--bg-nav) !important;
-    }
-
-    .logo {
-        position: static !important;
-        transform: none !important;
-        display: flex !important;
-        align-items: center !important;
-    }
-
-    .logo img {
-        height: 28px !important;
-        margin: 0 !important;
-    }
-
-    .hamburger-menu {
-        display: flex !important;
-        align-items: center !important;
-        margin: 0 !important;
-        height: auto !important;
-    }
-
-    /* 1. ตัวถาดเมนู (Mobile) */
-    .nav-links {
-        display: flex !important;
-        right: -100%;
-        /* ซ่อนไว้ทางขวา */
-        width: 70% !important;
-        /* ปรับให้กว้างขึ้นหน่อยจะได้กดง่าย */
-        height: 100vh !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        align-items: center !important;
-        gap: 35px !important;
-        z-index: 10001 !important;
-        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    /* 2. เมื่อกดปุ่มเบอร์เกอร์แล้วสั่งเปิด */
-    .nav-links.active {
-        right: 0 !important;
-        /* เลื่อนออกมาจากขวา */
-    }
-
-    /* 3. ล็อกสีพื้นหลังแผ่นเมนู (ตามโหมด) */
-    /* Light Mode: พื้นขาว */
-    html:not([data-theme="dark"]) .nav-links {
-        background-color: rgba(255, 255, 255, 0.98) !important;
-        backdrop-filter: blur(10px);
-    }
-
-    /* Dark Mode: พื้นเขียว CI */
-    [data-theme="dark"] .nav-links {
-        background-color: #007A33 !important;
-    }
-
-    /* 4. ล็อกสีตัวหนังสือเมนู (ให้ตัดกับพื้นหลัง) */
-    /* Light Mode: ตัวหนังสือเขียว */
-    html:not([data-theme="dark"]) .nav-links li a {
-        color: #007A33 !important;
-        font-weight: 700 !important;
-    }
-
-    /* Dark Mode: ตัวหนังสือขาว */
-    [data-theme="dark"] .nav-links li a {
-        color: #ffffff !important;
-    }
-
-    /* 5. ปุ่ม TH/EN & LIGHT/DARK ในแผ่นเมนู */
-    .nav-links .nav-controls-wrapper {
-        display: flex !important;
-        margin-top: 20px !important;
-        gap: 15px !important;
-    }
-
-    /* สไตล์ปุ่มในเมนู (Light) */
-    html:not([data-theme="dark"]) .nav-links .lang-btn,
-    html:not([data-theme="dark"]) .nav-links .theme-btn {
-        border: 1.5px solid #007A33 !important;
-        color: #007A33 !important;
-    }
-
-    /* สไตล์ปุ่มในเมนู (Dark) */
-    [data-theme="dark"] .nav-links .lang-btn,
-    [data-theme="dark"] .nav-links .theme-btn {
-        border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
-        color: #ffffff !important;
-    }
-}
-
-/* 6. ปุ่มเบอร์เกอร์ (Hamburger) ต้องอยู่บนสุดเสมอ */
-.hamburger-menu {
-    display: block !important;
-    position: relative;
-    z-index: 10002 !important;
-    /* ต้องสูงกว่า .nav-links */
-    cursor: pointer;
-}
-
-/* สีไอคอนเบอร์เกอร์ตามโหมด */
-html:not([data-theme="dark"]) .hamburger-menu i {
-    color: #007A33 !important;
-}
-
-[data-theme="dark"] .hamburger-menu i {
-    color: #ffffff !important;
-}
-
-/* ============================================================
-    SAVOR HAPPINESS | GUIDEBOOK CARD DESIGN (FIXED)
-    - พื้นหลังขาว สะอาดตา สไตล์ Minimal
-    - แก้ไข Syntax Error และรองรับ Dark Mode สมบูรณ์
-   ============================================================ */
-
-/* [1] ตัว Card หลัก */
-.book-card {
-    background: #ffffff !important;
-    padding: 50px 60px !important;
-    /* เพิ่มพื้นที่หายใจให้อ่านลื่นขึ้นใน Desktop */
-    border-radius: 10px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06) !important;
-    border: 1px solid #f0f0f0 !important;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-    max-width: 850px !important;
-    /* ขยายความกว้างให้ข้อความกางออกตามที่คุยกัน */
-    width: 90% !important;
-    margin: 40px auto !important;
-    text-align: center;
-}
-
-.book-card:hover {
-    transform: translateY(-10px) !important;
-    box-shadow: 0 20px 50px rgba(0, 122, 51, 0.12) !important;
-}
-
-/* [2] รายละเอียดภายใน Card */
-.book-badge-row {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 25px;
-}
-
-.badge {
-    background: var(--ci-soft-yellow) !important;
-    /* ใช้สีเหลืองอ่อน CI จะดู Happiness กว่าสีเทา */
-    color: #007A33 !important;
-    /* เขียว CI */
-    padding: 6px 18px !important;
-    border-radius: 10px;
-    font-size: 0.85rem !important;
-    font-weight: 700 !important;
-    border: 1px solid #eee !important;
-}
-
-.book-spec-detail {
-    color: #ff8c00 !important;
-    /* ส้ม CI */
-    font-weight: 800 !important;
-    letter-spacing: 1.5px !important;
-    margin-bottom: 15px !important;
-    text-transform: uppercase;
-}
-
-.book-description {
-    color: #444 !important;
-    line-height: 1.8 !important;
-    /* ระยะบรรทัดเพื่อความไหลลื่น */
-    margin-bottom: 35px !important;
-    max-width: 100% !important;
-}
-
-/* [3] ปุ่มดาวน์โหลด PDF */
-.btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    background: #007A33 !important;
-    color: #ffffff !important;
-    padding: 16px 35px !important;
-    border-radius: 10px;
-    text-decoration: none !important;
-    font-weight: 700 !important;
-    transition: 0.3s ease !important;
-    box-shadow: 0 5px 15px rgba(0, 122, 51, 0.2) !important;
-}
-
-.btn-primary:hover {
-    background: #005c26 !important;
-    transform: scale(1.03) !important;
-    box-shadow: 0 8px 25px rgba(0, 122, 51, 0.3) !important;
-}
-
-/* [4] จัดการพื้นหลัง Section ใน Dark Mode (ซ่อมจุดที่ทำให้แดง) */
-[data-theme="dark"] #book-feature {
-    background-color: #004d21 !important;
-}
-
-/* ล็อกสีหัวข้อใน Guidebook ให้เข้มเสมอ เพราะ Card เป็นสีขาว */
-[data-theme="dark"] .book-text h2,
-[data-theme="dark"] .book-description,
-[data-theme="dark"] .support-card .section-title,
-[data-theme="dark"] .support-card .support-desc {
-    color: #333333 !important;
-    /* บังคับสีเข้มเพราะพื้นหลัง Support Card เป็นขาว */
-}
-
-/* [5] Responsive: ป้องกันตัวหนังสือเบียดในมือถือ */
-@media (max-width: 768px) {
-    .book-card {
-        padding: 35px 25px !important;
-        margin: 20px 15px !important;
-        width: auto !important;
-    }
-
-    .book-badge-row {
-        flex-wrap: wrap;
-    }
-
-    .btn-primary {
-        width: 100% !important;
-        /* ปุ่มเต็มความกว้างในมือถือ */
-    }
-}
-
-/* ============================================================
-   SAVOR HAPPINESS | VIDEO DESCRIPTION CENTER FIX
-   - จัดข้อความคำโปรยให้อยู่กึ่งกลางเป๊ะในทุกหน้าจอ
-   ============================================================ */
-
-.video-description {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    /* จัดกึ่งกลางแนวนอน (Flex) */
-    text-align: center !important;
-    /* จัดกึ่งกลางตัวอักษร */
-    margin: 20px auto 0 !important;
-    /* เว้นระยะบนและจัดกึ่งกลาง Margin */
-}
-
-.video-description p {
-    max-width: 800px !important;
-    /* คุมความกว้างไม่ให้บรรทัดยาวเกินไป */
-    margin: 0 auto !important;
-    line-height: 1.8 !important;
-    /* เพิ่มระยะบรรทัดให้ดูโปรสไตล์ Graphic Design */
-    font-size: 1.1rem !important;
-    color: #555 !important;
-    /* สีเทาเข้มอ่านง่าย */
-}
-
-/* กรณีอยู่ใน Dark Mode */
-[data-theme="dark"] .video-description p {
-    color: rgba(255, 255, 255, 0.9) !important;
-}
-
-/* ปรับขนาดในมือถือให้ตัวหนังสือพอดีคำ */
-@media (max-width: 768px) {
-    .video-description p {
-        font-size: 0.95rem !important;
-        padding: 0 20px !important;
-    }
-
-    .video-description p br {
-        display: none;
-    }
-}
-
-/* ============================================================
-   SAVOR HAPPINESS | FINAL REFINEMENT (CARD & LAYOUT)
-   - ปรับขยายความกว้างให้ข้อความ "ลากยาว" อ่านลื่นขึ้น
-   ============================================================ */
-
-/* [1] ดีไซน์ Card ขาว (The Guidebook) */
-.book-card {
-    background: #ffffff !important;
-    padding: 50px 60px !important;
-    /* เพิ่ม padding ซ้ายขวาให้ดูพรีเมียมในคอม */
-    border-radius: 10px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06) !important;
-    border: 1px solid #f0f0f0 !important;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-
-    /* ขยายความกว้าง Card เพื่อให้ข้อความกางออกได้มากขึ้น */
-    max-width: 850px !important;
-    width: 90% !important;
-    margin: 40px auto !important;
-    text-align: center;
-}
-
-.book-card:hover {
-    transform: translateY(-10px) !important;
-    box-shadow: 0 20px 50px rgba(0, 122, 51, 0.12) !important;
-}
-
-/* ปรับให้คำอธิบายกางออก ไม่บีบเป็นแท่ง */
-.book-description {
-    max-width: 100% !important;
-    margin: 0 auto 30px !important;
-    line-height: 1.8 !important;
-    /* เพิ่มระยะบรรทัดให้อ่านลื่น */
-    letter-spacing: 0.2px !important;
-    color: #555 !important;
-}
-
-/* ============================================================
-    SAVOR HAPPINESS | VIDEO CONTENT REFINEMENT
-    - จัดกลุ่มเนื้อหาวิดีโอให้เป็น Card ขาว และอ่านไหลลื่น
-   ============================================================ */
-
-/* [1] ตัวครอบเนื้อหา (ทำให้เป็น Card ขาว) */
-.video-content-box {
-    background: #ffffff !important;
-    padding: 50px 40px !important;
-    border-radius: 10px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06) !important;
-    border: 1px solid #f0f0f0 !important;
-    max-width: 850px !important;
-    /* ขยายความกว้างให้สัมพันธ์กับ Book Card */
-    margin: 0 auto 40px !important;
-    text-align: center;
-}
-
-/* ซ่อน Tag ตามคำขอ */
-.video-tag {
-    display: none !important;
-}
-
-/* หัวข้อหลักใน Card วิดีโอ */
-.video-content-box .section-title {
-    color: #007A33 !important;
-    /* เขียว CI */
-    font-size: 2.5rem !important;
-    font-weight: 800 !important;
-    margin-bottom: 20px !important;
-    line-height: 1.2 !important;
-}
-
-/* [2] จัดกึ่งกลาง Video Description (กางออกให้อ่านง่าย ตามที่อ้ายส่งมา) */
-.video-description {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    text-align: center !important;
-    margin: 30px auto 10px !important;
-}
-
-.video-description p {
-    max-width: 900px !important;
-    /* ขยายความกว้างข้อความคำโปรย */
-    margin: 0 auto !important;
-    line-height: 1.8 !important;
-    font-size: 1.15rem !important;
-    color: #555 !important;
-}
-
-/* [3] การตั้งค่า Dark Mode (ซ่อมจุดที่แดง) */
+/* Section backgrounds */
 [data-theme="dark"] #highlights,
+[data-theme="dark"] #merch,
 [data-theme="dark"] #book-feature,
 [data-theme="dark"] #video-section {
-    background-color: #004d21 !important;
+  background-color: #004d21 !important;
 }
 
-/* บังคับสีฟอนต์ใน Card วิดีโอให้ชัดเจนเมื่ออยู่ในโหมดมืด */
-[data-theme="dark"] .video-content-box .section-title {
-    color: #007A33 !important;
-    /* ล็อกสีเขียว CI ตามความต้องการ */
+/* District label */
+[data-theme="dark"] .district-label {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  padding: 12px 30px !important;
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+  margin-bottom: 40px !important;
+  font-weight: 700;
 }
 
-[data-theme="dark"] .video-description p {
-    color: #555 !important;
-    /* เพราะ Card เป็นสีขาว ฟอนต์ต้องเข้มเสมอ */
-}
-
-/* [4] Responsive สำหรับมือถือ */
-@media (max-width: 768px) {
-    .video-content-box {
-        padding: 35px 20px !important;
-        margin: 0 15px 30px !important;
-        width: auto !important;
-    }
-
-    .video-content-box .section-title {
-        font-size: 1.8rem !important;
-    }
-
-    .video-description p {
-        font-size: 1rem !important;
-        padding: 0 10px !important;
-    }
-}
-
-/* [3] ดีไซน์ปุ่ม PDF (Standard & Hover) */
-.btn-primary {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 12px !important;
-    background: #007A33 !important;
-    color: #ffffff !important;
-    padding: 16px 35px !important;
-    /* ปรับปุ่มให้ยาวขึ้นนิดนึงเข้ากับ Card ใหม่ */
-    border-radius: 10px;
-    text-decoration: none !important;
-    font-weight: 700 !important;
-    white-space: nowrap !important;
-    transition: 0.3s ease !important;
-    box-shadow: 0 4px 15px rgba(0, 122, 51, 0.2) !important;
-}
-
-/* [4] ปรับแต่งพิเศษสำหรับหน้าจอมือถือ (Responsive Fix) */
-@media (max-width: 768px) {
-    .book-card {
-        /* แก้ปัญหาจากรูป image_52eea8: ลด padding ที่บีบข้อความออก */
-        padding: 35px 25px !important;
-        margin: 20px 15px !important;
-        width: auto !important;
-    }
-
-    .book-description {
-        font-size: 0.95rem !important;
-        line-height: 1.6 !important;
-        padding: 0 !important;
-        /* คืนพื้นที่ให้ตัวหนังสือในมือถือ */
-    }
-
-    .btn-primary {
-        width: 100% !important;
-        padding: 14px 15px !important;
-    }
-
-    .video-description p {
-        font-size: 1rem !important;
-        max-width: 100% !important;
-    }
-}
-
-/* ============================================================
-   SAVOR HAPPINESS | DARK MODE REFINEMENT (MERCHANDISE)
-   - ปรับปรุงการมองเห็นในโหมดมืดทั้ง Desktop & Mobile
-   ============================================================ */
-
-/* 1. ปรับสี Card ในโหมดมืดให้ดูมีมิติ ไม่จมกับพื้นหลัง */
-[data-theme="dark"] .merch-card {
-    background: rgba(255, 255, 255, 0.05) !important;
-    /* ใช้ขาวจางๆ ครอบ */
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    padding: 15px !important;
-    border-radius: 10px;
-    transition: transform 0.3s ease, background 0.3s ease !important;
-}
-
-[data-theme="dark"] .merch-card:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
-    transform: translateY(-5px) !important;
-}
-
-/* 2. จัดการตัวหนังสือใน Card โหมดมืด */
-[data-theme="dark"] .merch-card p {
-    color: #ffffff !important;
-    /* ล็อกสีขาวให้ชัด */
-    font-weight: 400 !important;
-    margin-top: 12px !important;
-    font-size: 0.9rem !important;
-    opacity: 0.9;
-}
-
-/* 3. ปรับสีหัวข้อรอง (Postcard Map, Sticker, Bookmarks) */
-[data-theme="dark"] .merch-sub-title {
-    color: #ffffff !important;
-    /* ลองเปลี่ยนเป็นสีขาวตามที่ต้องการ เพื่อความคลีน */
-    border-left: 4px solid var(--ci-orange) !important;
-    /* คงเส้นขีดสีส้ม CI ไว้เพื่อความสวยงาม */
-    padding-left: 15px !important;
-    margin-bottom: 25px !important;
-}
-
-/* [EXCLUDE] ส่วนของที่คั่นหนังสือ (Book Mark) ไม่ต้องไปยุ่ง ให้กลับเป็นสีส้มเดิม */
-/* สมมติว่า Section ของที่คั่นหนังสือมี ID หรือ Class เฉพาะ เช่น #bookmark-section */
-[data-theme="dark"] #bookmark-section .merch-sub-title {
-    color: var(--ci-orange) !important;
-}
-
-[data-theme="dark"] .merch-sub-title i {
-    color: #ffffff !important;
-    margin-right: 10px;
-}
-
-/* 4. แก้ปัญหาใน Mobile (image_51fee4.jpg) ที่ดูเบียดกัน */
-@media (max-width: 768px) {
-    [data-theme="dark"] .merch-grid {
-        gap: 20px !important;
-        padding: 0 10px !important;
-    }
-
-    /* ทำให้รูปใน Card เต็มกว้าง ไม่โดนบีบ */
-    .merch-card img {
-        width: 100% !important;
-        border-radius: 10px !important;
-        aspect-ratio: 1 / 1 !important;
-        object-fit: cover !important;
-    }
-}
-
-/* ============================================================
-   SAVOR HAPPINESS | THE ULTIMATE DARK MODE REFINEMENT
-   - มัดรวมแก้ปัญหา Card จม, ปรับ shop-info เป็นสีขาว
-   - รองรับ Desktop, Tablet และ Mobile
-   ============================================================ */
-
-/* ล็อกสีหัวข้อ Section ให้เป็นสีขาวในโหมดมืด เพื่อให้ตัดกับพื้นหลังเขียวเข้ม (โดยเฉพาะส่วนของที่ระลึก) */
-[data-theme="dark"] .section-title {
-    color: #ffffff !important;
-}
-
-/* 1. ปรับแต่ง Card ของร้านในโหมดมืด (ให้เป็นสีขาวตามสั่ง) */
+/* Shop Card — white card, readable dark text */
 [data-theme="dark"] .shop-card {
-    background-color: #ffffff !important;
-    /* พื้นหลัง Card เป็นสีขาว */
-    border: none !important;
-    border-radius: 10px !important;
-    overflow: hidden !important;
-    isolation: isolate !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
-    /* เงาเข้มหน่อยให้ลอยจากพื้นเขียว */
-    transition: all 0.3s ease !important;
+  background-color: #ffffff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.3s ease !important;
 }
 
 [data-theme="dark"] .shop-card:hover {
-    transform: translateY(-8px) !important;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4) !important;
+  transform: translateY(-8px) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* 2. จัดการส่วนข้อมูลร้าน (shop-info) ให้เป็นสีขาวและอ่านง่าย */
 [data-theme="dark"] .shop-info {
-    background-color: #ffffff !important;
-    /* บังคับพื้นหลังขาว */
-    padding: 22px !important;
-    text-align: left;
+  background-color: #ffffff !important;
+  padding: 22px !important;
+  text-align: left;
 }
 
-/* 3. ล็อกสีตัวหนังสือใน shop-info (เมื่อพื้นหลังเป็นขาว) */
 [data-theme="dark"] .shop-info .shop-name {
-    color: #007A33 !important;
-    /* ชื่อร้านสีเขียว CI ของอ้าย */
-    font-weight: 800 !important;
-    font-size: 1.25rem !important;
-    margin-bottom: 6px !important;
+  color: #007a33 !important;
+  font-weight: 800 !important;
+  font-size: 1.25rem !important;
+  margin-bottom: 6px !important;
 }
 
 [data-theme="dark"] .shop-info .shop-tag {
-    color: #ff8c00 !important;
-    /* Tag ย่านสีส้ม CI */
-    font-weight: 600 !important;
-    font-size: 0.9rem !important;
-    display: inline-block;
-    margin-bottom: 10px;
+  color: #ff8c00 !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  display: inline-block;
+  margin-bottom: 10px;
 }
 
 [data-theme="dark"] .shop-info p,
 [data-theme="dark"] .shop-info span {
-    color: #333333 !important;
-    /* รายละเอียดอื่นๆ สีเทาเข้มอ่านง่าย */
-    line-height: 1.5;
+  color: #333333 !important;
+  line-height: 1.5;
 }
 
-/* 4. ปรับแต่ง District Label (MINBURI / NONGCHOK) ในโหมดมืด */
-[data-theme="dark"] .district-label {
-    color: #ffffff !important;
-    background: rgba(255, 255, 255, 0.12) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    padding: 12px 30px !important;
-    border-radius: 10px;
-    backdrop-filter: blur(8px);
-    margin-bottom: 40px !important;
-    font-weight: 700;
-}
-
-/* 5. จัดการส่วน Merchandise Card ให้เด่นเหมือนกัน */
+/* Merch Card — white card, readable dark text (single block) */
 [data-theme="dark"] .merch-card {
-    background-color: #ffffff !important;
-    padding: 15px !important;
-    border-radius: 10px;
-    border: none !important;
+  background-color: #ffffff !important;
+  padding: 15px !important;
+  border-radius: 10px;
+  border: none !important;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease !important;
+}
+
+[data-theme="dark"] .merch-card:hover {
+  background: rgba(0, 122, 51, 0.05) !important;
+  transform: translateY(-5px) !important;
 }
 
 [data-theme="dark"] .merch-card p {
-    color: #007A33 !important;
-    /* ชื่อของที่ระลึกสีเขียว */
-    font-weight: 600 !important;
+  color: #007a33 !important;
+  font-weight: 600 !important;
+  margin-top: 12px !important;
 }
 
-/* ============================================================
-   MERCH DARK MODE PREMIUM LOOK
-   ============================================================ */
 [data-theme="dark"] .merch-card .merch-item-name {
-    color: var(--ci-orange) !important;
-    /* ชื่อสินค้าสีส้ม: ให้ความรู้สึก Premium & Branded */
-    font-size: 1.15rem !important;
-    letter-spacing: 0.5px;
+  color: var(--ci-orange) !important;
+  font-size: 1.15rem !important;
+  letter-spacing: 0.5px;
 }
 
 [data-theme="dark"] .merch-card .merch-item-price {
-    color: var(--ci-soft-yellow) !important;
-    /* ราคาสีเหลืองอ่อน: ดูนุ่มนวลและแพงกว่าสีขาวล้วน */
-    opacity: 0.9;
+  color: var(--ci-soft-yellow) !important;
+  opacity: 0.9;
 }
 
-/* 6. Responsive สำหรับ Mobile & Tablet */
-@media (max-width: 1024px) {
-    [data-theme="dark"] .shop-grid {
-        gap: 25px !important;
-        padding: 0 15px !important;
-    }
+/* Merch sub-title */
+[data-theme="dark"] .merch-sub-title {
+  color: #ffffff !important;
+  border-left: 4px solid var(--ci-orange) !important;
+  padding-left: 15px !important;
+  margin-bottom: 25px !important;
 }
 
-@media (max-width: 768px) {
-    [data-theme="dark"] .shop-info {
-        padding: 18px !important;
-        text-align: center;
-        /* ในมือถือจัดชื่อร้านไว้กลางจะดูสมดุลกว่า */
-    }
-
-    [data-theme="dark"] .shop-card {
-        margin: 0 10px !important;
-    }
+[data-theme="dark"] .merch-sub-title i {
+  color: #ffffff !important;
+  margin-right: 10px;
 }
 
-/* ปรับสีพื้นหลัง Section หลักในโหมดมืดให้ดูพรีเมียม */
-[data-theme="dark"] #highlights,
-[data-theme="dark"] #merch {
-    background-color: #004d21 !important;
-    /* เขียวเข้มลึกๆ เพื่อให้ Card ขาวเด้งออกมา */
+/* Bookmark section merch sub-title stays orange */
+[data-theme="dark"] #bookmark-section .merch-sub-title {
+  color: var(--ci-orange) !important;
 }
 
-/* ============================================================
-   SAVOR HAPPINESS | LIGHT MODE PERFECT REFINEMENT
-   - ปรับปรุง Card ในโหมดปกติให้พรีเมียมและอ่านง่ายเหมือนโหมดมืด
-   ============================================================ */
+/* Author section text — dark on white card */
+[data-theme="dark"] .author-name,
+[data-theme="dark"] .author-title,
+[data-theme="dark"] .contact-box p {
+  color: #444444 !important;
+}
 
-/* 1. ปรับแต่ง Card ในโหมดสว่าง (เน้นเงาที่นุ่มนวลสไตล์ Minimal) */
+/* Guidebook text on white card */
+[data-theme="dark"] .book-text h2,
+[data-theme="dark"] .book-description,
+[data-theme="dark"] .support-card .section-title,
+[data-theme="dark"] .support-card .support-desc {
+  color: #333333 !important;
+}
+
+/* Video content box title on white card */
+[data-theme="dark"] .video-content-box .section-title {
+  color: #007a33 !important;
+}
+
+/* Video description on white card → dark text */
+[data-theme="dark"] .video-description p {
+  color: #555 !important;
+}
+
+/* Light-mode explicit section colors */
+html:not([data-theme="dark"]) #highlights,
+html:not([data-theme="dark"]) #merch {
+  background-color: #fcfcfc !important;
+}
+
 html:not([data-theme="dark"]) .shop-card,
 html:not([data-theme="dark"]) .merch-card {
-    background-color: #ffffff !important;
-    border: 1px solid #f0f0f0 !important;
-    border-radius: 10px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05) !important;
-    transition: all 0.3s ease !important;
+  background-color: #ffffff !important;
+  border: 1px solid #f0f0f0 !important;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05) !important;
+  transition: all 0.3s ease !important;
 }
 
 html:not([data-theme="dark"]) .shop-card:hover,
 html:not([data-theme="dark"]) .merch-card:hover {
-    transform: translateY(-8px) !important;
-    box-shadow: 0 15px 35px rgba(0, 122, 51, 0.08) !important;
-    /* เงาอมเขียวจางๆ */
+  transform: translateY(-8px) !important;
+  box-shadow: 0 15px 35px rgba(0, 122, 51, 0.08) !important;
 }
 
-/* 2. จัดการส่วนข้อมูลใน Card (shop-info) */
 html:not([data-theme="dark"]) .shop-info {
-    background-color: #ffffff !important;
-    padding: 22px !important;
+  background-color: #ffffff !important;
+  padding: 22px !important;
 }
 
-/* 3. ล็อกสีตัวหนังสือ CI สำหรับโหมดสว่าง */
 html:not([data-theme="dark"]) .shop-info .shop-name {
-    color: #007A33 !important;
-    /* เขียว CI */
-    font-weight: 800 !important;
+  color: #007a33 !important;
+  font-weight: 800 !important;
 }
 
 html:not([data-theme="dark"]) .shop-info .shop-tag {
-    color: #ff8c00 !important;
-    /* ส้ม CI */
-    font-weight: 600 !important;
+  color: #ff8c00 !important;
+  font-weight: 600 !important;
 }
 
-/* 4. ปรับแต่ง District Label (MINBURI / NONGCHOK) ในโหมดสว่าง */
-html:not([data-theme="dark"]) .district-label {
-    color: #007A33 !important;
-    background: #ffffff !important;
-    border: 1.5px solid #007A33 !important;
-    padding: 12px 30px !important;
-    border-radius: 10px;
-    font-weight: 800 !important;
-    box-shadow: 0 4px 12px rgba(0, 122, 51, 0.1) !important;
-}
-
-/* 5. จัดการส่วนชื่อของที่ระลึกในโหมดสว่าง */
-html:not([data-theme="dark"]) .merch-card p {
-    color: #007A33 !important;
-    font-weight: 700 !important;
-    margin-top: 12px !important;
-}
-
-/* 6. แก้ไขสีพื้นหลัง Section ในโหมดสว่าง (ให้ดูละมุนขึ้น) */
-html:not([data-theme="dark"]) #highlights,
-html:not([data-theme="dark"]) #merch {
-    background-color: #fcfcfc !important;
-    /* พื้นหลังขาวนวลๆ เพื่อให้ Card ขาวเด้งออกมา */
-}
-
-/* 7. ปรับปรุงตัวหนังสือทั่วไปในโหมดสว่างให้อ่านง่าย */
 html:not([data-theme="dark"]) .shop-info p,
 html:not([data-theme="dark"]) .shop-info span {
-    color: #444444 !important;
-    line-height: 1.8;
+  color: #444444 !important;
+  line-height: 1.8;
+}
+
+html:not([data-theme="dark"]) .district-label {
+  color: #007a33 !important;
+  background: #ffffff !important;
+  border: 1.5px solid #007a33 !important;
+  padding: 12px 30px !important;
+  border-radius: 10px;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 12px rgba(0, 122, 51, 0.1) !important;
+}
+
+html:not([data-theme="dark"]) .merch-card p {
+  color: #007a33 !important;
+  font-weight: 700 !important;
+  margin-top: 12px !important;
 }
 
 /* ============================================================
-   SAVOR HAPPINESS | VIDEO ONLY REFINEMENT (DESKTOP)
-   - ลดขนาดวิดีโอให้ดู Cinema สมส่วน
-   - ลบพื้นหลังสีดำออกให้คลีนที่สุด
+   [27] ORIENTATION FIXES
    ============================================================ */
-
-/* 1. ปรับสัดส่วนวิดีโอในหน้าจอ Desktop */
-@media (min-width: 1025px) {
-    #myVideo {
-        /* display: block !important; */
-        /* width: 70% !important; */
-        /* ลดความกว้างลงเหลือ 70% ให้ดูไม่บานเต็มจอ */
-        /* max-width: 950px !important; */
-        /* ล็อกขนาดสูงสุดไว้ไม่ให้ใหญ่เกินไป */
-        /* margin: 40px auto !important; */
-        /* จัดกึ่งกลางหน้าจอ */
-        /* border-radius: 14px !important; */
-        /* ขอบมนให้เข้ากับดีไซน์ Card */
-
-        /* เอาพื้นหลังดำออก */
-        background: transparent !important;
-        background-color: transparent !important;
-
-        /* เพิ่มเงาจางๆ ให้วิดีโอดูมีมิติแทนการใช้พื้นหลังดำ */
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1) !important;
-        transition: transform 0.3s ease !important;
-    }
-
-    #myVideo:hover {
-        transform: scale(1.02) !important;
-        /* ให้วิดีโอขยับนิดๆ ตอนเอาเมาส์ชี้ */
-    }
-}
-
-/* 2. ลบพื้นหลังดำออกถาวรในทุกโหมด (Global Fix) */
-#myVideo,
-.video-container {
-    background: transparent !important;
-    background-color: transparent !important;
-    outline: none !important;
-    border: none !important;
-}
-
-/* 3. บังคับให้วิดีโอถมเต็มพื้นที่แบบไม่มีขอบดำ (No Letterbox) */
-#myVideo {
-    object-fit: cover !important;
-}
-
-/* 4. ในมือถือ (Mobile) ให้กว้างเต็มจอปกติ แต่ไม่มีพื้นหลังดำ */
-@media (max-width: 1024px) {
-    #myVideo {
-        width: 100% !important;
-        border-radius: 0 !important;
-    }
+@media (max-height: 600px) and (orientation: landscape) {
+  body,
+  .scroll-progress-container {
+    padding-top: 55px !important;
+    top: 55px !important;
+  }
 }
 
 /* ============================================================
-   SAVOR HAPPINESS | VIDEO WRAPPER & SCALE FIX (DESKTOP)
-   - ล็อกสเกลวิดีโอและตัวครอบ ไม่ให้สูงจน "เลย" หน้าจอ
+   [28] PRINT GUARD
    ============================================================ */
-
-@media (min-width: 1025px) {
-
-    /* 1. คุมตัวครอบ (Wrapper) ให้มีขนาดตามที่ต้องการ */
-    .video-wrapper {
-        position: relative;
-        width: 70% !important;
-        /* ความกว้าง 70% ของจอ */
-        max-width: 1000px !important;
-        /* ไม่ให้กว้างเกิน 1000px */
-        max-height: 75vh !important;
-        /* ล็อกความสูงห้ามเกิน 75% ของหน้าจอคอม */
-        margin: 40px auto !important;
-        border-radius: 10px;
-        overflow: hidden;
-        /* ตัดส่วนที่ล้นออก */
-        background: transparent !important;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
-    }
-
-    /* 2. ปรับตัววิดีโอข้างในให้พอดีกับ Wrapper */
-    #myVideo {
-        width: 100% !important;
-        height: 100% !important;
-        max-height: 75vh !important;
-        object-fit: cover !important;
-        /* ให้วิดีโอเต็มกรอบโดยไม่เบี้ยว */
-        display: block !important;
-        background: transparent !important;
-    }
-
-    /* 3. จัดการปุ่ม Mute ให้ลอยอยู่ในตำแหน่งที่สวยงาม */
-    .mute-control-btn {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
-        z-index: 10;
-        background: rgba(255, 255, 255, 0.2) !important;
-        backdrop-filter: blur(5px);
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
-        color: white !important;
-        width: 45px;
-        height: 45px;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .mute-control-btn:hover {
-        background: rgba(255, 255, 255, 0.4) !important;
-        transform: scale(1.1);
-    }
-}
-
-/* ลบพื้นหลังดำถาวร */
-.video-wrapper,
-#myVideo {
-    background-color: transparent !important;
-}
-
-/* ในมือถือ (Mobile) ให้กว้างเต็มจอปกติ */
-@media (max-width: 1024px) {
-    .video-wrapper {
-        width: 100% !important;
-        margin: 0 !important;
-        border-radius: 0 !important;
-    }
-
-    #myVideo {
-        width: 100% !important;
-        height: auto !important;
-    }
+@media print {
+  body {
+    display: none !important;
+  }
 }
 
 /* ============================================================
-   SAVOR HAPPINESS | HIDE HAMBURGER ON LARGE SCREENS
-   - ซ่อนปุ่มเมนูขีดสามขีดบน Desktop & Tablet Landscape
+   [29] RESPONSIVE ENGINE
    ============================================================ */
 
-/* สำหรับหน้าจอคอมพิวเตอร์และ Tablet แนวนอน (1025px ขึ้นไป) */
+/* --- DESKTOP 1025px+ --- */
 @media (min-width: 1025px) {
+  nav {
+    height: 85px;
+    padding: 0 40px;
+  }
 
-    #hamburgerBtn,
-    .hamburger-menu {
-        display: none !important;
-        /* สั่งหายตัวทันที */
-        visibility: hidden !important;
-        pointer-events: none !important;
-    }
+  .hamburger-menu {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  nav .nav-right-container .lang-btn,
+  nav .nav-right-container .theme-btn {
+    width: 65px !important;
+    height: 35px !important;
+    font-size: 0.75rem !important;
+    border-radius: 10px !important;
+    flex: none !important;
+  }
+
+  .book-grid-container {
+    flex-direction: row;
+    gap: 60px;
+  }
 }
 
-/* เพิ่มเติม: สำหรับ iPad/Tablet ทั่วไปที่วางแนวนอน */
+/* --- TABLET 769px landscape (hamburger hidden) --- */
 @media (min-width: 769px) and (orientation: landscape) {
-
-    #hamburgerBtn,
-    .hamburger-menu {
-        display: none !important;
-    }
+  #hamburgerBtn,
+  .hamburger-menu {
+    display: none !important;
+  }
 }
 
-/* ============================================================
-   SAVOR HAPPINESS | LUXURY SEARCH DESIGN
-   - เน้นความคลีน ละมุน และจัดระยะให้ใช้งานได้จริง
-   ============================================================ */
+/* --- TABLET 1024px --- */
+@media (max-width: 1024px) {
+  nav {
+    height: 70px !important;
+    padding: 0 20px !important;
+    position: fixed !important;
+    top: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    background: var(--bg-nav) !important;
+  }
 
-.search-wrapper {
-    max-width: 850px;
-    margin: 120px auto 50px !important;
-    /* ดันลงมาให้พ้น Nav และมีพื้นที่หายใจ */
-    padding: 0 20px;
-    position: relative;
-    z-index: 100;
-}
+  body,
+  .scroll-progress-container {
+    padding-top: 70px !important;
+    top: 70px !important;
+  }
 
-/* 1. ตัวช่องกรอก (Input Group) */
-.search-input-group {
-    display: flex;
-    align-items: center;
-    background: #ffffff;
-    border-radius: 16px;
-    /* มนรับกับ Book Card */
-    padding: 10px 10px 10px 30px;
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
-    /* เงาฟุ้งๆ ให้ดูมีมิติ */
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+  .logo {
+    position: static !important;
+    transform: none !important;
+    display: flex !important;
+    align-items: center !important;
+  }
 
-.search-input-group:focus-within {
-    transform: translateY(-2px);
-    border-color: #FF8C00;
-    /* สีส้มหัวข้อของอ้าย */
-    box-shadow: 0 20px 50px rgba(255, 140, 0, 0.15);
-}
+  .logo img {
+    height: 28px !important;
+    margin: 0 !important;
+  }
 
-/* 2. ช่อง Input */
-#shopSearchInput {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
-    color: var(--savor-dark, #333);
-    background: transparent;
-    font-weight: 500;
-}
-
-#shopSearchInput::placeholder {
-    color: #bbb;
-}
-
-/* 3. ปุ่มค้นหา (Search Button) */
-#searchBtn {
-    background: #007A33 !important;
-    /* เขียว CI */
-    color: #ffffff !important;
-    border: none;
-    padding: 14px 35px;
-    border-radius: 10px;
-    font-weight: 700;
+  .hamburger-menu {
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    height: auto !important;
+    font-size: 28px;
+    color: #007a33;
+    z-index: 10002 !important;
     cursor: pointer;
-    transition: 0.3s;
-    letter-spacing: 0.5px;
-}
+  }
 
-#searchBtn:hover {
-    background: #FF8C00 !important;
-    /* Hover แล้วเป็นส้ม */
-    transform: scale(1.02);
-}
+  .nav-right-container .nav-controls-wrapper {
+    display: none !important;
+  }
 
-/* 4. กล่อง Suggestion (ที่โผล่มาแล้วไม่สวย) */
-#searchSuggestions {
-    position: absolute;
-    top: calc(100% + 15px);
-    /* เว้นระยะห่างจากช่อง Input เล็กน้อย */
-    left: 20px;
-    right: 20px;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(15px);
-    /* เทรนด์กระจกฝ้า Glassmorphism */
-    border-radius: 10px;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    z-index: 1001;
-    display: none;
-    overflow: hidden;
-    animation: slideUp 0.3s ease-out;
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* 5. รายการใน Suggestion */
-.suggestion-item {
-    padding: 18px 25px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    transition: 0.2s;
-    color: #444;
-    font-size: 1rem;
-}
-
-/* ล็อกสีตัวหนังสือใน Suggestion Box ให้เป็นสีเข้มเสมอ เพราะพื้นหลังขาวแบบ Glassmorphism */
-[data-theme="dark"] .suggestion-item {
-    color: #444444 !important;
-}
-
-.suggestion-item:last-child {
-    border-bottom: none;
-}
-
-.suggestion-item:hover {
-    background: #fdfaf5;
-    /* สีครีมอ่อนๆ ของอ้าย */
-    color: #007A33;
-    padding-left: 35px;
-    /* ลูกเล่นเลื่อนนิ้ว */
-}
-
-.suggestion-item i {
-    color: #FF8C00;
-    /* ไอคอนสีส้ม */
-    font-size: 1.1rem;
-}
-
-/* --- Responsive สำหรับมือถือ --- */
-@media (max-width: 768px) {
-    .search-wrapper {
-        margin-top: 100px !important;
-    }
-
-    .search-input-group {
-        padding: 8px 8px 8px 20px;
-    }
-
-    #searchBtn {
-        padding: 12px 20px;
-        font-size: 0.95rem;
-    }
-}
-
-/* ============================================================
-   QR SUPPORT MODAL SYSTEM (Savor Happiness CI)
-   ============================================================ */
-.qr-modal {
-    display: none;
-    position: fixed;
+  /* DRAWER: replaced by Block [31] translateX approach
+     Kept as positional base only — transition/right overridden by [31] */
+  .nav-links {
+    display: flex !important;
+    position: fixed !important;
     top: 0;
-    left: 0;
+    /* right/transform controlled exclusively by Block [31] */
+    width: 70% !important;
+    height: 100vh !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 35px !important;
+    z-index: 10001 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* .nav-links.active: position controlled by Block [31] translateX */
+
+  /* Mobile menu background */
+  html:not([data-theme="dark"]) .nav-links {
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(10px);
+  }
+
+  [data-theme="dark"] .nav-links {
+    background-color: #007a33 !important;
+  }
+
+  /* Light mode nav link color */
+  html:not([data-theme="dark"]) .nav-links li a {
+    color: #007a33 !important;
+    font-weight: 700 !important;
+  }
+
+  /* Dark mode nav link color */
+  [data-theme="dark"] .nav-links li a {
+    color: #ffffff !important;
+  }
+
+  /* In-menu buttons */
+  .nav-links .nav-controls-wrapper {
+    display: flex !important;
+    margin-top: 20px !important;
+    gap: 15px !important;
+  }
+
+  .nav-links .lang-btn,
+  .nav-links .theme-btn {
+    width: 110px !important;
+    height: 45px !important;
+    border-radius: 10px;
+    font-size: 0.9rem !important;
+    flex: none !important;
+  }
+
+  html:not([data-theme="dark"]) .nav-links .lang-btn,
+  html:not([data-theme="dark"]) .nav-links .theme-btn {
+    border: 1.5px solid #007a33 !important;
+    color: #007a33 !important;
+  }
+
+  [data-theme="dark"] .nav-links .lang-btn,
+  [data-theme="dark"] .nav-links .theme-btn {
+    border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
+    color: #ffffff !important;
+  }
+
+  /* Video adjustments */
+  .video-wrapper {
+    width: 92% !important;
+    margin: 20px auto !important;
+    border-radius: 10px !important;
+  }
+
+  #myVideo {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0 !important;
+  }
+
+  .video-text-side {
+    padding: 30px 15px !important;
+    text-align: center !important;
+  }
+
+  .video-flex-container {
+    flex-direction: column !important;
+  }
+
+  .video-content-box {
+    max-width: 100% !important;
+  }
+
+  /* Shop grid responsive */
+  .shop-grid {
+    gap: 25px !important;
+    padding: 0 15px !important;
+  }
+
+  /* Author card */
+  .author-layout-card {
+    flex-direction: column !important;
+    width: 95% !important;
+  }
+
+  .author-visual-side {
+    border-right: none;
+    border-bottom: 1px solid #eee;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(8px);
-    z-index: 20000;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 0.3s ease;
+    flex: none;
+  }
+
+  /* Search */
+  .search-wrapper {
+    max-width: 90%;
+    margin-top: 110px !important;
+  }
 }
 
-.qr-card {
-    background: rgba(255, 255, 255, 0.7) !important;
-    /* กระจกโปร่งแสง */
-    backdrop-filter: blur(20px) saturate(180%);
-    /* เอฟเฟกต์ Glassmorphism */
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    width: 90%;
-    max-width: 400px;
-    border-radius: 30px;
-    padding: 40px;
+/* --- STANDARD MOBILE 768px --- */
+@media (max-width: 768px) {
+  /* Hero: 2x5 grid */
+  .hero-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: repeat(5, 1fr) !important;
+  }
+
+  .hero-content-overlay {
+    padding: 40px 15px;
+  }
+
+  /* Single-column grids */
+  .shop-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px;
+    width: 95%;
+  }
+
+  .shop-card {
+    max-width: 350px;
+  }
+
+  [data-theme="dark"] .shop-info {
+    padding: 18px !important;
     text-align: center;
-    position: relative;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-    /* เงาแบบฟุ้งกระจาย */
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    /* ขอบกระจก */
-}
+  }
 
-.qr-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: #ccc;
-    cursor: pointer;
-}
+  [data-theme="dark"] .shop-card {
+    margin: 0 10px !important;
+  }
 
-.qr-header h3 {
-    color: var(--ci-green);
+  /* Merch bookmark grid: 2 cols */
+  .merch-grid.bookmark-triple-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  [data-theme="dark"] .merch-grid {
+    gap: 20px !important;
+    padding: 0 10px !important;
+  }
+
+  .merch-card img {
+    width: 100% !important;
+    border-radius: 10px !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: cover !important;
+  }
+
+  /* Typography */
+  .section {
+    padding: 60px 5% !important;
+  }
+
+  .section-title {
     font-size: 1.8rem;
-    margin-bottom: 5px;
-}
+    margin-bottom: 40px;
+  }
 
-.qr-header p {
-    color: #888;
+  #home h1 {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  #home .hero-desc {
     font-size: 0.9rem;
     margin-bottom: 25px;
-}
+  }
 
-.qr-placeholder {
-    background: #ffffff !important;
-    /* ล็อกสีขาวทึบเพื่อให้สแกนติดง่าย 100% */
-    border: none;
+  /* Guidebook section */
+  .book-grid-container {
+    flex-direction: column !important;
+    gap: 30px !important;
+    padding: 30px 15px !important;
+    text-align: center;
+  }
+
+  .book-visual,
+  .book-text {
+    width: 100% !important;
+    min-width: unset !important;
+  }
+
+  .inner-mockup {
+    max-width: 100%;
+  }
+
+  .book-text h2 {
+    font-size: 1.8rem;
+  }
+
+  /* Thumbnails */
+  .thumb-item {
+    width: 70px;
+    height: 70px;
     border-radius: 10px;
-    aspect-ratio: 1/1;
-    display: flex;
+  }
+
+  /* Book card */
+  .book-card {
+    padding: 35px 25px !important;
+    margin: 20px 15px !important;
+    width: auto !important;
+  }
+
+  .book-description {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    padding: 0 !important;
+  }
+
+  .btn-primary {
+    width: 100% !important;
+    padding: 14px 15px !important;
+  }
+
+  /* Video */
+  .video-container {
+    height: 350px;
+    width: 95%;
+  }
+
+  .video-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .video-overlay {
+    padding: 30px;
+  }
+
+  .video-content-box {
+    padding: 35px 20px !important;
+    margin: 0 15px 30px !important;
+    width: auto !important;
+  }
+
+  .video-content-box .section-title {
+    font-size: 1.8rem !important;
+  }
+
+  .video-description p {
+    font-size: 1rem !important;
+    padding: 0 10px !important;
+    max-width: 100% !important;
+  }
+
+  .video-description p br {
+    display: none;
+  }
+
+  /* Author */
+  .author-layout-card {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 25px;
-    color: var(--ci-green);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    /* เพิ่มมิติให้พื้นที่สแกน */
-    padding: 20px;
-    /* เพิ่มพื้นที่ว่างรอบรูป QR (Quiet Zone) เพื่อให้สแกนง่าย */
-    overflow: hidden;
-}
-
-.qr-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    /* บังคับให้รูปอยู่ในกรอบโดยไม่เสียสัดส่วน */
     border-radius: 10px;
-    display: block;
+    margin: 0 10px;
+  }
+
+  .author-visual-side {
+    flex: 0 0 auto;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    padding: 50px 20px;
+  }
+
+  .author-content-side {
+    padding: 50px 30px;
+  }
+
+  .author-name {
+    font-size: 26px !important;
+  }
+
+  /* Logo box */
+  .logo-box {
+    width: 60px;
+    height: 60px;
+    padding: 6px;
+  }
+
+  /* Speed dial */
+  .speed-dial-container {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .dial-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 18px;
+  }
+
+  /* Language button */
+  .lang-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  /* QR */
+  .qr-card {
+    padding: 25px 15px !important;
+  }
+
+  .qr-header h3 {
+    font-size: 1.3rem !important;
+  }
+
+  /* Search */
+  .search-wrapper {
+    margin-top: 100px !important;
+  }
+
+  .search-input-group {
+    padding: 8px 8px 8px 20px;
+  }
+
+  #searchBtn {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
 }
 
-.qr-placeholder i {
-    font-size: 4rem;
-    margin-bottom: 10px;
+/* --- MOBILE 480px --- */
+@media (max-width: 480px) {
+  .thumb-item {
+    width: 60px;
+    height: 60px;
+    gap: 10px !important;
+  }
+
+  .merch-grid.bookmark-triple-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 
-.qr-footer p {
-    color: var(--ci-orange);
-    font-weight: 700;
-    font-size: 1.1rem;
+/* --- SMALL/FOLD 400px --- */
+@media (max-width: 400px) {
+  .merch-grid.bookmark-triple-grid,
+  .shop-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  #home h1 {
+    font-size: 2rem !important;
+  }
+
+  .hero-desc {
+    font-size: 0.85rem;
+  }
+
+  .author-name {
+    font-size: 24px !important;
+  }
+
+  .contact-box {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .thumb-item {
+    width: 60px;
+    height: 60px;
+  }
 }
 
-/* Dark Mode Fix for QR Card */
-[data-theme="dark"] .qr-card {
-    background: rgba(255, 255, 255, 0.9) !important;
-    /* ปรับพื้นหลังให้ขาวนวลเพื่อให้สแกนง่าย */
-    border: 1px solid rgba(255, 255, 255, 0.1);
+/* --- MOBILE PORTRAIT (Hero grid) --- */
+@media (max-width: 768px) and (orientation: portrait) {
+  .hero-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+  }
 }
 
-[data-theme="dark"] .qr-card * {
-    color: #333333 !important;
-    /* บังคับตัวหนังสือสีเข้มเพื่อให้เห็นชัดบนการ์ดขาว */
+/* --- MOBILE LANDSCAPE --- */
+@media (max-height: 600px) and (orientation: landscape) {
+  nav {
+    height: 60px !important;
+  }
+
+  body,
+  .scroll-progress-container {
+    padding-top: 60px !important;
+    top: 60px !important;
+  }
+
+  .hero-content-overlay {
+    padding-top: 80px;
+    padding-bottom: 20px;
+  }
+
+  .content-wrapper {
+    gap: 5px;
+  }
+
+  .hero-grid {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  #home {
+    min-height: 110vh;
+  }
+
+  #home h1 {
+    font-size: clamp(1.6rem, 5vw, 2.5rem);
+    margin-bottom: 5px;
+  }
+
+  #home .subtitle-vibe {
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+  }
+
+  #home .hero-desc {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .btn-primary {
+    padding: 8px 20px;
+    font-size: 0.85rem;
+  }
 }
 
-[data-theme="dark"] .qr-card .qr-header h3 {
-    color: var(--ci-green) !important;
-    /* ล็อกหัวข้อ QR เป็นสีเขียว CI เพื่อความพรีเมียม */
-}
-
-[data-theme="dark"] .qr-card .qr-placeholder p {
-    color: #333333 !important;
-    /* เฉพาะข้อความในพื้นที่ขาวที่ยังต้องเป็นสีเข้ม */
-}
-
-/* เพิ่มเติมส่วน Support Section */
-.support-container {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
-}
-
-.support-desc {
-    margin-bottom: 30px !important;
+/* Mobile-only items hidden on desktop */
+.mobile-only-item {
+  display: none;
 }
 
 /* ============================================================
-   SUPPORT BUTTON ENHANCEMENT (Shimmer & Pulse)
+   [30] FLUID RESPONSIVE REFINEMENT
+   Fluid typography, Large Screen whitespace, Tablet touch UX,
+   Small Mobile lockdown — zero duplicate with existing rules.
    ============================================================ */
-.btn-support-cta {
-    background: var(--ci-orange) !important;
-    /* เปลี่ยนเป็นสีส้ม Energy Orange */
-    box-shadow: 0 5px 20px rgba(255, 140, 0, 0.3) !important;
-    position: relative;
-    overflow: hidden;
-    border: none;
-    animation: pulse-orange 2s infinite !important;
-    /* เปลี่ยนไปใช้ Pulse สีส้ม */
+
+/* ----------------------------------------------------------
+   A. FLUID TYPOGRAPHY & SPACING (Base — applies all breakpoints)
+   ใช้ clamp() ให้ขนาดตัวอักษรและ padding ไหลตาม viewport
+   ---------------------------------------------------------- */
+:root {
+  /* Fluid spacing scale */
+  --space-xs: clamp(8px, 1.5vw, 14px);
+  --space-sm: clamp(14px, 2.5vw, 24px);
+  --space-md: clamp(24px, 4vw, 48px);
+  --space-lg: clamp(48px, 7vw, 100px);
+  --space-xl: clamp(80px, 10vw, 140px);
+
+  /* Fluid font scale */
+  --fs-body: clamp(0.9rem, 1.2vw, 1.1rem);
+  --fs-label: clamp(0.75rem, 1vw, 0.9rem);
+  --fs-card: clamp(1rem, 1.4vw, 1.25rem);
+  --fs-h2: clamp(1.6rem, 3.5vw, 2.4rem);
+  --fs-h3: clamp(1.2rem, 2.5vw, 1.8rem);
 }
 
-.btn-support-cta:hover {
-    background: #e67e00 !important;
-    transform: scale(1.05) translateY(-2px) !important;
-    box-shadow: 0 8px 30px rgba(255, 140, 0, 0.4) !important;
+/* Apply fluid body font — augments the existing base */
+body {
+  font-size: var(--fs-body);
 }
 
-/* เอฟเฟกต์แสงวิ่งผ่าน (Shimmer) */
-.btn-support-cta::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -60%;
-    width: 20%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.4);
-    transform: rotate(30deg);
-    transition: none;
-    animation: shimmer 3s infinite;
+/* Fluid section padding using CSS custom property */
+.section {
+  padding: var(--space-xl) clamp(5%, 10%, 15%);
 }
 
-@keyframes shimmer {
-    0% {
-        left: -60%;
-    }
+/* ----------------------------------------------------------
+   B. LARGE SCREEN PREMIUM ( > 1200px )
+   เน้น Whitespace + เพิ่มขนาด Card และกั้นความกว้างสูงสุด
+   ---------------------------------------------------------- */
+@media (min-width: 1200px) {
+  /* Hero content: ยืดพื้นที่หายใจ */
+  .hero-content-overlay {
+    padding: 80px 40px;
+    max-width: 1100px;
+  }
 
-    20% {
-        left: 120%;
-    }
+  /* Section title ใหญ่ขึ้นนิดในจอกว้าง */
+  .section-title {
+    font-size: clamp(2.4rem, 3vw, 3rem);
+    margin-bottom: 70px;
+  }
 
-    100% {
-        left: 120%;
-    }
+  /* Shop grid: เพิ่ม gap ให้โปร่งขึ้นในจอ 1200+ */
+  .shop-grid {
+    gap: clamp(32px, 4vw, 60px);
+    max-width: 1100px;
+  }
+
+  /* Book card: ขยาย max-width ให้ดูสบายตากว่า */
+  .book-card {
+    max-width: 960px !important;
+    padding: 60px 80px !important;
+  }
+
+  /* Video wrapper: คุมไม่ให้กว้างเกิน 1000px */
+  .video-wrapper {
+    max-width: 1000px;
+    margin: 60px auto !important;
+  }
+
+  /* Author card: ขยาย max-width ตาม viewport กว้าง */
+  .author-layout-card {
+    max-width: 1100px;
+  }
+
+  /* Footer: เพิ่ม padding รอบข้าง */
+  .footer-container {
+    padding: 0 8%;
+    gap: 60px;
+  }
+
+  /* ย่อ Nav gap ให้ไม่ถ่างเกิน */
+  nav {
+    padding: 0 clamp(40px, 5vw, 80px);
+  }
 }
 
-@keyframes pulse-orange {
-    0% {
-        box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.5);
-    }
+/* ----------------------------------------------------------
+   C. TABLET TOUCH-FRIENDLY ( 768px – 1024px )
+   ขยาย tap-target, ปรับ grid, เพิ่ม touch-padding
+   ---------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Shop grid: ยืด gap ให้นิ้วกดไม่ผิด */
+  .shop-grid {
+    gap: clamp(20px, 3vw, 36px);
+    width: 95%;
+  }
 
-    70% {
-        box-shadow: 0 0 0 15px rgba(255, 140, 0, 0);
+  /* Merch bookmark: 3 → 2 cols ที่ tablet portrait */
+  @media (orientation: portrait) {
+    .merch-grid.bookmark-triple-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 20px !important;
     }
+  }
 
-    100% {
-        box-shadow: 0 0 0 0 rgba(255, 140, 0, 0);
-    }
+  /* Section padding: ลดลงนิดให้พอดีหน้าจอ tablet */
+  .section {
+    padding: var(--space-lg) 6%;
+  }
+
+  /* Book grid: ย่อ gap เพื่อไม่ให้ layout แตก */
+  .book-grid-container {
+    gap: 40px !important;
+    padding: 40px 20px !important;
+  }
+
+  /* Author visual side: ลดความกว้าง fixed ลง */
+  .author-visual-side {
+    flex: 0 0 320px;
+    padding: 40px 30px;
+  }
+
+  .author-content-side {
+    padding: 40px 40px;
+  }
+
+  /* Author profile pic: ย่อลงนิด */
+  .author-profile-pic {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* Nav links gap: desktop-only, không áp dụng khi drawer đang mở */
+
+  /* Thumb item: เพิ่มขนาด tap area ใน tablet */
+  .thumb-item {
+    width: 80px;
+    height: 80px;
+  }
+
+  /* Speed dial: ย้าย bottom/right ให้ชิดจอพอดี */
+  .speed-dial-container {
+    bottom: 24px;
+    right: 24px;
+  }
+
+  /* Ticker banner: ลดความสูงนิดในแนวนอน */
+  .shop-ticker-banner {
+    height: 60px;
+  }
+}
+
+/* ----------------------------------------------------------
+   D. SMALL MOBILE LOCKDOWN ( < 480px )
+   Single-column everything, no overflow, min tap-target 44px
+   ---------------------------------------------------------- */
+@media (max-width: 480px) {
+  /* Force everything to single column */
+  .shop-grid,
+  .merch-grid,
+  .merch-grid.bookmark-triple-grid,
+  .book-grid-container {
+    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    width: 100% !important;
+    padding: 0 16px !important;
+  }
+
+  /* Shop card: เต็มความกว้างจอ ไม่หลุดขอบ */
+  .shop-card {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* Merch card: เต็มความกว้างจอ */
+  .merch-card {
+    padding: 18px !important;
+  }
+
+  /* Section padding ที่แน่นที่สุด */
+  .section {
+    padding: 48px 16px !important;
+  }
+
+  /* Section title: clamp ที่เหมาะกับจอเล็ก */
+  .section-title {
+    font-size: clamp(1.4rem, 6vw, 1.8rem) !important;
+    margin-bottom: 30px !important;
+  }
+
+  /* District label: ย่อให้พอดีจอ */
+  .district-label {
+    font-size: clamp(1rem, 5vw, 1.4rem) !important;
+    letter-spacing: 1.5px !important;
+    margin: 30px 0 20px 0 !important;
+  }
+
+  /* Book card: ไม่ให้ overflow */
+  .book-card {
+    padding: 28px 18px !important;
+    margin: 16px 0 !important;
+    width: 100% !important;
+  }
+
+  /* Book badge row: wrap กันล้น */
+  .book-badge-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Thumbnail: ปล่อยให้ wrap แต่ขนาดสม่ำเสมอ */
+  .book-thumbs {
+    gap: 8px !important;
+  }
+
+  .thumb-item {
+    width: 58px !important;
+    height: 58px !important;
+  }
+
+  /* Video content box: ไม่ให้ l้น */
+  .video-content-box {
+    padding: 28px 16px !important;
+    margin: 0 0 24px !important;
+  }
+
+  .video-content-box .section-title {
+    font-size: clamp(1.3rem, 5.5vw, 1.6rem) !important;
+  }
+
+  /* Primary button: เต็มความกว้าง, tap area ≥ 44px */
+  .btn-primary,
+  .btn-support-cta {
+    width: 100% !important;
+    min-height: 48px !important;
+    font-size: 1rem !important;
+    padding: 14px 20px !important;
+  }
+
+  /* Search: ไม่ให้ overflow */
+  .search-wrapper {
+    padding: 0 12px !important;
+    margin-top: 90px !important;
+  }
+
+  #searchBtn {
+    padding: 12px 16px !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Author card: ไม่ล้นจอ */
+  .author-centering-wrapper {
+    padding: 70px 12px 40px;
+    min-height: unset;
+  }
+
+  .author-layout-card {
+    margin: 0 !important;
+    border-radius: 10px;
+  }
+
+  .author-profile-pic {
+    width: 180px;
+    height: 180px;
+  }
+
+  .author-content-side {
+    padding: 30px 20px !important;
+  }
+
+  /* Contact box: ขยาย tap area */
+  .contact-box {
+    width: 100% !important;
+    max-width: 300px;
+  }
+
+  /* Footer: stack vertically, center */
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    padding: 0 20px;
+  }
+
+  .footer-brand {
+    min-width: unset;
+  }
+
+  /* Speed dial: ติดขอบจอพอดี */
+  .speed-dial-container {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  /* Ticker: ปิดแสดงในจอเล็กมากเพื่อ performance */
+  .shop-ticker-banner {
+    display: none;
+  }
+
+  /* QR card: ให้ overflow scroll ถ้าจำเป็น */
+  .qr-card {
+    width: 95% !important;
+    padding: 24px 16px !important;
+  }
+
+  /* Suggestion dropdown: ไม่ให้เกินจอ */
+  #searchSuggestions {
+    left: 0;
+    right: 0;
+  }
+
+  /* Photo gallery: ลดความสูงในจอจิ๋ว */
+  .photo-gallery {
+    height: 240px;
+  }
+}
+
+/* ----------------------------------------------------------
+   E. FOLD / ULTRA-SMALL ( < 360px )
+   สำหรับ Galaxy Z Fold, Oppo Find N และจอพับขนาดจิ๋ว
+   ---------------------------------------------------------- */
+@media (max-width: 360px) {
+  #home h1 {
+    font-size: 1.7rem !important;
+    letter-spacing: 1px;
+  }
+
+  #home .subtitle-vibe {
+    font-size: 0.7rem !important;
+    letter-spacing: 2px;
+  }
+
+  .section-title {
+    font-size: 1.3rem !important;
+  }
+
+  .hero-content-overlay {
+    padding: 30px 12px;
+  }
+
+  .btn-primary {
+    font-size: 0.9rem !important;
+  }
+
+  .author-profile-pic {
+    width: 140px;
+    height: 140px;
+  }
+
+  .author-name {
+    font-size: 20px !important;
+  }
+
+  .contact-box {
+    max-width: 100%;
+    padding: 10px 14px;
+  }
+
+  .thumb-item {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .book-card {
+    padding: 20px 14px !important;
+  }
+}
+
+/* ============================================================
+   [31] NAV SYSTEM FINAL
+   Burger transition, Logo alignment, Touch targets,
+   Drawer backdrop, CI Color contrast (Light & Dark)
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   A. HAMBURGER BUTTON — guaranteed 44×44px tap target
+   ---------------------------------------------------------- */
+.hamburger-menu {
+  min-width: 44px;
+  min-height: 44px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+  will-change: transform;
+  background: transparent;
+  border: none;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.hamburger-menu:active {
+  transform: scale(0.92);
+}
+
+/* ----------------------------------------------------------
+   B. NAV BAR LAYOUT — 3-column grid: [burger][LOGO][space]
+   ---------------------------------------------------------- */
+@media (max-width: 1024px) {
+  nav {
+    display: grid !important;
+    grid-template-columns: 44px 1fr 44px;
+    align-items: center;
+    padding: 0 16px !important;
+    gap: 0 !important;
+  }
+
+  .logo {
+    grid-column: 2;
+    justify-self: center;
+    display: flex !important;
+    align-items: center;
+    position: static !important;
+    transform: none !important;
+  }
+
+  .hamburger-menu {
+    grid-column: 1;
+    display: flex !important;
+    justify-self: start;
+  }
+
+  .nav-right-container {
+    display: none !important;
+  }
+}
+
+/* ----------------------------------------------------------
+   C. DRAWER SLIDE — GPU-accelerated translateX (no jank)
+   ---------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .nav-links {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    transform: translateX(100%) !important;
+    width: min(75%, 320px) !important;
+    height: 100dvh !important;
+    transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0 !important;
+    z-index: 10001 !important;
+    margin: 0 !important;
+    padding: 80px 0 40px !important;
+    overflow-y: auto;
+    list-style: none;
+  }
+
+  .nav-links.active {
+    transform: translateX(0) !important;
+  }
+
+  /* Light mode drawer */
+  html:not([data-theme="dark"]) .nav-links {
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Dark mode drawer */
+  [data-theme="dark"] .nav-links {
+    background: #007a33 !important;
+    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* ----------------------------------------------------------
+   D. BACKDROP OVERLAY — dimmed layer behind drawer
+   Toggle .active via JS alongside .nav-links.active
+   ---------------------------------------------------------- */
+.nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.nav-backdrop.active {
+  display: block;
+  opacity: 1;
+}
+
+/* ----------------------------------------------------------
+   E. NAV ITEMS INSIDE DRAWER — 52px touch targets
+   ---------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .nav-links li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-links li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    min-height: 52px;
+    padding: 0 20px;
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease !important;
+  }
+
+  /* Light mode: CI green text */
+  html:not([data-theme="dark"]) .nav-links li a {
+    color: #007a33 !important;
+  }
+
+  html:not([data-theme="dark"]) .nav-links li a:hover,
+  html:not([data-theme="dark"]) .nav-links li a:focus {
+    background-color: rgba(0, 122, 51, 0.08) !important;
+    color: #005c26 !important;
+    transform: translateX(4px);
+  }
+
+  html:not([data-theme="dark"]) .nav-links li a.active-link {
+    background-color: rgba(0, 122, 51, 0.12) !important;
+    color: #007a33 !important;
+    border-left: 3px solid #007a33;
+  }
+
+  /* Dark mode: white text on CI green drawer */
+  [data-theme="dark"] .nav-links li a {
+    color: #ffffff !important;
+  }
+
+  [data-theme="dark"] .nav-links li a:hover,
+  [data-theme="dark"] .nav-links li a:focus {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    color: var(--ci-yellow) !important;
+    transform: translateX(4px);
+  }
+
+  [data-theme="dark"] .nav-links li a.active-link {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: var(--ci-yellow) !important;
+    border-left: 3px solid var(--ci-yellow);
+  }
+}
+
+/* ----------------------------------------------------------
+   F. TH/EN & THEME BUTTONS INSIDE DRAWER
+   ---------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .nav-links .nav-controls-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 80% !important;
+    margin-top: 24px !important;
+    padding-top: 20px !important;
+    border-top: 1px solid rgba(128, 128, 128, 0.2) !important;
+  }
+
+  .nav-links .lang-btn,
+  .nav-links .theme-btn {
+    flex: 1 !important;
+    max-width: 140px !important;
+    height: 48px !important;
+    font-size: 0.9rem !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    min-height: 44px;
+    transition: all 0.2s ease !important;
+  }
+
+  /* Light mode button styles inside drawer */
+  html:not([data-theme="dark"]) .nav-links .lang-btn {
+    border: 2px solid #007a33 !important;
+    color: #007a33 !important;
+    background: transparent !important;
+  }
+
+  html:not([data-theme="dark"]) .nav-links .lang-btn:hover {
+    background: #007a33 !important;
+    color: #ffffff !important;
+  }
+
+  html:not([data-theme="dark"]) .nav-links .theme-btn {
+    border: 2px solid #ccc !important;
+    background: #f5f5f5 !important;
+    color: #333 !important;
+  }
+
+  html:not([data-theme="dark"]) .nav-links .theme-btn:hover {
+    border-color: #ff8c00 !important;
+    background: #fff4e8 !important;
+    color: #ff8c00 !important;
+  }
+
+  /* Dark mode button styles inside drawer */
+  [data-theme="dark"] .nav-links .lang-btn,
+  [data-theme="dark"] .nav-links .theme-btn {
+    border: 2px solid rgba(255, 255, 255, 0.5) !important;
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  [data-theme="dark"] .nav-links .lang-btn:hover,
+  [data-theme="dark"] .nav-links .theme-btn:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: var(--ci-yellow) !important;
+    color: var(--ci-yellow) !important;
+  }
+}
+
+/* ----------------------------------------------------------
+   G. CLOSE BUTTON INSIDE DRAWER (element: .nav-close-btn)
+   ป้องกันกรณีที่ drawer ปิดยาก — ปุ่ม × ที่มุมขวาบน
+   ---------------------------------------------------------- */
+.nav-close-btn {
+  display: none;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  transition: background 0.2s ease;
+  z-index: 10002;
+}
+
+html:not([data-theme="dark"]) .nav-close-btn {
+  color: #007a33;
+}
+
+html:not([data-theme="dark"]) .nav-close-btn:hover {
+  background: rgba(0, 122, 51, 0.1);
+}
+
+[data-theme="dark"] .nav-close-btn {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .nav-close-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 1024px) {
+  .nav-close-btn {
+    display: flex;
+  }
+}
+
+/* ----------------------------------------------------------
+   H. DESKTOP RESTORE — ยกเลิก mobile overrides ทั้งหมด
+   ต้องอยู่หลังสุดเพื่อ specificity สูงสุด
+   ---------------------------------------------------------- */
+@media (min-width: 1025px) {
+  nav {
+    display: flex !important;
+    grid-template-columns: unset !important;
+    padding: 0 clamp(40px, 5vw, 80px) !important;
+    gap: 32px !important;
+  }
+
+  .logo {
+    grid-column: unset;
+    justify-self: unset;
+  }
+
+  .hamburger-menu,
+  .nav-close-btn,
+  .nav-backdrop {
+    display: none !important;
+  }
+
+  .nav-links {
+    display: flex !important;
+    position: static !important;
+    transform: none !important;
+    width: auto !important;
+    height: auto !important;
+    flex-direction: row !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    gap: 32px !important;
+    padding: 0 !important;
+    overflow: visible;
+    will-change: auto;
+    list-style: none;
+  }
+
+  .nav-links li {
+    width: auto;
+    display: block;
+  }
+
+  .nav-links li a {
+    width: auto !important;
+    min-height: unset !important;
+    padding: 0 !important;
+    font-size: 1.05rem !important;
+    font-weight: 500 !important;
+    border-radius: 0;
+    color: #444 !important;
+    border-left: none !important;
+    background: transparent !important;
+    transform: none !important;
+    justify-content: unset;
+  }
+
+  .nav-links li a:hover {
+    color: var(--savor-green) !important;
+    background: transparent !important;
+    transform: none !important;
+  }
+
+  .nav-right-container {
+    display: flex !important;
+  }
+}
+
+/* ----------------------------------------------------------
+   Desktop controls isolation
+   #desktopControls: ปุ่ม TH/EN+Theme ที่ navbar desktop
+   ซ่อนใน mobile เพราะปุ่มย้ายเข้า drawer แล้ว
+   ---------------------------------------------------------- */
+#desktopControls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  #desktopControls {
+    display: none !important;
+  }
+}
+
+/* nav-links ต้องเป็น position:relative เพื่อให้ .nav-close-btn ทำงาน */
+@media (max-width: 1024px) {
+  .nav-links {
+    position: fixed !important; /* already set, just ensure no override */
+  }
+
+  /* nav-links เป็น containing block ของ .nav-close-btn */
+  #navLinks {
+    position: fixed !important;
+  }
 }
