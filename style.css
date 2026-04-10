@@ -105,47 +105,6 @@ img {
 }
 
 /* ============================================================
-   [5] MASTER NAVIGATION BAR
-   ============================================================ */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 40px;
-  gap: 32px;
-  background: transparent;
-  backdrop-filter: blur(13px);
-  -webkit-backdrop-filter: blur(13px);
-  height: 85px;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 10000;
-  box-shadow: 0 2px 10px var(--shadow-color);
-  transition:
-    background 0.4s ease,
-    box-shadow 0.4s ease;
-}
-
-nav.scrolled {
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.logo img {
-  height: 33px;
-  width: auto;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.logo img:hover {
-  transform: scale(1.05);
-}
-
-/* ============================================================
    [6] SCROLL PROGRESS BAR
    ============================================================ */
 .scroll-progress-container {
@@ -165,103 +124,6 @@ nav.scrolled {
   width: 0%;
   box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
   transition: width 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-/* ============================================================
-   [7] NAV LINKS & CONTROLS
-   ============================================================ */
-.nav-right-container {
-  display: flex;
-  gap: 30px;
-  flex-direction: row-reverse;
-  align-items: center;
-  flex-wrap: nowrap;
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 32px;
-  align-items: center;
-}
-
-.nav-links li {
-  position: relative;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #444;
-  font-weight: 500;
-  font-size: 1.05rem;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: var(--savor-green);
-}
-
-.nav-controls-wrapper {
-  display: flex !important;
-  gap: 10px !important;
-  align-items: center !important;
-}
-
-.lang-btn,
-.theme-btn {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  cursor: pointer !important;
-  transition: 0.3s !important;
-  font-weight: 600 !important;
-  border-radius: 10px;
-}
-
-/* Light Mode button styles */
-html:not([data-theme="dark"]) .lang-btn {
-  border: 1.5px solid #007a33 !important;
-  color: #007a33 !important;
-  background: transparent !important;
-}
-
-html:not([data-theme="dark"]) .theme-btn {
-  background-color: #f0f0f0 !important;
-  border: 1.5px solid #ccc !important;
-  color: #333 !important;
-}
-
-/* Dark Mode button styles */
-[data-theme="dark"] .lang-btn,
-[data-theme="dark"] .theme-btn {
-  color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.4) !important;
-  background-color: rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Active dark button */
-.theme-btn.active-dark {
-  background-color: var(--ci-orange) !important;
-  border-color: var(--ci-orange) !important;
-  color: #ffffff !important;
-}
-
-/* ============================================================
-   [8] HAMBURGER MENU
-   ============================================================ */
-.hamburger-menu {
-  display: none; /* hidden by default (desktop) */
-  position: relative;
-  z-index: 10002;
-  cursor: pointer;
-}
-
-html:not([data-theme="dark"]) .hamburger-menu i {
-  color: #007a33 !important;
-}
-
-[data-theme="dark"] .hamburger-menu i {
-  color: #ffffff !important;
 }
 
 /* ============================================================
@@ -2695,403 +2557,250 @@ body {
 }
 
 /* ============================================================
-   [31] NAV SYSTEM FINAL
-   Burger transition, Logo alignment, Touch targets,
-   Drawer backdrop, CI Color contrast (Light & Dark)
+   [FINAL BOSS] MASTER NAVIGATION & SPEED DIAL (CLEAN VERSION)
    ============================================================ */
 
 /* ----------------------------------------------------------
-   A. HAMBURGER BUTTON — guaranteed 44×44px tap target
+   1. DESKTOP NAVIGATION (Global)
    ---------------------------------------------------------- */
-.hamburger-menu {
-  min-width: 44px;
-  min-height: 44px;
-  display: none;
+nav {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
-  will-change: transform;
-  background: transparent;
-  border: none;
-  padding: 0;
-  flex-shrink: 0;
-}
-
-.hamburger-menu:active {
-  transform: scale(0.92);
-}
-
-/* ----------------------------------------------------------
-   B. NAV BAR LAYOUT — 3-column grid: [burger][LOGO][space]
-   ---------------------------------------------------------- */
-@media (max-width: 1024px) {
-  nav {
-    display: grid !important;
-    grid-template-columns: 44px 1fr 44px;
-    align-items: center;
-    padding: 0 16px !important;
-    gap: 0 !important;
-  }
-
-  .logo {
-    grid-column: 2;
-    justify-self: center;
-    display: flex !important;
-    align-items: center;
-    position: static !important;
-    transform: none !important;
-  }
-
-  .hamburger-menu {
-    grid-column: 1;
-    display: flex !important;
-    justify-self: start;
-  }
-
-  .nav-right-container {
-    display: none !important;
-  }
-}
-
-/* ----------------------------------------------------------
-   C. DRAWER SLIDE — GPU-accelerated translateX (no jank)
-   ---------------------------------------------------------- */
-@media (max-width: 1024px) {
-  .nav-links {
-    position: fixed !important;
-    top: 0 !important;
-    right: 0 !important;
-    transform: translateX(100%) !important;
-    width: min(75%, 320px) !important;
-    height: 100dvh !important;
-    transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    will-change: transform;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 0 !important;
-    z-index: 10001 !important;
-    margin: 0 !important;
-    padding: 80px 0 40px !important;
-    overflow-y: auto;
-    list-style: none;
-  }
-
-  .nav-links.active {
-    transform: translateX(0) !important;
-  }
-
-  /* Light mode drawer */
-  html:not([data-theme="dark"]) .nav-links {
-    background: rgba(255, 255, 255, 0.98) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.12);
-  }
-
-  /* Dark mode drawer */
-  [data-theme="dark"] .nav-links {
-    background: #007a33 !important;
-    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.4);
-  }
-}
-
-/* ----------------------------------------------------------
-   D. BACKDROP OVERLAY — dimmed layer behind drawer
-   Toggle .active via JS alongside .nav-links.active
-   ---------------------------------------------------------- */
-.nav-backdrop {
-  display: none;
+  padding: 0 5%;
+  height: 85px;
   position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  width: 100%;
+  top: 0;
+  left: 0;
   z-index: 10000;
-  opacity: 0;
-  transition: opacity 0.35s ease;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
-.nav-backdrop.active {
-  display: block;
-  opacity: 1;
+[data-theme="dark"] nav {
+  background-color: #007a33 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ----------------------------------------------------------
-   E. NAV ITEMS INSIDE DRAWER — 52px touch targets
-   ---------------------------------------------------------- */
-@media (max-width: 1024px) {
-  .nav-links li {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  .nav-links li a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
-    min-height: 52px;
-    padding: 0 20px;
-    font-size: 1.15rem !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.5px;
-    border-radius: 10px;
-    text-decoration: none;
-    transition:
-      background-color 0.2s ease,
-      color 0.2s ease,
-      transform 0.2s ease !important;
-  }
-
-  /* Light mode: CI green text */
-  html:not([data-theme="dark"]) .nav-links li a {
-    color: #007a33 !important;
-  }
-
-  html:not([data-theme="dark"]) .nav-links li a:hover,
-  html:not([data-theme="dark"]) .nav-links li a:focus {
-    background-color: rgba(0, 122, 51, 0.08) !important;
-    color: #005c26 !important;
-    transform: translateX(4px);
-  }
-
-  html:not([data-theme="dark"]) .nav-links li a.active-link {
-    background-color: rgba(0, 122, 51, 0.12) !important;
-    color: #007a33 !important;
-    border-left: 3px solid #007a33;
-  }
-
-  /* Dark mode: white text on CI green drawer */
-  [data-theme="dark"] .nav-links li a {
-    color: #ffffff !important;
-  }
-
-  [data-theme="dark"] .nav-links li a:hover,
-  [data-theme="dark"] .nav-links li a:focus {
-    background-color: rgba(255, 255, 255, 0.12) !important;
-    color: var(--ci-yellow) !important;
-    transform: translateX(4px);
-  }
-
-  [data-theme="dark"] .nav-links li a.active-link {
-    background-color: rgba(255, 255, 255, 0.15) !important;
-    color: var(--ci-yellow) !important;
-    border-left: 3px solid var(--ci-yellow);
-  }
-}
-
-/* ----------------------------------------------------------
-   F. TH/EN & THEME BUTTONS INSIDE DRAWER
-   ---------------------------------------------------------- */
-@media (max-width: 1024px) {
-  .nav-links .nav-controls-wrapper {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 12px !important;
-    width: 80% !important;
-    margin-top: 24px !important;
-    padding-top: 20px !important;
-    border-top: 1px solid rgba(128, 128, 128, 0.2) !important;
-  }
-
-  .nav-links .lang-btn,
-  .nav-links .theme-btn {
-    flex: 1 !important;
-    max-width: 140px !important;
-    height: 48px !important;
-    font-size: 0.9rem !important;
-    border-radius: 10px !important;
-    font-weight: 700 !important;
-    min-height: 44px;
-    transition: all 0.2s ease !important;
-  }
-
-  /* Light mode button styles inside drawer */
-  html:not([data-theme="dark"]) .nav-links .lang-btn {
-    border: 2px solid #007a33 !important;
-    color: #007a33 !important;
-    background: transparent !important;
-  }
-
-  html:not([data-theme="dark"]) .nav-links .lang-btn:hover {
-    background: #007a33 !important;
-    color: #ffffff !important;
-  }
-
-  html:not([data-theme="dark"]) .nav-links .theme-btn {
-    border: 2px solid #ccc !important;
-    background: #f5f5f5 !important;
-    color: #333 !important;
-  }
-
-  html:not([data-theme="dark"]) .nav-links .theme-btn:hover {
-    border-color: #ff8c00 !important;
-    background: #fff4e8 !important;
-    color: #ff8c00 !important;
-  }
-
-  /* Dark mode button styles inside drawer */
-  [data-theme="dark"] .nav-links .lang-btn,
-  [data-theme="dark"] .nav-links .theme-btn {
-    border: 2px solid rgba(255, 255, 255, 0.5) !important;
-    color: #ffffff !important;
-    background: rgba(255, 255, 255, 0.08) !important;
-  }
-
-  [data-theme="dark"] .nav-links .lang-btn:hover,
-  [data-theme="dark"] .nav-links .theme-btn:hover {
-    background: rgba(255, 255, 255, 0.2) !important;
-    border-color: var(--ci-yellow) !important;
-    color: var(--ci-yellow) !important;
-  }
-}
-
-/* ----------------------------------------------------------
-   G. CLOSE BUTTON INSIDE DRAWER (element: .nav-close-btn)
-   ป้องกันกรณีที่ drawer ปิดยาก — ปุ่ม × ที่มุมขวาบน
-   ---------------------------------------------------------- */
-.nav-close-btn {
-  display: none;
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: none;
-  background: transparent;
+.logo img {
+  height: 33px;
+  width: auto;
   cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  transition: background 0.2s ease;
-  z-index: 10002;
+  transition: transform 0.3s ease;
 }
 
-html:not([data-theme="dark"]) .nav-close-btn {
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+  font-size: 1.05rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
   color: #007a33;
 }
 
-html:not([data-theme="dark"]) .nav-close-btn:hover {
-  background: rgba(0, 122, 51, 0.1);
+[data-theme="dark"] .nav-links li a {
+  color: #ffffff !important;
 }
 
-[data-theme="dark"] .nav-close-btn {
-  color: #ffffff;
-}
-
-[data-theme="dark"] .nav-close-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-@media (max-width: 1024px) {
-  .nav-close-btn {
-    display: flex;
-  }
-}
-
-/* ----------------------------------------------------------
-   H. DESKTOP RESTORE — ยกเลิก mobile overrides ทั้งหมด
-   ต้องอยู่หลังสุดเพื่อ specificity สูงสุด
-   ---------------------------------------------------------- */
-@media (min-width: 1025px) {
-  nav {
-    display: flex !important;
-    grid-template-columns: unset !important;
-    padding: 0 clamp(40px, 5vw, 80px) !important;
-    gap: 32px !important;
-  }
-
-  .logo {
-    grid-column: unset;
-    justify-self: unset;
-  }
-
-  .hamburger-menu,
-  .nav-close-btn,
-  .nav-backdrop {
-    display: none !important;
-  }
-
-  .nav-links {
-    display: flex !important;
-    position: static !important;
-    transform: none !important;
-    width: auto !important;
-    height: auto !important;
-    flex-direction: row !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    gap: 32px !important;
-    padding: 0 !important;
-    overflow: visible;
-    will-change: auto;
-    list-style: none;
-  }
-
-  .nav-links li {
-    width: auto;
-    display: block;
-  }
-
-  .nav-links li a {
-    width: auto !important;
-    min-height: unset !important;
-    padding: 0 !important;
-    font-size: 1.05rem !important;
-    font-weight: 500 !important;
-    border-radius: 0;
-    color: #444 !important;
-    border-left: none !important;
-    background: transparent !important;
-    transform: none !important;
-    justify-content: unset;
-  }
-
-  .nav-links li a:hover {
-    color: var(--savor-green) !important;
-    background: transparent !important;
-    transform: none !important;
-  }
-
-  .nav-right-container {
-    display: flex !important;
-  }
-}
-
-/* ----------------------------------------------------------
-   Desktop controls isolation
-   #desktopControls: ปุ่ม TH/EN+Theme ที่ navbar desktop
-   ซ่อนใน mobile เพราะปุ่มย้ายเข้า drawer แล้ว
-   ---------------------------------------------------------- */
 #desktopControls {
   display: flex;
   gap: 10px;
   align-items: center;
 }
 
+.hamburger-menu {
+  display: none; /* ซ่อนใน Desktop */
+}
+
+/* ----------------------------------------------------------
+   2. MOBILE NAVIGATION (Burger & Drawer)
+   ---------------------------------------------------------- */
 @media (max-width: 1024px) {
+  body {
+    padding-top: 70px !important;
+  }
+
+  nav {
+    height: 70px !important;
+    padding: 0 20px !important;
+  }
+
+  /* โชว์ Burger */
+  .hamburger-menu {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #007a33;
+    z-index: 10002 !important;
+    cursor: pointer;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  [data-theme="dark"] .hamburger-menu i {
+    color: #ffffff !important;
+  }
+
+  /* ซ่อนปุ่ม Desktop */
   #desktopControls {
     display: none !important;
   }
+
+  /* ถาดเมนู (Drawer) */
+  .nav-links {
+    position: fixed !important;
+    top: 0;
+    right: -100%;
+    width: min(75%, 320px);
+    height: 100dvh;
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(15px);
+    flex-direction: column !important;
+    justify-content: center;
+    gap: 35px;
+    z-index: 10001 !important;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-links.active {
+    right: 0 !important;
+  }
+
+  [data-theme="dark"] .nav-links {
+    background-color: #007a33 !important;
+  }
 }
 
-/* nav-links ต้องเป็น position:relative เพื่อให้ .nav-close-btn ทำงาน */
-@media (max-width: 1024px) {
-  .nav-links {
-    position: fixed !important; /* already set, just ensure no override */
-  }
+/* ----------------------------------------------------------
+   3. SPEED DIAL CHAT BUTTON (SMOOTH SWAP FIX)
+   ---------------------------------------------------------- */
+.speed-dial-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 15px;
+}
 
-  /* nav-links เป็น containing block ของ .nav-close-btn */
-  #navLinks {
-    position: fixed !important;
-  }
+.speed-dial-main-btn {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #fbce4a !important;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.speed-dial-main-btn img {
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: contain !important;
+  position: absolute;
+  transition: 0.4s ease-in-out;
+}
+
+/* --- LOGIC สลับรูประหว่างยิ้มกับแลบลิ้น --- */
+.img-active {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.img-normal {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.speed-dial-container.active .img-normal {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.speed-dial-container.active .img-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.speed-dial-container.active .speed-dial-main-btn {
+  transform: rotate(15deg) scale(1.1);
+  background-color: #ff8c00 !important; /* เปลี่ยนเป็นส้ม CI */
+}
+
+/* --- ปุ่มลูกๆ ด้านใน --- */
+.speed-dial-buttons {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 15px !important;
+  margin-bottom: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px) scale(0.5);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+}
+
+.speed-dial-container.active .speed-dial-buttons {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.dial-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dial-btn:hover {
+  transform: scale(1.2) translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.phone-btn {
+  background: #ffd54f;
+}
+.line-btn {
+  background: #66bb6a;
+}
+.copy-btn {
+  background: #ffca28;
 }
