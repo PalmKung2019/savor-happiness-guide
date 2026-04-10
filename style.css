@@ -1677,153 +1677,22 @@ html:not([data-theme="dark"]) .merch-card p {
 
 /* --- DESKTOP 1025px+ --- */
 @media (min-width: 1025px) {
-  nav {
-    height: 85px;
-    padding: 0 40px;
-  }
-
-  .hamburger-menu {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-  }
-
-  nav .nav-right-container .lang-btn,
-  nav .nav-right-container .theme-btn {
-    width: 65px !important;
-    height: 35px !important;
-    font-size: 0.75rem !important;
-    border-radius: 10px !important;
-    flex: none !important;
-  }
-
   .book-grid-container {
     flex-direction: row;
     gap: 60px;
   }
 }
 
-/* --- TABLET 769px landscape (hamburger hidden) --- */
+/* --- TABLET 769px landscape --- */
 @media (min-width: 769px) and (orientation: landscape) {
-  #hamburgerBtn,
-  .hamburger-menu {
-    display: none !important;
-  }
 }
 
 /* --- TABLET 1024px --- */
 @media (max-width: 1024px) {
-  nav {
-    height: 70px !important;
-    padding: 0 20px !important;
-    position: fixed !important;
-    top: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    background: var(--bg-nav) !important;
-  }
+  /* ลบขยะ Nav เก่าทิ้งหมดแล้ว! เหลือแค่ Content Layout */
 
-  body,
   .scroll-progress-container {
-    padding-top: 70px !important;
     top: 70px !important;
-  }
-
-  .logo {
-    position: static !important;
-    transform: none !important;
-    display: flex !important;
-    align-items: center !important;
-  }
-
-  .logo img {
-    height: 28px !important;
-    margin: 0 !important;
-  }
-
-  .hamburger-menu {
-    display: flex !important;
-    align-items: center !important;
-    margin: 0 !important;
-    height: auto !important;
-    font-size: 28px;
-    color: #007a33;
-    z-index: 10002 !important;
-    cursor: pointer;
-  }
-
-  .nav-right-container .nav-controls-wrapper {
-    display: none !important;
-  }
-
-  /* DRAWER: replaced by Block [31] translateX approach
-     Kept as positional base only — transition/right overridden by [31] */
-  .nav-links {
-    display: flex !important;
-    position: fixed !important;
-    top: 0;
-    /* right/transform controlled exclusively by Block [31] */
-    width: 70% !important;
-    height: 100vh !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 35px !important;
-    z-index: 10001 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  /* .nav-links.active: position controlled by Block [31] translateX */
-
-  /* Mobile menu background */
-  html:not([data-theme="dark"]) .nav-links {
-    background-color: rgba(255, 255, 255, 0.98) !important;
-    backdrop-filter: blur(10px);
-  }
-
-  [data-theme="dark"] .nav-links {
-    background-color: #007a33 !important;
-  }
-
-  /* Light mode nav link color */
-  html:not([data-theme="dark"]) .nav-links li a {
-    color: #007a33 !important;
-    font-weight: 700 !important;
-  }
-
-  /* Dark mode nav link color */
-  [data-theme="dark"] .nav-links li a {
-    color: #ffffff !important;
-  }
-
-  /* In-menu buttons */
-  .nav-links .nav-controls-wrapper {
-    display: flex !important;
-    margin-top: 20px !important;
-    gap: 15px !important;
-  }
-
-  .nav-links .lang-btn,
-  .nav-links .theme-btn {
-    width: 110px !important;
-    height: 45px !important;
-    border-radius: 10px;
-    font-size: 0.9rem !important;
-    flex: none !important;
-  }
-
-  html:not([data-theme="dark"]) .nav-links .lang-btn,
-  html:not([data-theme="dark"]) .nav-links .theme-btn {
-    border: 1.5px solid #007a33 !important;
-    color: #007a33 !important;
-  }
-
-  [data-theme="dark"] .nav-links .lang-btn,
-  [data-theme="dark"] .nav-links .theme-btn {
-    border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
-    color: #ffffff !important;
   }
 
   /* Video adjustments */
@@ -2197,23 +2066,17 @@ html:not([data-theme="dark"]) .merch-card p {
 
 /* ============================================================
    [30] FLUID RESPONSIVE REFINEMENT
-   Fluid typography, Large Screen whitespace, Tablet touch UX,
-   Small Mobile lockdown — zero duplicate with existing rules.
    ============================================================ */
 
 /* ----------------------------------------------------------
-   A. FLUID TYPOGRAPHY & SPACING (Base — applies all breakpoints)
-   ใช้ clamp() ให้ขนาดตัวอักษรและ padding ไหลตาม viewport
+   A. FLUID TYPOGRAPHY & SPACING
    ---------------------------------------------------------- */
 :root {
-  /* Fluid spacing scale */
   --space-xs: clamp(8px, 1.5vw, 14px);
   --space-sm: clamp(14px, 2.5vw, 24px);
   --space-md: clamp(24px, 4vw, 48px);
   --space-lg: clamp(48px, 7vw, 100px);
   --space-xl: clamp(80px, 10vw, 140px);
-
-  /* Fluid font scale */
   --fs-body: clamp(0.9rem, 1.2vw, 1.1rem);
   --fs-label: clamp(0.75rem, 1vw, 0.9rem);
   --fs-card: clamp(1rem, 1.4vw, 1.25rem);
@@ -2221,63 +2084,44 @@ html:not([data-theme="dark"]) .merch-card p {
   --fs-h3: clamp(1.2rem, 2.5vw, 1.8rem);
 }
 
-/* Apply fluid body font — augments the existing base */
 body {
   font-size: var(--fs-body);
 }
-
-/* Fluid section padding using CSS custom property */
 .section {
   padding: var(--space-xl) clamp(5%, 10%, 15%);
 }
 
 /* ----------------------------------------------------------
    B. LARGE SCREEN PREMIUM ( > 1200px )
-   เน้น Whitespace + เพิ่มขนาด Card และกั้นความกว้างสูงสุด
    ---------------------------------------------------------- */
 @media (min-width: 1200px) {
-  /* Hero content: ยืดพื้นที่หายใจ */
   .hero-content-overlay {
     padding: 80px 40px;
     max-width: 1100px;
   }
-
-  /* Section title ใหญ่ขึ้นนิดในจอกว้าง */
   .section-title {
     font-size: clamp(2.4rem, 3vw, 3rem);
     margin-bottom: 70px;
   }
-
-  /* Shop grid: เพิ่ม gap ให้โปร่งขึ้นในจอ 1200+ */
   .shop-grid {
     gap: clamp(32px, 4vw, 60px);
     max-width: 1100px;
   }
-
-  /* Book card: ขยาย max-width ให้ดูสบายตากว่า */
   .book-card {
     max-width: 960px !important;
     padding: 60px 80px !important;
   }
-
-  /* Video wrapper: คุมไม่ให้กว้างเกิน 1000px */
   .video-wrapper {
     max-width: 1000px;
     margin: 68px auto !important;
   }
-
-  /* Author card: ขยาย max-width ตาม viewport กว้าง */
   .author-layout-card {
     max-width: 1100px;
   }
-
-  /* Footer: เพิ่ม padding รอบข้าง */
   .footer-container {
     padding: 0 8%;
     gap: 60px;
   }
-
-  /* ย่อ Nav gap ให้ไม่ถ่างเกิน */
   nav {
     padding: 0 clamp(40px, 5vw, 80px);
   }
@@ -2285,59 +2129,40 @@ body {
 
 /* ----------------------------------------------------------
    C. TABLET TOUCH-FRIENDLY ( 768px – 1024px )
-   ขยาย tap-target, ปรับ grid, เพิ่ม touch-padding
    ---------------------------------------------------------- */
 @media (min-width: 768px) and (max-width: 1024px) {
-  /* Shop grid: ยืด gap ให้นิ้วกดไม่ผิด */
   .shop-grid {
     gap: clamp(20px, 3vw, 36px);
     width: 95%;
   }
-
-  /* Merch bookmark: 3 → 2 cols ที่ tablet portrait */
   @media (orientation: portrait) {
     .merch-grid.bookmark-triple-grid {
       grid-template-columns: repeat(2, 1fr) !important;
       gap: 20px !important;
     }
   }
-
-  /* Section padding: ลดลงนิดให้พอดีหน้าจอ tablet */
   .section {
     padding: var(--space-lg) 6%;
   }
-
-  /* Book grid: ย่อ gap เพื่อไม่ให้ layout แตก */
   .book-grid-container {
     gap: 40px !important;
     padding: 40px 20px !important;
   }
-
-  /* Author visual side: ลดความกว้าง fixed ลง */
   .author-visual-side {
     flex: 0 0 320px;
     padding: 40px 30px;
   }
-
   .author-content-side {
     padding: 40px 40px;
   }
-
-  /* Author profile pic: ย่อลงนิด */
   .author-profile-pic {
     width: 200px;
     height: 200px;
   }
-
-  /* Nav links gap: desktop-only, không áp dụng khi drawer đang mở */
-
-  /* Thumb item: เพิ่มขนาด tap area ใน tablet */
   .thumb-item {
     width: 80px;
     height: 80px;
   }
-
-  /* Ticker banner: ลดความสูงนิดในแนวนอน */
   .shop-ticker-banner {
     height: 60px;
   }
@@ -2345,10 +2170,8 @@ body {
 
 /* ----------------------------------------------------------
    D. SMALL MOBILE LOCKDOWN ( < 480px )
-   Single-column everything, no overflow, min tap-target 44px
    ---------------------------------------------------------- */
 @media (max-width: 480px) {
-  /* Force everything to single column */
   .shop-grid,
   .merch-grid,
   .merch-grid.bookmark-triple-grid,
@@ -2359,70 +2182,48 @@ body {
     width: 100% !important;
     padding: 0 16px !important;
   }
-
-  /* Shop card: เต็มความกว้างจอ ไม่หลุดขอบ */
   .shop-card {
     max-width: 100% !important;
     margin: 0 !important;
   }
-
-  /* Merch card: เต็มความกว้างจอ */
   .merch-card {
     padding: 18px !important;
   }
-
-  /* Section padding ที่แน่นที่สุด */
   .section {
     padding: 48px 16px !important;
   }
-
-  /* Section title: clamp ที่เหมาะกับจอเล็ก */
   .section-title {
     font-size: clamp(1.4rem, 6vw, 1.8rem) !important;
     margin-bottom: 30px !important;
   }
-
-  /* District label: ย่อให้พอดีจอ */
   .district-label {
     font-size: clamp(1rem, 5vw, 1.4rem) !important;
     letter-spacing: 1.5px !important;
     margin: 30px 0 20px 0 !important;
   }
-
-  /* Book card: ไม่ให้ overflow */
   .book-card {
     padding: 28px 18px !important;
     margin: 16px 0 !important;
     width: 100% !important;
   }
-
-  /* Book badge row: wrap กันล้น */
   .book-badge-row {
     flex-wrap: wrap;
     gap: 8px;
   }
-
-  /* Thumbnail: ปล่อยให้ wrap แต่ขนาดสม่ำเสมอ */
   .book-thumbs {
     gap: 8px !important;
   }
-
   .thumb-item {
     width: 58px !important;
     height: 58px !important;
   }
-
-  /* Video content box: ไม่ให้ l้น */
   .video-content-box {
     padding: 28px 16px !important;
     margin: 0 0 24px !important;
   }
-
   .video-content-box .section-title {
     font-size: clamp(1.3rem, 5.5vw, 1.6rem) !important;
   }
-
-  /* Primary button: เต็มความกว้าง, tap area ≥ 44px */
   .btn-primary,
   .btn-support-cta {
     width: 100% !important;
@@ -2430,46 +2231,34 @@ body {
     font-size: 1rem !important;
     padding: 14px 20px !important;
   }
-
-  /* Search: ไม่ให้ overflow */
   .search-wrapper {
     padding: 0 12px !important;
-    margin-top: 90px !important;
+    margin-top: 42px !important;
   }
-
   #searchBtn {
     padding: 12px 16px !important;
     white-space: nowrap;
     flex-shrink: 0;
   }
-
-  /* Author card: ไม่ล้นจอ */
   .author-centering-wrapper {
     padding: 70px 12px 40px;
     min-height: unset;
   }
-
   .author-layout-card {
     margin: 0 !important;
     border-radius: 10px;
   }
-
   .author-profile-pic {
     width: 180px;
     height: 180px;
   }
-
   .author-content-side {
     padding: 30px 20px !important;
   }
-
-  /* Contact box: ขยาย tap area */
   .contact-box {
     width: 100% !important;
     max-width: 300px;
   }
-
-  /* Footer: stack vertically, center */
   .footer-container {
     flex-direction: column;
     align-items: center;
@@ -2477,29 +2266,20 @@ body {
     gap: 24px;
     padding: 0 20px;
   }
-
   .footer-brand {
     min-width: unset;
   }
-
-  /* Ticker: ปิดแสดงในจอเล็กมากเพื่อ performance */
   .shop-ticker-banner {
     display: none;
   }
-
-  /* QR card: ให้ overflow scroll ถ้าจำเป็น */
   .qr-card {
     width: 95% !important;
     padding: 24px 16px !important;
   }
-
-  /* Suggestion dropdown: ไม่ให้เกินจอ */
   #searchSuggestions {
     left: 0;
     right: 0;
   }
-
-  /* Photo gallery: ลดความสูงในจอจิ๋ว */
   .photo-gallery {
     height: 240px;
   }
@@ -2507,57 +2287,47 @@ body {
 
 /* ----------------------------------------------------------
    E. FOLD / ULTRA-SMALL ( < 360px )
-   สำหรับ Galaxy Z Fold, Oppo Find N และจอพับขนาดจิ๋ว
    ---------------------------------------------------------- */
 @media (max-width: 360px) {
   #home h1 {
     font-size: 1.7rem !important;
     letter-spacing: 1px;
   }
-
   #home .subtitle-vibe {
     font-size: 0.7rem !important;
     letter-spacing: 2px;
   }
-
   .section-title {
     font-size: 1.3rem !important;
   }
-
   .hero-content-overlay {
     padding: 30px 12px;
   }
-
   .btn-primary {
     font-size: 0.9rem !important;
   }
-
   .author-profile-pic {
     width: 140px;
     height: 140px;
   }
-
   .author-name {
     font-size: 20px !important;
   }
-
   .contact-box {
     max-width: 100%;
     padding: 10px 14px;
   }
-
   .thumb-item {
     width: 50px !important;
     height: 50px !important;
   }
-
   .book-card {
     padding: 20px 14px !important;
   }
 }
 
 /* ============================================================
-   [FINAL BOSS] MASTER NAVIGATION & SPEED DIAL (CLEAN VERSION)
+   [FINAL BOSS] MASTER NAVIGATION & SPEED DIAL (ULTIMATE CLEAN)
    ============================================================ */
 
 /* ----------------------------------------------------------
@@ -2617,7 +2387,6 @@ nav {
 .nav-links li a:hover {
   color: #007a33;
 }
-
 [data-theme="dark"] .nav-links li a {
   color: #ffffff !important;
 }
@@ -2629,7 +2398,7 @@ nav {
 }
 
 .hamburger-menu {
-  display: none; /* ซ่อนใน Desktop */
+  display: none;
 }
 
 /* ----------------------------------------------------------
@@ -2639,13 +2408,11 @@ nav {
   body {
     padding-top: 70px !important;
   }
-
   nav {
     height: 70px !important;
     padding: 0 20px !important;
   }
 
-  /* โชว์ Burger */
   .hamburger-menu {
     display: flex !important;
     align-items: center;
@@ -2657,17 +2424,13 @@ nav {
     min-width: 44px;
     min-height: 44px;
   }
-
   [data-theme="dark"] .hamburger-menu i {
     color: #ffffff !important;
   }
-
-  /* ซ่อนปุ่ม Desktop */
   #desktopControls {
     display: none !important;
   }
 
-  /* ถาดเมนู (Drawer) */
   .nav-links {
     position: fixed !important;
     top: 0;
@@ -2686,14 +2449,13 @@ nav {
   .nav-links.active {
     right: 0 !important;
   }
-
   [data-theme="dark"] .nav-links {
     background-color: #007a33 !important;
   }
 }
 
 /* ----------------------------------------------------------
-   3. SPEED DIAL CHAT BUTTON (SMOOTH SWAP FIX)
+   3. SPEED DIAL CHAT BUTTON (STRICT OVERRIDE FIX)
    ---------------------------------------------------------- */
 .speed-dial-container {
   position: fixed;
@@ -2726,34 +2488,38 @@ nav {
   width: 40px !important;
   height: 40px !important;
   object-fit: contain !important;
-  position: absolute;
-  transition: 0.4s ease-in-out;
+  position: absolute !important;
+  transition: 0.4s ease-in-out !important;
 }
 
-/* --- LOGIC สลับรูประหว่างยิ้มกับแลบลิ้น --- */
-.img-active {
-  opacity: 0;
-  transform: scale(0.5);
+/* --- LOGIC สลับรูประหว่างยิ้มกับแลบลิ้น (เพิ่มความเฉพาะเจาะจงขั้นสุด) --- */
+.speed-dial-main-btn .img-active {
+  opacity: 0 !important;
+  transform: scale(0.5) !important;
+  visibility: hidden !important;
 }
 
-.img-normal {
-  opacity: 1;
-  transform: scale(1);
+.speed-dial-main-btn .img-normal {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  visibility: visible !important;
 }
 
-.speed-dial-container.active .img-normal {
-  opacity: 0;
-  transform: scale(0.5);
+.speed-dial-container.active .speed-dial-main-btn .img-normal {
+  opacity: 0 !important;
+  transform: scale(0.5) !important;
+  visibility: hidden !important;
 }
 
-.speed-dial-container.active .img-active {
-  opacity: 1;
-  transform: scale(1);
+.speed-dial-container.active .speed-dial-main-btn .img-active {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  visibility: visible !important;
 }
 
 .speed-dial-container.active .speed-dial-main-btn {
-  transform: rotate(15deg) scale(1.1);
-  background-color: #ff8c00 !important; /* เปลี่ยนเป็นส้ม CI */
+  transform: rotate(15deg) scale(1.1) !important;
+  background-color: #fbce4a !important;
 }
 
 /* --- ปุ่มลูกๆ ด้านใน --- */
@@ -2803,4 +2569,139 @@ nav {
 }
 .copy-btn {
   background: #ffca28;
+}
+
+/* ----------------------------------------------------------
+   4. DRAWER CLOSE BUTTON (STRICT ISOLATION)
+   ป้องกันปุ่ม X โผล่บนจอคอมหรือจอแนวนอน
+   ---------------------------------------------------------- */
+.nav-close-btn {
+  display: none !important; /* ดับเครื่องชน: ซ่อนไว้ก่อนเสมอ */
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  z-index: 10005;
+  transition: background 0.2s ease;
+}
+
+/* สีของปุ่ม X (รองรับ Light / Dark Mode) */
+html:not([data-theme="dark"]) .nav-close-btn {
+  color: #007a33;
+}
+[data-theme="dark"] .nav-close-btn {
+  color: #ffffff;
+}
+
+/* อนุญาตให้โชว์ "เฉพาะ" ในจอมือถือ/แท็บเล็ต (เมื่อเปิดถาดเมนูเท่านั้น) */
+@media (max-width: 1024px) {
+  .nav-links .nav-close-btn {
+    display: flex !important;
+  }
+}
+
+/* เอาชัวร์! ดักยิงทิ้งซ้ำอีกรอบบนจอ Desktop (1025px ขึ้นไป) */
+@media (min-width: 1025px) {
+  .nav-close-btn,
+  .nav-links .nav-close-btn {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+/* ----------------------------------------------------------
+   5. LANGUAGE & THEME BUTTONS (NAV CONTROLS)
+   ---------------------------------------------------------- */
+/* --- สไตล์หลัก (Desktop) --- */
+.nav-controls-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.lang-btn,
+.theme-btn {
+  width: 65px;
+  height: 35px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.5px;
+}
+
+/* --- Light Mode --- */
+html:not([data-theme="dark"]) .lang-btn {
+  border: 1.5px solid #007a33; /* เขียว CI Savor Happiness */
+  color: #007a33;
+  background: transparent;
+}
+
+html:not([data-theme="dark"]) .lang-btn:hover {
+  background: #007a33;
+  color: #ffffff;
+}
+
+html:not([data-theme="dark"]) .theme-btn {
+  border: 1.5px solid #ccc;
+  color: #333;
+  background: #f5f5f5;
+}
+
+html:not([data-theme="dark"]) .theme-btn:hover {
+  border-color: #ff8c00; /* ส้ม CI ตอน Hover */
+  background: #fff4e8;
+  color: #ff8c00;
+}
+
+/* --- Dark Mode --- */
+[data-theme="dark"] .lang-btn,
+[data-theme="dark"] .theme-btn {
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .lang-btn:hover,
+[data-theme="dark"] .theme-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #fbce4a; /* เหลือง CI */
+  color: #fbce4a;
+}
+
+/* ----------------------------------------------------------
+   6. MOBILE OVERRIDE สำหรับปุ่มตอนอยู่ใน Drawer
+   ---------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .nav-links .nav-controls-wrapper {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+    width: 80%;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(128, 128, 128, 0.2); /* เส้นคั่นบางๆ ในเมนู */
+  }
+
+  .nav-links .lang-btn,
+  .nav-links .theme-btn {
+    width: 110px; /* ขยายให้กดง่ายขึ้นในมือถือ */
+    height: 45px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+  }
 }
