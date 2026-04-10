@@ -42,6 +42,7 @@
   --savor-white: var(--ci-white);
   --savor-yellow: var(--ci-yellow);
   --savor-olive: var(--ci-olive);
+  --savor-dark: #333333;
 }
 
 /* ============================================================
@@ -140,7 +141,6 @@ img {
   background: #000;
 }
 
-/* One unified .hero-grid declaration */
 .hero-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -165,9 +165,7 @@ img {
   height: 100%;
   object-fit: cover;
   filter: brightness(0.4);
-  transition:
-    transform 0.8s ease,
-    filter 0.5s ease;
+  transition: transform 0.8s ease, filter 0.5s ease;
 }
 
 .grid-item:hover img {
@@ -259,7 +257,6 @@ img {
 
 /* ============================================================
    [11] VIDEO EXPERIENCE SECTION
-   (aspect-ratio lock + no black bar)
    ============================================================ */
 .video-experience {
   padding-top: 100px;
@@ -267,7 +264,6 @@ img {
   background: var(--savor-cream);
 }
 
-/* Old-style container (used directly in some sections) */
 .video-container {
   position: relative;
   width: 90%;
@@ -277,7 +273,7 @@ img {
   overflow: hidden;
   isolation: isolate;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-  background: transparent; /* no black bar */
+  background: transparent;
 }
 
 .video-container video {
@@ -286,23 +282,22 @@ img {
   object-fit: cover;
 }
 
-/* Modern wrapper (used with #myVideo) */
 .video-wrapper {
   position: relative;
   width: 64%;
   max-width: 1000px;
-  aspect-ratio: 16 / 9; /* lock ratio → prevents letterbox gap */
+  aspect-ratio: 16 / 9;
   margin: 40px auto;
   border-radius: 10px;
   overflow: hidden;
-  background: transparent; /* ✅ no black bar ever */
+  background: transparent;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
 #myVideo {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important; /* fill wrapper, no letterbox */
+  object-fit: cover !important;
   display: block !important;
   background: transparent !important;
 }
@@ -312,7 +307,6 @@ img {
   transition: transform 0.3s ease;
 }
 
-/* Overlay gradient for readability */
 .video-overlay {
   position: absolute;
   top: 0;
@@ -335,7 +329,6 @@ img {
   color: white;
 }
 
-/* Mute button */
 .mute-control-btn {
   position: absolute;
   bottom: 20px;
@@ -360,7 +353,6 @@ img {
   transform: scale(1.1);
 }
 
-/* Video content card */
 .video-content-box {
   background: #ffffff !important;
   padding: 50px 40px !important;
@@ -380,7 +372,6 @@ img {
   line-height: 1.2 !important;
 }
 
-/* Video description — single consolidated rule */
 .video-description {
   width: 100% !important;
   display: flex !important;
@@ -394,10 +385,9 @@ img {
   margin: 0 auto !important;
   line-height: 1.8 !important;
   font-size: 1.15rem !important;
-  color: #555 !important; /* dark on white card → readable in both modes */
+  color: #555 !important;
 }
 
-/* Video tag — hidden permanently */
 .video-tag {
   display: none !important;
   visibility: hidden !important;
@@ -406,7 +396,7 @@ img {
 }
 
 /* ============================================================
-   [12] SHOP GRID (2-col desktop / 1-col mobile)
+   [12] SHOP GRID
    ============================================================ */
 .shop-grid {
   display: grid;
@@ -485,7 +475,6 @@ img {
   font-weight: 700;
 }
 
-/* combined border-radius override for card images */
 .shop-card img,
 .merch-card img,
 .author-profile-pic img {
@@ -559,14 +548,12 @@ img {
   padding-left: 20px;
 }
 
-/* Auto-fit grid for general merch */
 .merch-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 35px;
 }
 
-/* Bookmark triple grid override */
 .merch-grid.bookmark-triple-grid {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
@@ -607,7 +594,7 @@ img {
 }
 
 /* ============================================================
-   [16] GUIDEBOOK (BOOK SECTION) — Centering fixed
+   [16] GUIDEBOOK (BOOK SECTION)
    ============================================================ */
 .book-grid-container {
   display: flex !important;
@@ -622,7 +609,7 @@ img {
 
 .book-visual {
   flex: 1;
-  min-width: 300px; /* reduced from 350px to flex-wrap sooner */
+  min-width: 300px;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
@@ -673,7 +660,7 @@ img {
 
 .book-text {
   flex: 1;
-  min-width: 300px; /* reduced from 350px */
+  min-width: 300px;
   padding: 20px;
   display: flex !important;
   flex-direction: column !important;
@@ -697,7 +684,6 @@ img {
   max-width: 500px;
 }
 
-/* Book Card (single consolidated block) */
 .book-card {
   background: #ffffff !important;
   padding: 50px 60px !important;
@@ -741,7 +727,6 @@ img {
   text-transform: uppercase;
 }
 
-/* Single consolidated .book-description */
 .book-description {
   color: #444 !important;
   line-height: 1.8 !important;
@@ -751,7 +736,7 @@ img {
 }
 
 /* ============================================================
-   [17] PRIMARY BUTTON (single block)
+   [17] PRIMARY BUTTON
    ============================================================ */
 .btn-primary {
   display: inline-flex;
@@ -802,7 +787,6 @@ img {
   transition: all 0.3s ease !important;
 }
 
-/* Logo box image — full color, no grayscale */
 .logo-box img {
   filter: none !important;
   -webkit-filter: grayscale(0) !important;
@@ -819,7 +803,6 @@ img {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Author logos grid — grayscale hover effect */
 .author-logos-grid {
   display: flex;
   gap: 32px;
@@ -860,9 +843,7 @@ img {
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.02),
-    0 30px 60px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02), 0 30px 60px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.03);
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -999,1709 +980,689 @@ img {
 
 #lightboxImg {
   max-width: 90%;
-  max-height: 85%;
+  max-height: 85vh;
   object-fit: contain;
-  transition: transform 0.35s cubic-bezier(0.15, 0, 0.15, 1);
-  cursor: zoom-in;
-  user-select: none;
-  -webkit-user-drag: none;
-  display: block;
+  border-radius: 8px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease-out;
 }
 
-#lightboxImg.zoomed {
-  max-width: none !important;
-  max-height: none !important;
-  cursor: grab;
-}
-
-#lightboxImg.zoomed:active {
-  cursor: grabbing;
-}
-
-.lightbox-overlay {
-  display: none;
-  position: fixed;
-  z-index: 11000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  cursor: zoom-out;
-  justify-content: center;
-  align-items: center;
-}
-
-.lightbox-content {
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  animation: zoomAnim 0.3s ease;
-}
-
-@keyframes zoomAnim {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.close-lightbox {
+.close-btn {
   position: absolute;
-  top: 20px;
+  top: 25px;
   right: 35px;
-  color: #fff;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* ============================================================
-   [22] FOOTER
-   ============================================================ */
-footer {
-  background: #ffffff;
-  padding: 80px 0;
-  border-top: 1px solid #f0f0f0;
-  margin-top: 60px;
-}
-
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 40px;
-}
-
-.footer-brand {
-  flex: 1;
-  min-width: 300px;
-}
-
-.footer-logo {
-  height: 45px;
-  margin-bottom: 25px;
-}
-
-.footer-desc {
-  color: #888;
-  line-height: 1.8;
-  font-size: 0.95rem;
-}
-
-.footer-socials {
-  display: flex;
-  gap: 15px;
-}
-
-.footer-socials a {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f8f8f8;
-  color: var(--savor-green);
-  border-radius: 10px;
-  transition: 0.3s;
-}
-
-.footer-socials a:hover {
-  background: var(--savor-green);
-  color: #ffffff;
-  transform: translateY(-3px);
-}
-
-.footer-bottom {
-  text-align: center;
-  padding-top: 60px;
-  border-top: 1px solid #f8f8f8;
-  margin-top: 60px;
-  color: #bbb;
-  font-size: 0.85rem;
-}
-
-/* Footer text stays dark in dark mode (footer bg is always white) */
-[data-theme="dark"] footer p {
-  color: #888888 !important;
-}
-
-/* ============================================================
-   [23] SEARCH BAR (Luxury Style)
-   ============================================================ */
-.search-wrapper {
-  max-width: 850px;
-  margin: 37px auto 50px !important;
-  padding: 0 20px;
-  position: relative;
-  z-index: 100;
-}
-
-.search-input-group {
-  display: flex;
-  align-items: center;
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 10px 10px 10px 30px;
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.search-input-group:focus-within {
-  transform: translateY(-2px);
-  border-color: #ff8c00;
-  box-shadow: 0 20px 50px rgba(255, 140, 0, 0.15);
-}
-
-#shopSearchInput {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-size: 1.1rem;
-  color: var(--savor-dark, #333);
-  background: transparent;
-  font-weight: 500;
-}
-
-#shopSearchInput::placeholder {
-  color: #bbb;
-}
-
-#searchBtn {
-  background: #007a33 !important;
-  color: #ffffff !important;
-  border: none;
-  padding: 14px 35px;
-  border-radius: 10px;
-  font-weight: 700;
+  color: white;
+  font-size: 45px;
   cursor: pointer;
   transition: 0.3s;
-  letter-spacing: 0.5px;
+  opacity: 0.7;
 }
 
-#searchBtn:hover {
-  background: #ff8c00 !important;
-  transform: scale(1.02);
+.close-btn:hover {
+  opacity: 1;
 }
 
-#searchSuggestions {
+.nav-btn {
   position: absolute;
-  top: calc(100% + 15px);
-  left: 20px;
-  right: 20px;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(15px);
-  border-radius: 10px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  z-index: 1001;
-  display: none;
-  overflow: hidden;
-  animation: slideUp 0.3s ease-out;
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.suggestion-item {
-  padding: 18px 25px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  transition: 0.2s;
-  color: #444;
-  font-size: 1rem;
-}
-
-.suggestion-item:last-child {
-  border-bottom: none;
-}
-
-.suggestion-item:hover {
-  background: #fdfaf5;
-  color: #007a33;
-  padding-left: 35px;
-}
-
-.suggestion-item i {
-  color: #ff8c00;
-  font-size: 1.1rem;
-}
-
-/* Suggestion box text stays dark → white glass bg */
-[data-theme="dark"] .suggestion-item {
-  color: #444444 !important;
-}
-
-/* ============================================================
-   [24] QR SUPPORT MODAL
-   ============================================================ */
-.qr-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
-  z-index: 20000;
-  align-items: center;
-  justify-content: center;
-  animation: fadeIn 0.3s ease;
-}
-
-.qr-card {
-  background: rgba(255, 255, 255, 0.7) !important;
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  width: 90%;
-  max-width: 400px;
-  border-radius: 30px;
-  padding: 40px;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.qr-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: none;
-  border: none;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   font-size: 24px;
-  color: #ccc;
   cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 8px;
 }
 
-.qr-header h3 {
-  color: var(--ci-green);
-  font-size: 1.8rem;
-  margin-bottom: 5px;
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
-.qr-header p {
-  color: #888;
-  font-size: 0.9rem;
-  margin-bottom: 25px;
+.nav-btn.prev {
+  left: 30px;
 }
 
-.qr-placeholder {
-  background: #ffffff !important;
-  border: none;
-  border-radius: 10px;
-  aspect-ratio: 1/1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 25px;
-  color: var(--ci-green);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  overflow: hidden;
-}
-
-.qr-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 10px;
-  display: block;
-}
-
-.qr-placeholder i {
-  font-size: 4rem;
-  margin-bottom: 10px;
-}
-
-.qr-footer p {
-  color: var(--ci-orange);
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-/* QR Card dark mode — white card, dark text */
-[data-theme="dark"] .qr-card {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="dark"] .qr-card * {
-  color: #333333 !important;
-}
-
-[data-theme="dark"] .qr-card .qr-header h3 {
-  color: var(--ci-green) !important;
-}
-
-[data-theme="dark"] .qr-card .qr-placeholder p {
-  color: #333333 !important;
+.nav-btn.next {
+  right: 30px;
 }
 
 /* ============================================================
-   [25] SUPPORT SECTION
+   [22] RESPONSIVE DESIGN - TABLET (768px)
    ============================================================ */
-.support-container {
-  display: flex;
-  justify-content: center;
-  padding: 20px 0;
-}
-
-.support-desc {
-  margin-bottom: 30px !important;
-}
-
-.btn-support-cta {
-  background: var(--ci-orange) !important;
-  box-shadow: 0 5px 20px rgba(255, 140, 0, 0.3) !important;
-  position: relative;
-  overflow: hidden;
-  border: none;
-  animation: pulse-orange 2s infinite !important;
-}
-
-.btn-support-cta:hover {
-  background: #e67e00 !important;
-  transform: scale(1.05) translateY(-2px) !important;
-  box-shadow: 0 8px 30px rgba(255, 140, 0, 0.4) !important;
-}
-
-.btn-support-cta::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -60%;
-  width: 20%;
-  height: 200%;
-  background: rgba(255, 255, 255, 0.4);
-  transform: rotate(30deg);
-  animation: shimmer 3s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    left: -60%;
-  }
-  20% {
-    left: 120%;
-  }
-  100% {
-    left: 120%;
-  }
-}
-
-@keyframes pulse-orange {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.5);
-  }
-  70% {
-    box-shadow: 0 0 0 15px rgba(255, 140, 0, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0);
-  }
-}
-
-/* ============================================================
-   [26] DARK MODE — COMPREHENSIVE OVERRIDES
-   ============================================================ */
-
-/* Body & global */
-[data-theme="dark"],
-[data-theme="dark"] body {
-  background-color: var(--savor-olive) !important;
-  color: #ffffff !important;
-}
-
-/* Nav */
-[data-theme="dark"] nav,
-[data-theme="dark"] .nav-links {
-  background-color: #007a33 !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-[data-theme="dark"] .nav-links li a,
-[data-theme="dark"] #hamburgerBtn i,
-[data-theme="dark"] .hamburger-menu i {
-  color: #ffffff !important;
-}
-
-/* Section titles */
-[data-theme="dark"] .section-title {
-  color: #ffffff !important;
-}
-
-/* Section backgrounds */
-[data-theme="dark"] #highlights,
-[data-theme="dark"] #merch,
-[data-theme="dark"] #book-feature,
-[data-theme="dark"] #video-section {
-  background-color: #004d21 !important;
-}
-
-/* District label */
-[data-theme="dark"] .district-label {
-  color: #ffffff !important;
-  background: rgba(255, 255, 255, 0.12) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  padding: 12px 30px !important;
-  border-radius: 10px;
-  backdrop-filter: blur(8px);
-  margin-bottom: 40px !important;
-  font-weight: 700;
-}
-
-/* Shop Card — white card, readable dark text */
-[data-theme="dark"] .shop-card {
-  background-color: #ffffff !important;
-  border: none !important;
-  border-radius: 10px !important;
-  overflow: hidden !important;
-  isolation: isolate !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
-  transition: all 0.3s ease !important;
-}
-
-[data-theme="dark"] .shop-card:hover {
-  transform: translateY(-8px) !important;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4) !important;
-}
-
-[data-theme="dark"] .shop-info {
-  background-color: #ffffff !important;
-  padding: 22px !important;
-  text-align: left;
-}
-
-[data-theme="dark"] .shop-info .shop-name {
-  color: #007a33 !important;
-  font-weight: 800 !important;
-  font-size: 1.25rem !important;
-  margin-bottom: 6px !important;
-}
-
-[data-theme="dark"] .shop-info .shop-tag {
-  color: #ff8c00 !important;
-  font-weight: 600 !important;
-  font-size: 0.9rem !important;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-
-[data-theme="dark"] .shop-info p,
-[data-theme="dark"] .shop-info span {
-  color: #333333 !important;
-  line-height: 1.5;
-}
-
-/* Merch Card — white card, readable dark text (single block) */
-[data-theme="dark"] .merch-card {
-  background-color: #ffffff !important;
-  padding: 15px !important;
-  border-radius: 10px;
-  border: none !important;
-  transition:
-    transform 0.3s ease,
-    background 0.3s ease !important;
-}
-
-[data-theme="dark"] .merch-card:hover {
-  background: rgba(0, 122, 51, 0.05) !important;
-  transform: translateY(-5px) !important;
-}
-
-[data-theme="dark"] .merch-card p {
-  color: #007a33 !important;
-  font-weight: 600 !important;
-  margin-top: 12px !important;
-}
-
-[data-theme="dark"] .merch-card .merch-item-name {
-  color: var(--ci-orange) !important;
-  font-size: 1.15rem !important;
-  letter-spacing: 0.5px;
-}
-
-[data-theme="dark"] .merch-card .merch-item-price {
-  color: var(--ci-soft-yellow) !important;
-  opacity: 0.9;
-}
-
-/* Merch sub-title */
-[data-theme="dark"] .merch-sub-title {
-  color: #ffffff !important;
-  border-left: 4px solid var(--ci-orange) !important;
-  padding-left: 15px !important;
-  margin-bottom: 25px !important;
-}
-
-[data-theme="dark"] .merch-sub-title i {
-  color: #ffffff !important;
-  margin-right: 10px;
-}
-
-/* Bookmark section merch sub-title stays orange */
-[data-theme="dark"] #bookmark-section .merch-sub-title {
-  color: var(--ci-orange) !important;
-}
-
-/* Author section text — dark on white card */
-[data-theme="dark"] .author-name,
-[data-theme="dark"] .author-title,
-[data-theme="dark"] .contact-box p {
-  color: #444444 !important;
-}
-
-/* Guidebook text on white card */
-[data-theme="dark"] .book-text h2,
-[data-theme="dark"] .book-description,
-[data-theme="dark"] .support-card .section-title,
-[data-theme="dark"] .support-card .support-desc {
-  color: #333333 !important;
-}
-
-/* Video content box title on white card */
-[data-theme="dark"] .video-content-box .section-title {
-  color: #007a33 !important;
-}
-
-/* Video description on white card → dark text */
-[data-theme="dark"] .video-description p {
-  color: #555 !important;
-}
-
-/* Light-mode explicit section colors */
-html:not([data-theme="dark"]) #highlights,
-html:not([data-theme="dark"]) #merch {
-  background-color: #fcfcfc !important;
-}
-
-html:not([data-theme="dark"]) .shop-card,
-html:not([data-theme="dark"]) .merch-card {
-  background-color: #ffffff !important;
-  border: 1px solid #f0f0f0 !important;
-  border-radius: 10px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05) !important;
-  transition: all 0.3s ease !important;
-}
-
-html:not([data-theme="dark"]) .shop-card:hover,
-html:not([data-theme="dark"]) .merch-card:hover {
-  transform: translateY(-8px) !important;
-  box-shadow: 0 15px 35px rgba(0, 122, 51, 0.08) !important;
-}
-
-html:not([data-theme="dark"]) .shop-info {
-  background-color: #ffffff !important;
-  padding: 22px !important;
-}
-
-html:not([data-theme="dark"]) .shop-info .shop-name {
-  color: #007a33 !important;
-  font-weight: 800 !important;
-}
-
-html:not([data-theme="dark"]) .shop-info .shop-tag {
-  color: #ff8c00 !important;
-  font-weight: 600 !important;
-}
-
-html:not([data-theme="dark"]) .shop-info p,
-html:not([data-theme="dark"]) .shop-info span {
-  color: #444444 !important;
-  line-height: 1.8;
-}
-
-html:not([data-theme="dark"]) .district-label {
-  color: #007a33 !important;
-  background: #ffffff !important;
-  border: 1.5px solid #007a33 !important;
-  padding: 12px 30px !important;
-  border-radius: 10px;
-  font-weight: 800 !important;
-  box-shadow: 0 4px 12px rgba(0, 122, 51, 0.1) !important;
-}
-
-html:not([data-theme="dark"]) .merch-card p {
-  color: #007a33 !important;
-  font-weight: 700 !important;
-  margin-top: 12px !important;
-}
-
-/* ============================================================
-   [27] ORIENTATION FIXES
-   ============================================================ */
-@media (max-height: 600px) and (orientation: landscape) {
-  body,
-  .scroll-progress-container {
-    padding-top: 55px !important;
-    top: 55px !important;
-  }
-}
-
-/* ============================================================
-   [28] PRINT GUARD
-   ============================================================ */
-@media print {
-  body {
-    display: none !important;
-  }
-}
-
-/* ============================================================
-   [29] RESPONSIVE ENGINE
-   ============================================================ */
-
-/* --- DESKTOP 1025px+ --- */
-@media (min-width: 1025px) {
-  .book-grid-container {
-    flex-direction: row;
-    gap: 60px;
-  }
-}
-
-/* --- TABLET 769px landscape --- */
-@media (min-width: 769px) and (orientation: landscape) {
-}
-
-/* --- TABLET 1024px --- */
-@media (max-width: 1024px) {
-  /* ลบขยะ Nav เก่าทิ้งหมดแล้ว! เหลือแค่ Content Layout */
-
-  .scroll-progress-container {
-    top: 70px !important;
-  }
-
-  /* Video adjustments */
-  .video-wrapper {
-    width: 92% !important;
-    margin: 20px auto !important;
-    border-radius: 10px !important;
-  }
-
-  #myVideo {
-    width: 100% !important;
-    height: 100% !important;
-    border-radius: 0 !important;
-  }
-
-  .video-text-side {
-    padding: 30px 15px !important;
-    text-align: center !important;
-  }
-
-  .video-flex-container {
-    flex-direction: column !important;
-  }
-
-  .video-content-box {
-    max-width: 100% !important;
-  }
-
-  /* Shop grid responsive */
-  .shop-grid {
-    gap: 25px !important;
-    padding: 0 15px !important;
-  }
-
-  /* Author card */
-  .author-layout-card {
-    flex-direction: column !important;
-    width: 95% !important;
-  }
-
-  .author-visual-side {
-    border-right: none;
-    border-bottom: 1px solid #eee;
-    width: 100%;
-    flex: none;
-  }
-
-  /* Search */
-  .search-wrapper {
-    max-width: 90%;
-    margin-top: 110px !important;
-  }
-}
-
-/* --- STANDARD MOBILE 768px --- */
 @media (max-width: 768px) {
-  /* Hero: 2x5 grid */
-  .hero-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    grid-template-rows: repeat(5, 1fr) !important;
-  }
-
-  .hero-content-overlay {
-    padding: 40px 15px;
-  }
-
-  /* Single-column grids */
-  .shop-grid {
-    grid-template-columns: 1fr !important;
-    gap: 32px;
-    width: 95%;
-  }
-
-  .shop-card {
-    max-width: 350px;
-  }
-
-  [data-theme="dark"] .shop-info {
-    padding: 18px !important;
-    text-align: center;
-  }
-
-  [data-theme="dark"] .shop-card {
-    margin: 0 10px !important;
-  }
-
-  /* Merch bookmark grid: 2 cols */
-  .merch-grid.bookmark-triple-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-
-  [data-theme="dark"] .merch-grid {
-    gap: 20px !important;
-    padding: 0 10px !important;
-  }
-
-  .merch-card img {
-    width: 100% !important;
-    border-radius: 10px !important;
-    aspect-ratio: 1 / 1 !important;
-    object-fit: cover !important;
-  }
-
-  /* Typography */
   .section {
-    padding: 60px 5% !important;
+    padding: 60px 8%;
+  }
+
+  #home {
+    min-height: 50vh;
+  }
+
+  .hero-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
   }
 
   .section-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-bottom: 40px;
   }
 
-  #home h1 {
-    font-size: clamp(2rem, 10vw, 3rem);
+  .district-label {
+    font-size: 1.5rem;
+    margin: 40px 0 30px 0;
   }
 
-  #home .hero-desc {
-    font-size: 0.9rem;
-    margin-bottom: 25px;
+  .shop-grid {
+    gap: 30px;
   }
 
-  /* Guidebook section */
-  .book-grid-container {
-    flex-direction: column !important;
-    gap: 30px !important;
-    padding: 30px 15px !important;
-    text-align: center;
+  .shop-card {
+    max-width: 400px;
   }
 
-  .book-visual,
-  .book-text {
-    width: 100% !important;
-    min-width: unset !important;
-  }
-
-  .inner-mockup {
-    max-width: 100%;
-  }
-
-  .book-text h2 {
-    font-size: 1.8rem;
-  }
-
-  /* Thumbnails */
-  .thumb-item {
-    width: 70px;
-    height: 70px;
-    border-radius: 10px;
-  }
-
-  /* Book card */
-  .book-card {
-    padding: 35px 25px !important;
-    margin: 20px 15px !important;
-    width: auto !important;
-  }
-
-  .book-description {
-    font-size: 0.95rem !important;
-    line-height: 1.6 !important;
-    padding: 0 !important;
-  }
-
-  .btn-primary {
-    width: 100% !important;
-    padding: 14px 15px !important;
-  }
-
-  /* Video */
-  .video-container {
-    height: 350px;
-    width: 95%;
-  }
-
-  .video-content h2 {
-    font-size: 1.8rem;
-  }
-
-  .video-overlay {
-    padding: 30px;
+  .video-wrapper {
+    width: 80%;
+    margin: 30px auto;
   }
 
   .video-content-box {
-    padding: 35px 20px !important;
-    margin: 0 15px 30px !important;
-    width: auto !important;
+    padding: 40px 30px !important;
   }
 
   .video-content-box .section-title {
-    font-size: 1.8rem !important;
+    font-size: 2rem !important;
   }
 
-  .video-description p {
-    font-size: 1rem !important;
-    padding: 0 10px !important;
-    max-width: 100% !important;
+  .book-grid-container {
+    gap: 30px !important;
   }
 
-  .video-description p br {
-    display: none;
+  .inner-mockup {
+    max-width: 400px;
   }
 
-  /* Author */
+  .thumb-item {
+    width: 75px;
+    height: 75px;
+  }
+
+  .book-card {
+    padding: 40px 30px !important;
+    width: 95% !important;
+  }
+
+  .merch-grid.bookmark-triple-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
   .author-layout-card {
     flex-direction: column;
-    border-radius: 10px;
-    margin: 0 10px;
   }
 
   .author-visual-side {
     flex: 0 0 auto;
-    width: 100%;
+    padding: 40px 30px;
     border-right: none;
-    border-bottom: 1px solid #eee;
-    padding: 50px 20px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .author-profile-pic {
+    width: 180px;
+    height: 180px;
   }
 
   .author-content-side {
-    padding: 50px 30px;
-  }
-
-  .author-name {
-    font-size: 26px !important;
-  }
-
-  /* Logo box */
-  .logo-box {
-    width: 60px;
-    height: 60px;
-    padding: 6px;
-  }
-
-  /* Language button */
-  .lang-btn {
-    width: 35px;
-    height: 35px;
-  }
-
-  /* QR */
-  .qr-card {
-    padding: 25px 15px !important;
-  }
-
-  .qr-header h3 {
-    font-size: 1.3rem !important;
-  }
-
-  /* Search */
-  .search-wrapper {
-    margin-top: 100px !important;
-  }
-
-  .search-input-group {
-    padding: 8px 8px 8px 20px;
-  }
-
-  #searchBtn {
-    padding: 12px 20px;
-    font-size: 0.95rem;
-  }
-}
-
-/* --- MOBILE 480px --- */
-@media (max-width: 480px) {
-  .thumb-item {
-    width: 60px;
-    height: 60px;
-    gap: 10px !important;
-  }
-
-  .merch-grid.bookmark-triple-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* --- SMALL/FOLD 400px --- */
-@media (max-width: 400px) {
-  .merch-grid.bookmark-triple-grid,
-  .shop-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  #home h1 {
-    font-size: 2rem !important;
-  }
-
-  .hero-desc {
-    font-size: 0.85rem;
+    padding: 40px 30px;
   }
 
   .author-name {
     font-size: 24px !important;
   }
 
-  .contact-box {
-    width: 100%;
-    max-width: 260px;
+  .btn-primary {
+    padding: 14px 28px !important;
+    font-size: 0.95rem;
   }
 
-  .thumb-item {
-    width: 60px;
+  .ticker-item {
+    font-size: 1rem;
+    padding: 0 20px;
+  }
+
+  .shop-ticker-banner {
     height: 60px;
+    margin: 30px 0;
   }
 }
 
-/* --- MOBILE PORTRAIT (Hero grid) --- */
-@media (max-width: 768px) and (orientation: portrait) {
-  .hero-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-  }
-}
-
-/* --- MOBILE LANDSCAPE --- */
-@media (max-height: 600px) and (orientation: landscape) {
-  nav {
-    height: 60px !important;
+/* ============================================================
+   [23] RESPONSIVE DESIGN - MOBILE (600px)
+   ============================================================ */
+@media (max-width: 600px) {
+  body {
+    padding-top: 75px !important;
   }
 
-  body,
-  .scroll-progress-container {
-    padding-top: 60px !important;
-    top: 60px !important;
-  }
-
-  .hero-content-overlay {
-    padding-top: 80px;
-    padding-bottom: 20px;
-  }
-
-  .content-wrapper {
-    gap: 5px;
-  }
-
-  .hero-grid {
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+  .section {
+    padding: 50px 5%;
   }
 
   #home {
-    min-height: 110vh;
+    min-height: 45vh;
+  }
+
+  .hero-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .hero-content-overlay {
+    padding: 40px 15px;
   }
 
   #home h1 {
-    font-size: clamp(1.6rem, 5vw, 2.5rem);
-    margin-bottom: 5px;
+    font-size: clamp(1.5rem, 5vw, 2.8rem);
+    margin-bottom: 8px;
   }
 
   #home .subtitle-vibe {
-    margin-bottom: 5px;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 2.5vw, 1rem);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
   }
 
   #home .hero-desc {
-    font-size: 0.8rem;
-    margin-bottom: 12px;
-    line-height: 1.3;
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
+    margin-bottom: 20px;
   }
 
-  .btn-primary {
-    padding: 8px 20px;
-    font-size: 0.85rem;
-  }
-}
-
-/* Mobile-only items hidden on desktop */
-.mobile-only-item {
-  display: none;
-}
-
-/* ============================================================
-   [30] FLUID RESPONSIVE REFINEMENT
-   ============================================================ */
-
-/* ----------------------------------------------------------
-   A. FLUID TYPOGRAPHY & SPACING
-   ---------------------------------------------------------- */
-:root {
-  --space-xs: clamp(8px, 1.5vw, 14px);
-  --space-sm: clamp(14px, 2.5vw, 24px);
-  --space-md: clamp(24px, 4vw, 48px);
-  --space-lg: clamp(48px, 7vw, 100px);
-  --space-xl: clamp(80px, 10vw, 140px);
-  --fs-body: clamp(0.9rem, 1.2vw, 1.1rem);
-  --fs-label: clamp(0.75rem, 1vw, 0.9rem);
-  --fs-card: clamp(1rem, 1.4vw, 1.25rem);
-  --fs-h2: clamp(1.6rem, 3.5vw, 2.4rem);
-  --fs-h3: clamp(1.2rem, 2.5vw, 1.8rem);
-}
-
-body {
-  font-size: var(--fs-body);
-}
-.section {
-  padding: var(--space-xl) clamp(5%, 10%, 15%);
-}
-
-/* ----------------------------------------------------------
-   B. LARGE SCREEN PREMIUM ( > 1200px )
-   ---------------------------------------------------------- */
-@media (min-width: 1200px) {
-  .hero-content-overlay {
-    padding: 80px 40px;
-    max-width: 1100px;
-  }
   .section-title {
-    font-size: clamp(2.4rem, 3vw, 3rem);
-    margin-bottom: 70px;
+    font-size: 1.7rem;
+    margin-bottom: 35px;
   }
-  .shop-grid {
-    gap: clamp(32px, 4vw, 60px);
-    max-width: 1100px;
-  }
-  .book-card {
-    max-width: 960px !important;
-    padding: 60px 80px !important;
-  }
-  .video-wrapper {
-    max-width: 1000px;
-    margin: 68px auto !important;
-  }
-  .author-layout-card {
-    max-width: 1100px;
-  }
-  .footer-container {
-    padding: 0 8%;
-    gap: 60px;
-  }
-  nav {
-    padding: 0 clamp(40px, 5vw, 80px);
-  }
-}
 
-/* ----------------------------------------------------------
-   C. TABLET TOUCH-FRIENDLY ( 768px – 1024px )
-   ---------------------------------------------------------- */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .shop-grid {
-    gap: clamp(20px, 3vw, 36px);
-    width: 95%;
+  .section-title::after {
+    width: 60px;
   }
-  @media (orientation: portrait) {
-    .merch-grid.bookmark-triple-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-      gap: 20px !important;
-    }
-  }
-  .section {
-    padding: var(--space-lg) 6%;
-  }
-  .book-grid-container {
-    gap: 40px !important;
-    padding: 40px 20px !important;
-  }
-  .author-visual-side {
-    flex: 0 0 320px;
-    padding: 40px 30px;
-  }
-  .author-content-side {
-    padding: 40px 40px;
-  }
-  .author-profile-pic {
-    width: 200px;
-    height: 200px;
-  }
-  .thumb-item {
-    width: 80px;
-    height: 80px;
-  }
-  .shop-ticker-banner {
-    height: 60px;
-  }
-}
 
-/* ----------------------------------------------------------
-   D. SMALL MOBILE LOCKDOWN ( < 480px )
-   ---------------------------------------------------------- */
-@media (max-width: 480px) {
-  .shop-grid,
-  .merch-grid,
-  .merch-grid.bookmark-triple-grid,
-  .book-grid-container {
-    grid-template-columns: 1fr !important;
-    flex-direction: column !important;
-    gap: 20px !important;
-    width: 100% !important;
-    padding: 0 16px !important;
-  }
-  .shop-card {
-    max-width: 100% !important;
-    margin: 0 !important;
-  }
-  .merch-card {
-    padding: 18px !important;
-  }
-  .section {
-    padding: 48px 16px !important;
-  }
-  .section-title {
-    font-size: clamp(1.4rem, 6vw, 1.8rem) !important;
-    margin-bottom: 30px !important;
-  }
   .district-label {
-    font-size: clamp(1rem, 5vw, 1.4rem) !important;
-    letter-spacing: 1.5px !important;
-    margin: 30px 0 20px 0 !important;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    margin: 35px 0 25px 0;
   }
-  .book-card {
-    padding: 28px 18px !important;
-    margin: 16px 0 !important;
-    width: 100% !important;
+
+  .shop-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    width: 100%;
   }
-  .book-badge-row {
-    flex-wrap: wrap;
-    gap: 8px;
+
+  .shop-card {
+    max-width: 100%;
+    margin-bottom: 20px;
   }
-  .book-thumbs {
-    gap: 8px !important;
+
+  .photo-gallery {
+    height: 250px;
   }
-  .thumb-item {
-    width: 58px !important;
-    height: 58px !important;
+
+  .shop-name {
+    padding: 20px 20px !important;
+    font-size: 1rem;
   }
+
+  .shop-ticker-banner {
+    height: 50px;
+    margin: 25px 0;
+  }
+
+  .ticker-item {
+    font-size: 0.9rem;
+    padding: 0 15px;
+  }
+
+  .video-wrapper {
+    width: 95%;
+    margin: 25px auto;
+  }
+
   .video-content-box {
-    padding: 28px 16px !important;
-    margin: 0 0 24px !important;
-  }
-  .video-content-box .section-title {
-    font-size: clamp(1.3rem, 5.5vw, 1.6rem) !important;
-  }
-  .btn-primary,
-  .btn-support-cta {
-    width: 100% !important;
-    min-height: 48px !important;
-    font-size: 1rem !important;
-    padding: 14px 20px !important;
-  }
-  .search-wrapper {
-    padding: 0 12px !important;
-    margin-top: 42px !important;
-  }
-  #searchBtn {
-    padding: 12px 16px !important;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .author-centering-wrapper {
-    padding: 70px 12px 40px;
-    min-height: unset;
-  }
-  .author-layout-card {
-    margin: 0 !important;
-    border-radius: 10px;
-  }
-  .author-profile-pic {
-    width: 180px;
-    height: 180px;
-  }
-  .author-content-side {
     padding: 30px 20px !important;
+    margin: 0 auto 30px !important;
   }
-  .contact-box {
-    width: 100% !important;
+
+  .video-content-box .section-title {
+    font-size: 1.5rem !important;
+    margin-bottom: 15px !important;
+  }
+
+  .video-description p {
+    font-size: 1rem !important;
+  }
+
+  .book-grid-container {
+    gap: 25px !important;
+    padding: 10px 5px !important;
+  }
+
+  .book-visual {
+    min-width: 100%;
+    width: 100%;
+  }
+
+  .inner-mockup {
     max-width: 300px;
   }
-  .footer-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 24px;
-    padding: 0 20px;
-  }
-  .footer-brand {
-    min-width: unset;
-  }
-  .shop-ticker-banner {
-    display: none;
-  }
-  .qr-card {
-    width: 95% !important;
-    padding: 24px 16px !important;
-  }
-  #searchSuggestions {
-    left: 0;
-    right: 0;
-  }
-  .photo-gallery {
-    height: 240px;
-  }
-}
 
-/* ----------------------------------------------------------
-   E. FOLD / ULTRA-SMALL ( < 360px )
-   ---------------------------------------------------------- */
-@media (max-width: 360px) {
-  #home h1 {
-    font-size: 1.7rem !important;
-    letter-spacing: 1px;
+  .book-thumbs {
+    gap: 15px !important;
+    margin-top: 20px !important;
   }
-  #home .subtitle-vibe {
-    font-size: 0.7rem !important;
-    letter-spacing: 2px;
+
+  .thumb-item {
+    width: 65px;
+    height: 65px;
   }
-  .section-title {
-    font-size: 1.3rem !important;
+
+  .book-text {
+    min-width: 100%;
+    width: 100%;
+    padding: 15px;
   }
-  .hero-content-overlay {
-    padding: 30px 12px;
+
+  .book-text h2 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
   }
-  .btn-primary {
-    font-size: 0.9rem !important;
+
+  .book-text p {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
   }
+
+  .book-card {
+    padding: 30px 20px !important;
+    width: 98% !important;
+    margin: 25px auto !important;
+  }
+
+  .book-badge-row {
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+
+  .badge {
+    padding: 5px 12px !important;
+    font-size: 0.75rem !important;
+  }
+
+  .merch-category {
+    margin-bottom: 40px;
+  }
+
+  .merch-sub-title {
+    margin: 25px 0 20px 0 !important;
+    font-size: 1.2rem;
+    padding-left: 15px;
+  }
+
+  .merch-grid {
+    gap: 20px;
+  }
+
+  .merch-grid.bookmark-triple-grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+    margin: 20px auto 0 !important;
+  }
+
+  .merch-card {
+    padding: 15px;
+  }
+
+  .merch-card img {
+    margin-bottom: 15px;
+  }
+
+  .author-centering-wrapper {
+    padding: 40px 10px;
+    min-height: auto;
+  }
+
+  .author-layout-card {
+    flex-direction: column;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .author-visual-side {
+    flex: 0 0 auto;
+    padding: 30px 20px;
+    border-right: none;
+    border-bottom: 1px solid #f0f0f0;
+    background: white;
+  }
+
   .author-profile-pic {
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
   }
+
+  .author-logos-grid {
+    gap: 15px;
+    padding-top: 15px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .author-logos-grid .logo-box {
+    flex: 0 0 calc(50% - 8px);
+  }
+
+  .author-content-side {
+    padding: 30px 20px;
+  }
+
   .author-name {
     font-size: 20px !important;
+    margin-bottom: 8px !important;
   }
+
+  .author-title {
+    font-size: 14px !important;
+    margin-bottom: 25px !important;
+  }
+
+  .author-contact-grid {
+    padding-top: 25px;
+  }
+
   .contact-box {
-    max-width: 100%;
-    padding: 10px 14px;
+    width: 100%;
+    padding: 10px 15px;
   }
-  .thumb-item {
-    width: 50px !important;
-    height: 50px !important;
+
+  .contact-box i {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
   }
-  .book-card {
-    padding: 20px 14px !important;
+
+  .contact-box p {
+    font-size: 13px;
+  }
+
+  .btn-primary {
+    padding: 12px 25px !important;
+    font-size: 0.9rem;
+    gap: 8px;
+  }
+
+  .support-card {
+    padding: 30px 20px !important;
+    width: 98% !important;
   }
 }
 
 /* ============================================================
-   [FINAL BOSS] MASTER NAVIGATION & SPEED DIAL (ULTIMATE CLEAN)
+   [24] RESPONSIVE DESIGN - SMALL PHONE (480px)
    ============================================================ */
-
-/* ----------------------------------------------------------
-   1. DESKTOP NAVIGATION (Global)
-   ---------------------------------------------------------- */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 5%;
-  height: 85px;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 10000;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(13px);
-  -webkit-backdrop-filter: blur(13px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-}
-
-[data-theme="dark"] nav {
-  background-color: #007a33 !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.logo img {
-  height: 33px;
-  width: auto;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.logo img:hover {
-  transform: scale(1.05);
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 32px;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li a {
-  text-decoration: none;
-  color: #444;
-  font-weight: 500;
-  font-size: 1.05rem;
-  transition: color 0.3s ease;
-}
-
-.nav-links li a:hover {
-  color: #007a33;
-}
-[data-theme="dark"] .nav-links li a {
-  color: #ffffff !important;
-}
-
-#desktopControls {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.hamburger-menu {
-  display: none;
-}
-
-/* ----------------------------------------------------------
-   2. MOBILE NAVIGATION (Burger & Drawer)
-   ---------------------------------------------------------- */
-@media (max-width: 1024px) {
+@media (max-width: 480px) {
   body {
     padding-top: 70px !important;
-  }
-  nav {
-    height: 70px !important;
-    padding: 0 20px !important;
+    line-height: 1.6;
   }
 
-  .hamburger-menu {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    color: #007a33;
-    z-index: 10002 !important;
-    cursor: pointer;
-    min-width: 44px;
-    min-height: 44px;
-  }
-  [data-theme="dark"] .hamburger-menu i {
-    color: #ffffff !important;
-  }
-  #desktopControls {
-    display: none !important;
+  .section {
+    padding: 40px 4%;
   }
 
-  .nav-links {
-    position: fixed !important;
-    top: 0;
-    right: -100%;
-    width: min(75%, 320px);
-    height: 100dvh;
-    background: rgba(255, 255, 255, 0.98) !important;
-    backdrop-filter: blur(15px);
-    flex-direction: column !important;
-    justify-content: center;
-    gap: 35px;
-    z-index: 10001 !important;
-    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  #home {
+    min-height: 40vh;
   }
 
-  .nav-links.active {
-    right: 0 !important;
-  }
-  [data-theme="dark"] .nav-links {
-    background-color: #007a33 !important;
-  }
-}
-
-/* ----------------------------------------------------------
-   3. SPEED DIAL CHAT BUTTON (STRICT OVERRIDE FIX)
-   ---------------------------------------------------------- */
-.speed-dial-container {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  gap: 15px;
-}
-
-.speed-dial-main-btn {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background: #fbce4a !important;
-  border: 2px solid #ffffff;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.speed-dial-main-btn img {
-  width: 40px !important;
-  height: 40px !important;
-  object-fit: contain !important;
-  position: absolute !important;
-  transition: 0.4s ease-in-out !important;
-}
-
-/* --- LOGIC สลับรูประหว่างยิ้มกับแลบลิ้น (เพิ่มความเฉพาะเจาะจงขั้นสุด) --- */
-.speed-dial-main-btn .img-active {
-  opacity: 0 !important;
-  transform: scale(0.5) !important;
-  visibility: hidden !important;
-}
-
-.speed-dial-main-btn .img-normal {
-  opacity: 1 !important;
-  transform: scale(1) !important;
-  visibility: visible !important;
-}
-
-.speed-dial-container.active .speed-dial-main-btn .img-normal {
-  opacity: 0 !important;
-  transform: scale(0.5) !important;
-  visibility: hidden !important;
-}
-
-.speed-dial-container.active .speed-dial-main-btn .img-active {
-  opacity: 1 !important;
-  transform: scale(1) !important;
-  visibility: visible !important;
-}
-
-.speed-dial-container.active .speed-dial-main-btn {
-  transform: rotate(15deg) scale(1.1) !important;
-  background-color: #fbce4a !important;
-}
-
-/* --- ปุ่มลูกๆ ด้านใน --- */
-.speed-dial-buttons {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 15px !important;
-  margin-bottom: 15px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(30px) scale(0.5);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  pointer-events: none;
-}
-
-.speed-dial-container.active .speed-dial-buttons {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
-}
-
-.dial-btn {
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-decoration: none;
-  font-size: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.dial-btn:hover {
-  transform: scale(1.2) translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
-
-.phone-btn {
-  background: #ffd54f;
-}
-.line-btn {
-  background: #66bb6a;
-}
-.copy-btn {
-  background: #ffca28;
-}
-
-/* ----------------------------------------------------------
-   4. DRAWER CLOSE BUTTON (STRICT ISOLATION)
-   ป้องกันปุ่ม X โผล่บนจอคอมหรือจอแนวนอน
-   ---------------------------------------------------------- */
-.nav-close-btn {
-  display: none !important; /* ดับเครื่องชน: ซ่อนไว้ก่อนเสมอ */
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  z-index: 10005;
-  transition: background 0.2s ease;
-}
-
-/* สีของปุ่ม X (รองรับ Light / Dark Mode) */
-html:not([data-theme="dark"]) .nav-close-btn {
-  color: #007a33;
-}
-[data-theme="dark"] .nav-close-btn {
-  color: #ffffff;
-}
-
-/* อนุญาตให้โชว์ "เฉพาะ" ในจอมือถือ/แท็บเล็ต (เมื่อเปิดถาดเมนูเท่านั้น) */
-@media (max-width: 1024px) {
-  .nav-links .nav-close-btn {
-    display: flex !important;
-  }
-}
-
-/* เอาชัวร์! ดักยิงทิ้งซ้ำอีกรอบบนจอ Desktop (1025px ขึ้นไป) */
-@media (min-width: 1025px) {
-  .nav-close-btn,
-  .nav-links .nav-close-btn {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-  }
-}
-
-/* ----------------------------------------------------------
-   5. LANGUAGE & THEME BUTTONS (NAV CONTROLS)
-   ---------------------------------------------------------- */
-/* --- สไตล์หลัก (Desktop) --- */
-.nav-controls-wrapper {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.lang-btn,
-.theme-btn {
-  width: 65px;
-  height: 35px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  letter-spacing: 0.5px;
-}
-
-/* --- Light Mode --- */
-html:not([data-theme="dark"]) .lang-btn {
-  border: 1.5px solid #007a33; /* เขียว CI Savor Happiness */
-  color: #007a33;
-  background: transparent;
-}
-
-html:not([data-theme="dark"]) .lang-btn:hover {
-  background: #007a33;
-  color: #ffffff;
-}
-
-html:not([data-theme="dark"]) .theme-btn {
-  border: 1.5px solid #ccc;
-  color: #333;
-  background: #f5f5f5;
-}
-
-html:not([data-theme="dark"]) .theme-btn:hover {
-  border-color: #ff8c00; /* ส้ม CI ตอน Hover */
-  background: #fff4e8;
-  color: #ff8c00;
-}
-
-/* --- Dark Mode --- */
-[data-theme="dark"] .lang-btn,
-[data-theme="dark"] .theme-btn {
-  border: 1.5px solid rgba(255, 255, 255, 0.5);
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-[data-theme="dark"] .lang-btn:hover,
-[data-theme="dark"] .theme-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: #fbce4a; /* เหลือง CI */
-  color: #fbce4a;
-}
-
-/* ----------------------------------------------------------
-   6. MOBILE OVERRIDE สำหรับปุ่มตอนอยู่ใน Drawer
-   ---------------------------------------------------------- */
-@media (max-width: 1024px) {
-  .nav-links .nav-controls-wrapper {
-    display: flex !important;
-    flex-direction: row;
-    justify-content: center;
-    gap: 15px;
-    width: 80%;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(128, 128, 128, 0.2); /* เส้นคั่นบางๆ ในเมนู */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
   }
 
-  .nav-links .lang-btn,
-  .nav-links .theme-btn {
-    width: 110px; /* ขยายให้กดง่ายขึ้นในมือถือ */
-    height: 45px;
+  .hero-content-overlay {
+    padding: 30px 10px;
+  }
+
+  #home h1 {
+    font-size: clamp(1.3rem, 4vw, 2.2rem);
+    margin-bottom: 5px;
+  }
+
+  #home .subtitle-vibe {
+    font-size: clamp(0.65rem, 2vw, 0.9rem);
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  #home .hero-desc {
+    font-size: clamp(0.75rem, 1.8vw, 0.85rem);
+    margin-bottom: 15px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+
+  .section-title::after {
+    width: 50px;
+    height: 3px;
+  }
+
+  .district-label {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin: 30px 0 20px 0;
+  }
+
+  .shop-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .shop-card {
+    max-width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .photo-gallery {
+    height: 200px;
+  }
+
+  .shop-name {
+    padding: 15px 15px !important;
     font-size: 0.9rem;
-    border-radius: 10px;
+  }
+
+  .shop-ticker-banner {
+    height: 45px;
+    margin: 20px 0;
+  }
+
+  .ticker-item {
+    font-size: 0.8rem;
+    padding: 0 10px;
+  }
+
+  .ticker-sep {
+    margin: 0 5px;
+  }
+
+  .video-wrapper {
+    width: 100%;
+    margin: 20px auto;
+  }
+
+  .video-content-box {
+    padding: 20px 15px !important;
+    margin: 0 auto 20px !important;
+  }
+
+  .video-content-box .section-title {
+    font-size: 1.3rem !important;
+    margin-bottom: 12px !important;
+  }
+
+  .video-description p {
+    font-size: 0.9rem !important;
+  }
+
+  .book-grid-container {
+    gap: 15px !important;
+    padding: 5px 2px !important;
+  }
+
+  .inner-mockup {
+    max-width: 100%;
+  }
+
+  .book-thumbs {
+    gap: 10px !important;
+    margin-top: 15px !important;
+  }
+
+  .thumb-item {
+    width: 55px;
+    height: 55px;
+  }
+
+  .book-text h2 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+
+  .book-text p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    max-width: 100%;
+  }
+
+  .book-card {
+    padding: 20px 15px !important;
+    width: 100% !important;
+    margin: 20px auto !important;
+  }
+
+  .book-badge-row {
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+
+  .badge {
+    padding: 4px 10px !important;
+    font-size: 0.7rem !important;
+  }
+
+  .book-spec-detail {
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+  }
+
+  .merch-sub-title {
+    margin: 20px 0 15px 0 !important;
+    font-size: 1.1rem;
+    padding-left: 12px;
+    gap: 10px;
+  }
+
+  .merch-grid {
+    gap: 15px;
+    grid-template-columns: 1fr;
+  }
+
+  .merch-grid.bookmark-triple-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    margin: 15px auto 0 !important;
+  }
+
+  .merch-card {
+    padding: 12px;
+  }
+
+  .merch-card img {
+    margin-bottom: 12px;
+  }
+
+  .author-centering-wrapper {
+    padding: 30px 5px;
+  }
+
+  .author-visual-side {
+    padding: 25px 15px;
+  }
+
+  .author-profile-pic {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 15px;
+  }
+
+  .author-logos-grid {
+    gap: 10px;
+    padding-top: 12px;
+  }
+
+  .author-logos-grid .logo-box {
+    flex: 0 0 calc(50% - 5px);
+  }
+
+  .author-content-side {
+    padding: 25px 15px;
+  }
+
+  .author-name {
+    font-size: 18px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .author-title {
+    font-size: 13px !important;
+    margin-bottom: 20px !important;
+    line-height: 1.5;
+  }
+
+  .author-contact-grid {
+    padding-top: 20px;
+    gap: 10px;
+  }
+
+  .contact-box {
+    width: 100%;
+    padding: 8px 12px;
+    gap: 12px;
+  }
+
+  .contact-box i {
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+  }
+
+  .contact-box p {
+    font-size: 12px;
+  }
+
+  .btn-primary {
+    padding: 10px 20px !important;
+    font-size: 0.85rem;
+    gap: 6px;
+  }
+
+  .support-card {
+    padding: 20px 15px !important;
+    width: 100% !important;
   }
 }
