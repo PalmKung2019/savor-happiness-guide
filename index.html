@@ -36,11 +36,11 @@
                     <i class="fas fa-times"></i>
                 </button>
 
-                <li><a href="#home" onclick="closeMenu()" data-key="nav-home">หน้าแรก</a></li>
-                <li><a href="#book-feature" onclick="closeMenu()" data-key="nav-book">หนังสือ</a></li>
-                <li><a href="#merch" onclick="closeMenu()" data-key="nav-merch">ของที่ระลึก</a></li>
-                <li><a href="#highlights" onclick="closeMenu()" data-key="nav-highlights">ร้านแนะนำ</a></li>
-                <li><a href="#author" onclick="closeMenu()" data-key="nav-creator">ผู้จัดทำ</a></li>
+                <li><a href="#home" data-key="nav-home">หน้าแรก</a></li>
+                <li><a href="#book-feature" data-key="nav-book">หนังสือ</a></li>
+                <li><a href="#merch" data-key="nav-merch">ของที่ระลึก</a></li>
+                <li><a href="#highlights" data-key="nav-highlights">ร้านแนะนำ</a></li>
+                <li><a href="#author" data-key="nav-creator">ผู้จัดทำ</a></li>
 
                 <li class="nav-controls-wrapper">
                     <button class="lang-btn" onclick="toggleLang()">TH</button>
@@ -377,30 +377,12 @@
 <script>
     // --- [1] Global Functions (Copy Email & Toggle Speed Dial) ---
 
-    // closeMenu — called by onclick in nav links
-    window.closeMenu = function () {
-        const menu = document.getElementById('navLinks');
-        const backdrop = document.getElementById('navBackdrop');
-        const btn = document.getElementById('hamburgerBtn');
-        if (menu) menu.classList.remove('active');
-        if (backdrop) backdrop.classList.remove('active');
-        const icon = btn && btn.querySelector('i');
-        if (icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-times'); }
-        document.body.style.overflow = '';
-    };
-
     window.toggleSpeedDial = function (e) {
         if (e) e.stopPropagation();
         const dial = document.getElementById('speedDialContainer');
         if (dial) {
             dial.classList.toggle('active');
         }
-    };
-
-    window.copyContact = function () {
-        navigator.clipboard.writeText('palmy1983ch@gmail.com').then(() => {
-            alert('คัดลอกอีเมลเรียบร้อยแล้ว!');
-        });
     };
 
     // --- [2] Main Event Listener (Video mute & Speed Dial only)
