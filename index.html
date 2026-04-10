@@ -18,6 +18,11 @@
 </head>
 <header class="site-header">
     <nav>
+        <!-- Hamburger: direct nav child for 3-col grid centering -->
+        <div class="hamburger-menu" id="hamburgerBtn" aria-label="เปิดเมนู" role="button" tabindex="0">
+            <i class="fas fa-bars"></i>
+        </div>
+
         <div class="logo">
             <a href="#home">
                 <img src="img/logo/savorhappiness-1.png" class="logo-img" alt="Savor Happiness">
@@ -26,6 +31,11 @@
 
         <div class="nav-right-container">
             <ul class="nav-links" id="navLinks">
+                <!-- Close button inside drawer -->
+                <button class="nav-close-btn" id="navCloseBtn" aria-label="ปิดเมนู">
+                    <i class="fas fa-times"></i>
+                </button>
+
                 <li><a href="#home" onclick="closeMenu()" data-key="nav-home">หน้าแรก</a></li>
                 <li><a href="#book-feature" onclick="closeMenu()" data-key="nav-book">หนังสือ</a></li>
                 <li><a href="#merch" onclick="closeMenu()" data-key="nav-merch">ของที่ระลึก</a></li>
@@ -38,11 +48,16 @@
                 </li>
             </ul>
 
-            <div class="hamburger-menu" id="hamburgerBtn">
-                <i class="fas fa-bars"></i>
+            <!-- Desktop controls (hidden on mobile via CSS) -->
+            <div class="nav-controls-wrapper" id="desktopControls">
+                <button class="lang-btn" onclick="toggleLang()">TH</button>
+                <button class="theme-btn" onclick="toggleTheme()">LIGHT</button>
             </div>
         </div>
     </nav>
+
+    <!-- Backdrop overlay — closes drawer when tapped outside -->
+    <div class="nav-backdrop" id="navBackdrop"></div>
 
     <div class="search-wrapper">
         <div class="search-input-group">
@@ -366,6 +381,19 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     // --- [1] Global Functions (Copy Email & Toggle Speed Dial) ---
+
+    // closeMenu — called by onclick in nav links
+    window.closeMenu = function () {
+        const menu = document.getElementById('navLinks');
+        const backdrop = document.getElementById('navBackdrop');
+        const btn = document.getElementById('hamburgerBtn');
+        if (menu) menu.classList.remove('active');
+        if (backdrop) backdrop.classList.remove('active');
+        const icon = btn && btn.querySelector('i');
+        if (icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-times'); }
+        document.body.style.overflow = '';
+    };
+
     window.toggleSpeedDial = function (e) {
         if (e) e.stopPropagation();
         const dial = document.getElementById('speedDialContainer');
@@ -380,28 +408,12 @@
         });
     };
 
-    // --- [2] Main Event Listener (Menu, Video, Dial) ---
+    // --- [2] Main Event Listener (Video mute & Speed Dial only)
+    // NOTE: Nav drawer logic is fully handled by script.js (DOMContentLoaded)
     document.addEventListener('click', function (e) {
-        const btn = document.getElementById('hamburgerBtn');
-        const menu = document.getElementById('navLinks');
         const dial = document.getElementById('speedDialContainer');
         const muteBtn = document.getElementById('muteBtn');
         const video = document.getElementById('myVideo');
-
-        // Burger Menu Logic
-        if (btn && btn.contains(e.target)) {
-            menu.classList.toggle('active');
-            const icon = btn.querySelector('i');
-            if (icon) {
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
-            }
-        }
-        else if (menu && menu.classList.contains('active') && !menu.contains(e.target)) {
-            menu.classList.remove('active');
-            const icon = btn.querySelector('i');
-            if (icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-times'); }
-        }
 
         // Mute/Unmute Video
         if (muteBtn && muteBtn.contains(e.target) && video) {
@@ -417,28 +429,13 @@
         }
     });
 
+
+
     // --- [3] ระบบความปลอดภัยขั้นสูง (Advanced Security) ---
 
     // --- [3] ระบบกันก๊อป & กันส่องโค้ด (Anti-Copy & Inspect) ---
     // 1. กันคลิกขวา
     document.addEventListener('contextmenu', e => e.preventDefault());
-
-    // 2. กันปุ่มลัด (ดักทุกทาง)
-    document.onkeydown = function (e) {
-        // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (ส่องโค้ด)
-        if (e.keyCode == 123 ||
-            (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0)))) {
-            return false;
-        }
-        // Ctrl+U (ดู Source), Ctrl+S (บันทึกเว็บ)
-        if (e.ctrlKey && (e.keyCode == 'U'.charCodeAt(0) || e.keyCode == 'S'.charCodeAt(0))) {
-            return false;
-        }
-        // Ctrl+C (ก๊อปปี้), Ctrl+A (เลือกทั้งหมด) ***ตัวที่ปาล์มเจอ!***
-        if (e.ctrlKey && (e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'A'.charCodeAt(0))) {
-            return false;
-        }
-    };
 
     // 3. ท่าไม้ตาย Debugger (ถ้าเปิด Inspect ได้ เว็บจะค้างทันที)
     setInterval(function () {
@@ -477,15 +474,6 @@
             alert('ระบบความปลอดภัย: ตรวจพบการแคปหน้าจอ เนื้อหาถูกล็อค');
         }
     });
-
-    // ทุกครั้งที่ User สลับหน้าต่าง (แอบไปเปิดโปรแกรมแคป) ให้หน้าเว็บเบลอ!
-    window.onblur = function () {
-        document.body.style.filter = "blur(20px)";
-        document.body.style.transition = "0.3s";
-    };
-    window.onfocus = function () {
-        document.body.style.filter = "none";
-    };
 
     // ดักจับ Ctrl + P (สั่งปริ้นเว็บเป็น PDF)
     document.addEventListener('keydown', (e) => {
