@@ -277,7 +277,8 @@ img {
   overflow: hidden;
   isolation: isolate;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-  background: transparent; /* no black bar */
+  background: transparent;
+  /* no black bar */
 }
 
 .video-container video {
@@ -291,18 +292,21 @@ img {
   position: relative;
   width: 64%;
   max-width: 1000px;
-  aspect-ratio: 16 / 9; /* lock ratio → prevents letterbox gap */
+  aspect-ratio: 16 / 9;
+  /* lock ratio → prevents letterbox gap */
   margin: 40px auto;
   border-radius: 10px;
   overflow: hidden;
-  background: transparent; /* ✅ no black bar ever */
+  background: transparent;
+  /* ✅ no black bar ever */
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
 #myVideo {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important; /* fill wrapper, no letterbox */
+  object-fit: cover !important;
+  /* fill wrapper, no letterbox */
   display: block !important;
   background: transparent !important;
 }
@@ -394,7 +398,8 @@ img {
   margin: 0 auto !important;
   line-height: 1.8 !important;
   font-size: 1.15rem !important;
-  color: #555 !important; /* dark on white card → readable in both modes */
+  color: #555 !important;
+  /* dark on white card → readable in both modes */
 }
 
 /* Video tag — hidden permanently */
@@ -403,6 +408,12 @@ img {
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
+}
+
+/* FIX: Video description — preserve sentence structure on mobile */
+/* <br> tags are allowed to wrap naturally; hiding them broke thai sentence flow */
+.video-description p br {
+  display: inline; /* override the mobile display:none at line ~1706 */
 }
 
 /* ============================================================
@@ -520,6 +531,7 @@ img {
   from {
     transform: translateX(-100%);
   }
+
   to {
     transform: translateX(0%);
   }
@@ -607,187 +619,6 @@ img {
 }
 
 /* ============================================================
-   [THE GUIDEBOOK SECTION] - ULTIMATE RESPONSIVE (COLOR FIXED)
-   ============================================================ */
-
-/* --- 1. โครงสร้างหลัก (Desktop First) --- */
-.book-grid-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 60px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 18px 12px;
-  flex-wrap: wrap; /* เผื่อหน้าจอแคบลงจะปัดตกลงมาอัตโนมัติ */
-}
-
-.book-visual {
-  flex: 1;
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.book-text {
-  flex: 1;
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-}
-
-/* --- 2. ส่วนรูปภาพ (Image & Thumbnails) --- */
-.inner-mockup {
-  width: 100%;
-  max-width: 500px;
-  border-radius: 10px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-  cursor: zoom-in;
-  transition: transform 0.4s ease;
-  aspect-ratio: 4 / 3; /* ล็อกสัดส่วน ป้องกันรูปกระตุกเวลาสลับ */
-  object-fit: cover;
-}
-
-.inner-mockup:hover {
-  transform: translateY(-5px);
-}
-
-.book-thumbs {
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-  flex-wrap: wrap;
-  width: 100%;
-  margin-top: 30px;
-}
-
-.thumb-item {
-  width: 90px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 10px;
-  cursor: pointer;
-  border: 3px solid transparent;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  opacity: 0.6; /* ทำให้รูปอื่นดูดรอปลงนิดนึง */
-}
-
-.thumb-item:hover {
-  transform: scale(1.05);
-  opacity: 1;
-}
-
-/* รูปรองที่ถูกเลือก (Active) ให้มีกรอบสีเขียว CI */
-.thumb-item.active {
-  border-color: #007a33; /* สีเขียว Savor Happiness */
-  transform: translateY(-3px);
-  opacity: 1;
-  box-shadow: 0 8px 20px rgba(0, 122, 51, 0.2);
-}
-
-[data-theme="dark"] .thumb-item.active {
-  border-color: #fbce4a; /* โหมดมืดใช้สีเหลือง */
-  box-shadow: 0 8px 20px rgba(251, 206, 74, 0.2);
-}
-
-/* --- 3. ส่วนเนื้อหา (Text Card & Badges) --- */
-.book-card {
-  background: #ffffff;
-  padding: 50px 60px;
-  border-radius: 15px; /* ปรับให้โค้งมนดู Modern ขึ้น */
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
-  border: 1px solid #f0f0f0;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  max-width: 850px;
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.book-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 50px rgba(0, 122, 51, 0.12); /* เงาสีเขียวจางๆ ตอน Hover */
-}
-
-[data-theme="dark"] .book-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .book-card:hover {
-  box-shadow: 0 20px 50px rgba(251, 206, 74, 0.15); /* โหมดมืดเงาสีเหลืองจางๆ */
-}
-
-.book-card h2 {
-  font-size: 2.2rem;
-  margin-bottom: 25px;
-  color: #007a33; /* สีเขียว CI */
-  font-weight: 800;
-}
-
-[data-theme="dark"] .book-card h2 {
-  color: #ffffff;
-}
-
-/* --- ป้ายแท็ก Badge --- */
-.book-badge-row {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 25px;
-  flex-wrap: wrap; /* กันป้ายทะลุจอ */
-}
-
-.badge {
-  background: #fbce4a; /* สีเหลือง CI แบบเป๊ะๆ ตามที่ Palm ต้องการ */
-  color: #007a33; /* ตัวหนังสือสีเขียว ตัดกับเหลืองได้สวยมาก */
-  padding: 6px 18px;
-  border-radius: 50px; /* ป้ายโค้งมนแบบแคปซูล */
-  font-size: 0.85rem;
-  font-weight: 700;
-  border: 1px solid rgba(0, 122, 51, 0.1); /* ขอบสีเขียวจางๆ เพิ่มมิติ */
-  letter-spacing: 0.5px;
-}
-
-[data-theme="dark"] .badge {
-  background: rgba(251, 206, 74, 0.2); /* พื้นเหลืองโปร่งแสง */
-  color: #fbce4a; /* ตัวอักษรสีเหลืองสว่าง */
-  border-color: rgba(251, 206, 74, 0.3);
-}
-
-/* --- รายละเอียดเพิ่มเติม --- */
-.book-spec-detail {
-  color: #ff8c00; /* สีส้ม CI */
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  margin-bottom: 15px;
-  text-transform: uppercase;
-  font-size: 0.95rem;
-}
-
-.book-description {
-  color: #444;
-  line-height: 1.8;
-  margin-bottom: 35px;
-  max-width: 100%;
-  letter-spacing: 0.2px;
-  font-size: 1.05rem;
-}
-
-[data-theme="dark"] .book-description {
-  color: #ddd;
-}
-
-/* ============================================================
    [17] PRIMARY BUTTON (single block)
    ============================================================ */
 .btn-primary {
@@ -818,9 +649,11 @@ img {
   0% {
     box-shadow: 0 0 0 0 rgba(0, 122, 51, 0.4);
   }
+
   70% {
     box-shadow: 0 0 0 15px rgba(0, 122, 51, 0);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(0, 122, 51, 0);
   }
@@ -1082,6 +915,7 @@ img {
     transform: scale(0.8);
     opacity: 0;
   }
+
   to {
     transform: scale(1);
     opacity: 1;
@@ -1099,77 +933,519 @@ img {
 }
 
 /* ============================================================
-   [22] FOOTER
+   [22] FOOTER — Redesigned (Giant Watermark + 4-Column Grid)
    ============================================================ */
-footer {
-  background: #ffffff;
-  padding: 80px 0;
-  border-top: 1px solid #f0f0f0;
+
+/* --- Base: rounded top, CI green background, clip the watermark --- */
+.footer {
+  position: relative;
+  background-color: var(--ci-green);
+  color: rgba(255, 255, 255, 0.85);
+  border-radius: 40px 40px 0 0;     /* slide-up feel, matching the reference */
   margin-top: 60px;
+  overflow: hidden;                  /* clips the watermark text cleanly */
+  padding: 0;
 }
 
-.footer-container {
+/* --- Giant watermark typography (decorative layer) --- */
+.footer-watermark {
+  position: absolute;
+  top: clamp(-5px, 1vw, 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(3.5rem, 11vw, 8.5rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  /* Outline-only text = visible but never overpowers content */
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(251, 206, 74, 0.16); /* --ci-yellow, 16% opacity */
+  text-transform: uppercase;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  z-index: 0;
+  width: 100%;
+  text-align: center;
+}
+
+/* --- Main 4-column content grid --- */
+.footer-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: clamp(28px, 5vw, 70px);
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 40px;
+  padding: clamp(64px, 9vw, 110px) clamp(28px, 6%, 80px) clamp(44px, 5vw, 64px);
 }
 
-.footer-brand {
-  flex: 1;
-  min-width: 300px;
+/* --- Brand column (col 1) --- */
+.footer-col--brand {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .footer-logo {
-  height: 45px;
-  margin-bottom: 25px;
+  height: 38px;
+  width: auto;
+  /* Always white on the green footer bg in both light & dark */
+  filter: brightness(0) invert(1);
+  margin-bottom: 2px;
+  object-fit: contain;
+}
+
+.footer-tagline {
+  font-size: 0.68rem;
+  letter-spacing: 2.5px;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.5;
 }
 
 .footer-desc {
-  color: #888;
-  line-height: 1.8;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.75;
+  margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
+/* CTA button — yellow pill, green text */
+.footer-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ci-yellow);
+  color: var(--ci-green) !important;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none !important;
+  margin-top: 6px;
+  width: fit-content;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 15px rgba(251, 206, 74, 0.25);
+}
+
+.footer-cta-btn:hover {
+  background: var(--ci-orange);
+  color: #ffffff !important;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(255, 140, 0, 0.35);
+}
+
+/* --- Link columns (col 2, 3, 4) --- */
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.footer-col-title {
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ci-yellow);
+  font-weight: 700;
+  margin: 0 0 18px 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(251, 206, 74, 0.22);
+}
+
+.footer-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-nav-list li a {
+  color: rgba(255, 255, 255, 0.62);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.footer-nav-list li a:hover {
+  color: var(--ci-yellow);
+  transform: translateX(5px);
+}
+
+.footer-nav-list li a i {
+  font-size: 0.8rem;
+  opacity: 0.65;
+  width: 15px;
+  flex-shrink: 0;
+}
+
+/* --- Horizontal divider --- */
+.footer-divider {
+  position: relative;
+  z-index: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.12) 20%,
+    rgba(255, 255, 255, 0.12) 80%,
+    transparent
+  );
+  margin: 0 clamp(28px, 6%, 80px);
+}
+
+/* --- Bottom bar: social icons + copyright --- */
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: clamp(32px, 4vw, 52px) clamp(28px, 6%, 80px) clamp(36px, 4vw, 52px);
+}
+
+/* Social icon circles */
 .footer-socials {
   display: flex;
-  gap: 15px;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .footer-socials a {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f8f8f8;
-  color: var(--savor-green);
-  border-radius: 10px;
-  transition: 0.3s;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .footer-socials a:hover {
-  background: var(--savor-green);
-  color: #ffffff;
-  transform: translateY(-3px);
+  background: var(--ci-yellow);
+  color: var(--ci-green);
+  border-color: var(--ci-yellow);
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 6px 18px rgba(251, 206, 74, 0.3);
 }
 
-.footer-bottom {
+/* Copyright line */
+.footer-copy {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
   text-align: center;
-  padding-top: 60px;
-  border-top: 1px solid #f8f8f8;
-  margin-top: 60px;
-  color: #bbb;
-  font-size: 0.85rem;
+  margin: 0;
 }
 
-/* Footer text stays dark in dark mode (footer bg is always white) */
-[data-theme="dark"] footer p {
-  color: #888888 !important;
+/* ============================================================
+   [22b] FOOTER — DARK MODE OVERRIDES
+   (footer stays green-family; deepen to near-black green)
+   ============================================================ */
+[data-theme="dark"] .footer {
+  background-color: #001f10; /* deep forest, complements olive page bg */
+}
+
+[data-theme="dark"] .footer-watermark {
+  -webkit-text-stroke-color: rgba(251, 206, 74, 0.1);
+}
+
+/* Keep text readable — override the global [data-theme="dark"] footer p rule */
+[data-theme="dark"] .footer-desc,
+[data-theme="dark"] .footer-tagline,
+[data-theme="dark"] .footer-copy {
+  /* already rgba white — looks fine on #001f10 */
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+[data-theme="dark"] .footer-nav-list li a {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+[data-theme="dark"] .footer-nav-list li a:hover {
+  color: var(--ci-yellow) !important;
+}
+
+[data-theme="dark"] .footer-cta-btn {
+  background: var(--ci-yellow);
+  color: #002b17 !important;
+}
+
+/* ============================================================
+   [22c] FOOTER — RESPONSIVE BREAKPOINTS
+   ============================================================ */
+
+/* Tablet: 2-column grid, brand spans full width */
+@media (max-width: 1024px) {
+  .footer {
+    border-radius: 28px 28px 0 0;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 4vw, 50px);
+  }
+
+  .footer-col--brand {
+    grid-column: 1 / -1; /* full width row at top */
+  }
+}
+
+/* ============================================================
+   [22c-MOBILE] FOOTER — Portrait Mobile Polish
+   Replace this entire block when updating mobile footer styles.
+   ============================================================ */
+@media (max-width: 768px) {
+
+  /* -- Container: proportional rounded top + generous vertical breathing room -- */
+  .footer {
+    border-radius: 24px 24px 0 0;    /* softer than desktop 40px, still premium */
+    margin-top: 40px;
+  }
+
+  /* -- Watermark: gracefully scaled with clamp, never overflows -- */
+  .footer-watermark {
+    font-size: clamp(1.9rem, 10.5vw, 3.8rem);  /* tight control: no horizontal bleed */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgba(251, 206, 74, 0.13); /* even softer on small screens */
+    top: 0;
+    letter-spacing: -0.01em;          /* tighten tracking at small size */
+  }
+
+  /* -- Inner grid: single column, generous gap + padding -- */
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 0;                            /* controlled individually per column via padding */
+    padding: 56px 28px 44px;          /* top: generous, sides: comfortable, bottom: breathes */
+    text-align: center;               /* ← centre-align all column content */
+    align-items: center;
+  }
+
+  /* -- Brand column: reset span, full-width centered -- */
+  .footer-col--brand {
+    grid-column: auto;
+    align-items: center;              /* centre logo, tagline, desc, CTA */
+    padding-bottom: 44px;            /* clear separation before first link col */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-logo {
+    height: 34px;                     /* slightly tighter on mobile */
+  }
+
+  .footer-tagline {
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+  }
+
+  .footer-desc {
+    font-size: 0.88rem;
+    max-width: 280px;                 /* keep Thai text from stretching wall-to-wall */
+    margin: 0 auto;                   /* centre the description block */
+  }
+
+  .footer-cta-btn {
+    width: 100%;
+    max-width: 260px;                 /* don't let button stretch too wide */
+    justify-content: center;
+    margin: 6px auto 0;              /* auto centres the block */
+    padding: 14px 24px;             /* taller = easier tap target */
+    font-size: 0.92rem;
+    /* Smooth active-state for touch */
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  }
+
+  .footer-cta-btn:active {
+    transform: scale(0.97);           /* tactile press response */
+    box-shadow: 0 2px 8px rgba(251, 206, 74, 0.2);
+  }
+
+  /* -- Link columns: centred titles + generous row separation -- */
+  .footer-col {
+    align-items: center;              /* centre the entire column */
+    padding: 36px 0;                 /* ↑ was gap:32px — now each col breathes on its own */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Last link column: no bottom rule (divider handles it) */
+  .footer-col:last-child {
+    border-bottom: none;
+    padding-bottom: 28px;
+  }
+
+  .footer-col-title {
+    text-align: center;
+    font-size: 0.62rem;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+  }
+
+  /* -- Nav list: centred, touch-friendly tap targets -- */
+  .footer-nav-list {
+    align-items: center;
+    gap: 0;                           /* spacing handled by li padding */
+  }
+
+  .footer-nav-list li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-nav-list li a {
+    justify-content: center;
+    padding: 11px 16px;              /* 44px+ tap zone height via line-height + padding */
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.68);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 240px;
+    /* Touch transition */
+    transition: color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+  }
+
+  .footer-nav-list li a:hover,
+  .footer-nav-list li a:focus {
+    color: var(--ci-yellow);
+    background: rgba(251, 206, 74, 0.06); /* subtle yellow tint on hover/focus */
+    transform: none;                  /* no x-shift on mobile — feels wrong on touch */
+  }
+
+  .footer-nav-list li a:active {
+    transform: scale(0.97);           /* press feedback */
+    color: var(--ci-yellow);
+    background: rgba(251, 206, 74, 0.1);
+  }
+
+  /* -- Divider: tighter horizontal margin -- */
+  .footer-divider {
+    margin: 0 28px;
+  }
+
+  /* -- Bottom bar: generous padding, centred social row -- */
+  .footer-bottom {
+    padding: 36px 28px 48px;         /* top: breathing room, bottom: safe area margin */
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-socials {
+    gap: 14px;                        /* slightly more air between circles */
+    justify-content: center;
+  }
+
+  /* Touch-friendly social icon circles */
+  .footer-socials a {
+    width: 48px;                      /* 48px = Google recommended min touch target */
+    height: 48px;
+    font-size: 1rem;
+    /* Touch transition */
+    transition: background 0.2s ease, border-color 0.2s ease,
+                color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  }
+
+  .footer-socials a:active {
+    transform: scale(0.93);           /* satisfying press-in feel */
+    box-shadow: 0 2px 10px rgba(251, 206, 74, 0.25);
+  }
+
+  .footer-copy {
+    font-size: 0.72rem;
+    letter-spacing: 0.3px;
+    color: rgba(255, 255, 255, 0.28);
+    line-height: 1.6;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
+
+/* ============================================================
+   [22c-XS] FOOTER — Ultra-Small Screens (≤ 400px / Galaxy Fold etc.)
+   ============================================================ */
+@media (max-width: 400px) {
+
+  .footer {
+    border-radius: 18px 18px 0 0;
+  }
+
+  .footer-watermark {
+    font-size: clamp(1.5rem, 9.5vw, 2.8rem);
+    -webkit-text-stroke-width: 0.8px;
+  }
+
+  .footer-inner {
+    padding: 44px 20px 36px;
+  }
+
+  .footer-col--brand {
+    padding-bottom: 36px;
+  }
+
+  .footer-logo {
+    height: 30px;
+  }
+
+  .footer-desc {
+    font-size: 0.82rem;
+    max-width: 240px;
+  }
+
+  .footer-cta-btn {
+    font-size: 0.85rem;
+    padding: 13px 20px;
+  }
+
+  .footer-col-title {
+    font-size: 0.58rem;
+    letter-spacing: 2.5px;
+  }
+
+  .footer-nav-list li a {
+    font-size: 0.88rem;
+    padding: 10px 12px;
+  }
+
+  .footer-socials {
+    gap: 10px;
+  }
+
+  .footer-socials a {
+    width: 44px;                      /* minimum safe touch target */
+    height: 44px;
+    font-size: 0.88rem;
+  }
+
+  .footer-copy {
+    font-size: 0.68rem;
+    max-width: 240px;
+  }
+
+  .footer-bottom {
+    padding: 28px 20px 44px;
+  }
 }
 
 /* ============================================================
@@ -1252,6 +1528,7 @@ footer {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1442,9 +1719,11 @@ footer {
   0% {
     left: -60%;
   }
+
   20% {
     left: 120%;
   }
+
   100% {
     left: 120%;
   }
@@ -1454,9 +1733,11 @@ footer {
   0% {
     box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.5);
   }
+
   70% {
     box-shadow: 0 0 0 15px rgba(255, 140, 0, 0);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(255, 140, 0, 0);
   }
@@ -1692,6 +1973,7 @@ html:not([data-theme="dark"]) .merch-card p {
    [27] ORIENTATION FIXES
    ============================================================ */
 @media (max-height: 600px) and (orientation: landscape) {
+
   body,
   .scroll-progress-container {
     padding-top: 55px !important;
@@ -1712,14 +1994,6 @@ html:not([data-theme="dark"]) .merch-card p {
    [29] RESPONSIVE ENGINE (CLEANED & FIXED)
    ============================================================ */
 
-/* --- DESKTOP 1025px+ --- */
-@media (min-width: 1025px) {
-  .book-grid-container {
-    flex-direction: row;
-    gap: 60px;
-  }
-}
-
 /* --- TABLET 1024px --- */
 @media (max-width: 1024px) {
   .scroll-progress-container {
@@ -1732,18 +2006,22 @@ html:not([data-theme="dark"]) .merch-card p {
     margin: 20px auto !important;
     border-radius: 10px !important;
   }
+
   #myVideo {
     width: 100% !important;
     height: 100% !important;
     border-radius: 0 !important;
   }
+
   .video-text-side {
     padding: 30px 15px !important;
     text-align: center !important;
   }
+
   .video-flex-container {
     flex-direction: column !important;
   }
+
   .video-content-box {
     max-width: 100% !important;
   }
@@ -1759,6 +2037,7 @@ html:not([data-theme="dark"]) .merch-card p {
     flex-direction: column !important;
     width: 95% !important;
   }
+
   .author-visual-side {
     border-right: none;
     border-bottom: 1px solid #eee;
@@ -1769,12 +2048,13 @@ html:not([data-theme="dark"]) .merch-card p {
   /* Search */
   .search-wrapper {
     max-width: 90%;
-    margin-top: 110px !important;
+    margin-top: 47px !important;
   }
 }
 
 /* --- STANDARD MOBILE 768px --- */
 @media (max-width: 768px) {
+
   /* Hero: 2x5 grid สำหรับมือถือแนวตั้ง */
   .hero-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -1791,13 +2071,16 @@ html:not([data-theme="dark"]) .merch-card p {
     gap: 32px;
     width: 95%;
   }
+
   .shop-card {
     max-width: 350px;
   }
+
   [data-theme="dark"] .shop-info {
     padding: 18px !important;
     text-align: center;
   }
+
   [data-theme="dark"] .shop-card {
     margin: 0 10px !important;
   }
@@ -1806,10 +2089,12 @@ html:not([data-theme="dark"]) .merch-card p {
   .merch-grid.bookmark-triple-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
+
   [data-theme="dark"] .merch-grid {
     gap: 20px !important;
     padding: 0 10px !important;
   }
+
   .merch-card img {
     width: 100% !important;
     border-radius: 10px !important;
@@ -1821,54 +2106,19 @@ html:not([data-theme="dark"]) .merch-card p {
   .section {
     padding: 60px 5% !important;
   }
+
   .section-title {
     font-size: 1.8rem;
     margin-bottom: 40px;
   }
+
   #home h1 {
     font-size: clamp(2rem, 10vw, 3rem);
   }
+
   #home .hero-desc {
     font-size: 0.9rem;
     margin-bottom: 25px;
-  }
-
-  /* Guidebook section */
-  .book-grid-container {
-    flex-direction: column !important;
-    gap: 30px !important;
-    padding: 30px 15px !important;
-    text-align: center;
-  }
-  .book-visual,
-  .book-text {
-    width: 100% !important;
-    min-width: unset !important;
-  }
-  .inner-mockup {
-    max-width: 100%;
-  }
-  .book-text h2 {
-    font-size: 1.8rem;
-  }
-  .thumb-item {
-    width: 70px;
-    height: 70px;
-    border-radius: 10px;
-  }
-  .book-card {
-    padding: 35px 25px !important;
-    margin: 20px 15px !important;
-    width: auto !important;
-  }
-  .book-description {
-    font-size: 0.95rem !important;
-    line-height: 1.6 !important;
-    padding: 0 !important;
-  }
-  .btn-primary {
-    width: 100% !important;
-    padding: 14px 15px !important;
   }
 
   /* Video */
@@ -1876,27 +2126,37 @@ html:not([data-theme="dark"]) .merch-card p {
     height: 350px;
     width: 95%;
   }
+
   .video-content h2 {
     font-size: 1.8rem;
   }
+
   .video-overlay {
     padding: 30px;
   }
+
   .video-content-box {
     padding: 35px 20px !important;
     margin: 0 15px 30px !important;
     width: auto !important;
   }
+
   .video-content-box .section-title {
     font-size: 1.8rem !important;
   }
+
   .video-description p {
     font-size: 1rem !important;
     padding: 0 10px !important;
     max-width: 100% !important;
   }
-  .video-description p br {
-    display: none;
+
+  /* FIX: Do NOT hide <br> tags — let text wrap naturally at narrow widths instead */
+  /* .video-description p br { display: none; } — REMOVED: was breaking sentence flow */
+  .video-description p {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   /* Author */
@@ -1905,6 +2165,7 @@ html:not([data-theme="dark"]) .merch-card p {
     border-radius: 10px;
     margin: 0 10px;
   }
+
   .author-visual-side {
     flex: 0 0 auto;
     width: 100%;
@@ -1912,20 +2173,25 @@ html:not([data-theme="dark"]) .merch-card p {
     border-bottom: 1px solid #eee;
     padding: 50px 20px;
   }
+
   .author-content-side {
     padding: 50px 30px;
   }
+
   .author-name {
     font-size: 26px !important;
   }
+
   .logo-box {
     width: 60px;
     height: 60px;
     padding: 6px;
   }
+
   .qr-card {
     padding: 25px 15px !important;
   }
+
   .qr-header h3 {
     font-size: 1.3rem !important;
   }
@@ -1934,9 +2200,11 @@ html:not([data-theme="dark"]) .merch-card p {
   .search-wrapper {
     margin-top: 100px !important;
   }
+
   .search-input-group {
     padding: 8px 8px 8px 20px;
   }
+
   #searchBtn {
     padding: 12px 20px;
     font-size: 0.95rem;
@@ -1950,6 +2218,7 @@ html:not([data-theme="dark"]) .merch-card p {
     height: 60px;
     gap: 10px !important;
   }
+
   .merch-grid.bookmark-triple-grid {
     grid-template-columns: 1fr !important;
   }
@@ -1957,23 +2226,29 @@ html:not([data-theme="dark"]) .merch-card p {
 
 /* --- SMALL/FOLD 400px --- */
 @media (max-width: 400px) {
+
   .merch-grid.bookmark-triple-grid,
   .shop-grid {
     grid-template-columns: 1fr !important;
   }
+
   #home h1 {
     font-size: 2rem !important;
   }
+
   #home .hero-desc {
     font-size: 0.85rem !important;
   }
+
   .author-name {
     font-size: 24px !important;
   }
+
   .contact-box {
     width: 100%;
     max-width: 260px;
   }
+
   .thumb-item {
     width: 60px;
     height: 60px;
@@ -1986,29 +2261,36 @@ html:not([data-theme="dark"]) .merch-card p {
     grid-template-columns: repeat(5, 1fr) !important;
     grid-template-rows: repeat(2, 1fr) !important;
   }
+
   .hero-content-overlay {
     padding-top: 80px;
     padding-bottom: 20px;
   }
+
   .content-wrapper {
     gap: 5px;
   }
+
   #home {
     min-height: 110vh;
   }
+
   #home h1 {
     font-size: clamp(1.6rem, 5vw, 2.5rem) !important;
     margin-bottom: 5px;
   }
+
   #home .subtitle-vibe {
     margin-bottom: 5px;
     font-size: 0.8rem;
   }
+
   #home .hero-desc {
     font-size: 0.8rem !important;
     margin-bottom: 12px;
     line-height: 1.3;
   }
+
   .btn-primary {
     padding: 8px 20px;
     font-size: 0.85rem;
@@ -2034,6 +2316,7 @@ html:not([data-theme="dark"]) .merch-card p {
 body {
   font-size: var(--fs-body);
 }
+
 .section {
   padding: var(--space-xl) clamp(5%, 10%, 15%);
 }
@@ -2043,25 +2326,31 @@ body {
     padding: 80px 40px;
     max-width: 1100px;
   }
+
   .section-title {
     font-size: clamp(2.4rem, 3vw, 3rem);
     margin-bottom: 70px;
   }
+
   .shop-grid {
     gap: clamp(32px, 4vw, 60px);
     max-width: 1100px;
   }
+
   .book-card {
     max-width: 960px !important;
     padding: 60px 80px !important;
   }
+
   .video-wrapper {
     max-width: 1000px;
     margin: 68px auto !important;
   }
+
   .author-layout-card {
     max-width: 1100px;
   }
+
   .footer-container {
     padding: 0 8%;
     gap: 60px;
@@ -2073,92 +2362,112 @@ body {
     gap: clamp(20px, 3vw, 36px);
     width: 95%;
   }
-  @media (orientation: portrait) {
-    .merch-grid.bookmark-triple-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-      gap: 20px !important;
-    }
-  }
+
+  /* FIX: Nested @media is invalid CSS (ignored by browsers). Moved to standalone rule below. */
+
   .section {
     padding: var(--space-lg) 6%;
   }
+
   .book-grid-container {
     gap: 40px !important;
     padding: 40px 20px !important;
   }
+
   .author-visual-side {
     flex: 0 0 320px;
     padding: 40px 30px;
   }
+
   .author-content-side {
     padding: 40px 40px;
   }
+
   .author-profile-pic {
     width: 200px;
     height: 200px;
   }
+
   .thumb-item {
     width: 80px;
     height: 80px;
   }
+
   .shop-ticker-banner {
     height: 60px;
   }
 }
 
+/* FIX: Bookmark grid portrait — was inside invalid nested @media, now standalone */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .merch-grid.bookmark-triple-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+  }
+}
+
+/* Dummy closing brace removed — real one follows next block */
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+
 @media (max-width: 480px) {
+
   .shop-grid,
   .merch-grid,
   .merch-grid.bookmark-triple-grid,
-  .book-grid-container {
-    grid-template-columns: 1fr !important;
-    flex-direction: column !important;
-    gap: 20px !important;
-    width: 100% !important;
-    padding: 0 16px !important;
-  }
   .shop-card {
     max-width: 100% !important;
     margin: 0 !important;
   }
+
   .merch-card {
     padding: 18px !important;
   }
+
   .section {
     padding: 48px 16px !important;
   }
+
   .section-title {
     font-size: clamp(1.4rem, 6vw, 1.8rem) !important;
     margin-bottom: 30px !important;
   }
+
   .district-label {
     font-size: clamp(1rem, 5vw, 1.4rem) !important;
     letter-spacing: 1.5px !important;
     margin: 30px 0 20px 0 !important;
   }
+
   .book-card {
     padding: 28px 18px !important;
     margin: 16px 0 !important;
     width: 100% !important;
   }
+
   .book-badge-row {
     flex-wrap: wrap;
     gap: 8px;
   }
+
   .book-thumbs {
     gap: 8px !important;
   }
+
   .thumb-item {
     width: 58px !important;
     height: 58px !important;
   }
+
   .video-content-box {
     padding: 28px 16px !important;
     margin: 0 0 24px !important;
   }
+
   .video-content-box .section-title {
     font-size: clamp(1.3rem, 5.5vw, 1.6rem) !important;
   }
+
   .btn-primary,
   .btn-support-cta {
     width: 100% !important;
@@ -2166,34 +2475,43 @@ body {
     font-size: 1rem !important;
     padding: 14px 20px !important;
   }
+
+  /* FIX: Search wrapper — margin-top must clear the 70px nav bar */
   .search-wrapper {
     padding: 0 12px !important;
-    margin-top: 42px !important;
+    margin-top: 80px !important; /* was 42px → search bar was hidden behind nav */
   }
+
   #searchBtn {
     padding: 12px 16px !important;
     white-space: nowrap;
     flex-shrink: 0;
   }
+
   .author-centering-wrapper {
     padding: 70px 12px 40px;
     min-height: unset;
   }
+
   .author-layout-card {
     margin: 0 !important;
     border-radius: 10px;
   }
+
   .author-profile-pic {
     width: 180px;
     height: 180px;
   }
+
   .author-content-side {
     padding: 30px 20px !important;
   }
+
   .contact-box {
     width: 100% !important;
     max-width: 300px;
   }
+
   .footer-container {
     flex-direction: column;
     align-items: center;
@@ -2201,20 +2519,32 @@ body {
     gap: 24px;
     padding: 0 20px;
   }
+
   .footer-brand {
     min-width: unset;
   }
+
+  /* FIX: Ticker banner — restore visibility on portrait mobile */
+  /* Previously: display:none caused banner to disappear in portrait, reappear in landscape */
   .shop-ticker-banner {
-    display: none;
+    height: 50px; /* slightly shorter on tiny screens */
+    margin: 24px 0;
   }
+  .ticker-item {
+    font-size: 0.9rem;
+    padding: 0 16px;
+  }
+
   .qr-card {
     width: 95% !important;
     padding: 24px 16px !important;
   }
+
   #searchSuggestions {
     left: 0;
     right: 0;
   }
+
   .photo-gallery {
     height: 240px;
   }
@@ -2225,34 +2555,43 @@ body {
     font-size: 1.7rem !important;
     letter-spacing: 1px;
   }
+
   #home .subtitle-vibe {
     font-size: 0.7rem !important;
     letter-spacing: 2px;
   }
+
   .section-title {
     font-size: 1.3rem !important;
   }
+
   .hero-content-overlay {
     padding: 30px 12px;
   }
+
   .btn-primary {
     font-size: 0.9rem !important;
   }
+
   .author-profile-pic {
     width: 140px;
     height: 140px;
   }
+
   .author-name {
     font-size: 20px !important;
   }
+
   .contact-box {
     max-width: 100%;
     padding: 10px 14px;
   }
+
   .thumb-item {
     width: 50px !important;
     height: 50px !important;
   }
+
   .book-card {
     padding: 20px 14px !important;
   }
@@ -2364,15 +2703,18 @@ html:not([data-theme="dark"]) .lang-btn {
   color: #007a33;
   background: transparent;
 }
+
 html:not([data-theme="dark"]) .lang-btn:hover {
   background: #007a33;
   color: #ffffff;
 }
+
 html:not([data-theme="dark"]) .theme-btn {
   border: 1.5px solid #ccc;
   color: #333;
   background: #f5f5f5;
 }
+
 html:not([data-theme="dark"]) .theme-btn:hover {
   border-color: #ff8c00;
   background: #fff4e8;
@@ -2385,6 +2727,7 @@ html:not([data-theme="dark"]) .theme-btn:hover {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.08);
 }
+
 [data-theme="dark"] .lang-btn:hover,
 [data-theme="dark"] .theme-btn:hover {
   background: rgba(255, 255, 255, 0.2);
@@ -2418,11 +2761,12 @@ html:not([data-theme="dark"]) .theme-btn:hover {
     min-width: 44px;
     min-height: 44px;
   }
+
   [data-theme="dark"] .hamburger-menu i {
     color: #ffffff !important;
   }
 
-  nav > .nav-right-container > .nav-controls-wrapper {
+  nav>.nav-right-container>.nav-controls-wrapper {
     display: none !important;
   }
 
@@ -2496,6 +2840,7 @@ html:not([data-theme="dark"]) .theme-btn:hover {
 html:not([data-theme="dark"]) .nav-close-btn {
   color: #007a33;
 }
+
 [data-theme="dark"] .nav-close-btn {
   color: #ffffff;
 }
@@ -2511,6 +2856,7 @@ html:not([data-theme="dark"]) .nav-close-btn {
   opacity: 0;
   transition: opacity 0.35s ease;
 }
+
 .nav-backdrop.active {
   display: block;
   opacity: 1;
@@ -2526,6 +2872,7 @@ html:not([data-theme="dark"]) .nav-close-btn {
   .nav-backdrop {
     display: none !important;
   }
+
   .nav-close-btn,
   .nav-links .nav-close-btn {
     display: none !important;
@@ -2577,6 +2924,7 @@ html:not([data-theme="dark"]) .nav-close-btn {
   transform: scale(0.5) !important;
   visibility: hidden !important;
 }
+
 .speed-dial-main-btn .img-normal {
   opacity: 1 !important;
   transform: scale(1) !important;
@@ -2588,11 +2936,13 @@ html:not([data-theme="dark"]) .nav-close-btn {
   transform: scale(0.5) !important;
   visibility: hidden !important;
 }
+
 .speed-dial-container.active .speed-dial-main-btn .img-active {
   opacity: 1 !important;
   transform: scale(1) !important;
   visibility: visible !important;
 }
+
 .speed-dial-container.active .speed-dial-main-btn {
   transform: rotate(15deg) scale(1.1) !important;
   background-color: #ff8c00 !important;
@@ -2630,16 +2980,277 @@ html:not([data-theme="dark"]) .nav-close-btn {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
 .dial-btn:hover {
   transform: scale(1.2) translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
+
 .phone-btn {
   background: #ffd54f;
 }
+
 .line-btn {
   background: #66bb6a;
 }
+
 .copy-btn {
   background: #ffca28;
+}
+
+/* ============================================================
+   [THE GUIDEBOOK SECTION] - ULTIMATE FLUID RESPONSIVE
+   ============================================================ */
+
+/* --- 1. โครงสร้างหลัก --- */
+.book-grid-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(30px, 5vw, 60px);
+  /* ยืดหยุ่นช่องไฟตามจอ */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(20px, 4vw, 40px) 15px;
+  flex-wrap: wrap;
+  /* ปัดตกลงมาอัตโนมัติเมื่อจอแคบ */
+}
+
+.book-visual {
+  flex: 1 1 400px;
+  /* ยืดหดได้ แต่ไม่เล็กกว่า 400px ถ้าที่เป็นไปได้ */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+.book-text {
+  flex: 1 1 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* --- 2. ส่วนรูปภาพ (Image & Thumbnails) --- */
+.book-float-wrapper {
+  animation: floatBook 6s ease-in-out infinite;
+  /* เอฟเฟกต์หนังสือลอยเบาๆ */
+  padding: 10px;
+  /* เผื่อพื้นที่ให้เงาไม่โดนตัด */
+}
+
+@keyframes floatBook {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* FIX: A5 Aspect Ratio — true portrait A5 = 1:√2 ≈ 1:1.414 */
+/* Previously: aspect-ratio: 4/3 made the book look like a landscape photo, not a standing physical book */
+.inner-mockup {
+  width: 100%;
+  max-width: 340px;               /* narrower = taller, reinforces portrait book feel */
+  border-radius: 4px 15px 15px 4px;
+  box-shadow:
+    -8px 0 20px rgba(0, 0, 0, 0.12) inset,  /* deeper spine shadow */
+    -2px 0 6px rgba(0, 0, 0, 0.18) inset,   /* fine edge of spine */
+    18px 30px 55px rgba(0, 0, 0, 0.2);       /* drop shadow on surface */
+  cursor: zoom-in;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  aspect-ratio: 1 / 1.414;       /* A5 portrait ratio */
+  object-fit: cover;
+  display: block;
+}
+
+.inner-mockup:hover {
+  transform: scale(1.03) rotate(-1deg);
+  /* หมุนนิดๆ ตอนเอาเมาส์ชี้ */
+}
+
+.book-thumbs {
+  display: flex;
+  justify-content: center;
+  gap: clamp(12px, 3vw, 25px);
+  /* ช่องไฟรูปเล็กยืดหดได้ */
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 25px;
+}
+
+.thumb-item {
+  width: clamp(60px, 15vw, 85px);
+  /* ขนาดรูปเล็กปรับตามหน้าจอ */
+  height: clamp(60px, 15vw, 85px);
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  opacity: 0.5;
+}
+
+.thumb-item:hover {
+  transform: translateY(-5px);
+  opacity: 0.9;
+}
+
+.thumb-item.active {
+  border-color: #007a33;
+  transform: translateY(-5px);
+  opacity: 1;
+  box-shadow: 0 8px 20px rgba(0, 122, 51, 0.25);
+}
+
+[data-theme="dark"] .thumb-item.active {
+  border-color: #fbce4a;
+  box-shadow: 0 8px 20px rgba(251, 206, 74, 0.3);
+}
+
+/* --- 3. ส่วนเนื้อหา (Text Card & Badges) --- */
+.book-card {
+  background: #ffffff;
+  /* ใช้ clamp จัดการ Padding ป้องกันจอเล็กแล้วขอบแน่นเกินไป */
+  padding: clamp(30px, 5vw, 50px) clamp(20px, 5vw, 60px);
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  transition: all 0.4s ease;
+  width: 100%;
+  max-width: 850px;
+  box-sizing: border-box;
+  /* สำคัญมาก ป้องกัน Card ทะลุจอ */
+}
+
+.book-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0, 122, 51, 0.1);
+}
+
+[data-theme="dark"] .book-card {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .book-card:hover {
+  box-shadow: 0 25px 50px rgba(251, 206, 74, 0.12);
+}
+
+.book-card h2 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  /* ฟอนต์ยืดหยุ่น */
+  margin-bottom: 20px;
+  color: #007a33;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+[data-theme="dark"] .book-card h2 {
+  color: #ffffff;
+}
+
+/* --- ป้ายแท็ก Badge --- */
+.book-badge-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background: #fbce4a;
+  color: #007a33;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  font-weight: 700;
+  border: 1px solid rgba(0, 122, 51, 0.1);
+  white-space: nowrap;
+  /* ห้ามคำในป้ายฉีกขาดจากกัน */
+}
+
+[data-theme="dark"] .badge {
+  background: rgba(251, 206, 74, 0.15);
+  color: #fbce4a;
+  border-color: rgba(251, 206, 74, 0.3);
+}
+
+/* --- รายละเอียดเพิ่มเติม --- */
+.book-spec-detail {
+  color: #ff8c00;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  font-size: clamp(0.85rem, 2vw, 1rem);
+}
+
+/* FIX: Text overflow guards — guaranteed no bleed on 320px screens */
+.book-description {
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 35px;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;            /* hyphenate long Thai/English words */
+  -webkit-hyphens: auto;
+}
+
+/* FIX: Shop card text — overflow safe */
+.shop-name {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* FIX: Merch card text — overflow safe */
+.merch-card p {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* FIX: Video content box — fluid padding replaces hardcoded values */
+/* already uses !important overrides in media queries; add base fluid rule here */
+.video-content-box {
+  padding: clamp(28px, 5vw, 50px) clamp(16px, 5vw, 40px) !important;
+  margin: 0 auto clamp(20px, 4vw, 40px) !important;
+  max-width: min(850px, 96%) !important;  /* never wider than viewport */
+  box-sizing: border-box !important;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+[data-theme="dark"] .book-description {
+  color: #dddddd;
+}
+
+/* ปรับปุ่มให้เต็มจอเฉพาะตอนอยู่บนมือถือ */
+@media (max-width: 600px) {
+
+  .book-card .btn-group,
+  .book-card .btn-primary {
+    width: 100%;
+    display: flex;
+  }
 }
