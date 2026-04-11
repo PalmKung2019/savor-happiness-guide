@@ -771,13 +771,21 @@ function initializeNavigation() {
 }
 
 function openNavMenu() {
-  const { navMenu, hamIcon } = AppState.domElements;
+  const { navMenu, hamBtn } = AppState.domElements;
+  const navBackdrop = document.getElementById("navBackdrop");
 
-  navMenu?.classList.add("active");
+  // เช็กก่อนว่ามี HTML ตัวนี้อยู่จริงไหม ค่อยสั่งแอดคลาส
+  if (navMenu) {
+    navMenu.classList.add("active");
+  }
+  if (navBackdrop) {
+    navBackdrop.classList.add("active");
+  }
 
-  if (hamIcon) {
-    hamIcon.classList.remove("fa-bars");
-    hamIcon.classList.add("fa-times");
+  // ซ่อนปุ่มแฮมเบอร์เกอร์ฝั่งซ้าย
+  if (hamBtn) {
+    hamBtn.style.opacity = "0";
+    hamBtn.style.pointerEvents = "none";
   }
 
   // ล็อคหน้าจอไม่ให้ไถล
@@ -785,13 +793,21 @@ function openNavMenu() {
 }
 
 function closeNavMenu() {
-  const { navMenu, hamIcon } = AppState.domElements;
+  const { navMenu, hamBtn } = AppState.domElements;
+  const navBackdrop = document.getElementById("navBackdrop");
 
-  navMenu?.classList.remove("active");
+  // เช็กก่อนว่ามี HTML ตัวนี้อยู่จริงไหม ค่อยสั่งลบคลาส
+  if (navMenu) {
+    navMenu.classList.remove("active");
+  }
+  if (navBackdrop) {
+    navBackdrop.classList.remove("active");
+  }
 
-  if (hamIcon) {
-    hamIcon.classList.add("fa-bars");
-    hamIcon.classList.remove("fa-times");
+  // เอาปุ่มแฮมเบอร์เกอร์ฝั่งซ้ายกลับมา
+  if (hamBtn) {
+    hamBtn.style.opacity = "1";
+    hamBtn.style.pointerEvents = "auto";
   }
 
   // ปลดล็อคหน้าจอ
