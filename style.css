@@ -2501,7 +2501,7 @@ body {
   /* FIX: Search wrapper — margin-top must clear the 70px nav bar */
   .search-wrapper {
     padding: 0 12px !important;
-    margin-top: 80px !important; /* was 42px → search bar was hidden behind nav */
+    margin-top: 43px !important; /* was 42px → search bar was hidden behind nav */
   }
 
   #searchBtn {
