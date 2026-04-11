@@ -139,14 +139,15 @@ img {
    [9] HERO SECTION
    ============================================================ */
 #home {
-  min-height: 58vh;
+  min-height: 80vh; /* ปรับความสูงเพิ่มขึ้นนิดหน่อยให้ภาพมีพื้นที่โชว์สวยๆ (เปลี่ยนจาก 58vh เป็น 80vh หรือ 100vh ตามชอบได้เลย) */
   width: 100%;
-  /* position: relative; */
+  position: relative; /* เอาคอมเมนต์ออก สำคัญมาก! เพื่อให้ .hero-grid ถูกล็อกกรอบไว้ในนี้ */
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #000;
+  padding-top: 60px; /* เผื่อพื้นที่ด้านบนไม่ให้ Navbar บังคอนเทนต์ */
 }
 
 /* One unified .hero-grid declaration */
@@ -159,7 +160,7 @@ img {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 1; /* ดันไปอยู่ชั้นล่างสุดเป็นพื้นหลัง */
 }
 
 .grid-item {
@@ -186,7 +187,7 @@ img {
 
 .hero-content-overlay {
   position: relative;
-  z-index: 10;
+  z-index: 10; /* ดันข้อความและช่องค้นหาให้ลอยอยู่เหนือรูปภาพ */
   text-align: center;
   color: white;
   padding: 60px 20px;
@@ -199,6 +200,19 @@ img {
   flex-direction: column;
   align-items: center;
   gap: 12px;
+}
+
+/* แถม Class สำหรับกล่องค้นหา (Search Container) 
+  เอาไว้ครอบ input ค้นหา เพื่อให้มีเงาและจัดระเบียบให้เข้ากับ Layout ภาพที่ 2
+*/
+.search-container {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 30px; /* ดันให้ห่างจากข้อความ Title ด้านล่าง */
+  background-color: #ffffff;
+  border-radius: 50px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* เงาเข้มขึ้นนิดนึงให้ตัดกับภาพพื้นหลัง */
+  z-index: 15;
 }
 
 #home h1 {
@@ -216,7 +230,7 @@ img {
   margin-bottom: 15px;
   font-weight: 400;
   text-transform: uppercase;
-  color: var(--savor-orange);
+  color: var(--savor-orange); /* อย่าลืมเช็กว่ามีการประกาศตัวแปรสีนี้ไว้ใน :root นะครับ */
 }
 
 #home .hero-desc {
