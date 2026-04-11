@@ -134,9 +134,11 @@
             <div class="book-grid-container">
                 <div class="book-visual" data-aos="fade-right">
                     <div class="main-img-container">
-                        <img src="img/SavorHappiness-Cover.jpg" id="mainBookImg" class="inner-mockup fade-in"
-                            alt="Savor Happiness Guidebook" onclick="openSimpleLightbox(this.src)"
-                            style="cursor: zoom-in;" loading="lazy">
+                        <div class="book-float-wrapper">
+                            <img src="img/SavorHappiness-Cover.jpg" id="mainBookImg" class="inner-mockup fade-in"
+                                alt="Savor Happiness Guidebook" onclick="openSimpleLightbox(this.src)"
+                                style="cursor: zoom-in;" loading="lazy">
+                        </div>
                     </div>
 
                     <div class="book-thumbs">
@@ -156,6 +158,7 @@
                         <h2 class="section-title lang-text" data-key="book-title">THE GUIDEBOOK</h2>
 
                         <div class="book-badge-row">
+                            <span class="badge">A5 Photobook</span>
                             <span class="badge">126 Pages</span>
                             <span class="badge">Minburi &amp; Nongchok</span>
                         </div>
@@ -163,20 +166,21 @@
                         <p class="book-spec-detail">FEATURING 20 CAFES &amp; RESTAURANTS</p>
 
                         <p class="lang-text book-description" data-key="book-desc">
-                            Savor Happiness: 20 ร้านเด็ดย่านมีนบุรี–หนองจอก ผ่านภาพและดีไซน์
+                            Savor Happiness: ถ่ายทอดเสน่ห์ย่านมีนบุรี–หนองจอก ผ่าน Visual Storytelling
+                            ผสมผสานภาพถ่ายบรรยากาศจริงเข้ากับงานกราฟิกสีสันสดใส จัดวางแบบ Dynamic Layout ให้อ่านง่าย
+                            พร้อมแผนที่ Postcard ที่พกพาสะดวก
                         </p>
 
                         <div class="btn-group">
                             <a href="pdf/SavorHappiness_Preview.pdf" target="_blank" class="btn-primary lang-text"
                                 data-key="btn-pdf">
-                                <i class="fas fa-file-pdf"></i> อ่านตัวอย่างไฟล์ PDF
+                                <i class="fas fa-file-pdf"></i> เปิดอ่านตัวอย่าง PDF
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
 
         <section id="merch" class="section">
             <h2 class="section-title lang-text" data-key="nav-merch" data-aos="fade-up">ของที่ระลึก</h2>
@@ -338,37 +342,107 @@
         </div>
     </div>
 
+    <!-- ============================================================
+         FOOTER — Redesigned (Giant Typography + Multi-Column Grid)
+         ============================================================ -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
+
+        <!-- Giant watermark text (decorative, aria-hidden) -->
+        <div class="footer-watermark" aria-hidden="true">SAVOR HAPPINESS</div>
+
+        <!-- Main 4-column content grid -->
+        <div class="footer-inner">
+
+            <!-- Col 1: Brand + CTA -->
+            <div class="footer-col footer-col--brand">
                 <img src="img/logo/savorhappiness-1.png" alt="Savor Happiness" class="footer-logo">
-                <p class="footer-desc">DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS.<br>
-                    บันทึกความทรงจำผ่านเลนส์และรสชาติที่ลงตัวย่านมีนบุรี-หนองจอก</p>
+                <p class="footer-tagline">DIGITAL MEDIA · GRAPHIC DESIGN · SPU THESIS</p>
+                <p class="footer-desc">บันทึกความทรงจำผ่านเลนส์<br>ย่านมีนบุรี–หนองจอก</p>
+                <a href="#support" class="footer-cta-btn">
+                    <i class="fas fa-qrcode"></i> อุดหนุนผลงาน
+                </a>
             </div>
 
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
+            <!-- Col 2: Navigate -->
+            <div class="footer-col">
+                <h4 class="footer-col-title">Navigate</h4>
+                <ul class="footer-nav-list">
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#book-feature">The Book</a></li>
+                    <li><a href="#book-feature">The Guidebook</a></li>
                     <li><a href="#merch">Merchandise</a></li>
                     <li><a href="#highlights">Highlights</a></li>
+                    <li><a href="#author">Creator</a></li>
                 </ul>
             </div>
 
-            <div class="footer-connect">
-                <h4>Connect</h4>
-                <div class="footer-socials">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fas fa-envelope"></i></a>
-                </div>
-                <p>097-946-5925</p>
+            <!-- Col 3: Explore -->
+            <div class="footer-col">
+                <h4 class="footer-col-title">Explore</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="pdf/SavorHappiness_Preview.pdf" target="_blank">Preview PDF</a></li>
+                    <li><a href="#highlights">Minburi Cafes</a></li>
+                    <li><a href="#highlights">Nongchok Cafes</a></li>
+                    <li><a href="#merch">Sticker Set</a></li>
+                    <li><a href="#merch">Bookmarks</a></li>
+                </ul>
             </div>
-        </div>
+
+            <!-- Col 4: Connect -->
+            <div class="footer-col">
+                <h4 class="footer-col-title">Connect</h4>
+                <ul class="footer-nav-list">
+                    <li>
+                        <a href="mailto:palmy1983ch@gmail.com">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/profile.php?id=61583912952191" target="_blank">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/channel/UCMkdKbC24fxkU5E3BMWSt4Q" target="_blank">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://line.me/ti/p/hoyPIxxf4K" target="_blank">
+                            <i class="fab fa-line"></i> LINE
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Tel:0979465925">
+                            <i class="fas fa-phone"></i> 097-946-5925
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div><!-- /footer-inner -->
+
+        <!-- Horizontal divider -->
+        <div class="footer-divider"></div>
+
+        <!-- Bottom bar: socials + copyright -->
         <div class="footer-bottom">
-            <p>© 2026 SAVOR HAPPINESS | Made with ❤️ for SPU Thesis</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/profile.php?id=61583912952191" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.youtube.com/channel/UCMkdKbC24fxkU5E3BMWSt4Q" target="_blank" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="mailto:palmy1983ch@gmail.com" aria-label="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://line.me/ti/p/hoyPIxxf4K" target="_blank" aria-label="LINE">
+                    <i class="fab fa-line"></i>
+                </a>
+            </div>
+            <p class="footer-copy">© 2026 SAVOR HAPPINESS | Made with ❤️ for SPU Thesis — Pran Taewin</p>
         </div>
+
     </footer>
 
 
