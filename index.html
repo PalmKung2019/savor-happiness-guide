@@ -478,12 +478,6 @@
             }
         });
 
-        // --- [3] ระบบความปลอดภัยขั้นสูง (Advanced Security) ---
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        setInterval(function () {
-            (function () { }.constructor("debugger")());
-        }, 500);
-
         // --- [4] Auto-inject & Initialize AOS (Minimal) ---
         document.querySelectorAll('h1, h2, h3, img').forEach(el => {
             if (!el.hasAttribute('data-aos')) {
