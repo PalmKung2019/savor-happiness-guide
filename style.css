@@ -118,12 +118,21 @@ img {
   pointer-events: none;
 }
 
+/* MICRO: Progress bar — gradient fill with animated glow */
 .progress-bar {
   height: 100%;
-  background: var(--savor-orange);
+  background: linear-gradient(
+    90deg,
+    var(--ci-green) 0%,
+    var(--ci-orange) 60%,
+    var(--ci-yellow) 100%
+  );
   width: 0%;
-  box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
-  transition: width 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition: width 0.15s cubic-bezier(0.22, 0.61, 0.36, 1);
+  box-shadow:
+    0 0 8px rgba(255, 140, 0, 0.55),
+    0 0 20px rgba(255, 140, 0, 0.25);
+  border-radius: 0 3px 3px 0;
 }
 
 /* ============================================================
@@ -633,16 +642,29 @@ img {
   text-decoration: none !important;
   font-weight: 700 !important;
   white-space: nowrap;
-  transition: 0.3s ease !important;
+  /* MICRO: Buttery 0.45s transition for premium lift feel */
+  transition:
+    background 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    transform   0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow  0.45s cubic-bezier(0.4, 0, 0.2, 1) !important;
   box-shadow: 0 5px 20px rgba(0, 122, 51, 0.25) !important;
   margin-top: 15px;
   animation: pulse-green 2s infinite;
 }
 
+/* MICRO: Button hover — elegant lift + brand glow */
 .btn-primary:hover {
   background: #005c26 !important;
-  transform: scale(1.03) translateY(-2px) !important;
-  box-shadow: 0 8px 25px rgba(0, 122, 51, 0.4) !important;
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow:
+    0 10px 30px rgba(0, 122, 51, 0.35),
+    0 4px 12px rgba(0, 122, 51, 0.2) !important;
+}
+
+.btn-primary:active {
+  transform: translateY(-1px) scale(0.99) !important;
+  box-shadow: 0 4px 12px rgba(0, 122, 51, 0.25) !important;
+  transition-duration: 0.1s !important;
 }
 
 @keyframes pulse-green {
@@ -3252,5 +3274,249 @@ html:not([data-theme="dark"]) .nav-close-btn {
   .book-card .btn-primary {
     width: 100%;
     display: flex;
+  }
+}
+
+/* ============================================================
+   [MICRO-INTERACTIONS] — Awwwards-Level UX Polish
+   Add this block ONCE at the very end of style.css.
+   Touch nothing above — these rules only ADD or ENHANCE.
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   MI-1: Dark Mode Color Transition
+   Applies butter-smooth color easing to every element
+   when .theme-btn is toggled. Uses CSS custom property
+   transitions on the root — zero JS needed.
+   ---------------------------------------------------------- */
+html {
+  /* Transition all color-bearing CSS variables simultaneously */
+  transition:
+    background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    color            0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth transition on every major surface element */
+body,
+nav,
+.book-card,
+.shop-card,
+.merch-card,
+.video-content-box,
+.author-layout-card,
+.author-visual-side,
+.author-content-side,
+.nav-links,
+.section,
+.district-label,
+.footer {
+  transition:
+    background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    color            0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color     0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow       0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ----------------------------------------------------------
+   MI-2: Cinematic Image Hover
+   Slow, premium photography-gallery scale — applies to:
+   - .inner-mockup (A5 book cover)
+   - .thumb-item (book thumbnails)
+   - .photo-item (cafe slideshow images)
+   - .merch-card img (merchandise photography)
+   ---------------------------------------------------------- */
+
+/* Book cover — slow cinematic float-in */
+.inner-mockup {
+  transition:
+    transform  0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.inner-mockup:hover {
+  transform: scale(1.03) rotate(-0.8deg) !important;
+  box-shadow:
+    -10px 0 28px rgba(0, 0, 0, 0.16) inset,
+    -2px  0  8px rgba(0, 0, 0, 0.22) inset,
+    24px 38px 65px rgba(0, 0, 0, 0.28) !important;
+}
+
+/* Thumbnails — subtle lift into focus */
+.thumb-item {
+  transition:
+    transform  0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity    0.5s ease,
+    border-color 0.3s ease,
+    box-shadow   0.5s ease !important;
+}
+
+.thumb-item:hover {
+  transform: translateY(-6px) scale(1.06) !important;
+  opacity: 1 !important;
+  box-shadow: 0 12px 28px rgba(0, 122, 51, 0.2) !important;
+}
+
+/* Cafe gallery slideshow images — hovering zooms the frame */
+.photo-gallery {
+  overflow: hidden;  /* already set, confirmed safe */
+}
+
+.photo-item {
+  transition:
+    opacity    1.2s ease-in-out,
+    transform  0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.photo-gallery:hover .photo-item.active {
+  transform: scale(1.04); /* gentle Ken Burns effect on hover */
+}
+
+/* Merch photography — slow zoom with shadow lift */
+.merch-card img {
+  transition:
+    transform  0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.55s ease !important;
+}
+
+.merch-card img:hover {
+  transform: scale(1.045) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Hero grid images — already have hover but slow them down */
+.grid-item img {
+  transition:
+    transform  0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter     0.6s ease !important;
+}
+
+/* ----------------------------------------------------------
+   MI-3: Refined Button Glow States
+   Enhances .btn-support-cta (orange) to match the
+   upgraded .btn-primary (green) feel above.
+   ---------------------------------------------------------- */
+.btn-support-cta {
+  transition:
+    background 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    transform  0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn-support-cta:hover {
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow:
+    0 10px 30px rgba(255, 140, 0, 0.4),
+    0 4px 12px  rgba(255, 140, 0, 0.2) !important;
+}
+
+.btn-support-cta:active {
+  transform: translateY(-1px) scale(0.99) !important;
+  transition-duration: 0.1s !important;
+}
+
+/* ----------------------------------------------------------
+   MI-4: Social Icon Glow (nav speed-dial + footer circles)
+   Each icon lifts slightly and blooms its brand color.
+   ---------------------------------------------------------- */
+
+/* Footer social circles */
+.footer-socials a {
+  transition:
+    background    0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color  0.3s ease,
+    color         0.3s ease,
+    transform     0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow    0.3s ease !important;
+}
+
+.footer-socials a:hover {
+  transform: translateY(-5px) scale(1.1) !important;
+  box-shadow:
+    0 8px 20px rgba(251, 206, 74, 0.35),
+    0 0   14px rgba(251, 206, 74, 0.2) !important;
+}
+
+/* Speed-dial action buttons */
+.dial-btn {
+  transition:
+    transform  0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease,
+    background 0.25s ease !important;
+}
+
+.dial-btn:hover {
+  transform: scale(1.18) translateY(-4px) !important;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22) !important;
+}
+
+/* ----------------------------------------------------------
+   MI-5: Nav Link Hover Underline Slide
+   A sliding underline that grows from left on hover —
+   a hallmark of Awwwards-calibre navigation.
+   ---------------------------------------------------------- */
+.nav-links li a {
+  position: relative;
+  padding-bottom: 4px !important;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--ci-orange);
+  border-radius: 2px;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+[data-theme="dark"] .nav-links li a::after {
+  background: var(--ci-yellow);
+}
+
+/* Disable the underline on mobile drawer (it looks off vertically stacked) */
+@media (max-width: 1024px) {
+  .nav-links li a::after {
+    display: none;
+  }
+}
+
+/* ----------------------------------------------------------
+   MI-6: Shop Card Entrance Hover
+   Elevates the entire card with a warm brand glow.
+   (Extends the existing shop-card hover without overriding layout)
+   ---------------------------------------------------------- */
+.shop-card {
+  transition:
+    transform  0.4s cubic-bezier(0.34, 1.2, 0.64, 1),
+    box-shadow 0.4s ease !important;
+}
+
+.shop-card:hover {
+  transform: translateY(-10px) !important;
+  box-shadow:
+    0 20px 45px rgba(0, 122, 51, 0.12),
+    0  8px 18px rgba(0, 122, 51, 0.08) !important;
+}
+
+[data-theme="dark"] .shop-card:hover {
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.4),
+    0  8px 18px rgba(251, 206, 74, 0.08) !important;
+}
+
+/* ----------------------------------------------------------
+   MI-7: Scroll Progress Bar Track refinement
+   (Already upgraded above — this just ensures mobile top
+   position stays correct after the 70px nav breakpoint)
+   ---------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .scroll-progress-container {
+    top: 70px !important;
   }
 }
