@@ -3689,3 +3689,155 @@ nav,
 
 [data-theme="dark"] #modalTitle { color: var(--ci-yellow, #f4e105); }
 [data-theme="dark"] #modalDesc { color: #ddd; }
+
+/* ============================================================
+   [NEW] SUPPORT SECTION REDESIGN (การ์ด QR Code ล่างสุด)
+   ============================================================ */
+.support-hero {
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+}
+.support-glass-card {
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(135deg, var(--ci-green, #007a33) 0%, #004d21 100%);
+  border-radius: 24px;
+  max-width: 900px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 122, 51, 0.25);
+  color: white;
+  position: relative;
+  transition: transform 0.4s ease;
+}
+.support-glass-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0, 122, 51, 0.35);
+}
+
+/* วงกลมแสงตกแต่งพื้นหลังการ์ด */
+.support-glass-card::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 250px; height: 250px;
+  background: rgba(251, 206, 74, 0.15); /* สีเหลือง CI */
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.support-text-side {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+}
+.support-heading {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--ci-yellow, #fbce4a);
+  margin-bottom: 5px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.support-sub {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  color: #fff;
+}
+.support-description {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  opacity: 0.85;
+  margin-bottom: 30px;
+  color: #fff;
+}
+.support-creator-tag {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 20px 8px 8px;
+  border-radius: 50px;
+  width: fit-content;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.small-avatar {
+  width: 45px; height: 45px;
+  border-radius: 50%;
+  border: 2px solid var(--ci-yellow, #fbce4a);
+  object-fit: cover;
+}
+
+.support-qr-side {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1;
+  backdrop-filter: blur(10px);
+}
+.qr-wrapper {
+  background: white;
+  padding: 15px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border: 4px solid var(--ci-yellow, #fbce4a);
+}
+.qr-wrapper img {
+  width: 180px; height: 180px;
+  display: block;
+}
+
+/* เอฟเฟกต์เส้นสแกนเนอร์วิ่งขึ้นลง */
+.qr-scan-line {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 4px;
+  background: var(--ci-orange, #ff8c00);
+  box-shadow: 0 0 15px var(--ci-orange, #ff8c00);
+  animation: scanQR 3s infinite linear;
+}
+@keyframes scanQR {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.qr-hint {
+  color: var(--ci-yellow, #fbce4a);
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+  animation: pulse-hint 2s infinite;
+}
+@keyframes pulse-hint {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.95); }
+}
+
+/* Dark Mode Overrides */
+[data-theme="dark"] .support-glass-card {
+  background: linear-gradient(135deg, #004d21 0%, #001f10 100%);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive มือถือ */
+@media (max-width: 768px) {
+  .support-glass-card { flex-direction: column; }
+  .support-text-side { padding: 40px 30px 20px; text-align: center; align-items: center; }
+  .support-qr-side { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding: 40px 20px; }
+  .support-creator-tag { margin: 0 auto; }
+}
