@@ -237,40 +237,6 @@
             </div>
         </section>
 
-        <section id="support" class="section" data-aos="fade-up">
-            <div class="support-container">
-                <div class="book-card support-card">
-                    <h2 class="section-title lang-text" data-key="qr-title">อุดหนุนผลงาน</h2>
-                    <p class="lang-text support-desc" data-key="qr-subtitle">ขอบคุณที่ร่วมเป็นส่วนหนึ่งในการสนับสนุน
-                        Thesis
-                        Project: Savor Happiness</p>
-                    <div class="btn-group">
-                        <button class="btn-primary btn-support-cta" onclick="openQRModal()">
-                            <i class="fas fa-qrcode"></i> <span data-key="btn-support">แสดง QR Code สำหรับอุดหนุน</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="qrModal" class="qr-modal" onclick="closeQRModal()">
-                <div class="qr-card" onclick="event.stopPropagation()">
-                    <button class="qr-close" onclick="closeQRModal()">&times;</button>
-                    <div class="qr-header">
-                        <h3 data-key="qr-title">อุดหนุนผลงาน</h3>
-                        <p>Savor Happiness Thesis Project</p>
-                    </div>
-                    <div class="qr-body">
-                        <div class="qr-placeholder">
-                            <img src="img/qr-placeholder.png" alt="Support QR Code" class="qr-image">
-                        </div>
-                    </div>
-                    <div class="qr-footer">
-                        <p data-key="qr-thanks">ขอบคุณทุกการสนับสนุนครับ ✨</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
 <section id="highlights" class="section">
             <div class="filter-container" data-aos="fade-up">
                 <button class="filter-btn active" data-filter="all">ทั้งหมด</button>
@@ -359,6 +325,31 @@
             <button class="dial-btn copy-btn" onclick="copyContact()"><i class="fas fa-copy"></i></button>
         </div>
     </div>
+
+    <section id="support" class="section support-hero" data-aos="fade-up">
+            <div class="support-glass-card">
+                <div class="support-text-side">
+                    <h2 class="support-heading"><i class="fas fa-heart"></i> อุดหนุนผลงาน</h2>
+                    <p class="support-sub">Savor Happiness Thesis Project</p>
+                    <p class="support-description">
+                        ทุกการสนับสนุนของคุณคือแรงผลักดันสำคัญสำหรับโปรเจกต์จบของเรา<br>
+                        ขอบคุณที่ร่วมเดินทางและลิ้มรสความสุขของชานเมืองไปด้วยกันครับ ✨
+                    </p>
+                    <div class="support-creator-tag">
+                        <img src="img/Author_Palm.jpg" alt="Palm" class="small-avatar" loading="lazy">
+                        <span>โดย ปรานต์ แถวอินทร์ (ปาล์ม)</span>
+                    </div>
+                </div>
+                
+                <div class="support-qr-side">
+                    <div class="qr-wrapper">
+                        <img src="img/qr-placeholder.png" alt="QR Code" class="qr-image" loading="lazy">
+                        <div class="qr-scan-line"></div> </div>
+                    <p class="qr-hint">สแกนเพื่อสนับสนุน</p>
+                </div>
+            </div>
+        </section>
+
 
     <!-- ============================================================
          FOOTER — Redesigned (Giant Typography + Multi-Column Grid)
