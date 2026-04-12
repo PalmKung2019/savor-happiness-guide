@@ -271,7 +271,13 @@
             </div>
         </section>
 
-        <section id="highlights" class="section">
+<section id="highlights" class="section">
+            <div class="filter-container" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">ทั้งหมด</button>
+                <button class="filter-btn" data-filter="minburi">ย่านมีนบุรี</button>
+                <button class="filter-btn" data-filter="nongchok">ย่านหนองจอก</button>
+            </div>
+
             <div id="minburi-section" data-aos="fade-up">
                 <div class="district-label">MINBURI</div>
                 <div class="shop-grid" id="minburi-list"></div>
@@ -281,6 +287,18 @@
                 <div class="shop-grid" id="nongchok-list"></div>
             </div>
         </section>
+
+        <div id="cafeModal" class="custom-modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+                <img id="modalImg" src="" alt="Cafe Full Image">
+                <h3 id="modalTitle">ชื่อคาเฟ่</h3>
+                <p id="modalDesc">รายละเอียดร้าน</p>
+                <a href="#book-feature" class="btn-primary" onclick="closeModal()">
+                    <i class="fas fa-book-open"></i> ดูรูปเต็มในไกด์บุ๊ค
+                </a>
+            </div>
+        </div>
 
         <section id="author" class="section">
             <div class="author-centering-wrapper">
