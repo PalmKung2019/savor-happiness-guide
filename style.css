@@ -3555,3 +3555,137 @@ nav,
     top: 70px !important;
   }
 }
+
+/* ============================================================
+   [NEW] INTERACTIVE FEATURES (Filter & Modal) - SPU Thesis
+   ============================================================ */
+
+/* --- 1. Smart Filter Buttons --- */
+.filter-container {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.filter-btn {
+  background: transparent;
+  border: 2px solid var(--ci-green, #007a33);
+  color: var(--ci-green, #007a33);
+  padding: 8px 25px;
+  margin: 0 5px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.filter-btn.active, .filter-btn:hover {
+  background: var(--ci-green, #007a33);
+  color: #ffffff;
+  box-shadow: 0 6px 15px rgba(0, 122, 51, 0.25);
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .filter-btn {
+  border-color: var(--ci-yellow, #f4e105);
+  color: var(--ci-yellow, #f4e105);
+}
+[data-theme="dark"] .filter-btn.active,
+[data-theme="dark"] .filter-btn:hover {
+  background: var(--ci-yellow, #f4e105);
+  color: #004d21;
+}
+
+/* --- 2. Shop Info Clickable Area (กดข้อมูลร้านเพื่อเปิด Modal) --- */
+.shop-info {
+  padding: 0 !important; /* Reset ของเดิมเพื่อจัด Layout ใหม่ */
+}
+.shop-info-clickable {
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  padding: 22px !important;
+}
+.shop-info-clickable:hover {
+  background: rgba(0, 122, 51, 0.04);
+}
+[data-theme="dark"] .shop-info-clickable:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.click-more-hint {
+  color: var(--ci-orange, #ff8c00);
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0; /* ซ่อนไว้ก่อน จะโชว์ตอน Hover */
+  transform: translateX(-10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.shop-card:hover .click-more-hint {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- 3. Custom Modal Pop-up --- */
+.custom-modal {
+  display: none;
+  position: fixed;
+  z-index: 30000;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background: var(--bg-card, #ffffff);
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  animation: modalZoomIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+@keyframes modalZoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.modal-content img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  max-height: 250px;
+  object-fit: cover;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.close-modal {
+  position: absolute;
+  top: 15px; right: 25px;
+  font-size: 32px;
+  cursor: pointer;
+  color: #888;
+  transition: 0.2s;
+}
+.close-modal:hover {
+  color: var(--ci-orange, #ff8c00);
+  transform: scale(1.1);
+}
+#modalTitle {
+  color: var(--ci-green, #007a33);
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+#modalDesc {
+  color: #666;
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+[data-theme="dark"] #modalTitle { color: var(--ci-yellow, #f4e105); }
+[data-theme="dark"] #modalDesc { color: #ddd; }
