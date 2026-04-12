@@ -2999,7 +2999,7 @@ html:not([data-theme="dark"]) .nav-close-btn {
 
 .speed-dial-container.active .speed-dial-main-btn {
   transform: rotate(15deg) scale(1.1) !important;
-  background-color: #ff8c00 !important;
+  background-color: #fbce4a !important;
 }
 
 .speed-dial-buttons {
