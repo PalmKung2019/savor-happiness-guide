@@ -774,7 +774,7 @@ function openNavMenu() {
   const { navMenu, hamBtn } = AppState.domElements;
   const navBackdrop = document.getElementById("navBackdrop");
 
-  // เช็กก่อนว่ามี HTML ตัวนี้อยู่จริงไหม ค่อยสั่งแอดคลาส
+  //
   if (navMenu) {
     navMenu.classList.add("active");
   }
@@ -796,7 +796,7 @@ function closeNavMenu() {
   const { navMenu, hamBtn } = AppState.domElements;
   const navBackdrop = document.getElementById("navBackdrop");
 
-  // เช็กก่อนว่ามี HTML ตัวนี้อยู่จริงไหม ค่อยสั่งลบคลาส
+  //
   if (navMenu) {
     navMenu.classList.remove("active");
   }
@@ -843,10 +843,13 @@ function renderShops() {
 
     const cardHtml = `
       <div class="shop-card" data-aos="fade-up">
-        <div class="photo-gallery">${imgHtml}</div>
-        <div class="shop-info">
+        <div class="photo-gallery" title="คลิกเพื่อดูรูปขยาย">
+            ${imgHtml}
+        </div>
+        <div class="shop-info shop-info-clickable" onclick="openCafeModal('${shop.name}', '${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.jpg', '${shop.nameTH}')" title="คลิกเพื่อดูข้อมูลร้าน">
           <div class="shop-name">${shop.name}</div>
           <div class="shop-tag">${zoneDisplay}</div>
+          <div class="click-more-hint"><i class="fas fa-arrow-right"></i> อ่านรายละเอียด</div>
         </div>
       </div>
     `;
@@ -948,4 +951,58 @@ window.addEventListener("scroll", () => {
   const scrolled = (winScroll / height) * 100;
   const myBar = getElement("myBar");
   if (myBar) myBar.style.width = scrolled + "%";
+});
+
+// ============================================================
+// [NEW] FILTER & MODAL LOGIC (สำหรับงานนิทรรศการ)
+// ============================================================
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. ระบบ Filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    if(filterBtns.length > 0) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // ล้างคลาส active เก่า แล้วใส่ให้ปุ่มที่โดนคลิก
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+                const minSection = document.getElementById('minburi-section');
+                const nongSection = document.getElementById('nongchok-section');
+
+                if(filter === 'all') {
+                    minSection.style.display = 'block';
+                    nongSection.style.display = 'block';
+                } else if(filter === 'minburi') {
+                    minSection.style.display = 'block';
+                    nongSection.style.display = 'none';
+                } else {
+                    minSection.style.display = 'none';
+                    nongSection.style.display = 'block';
+                }
+                // รีเฟรชแอนิเมชัน AOS ให้โหลดใหม่สวยๆ
+                if(typeof AOS !== 'undefined') AOS.refresh();
+            });
+        });
+    }
+});
+
+// 2. ฟังก์ชันเปิด Modal
+window.openCafeModal = function(title, img, desc) {
+    document.getElementById('modalImg').src = img;
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalDesc').innerText = desc;
+    document.getElementById('cafeModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // ล็อคไม่ให้จอหลังเลื่อน
+};
+
+// 3. ฟังก์ชันปิด Modal
+window.closeModal = function() {
+    document.getElementById('cafeModal').style.display = 'none';
+    document.body.style.overflow = ''; // ปลดล็อคจอ
+};
+
+// คลิกพื้นหลังสีดำเพื่อปิด
+window.addEventListener('click', (e) => {
+    if (e.target.id === 'cafeModal') window.closeModal();
 });
