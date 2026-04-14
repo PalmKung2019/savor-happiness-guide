@@ -15,7 +15,6 @@ const CONFIG = {
   SEARCH_DEBOUNCE_MS: 300,
   MAX_SEARCH_RESULTS: 6,
   THEME_TRANSITION_MS: 2000,
-  AOS_DELAY_MS: 100,
 };
 
 // --- [1. App State Management] ---
@@ -65,15 +64,16 @@ const translations = {
     "hero-desc": "ไกด์บุ๊คที่จะพาคุณตกหลุมรักชานเมือง",
     "book-title": "THE GUIDEBOOK",
     "book-desc":
-      "Savor Happiness: 20 ร้านเด็ดย่านมีนบุรี–หนองจอก ผ่านภาพและดีไซน์",
+      "Savor Happiness: ถ่ายทอดเสน่ห์ย่านมีนบุรี–หนองจอก ผ่าน Visual Storytelling ผสมผสานภาพถ่ายบรรยากาศจริงเข้ากับงานกราฟิกสีสันสดใส จัดวางแบบ Dynamic Layout ให้อ่านง่าย พร้อมแผนที่ Postcard ที่พกพาสะดวก",
     "btn-read": "อ่านออนไลน์ (PDF)",
     "btn-gallery": "ดูรูปเล่มเพิ่มเติม",
     "btn-start": "กดเริ่มเพื่อลิ้มรสความสุข",
-    "btn-pdf": "อ่านตัวอย่างไฟล์ PDF",
+    "btn-pdf": "เปิดอ่านตัวอย่าง PDF",
     "author-name": "ปรานต์ แถวอินทร์ (ปาล์ม)",
+    "author-title": "ผู้จัดทำ",
     "author-info": "นักออกแบบกราฟิก | คณะดิจิทัลมีเดีย มหาวิทยาลัยศรีปทุม #67",
     "merch-section-title": "ของที่ระลึก",
-    "merch-min-title": "สติ๊กเกอร์ ชุดดื่มด่ำกับความสุข",
+    "merch-min-title": "Savor Happiness Sticker set",
     "zone-minburi": "ย่านมีนบุรี",
     "zone-nongchok": "ย่านหนองจอก",
     "creator-title": "ผู้จัดทำ",
@@ -85,37 +85,38 @@ const translations = {
   },
   en: {
     "nav-home": "Home",
-    "nav-book": "The Book",
+    "nav-book": "Guidebook",
     "nav-highlights": "Highlights",
-    "nav-merch": "Merchandise",
+    "nav-merch": "Merch",
     "nav-creator": "Creator",
     "hero-subtitle": "DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS",
     "hero-title": "SAVOR HAPPINESS",
-    "hero-vibe": "VIBE. VISUAL. FLAVOR.",
-    "hero-desc": "A guidebook that lets you fall in love with the suburbs.",
+    "hero-vibe": "VIBE. VISUAL. VACATION.",
+    "hero-desc":
+      "A guidebook that will make you fall in love with the suburbs.",
     "book-title": "THE GUIDEBOOK",
     "book-desc":
-      "Savor Happiness: 20 Must-Visit Spots in Minburi-Nong Chok Through Photography and Design",
+      "Savor Happiness: Conveying the charm of Minburi-Nong Chok through Visual Storytelling. Combining real atmosphere photography with colorful graphics in a dynamic, easy-to-read layout, complete with a handy Postcard map.",
     "btn-read": "Read Online (PDF)",
-    "btn-gallery": "View Book Details",
+    "btn-gallery": "View Gallery",
     "btn-start": "Press Start to Savor Happiness",
-    "btn-pdf": "Preview PDF",
+    "btn-pdf": "Preview PDF File",
     "author-name": "Pran Taewin (Palm)",
+    "author-title": "Creator",
     "author-info": "Graphic Designer | School of Digital Media, SPU #67",
     "merch-section-title": "Merchandise",
     "merch-min-title": "Savor Happiness Sticker set",
-    "zone-minburi": "Min Buri District",
-    "zone-nongchok": "Nong Chok District",
+    "zone-minburi": "Minburi Zone",
+    "zone-nongchok": "Nong Chok Zone",
     "creator-title": "Creator",
     "qr-title": "Support My Work",
-    "qr-subtitle":
-      "Thank you for being a part of Savor Happiness Thesis Project.",
+    "qr-subtitle": "Thank you for supporting Savor Happiness Thesis Project.",
     "qr-thanks": "Thank you for your support! ✨",
     "btn-support": "Show Support QR Code",
   },
 };
 
-// --- [3. Shop Data] ---
+// --- [3. Shop Data with Added Descriptions] ---
 const realShops = [
   {
     name: "The Lobby Boy Coffee",
@@ -123,139 +124,219 @@ const realShops = [
     zone: "minburi",
     folder: "LobbyBoy",
     file: "lobby",
+    descTH:
+      "คาเฟ่สไตล์วินเทจคลาสสิกที่ได้รับแรงบันดาลใจจากภาพยนตร์ โดดเด่นด้วยเมนูกาแฟสเปเชียลตี้และมุมถ่ายรูปสุดเก๋",
+    descEN:
+      "A classic vintage cafe inspired by movies. Known for its specialty coffee and aesthetic photo spots.",
   },
   {
     name: "De Wila Cat Hotel & Café",
-    nameTH: "เดอ วิลา แคท โฮเทล แอนด์ คาเฟ่ (มีนบุรี)",
+    nameTH: "เดอ วิลา แคท โฮเทล แอนด์ คาเฟ่",
     zone: "minburi",
     folder: "DeWila",
     file: "dewila",
+    descTH:
+      "พื้นที่แห่งความสุขสำหรับคนรักแมว บริการคาเฟ่พร้อมโรงแรมแมว บรรยากาศอบอุ่นเป็นกันเอง",
+    descEN:
+      "A paradise for cat lovers featuring a cozy cafe and professional cat hotel services.",
   },
   {
     name: "Chomna Bar & Terrace",
-    nameTH: "ชมนา บาร์ แอนด์ เทอร์เรซ (มีนบุรี)",
+    nameTH: "ชมนา บาร์ แอนด์ เทอร์เรซ",
     zone: "minburi",
     folder: "Chomna",
     file: "chomna",
+    descTH:
+      "ร้านอาหารบรรยากาศริมทุ่งนาสุดชิล เหมาะสำหรับนั่งรับลมเย็นๆ พร้อมทานอาหารไทยรสจัดจ้าน",
+    descEN:
+      "A relaxing bar and terrace overlooking lush paddy fields, serving authentic and spicy Thai cuisine.",
   },
   {
     name: "Prakai Cafe & Cuisine",
-    nameTH: "ประกาย คาเฟ่ แอน คูซีน (มีนบุรี)",
+    nameTH: "ประกาย คาเฟ่ แอน คูซีน",
     zone: "minburi",
     folder: "Prakai",
     file: "prakai",
+    descTH:
+      "คาเฟ่ริมน้ำบรรยากาศร่มรื่น ตกแต่งสไตล์แคมป์ปิ้งธรรมชาติ มีน้ำตกจำลองและจุดถ่ายรูปมากมาย",
+    descEN:
+      "A nature-inspired riverside cafe with camping-style decor, an artificial waterfall, and plenty of photo angles.",
   },
   {
     name: "Trees & Co.",
-    nameTH: "ทรี แอนด์ โค (มีนบุรี)",
+    nameTH: "ทรี แอนด์ โค",
     zone: "minburi",
     folder: "TreesCo",
     file: "trees",
+    descTH:
+      "โอเอซิสใจกลางมีนบุรี ร่มรื่นด้วยต้นไม้ใหญ่ โดดเด่นเรื่องเบเกอรี่โฮมเมดและเครื่องดื่มสูตรพิเศษ",
+    descEN:
+      "An oasis in Minburi surrounded by large trees, highlighting homemade bakeries and signature drinks.",
   },
   {
     name: "Rim Lagoon Café",
-    nameTH: "ริม ลากูน คาเฟ่ (มีนบุรี)",
+    nameTH: "ริม ลากูน คาเฟ่",
     zone: "minburi",
     folder: "RimLagoon",
     file: "rim",
+    descTH:
+      "พักผ่อนริมทะเลสาบส่วนตัว ท่ามกลางธรรมชาติที่เงียบสงบ เหมาะกับการหลีกหนีความวุ่นวาย",
+    descEN:
+      "Relax by a private lagoon. A peaceful retreat surrounded by nature to escape the city's hustle.",
   },
   {
     name: "James 500 City Camp",
-    nameTH: "เจมส์ 500 ซิตี้ แคมป์ (มีนบุรี)",
+    nameTH: "เจมส์ 500 ซิตี้ แคมป์",
     zone: "minburi",
     folder: "James500",
     file: "james",
+    descTH:
+      "ยกแคมป์ปิ้งมาไว้ในเมือง! คาเฟ่สไตล์ Outdoor ให้กลิ่นอายการผจญภัยพร้อมอาหารฟิวชั่น",
+    descEN:
+      "Bringing camping to the city! An outdoor-style cafe offering adventurous vibes and fusion food.",
   },
   {
     name: "Cat's Eye Cafe",
-    nameTH: "แคท อาย คาเฟ่ (มีนบุรี)",
+    nameTH: "แคท อาย คาเฟ่",
     zone: "minburi",
     folder: "CatsEye",
     file: "cat",
+    descTH:
+      "คาเฟ่ลับที่ซ่อนตัวอยู่เงียบๆ บรรยากาศสบายๆ เหมาะสำหรับการนั่งทำงานหรือจิบกาแฟยามบ่าย",
+    descEN:
+      "A hidden cafe with a cozy atmosphere, perfect for working or enjoying an afternoon coffee.",
   },
   {
     name: "Daylight",
-    nameTH: "เดย์ไลท์ (มีนบุรี)",
+    nameTH: "เดย์ไลท์",
     zone: "minburi",
     folder: "Daylight",
     file: "day",
+    descTH:
+      "แสงแดดส่องถึงทุกมุม คาเฟ่สไตล์เกาหลีมินิมอล โทนสีขาวสะอาดตา ถ่ายรูปสวยทุกมุม",
+    descEN:
+      "Filled with natural daylight. A Korean-minimalist cafe with clean white tones and perfect lighting.",
   },
   {
     name: "Wild Duck Cafe",
-    nameTH: "ไวล์ด ดัค คาเฟ่ (มีนบุรี)",
+    nameTH: "ไวล์ด ดัค คาเฟ่",
     zone: "minburi",
     folder: "WildDuck",
     file: "duck",
+    descTH:
+      "บรรยากาศริมน้ำที่เต็มไปด้วยเป็ดว่ายน้ำเพลินๆ ร่มรื่นและเป็นมิตรกับครอบครัว",
+    descEN:
+      "A family-friendly riverside cafe where you can watch wild ducks swimming peacefully.",
   },
   {
     name: "Voodoo Cafe",
-    nameTH: "วูดู คาเฟ่ (หนองจอก)",
+    nameTH: "วูดู คาเฟ่",
     zone: "nongchok",
     folder: "Voodoo",
     file: "voodoo",
+    descTH:
+      "ตกแต่งสไตล์สวนยุโรปคลาสสิก หรูหรากว้างขวาง โดดเด่นด้วยสถาปัตยกรรมและของสะสมวินเทจ",
+    descEN:
+      "Decorated in a classic European garden style, spacious and luxurious with vintage architecture.",
   },
   {
     name: "All of Me Home Cafe",
-    nameTH: "ออล ออฟ มี โฮม คาเฟ่ (หนองจอก)",
+    nameTH: "ออล ออฟ มี โฮม คาเฟ่",
     zone: "nongchok",
     folder: "AllOfMe",
     file: "all",
+    descTH:
+      "คาเฟ่สไตล์โฮมมี่ อบอุ่นเหมือนนั่งเล่นบ้านเพื่อน เสิร์ฟขนมอบใหม่ๆ หอมกรุ่นทุกวัน",
+    descEN:
+      "A homey cafe that feels like visiting a friend's house. Serving freshly baked goods every day.",
   },
   {
     name: "Barakat Lunla Land",
-    nameTH: "บารอกัต ลัลลา แลนด์ (หนองจอก)",
+    nameTH: "บารอกัต ลัลลา แลนด์",
     zone: "nongchok",
     folder: "Barakat",
     file: "barakat",
+    descTH:
+      "จุดเช็คอินสไตล์ทุ่งหญ้าและฟาร์มสัตว์ ให้อารมณ์เหมือนไปเที่ยวพักผ่อนต่างจังหวัด",
+    descEN:
+      "A meadow and farm-style check-in spot, giving you the feeling of a provincial getaway.",
   },
   {
     name: "Chill Out Farm & Cafe",
-    nameTH: "ชิลล์ เอาท์ ฟาร์ม แอนด์ คาเฟ่ (หนองจอก)",
+    nameTH: "ชิลล์ เอาท์ ฟาร์ม แอนด์ คาเฟ่",
     zone: "nongchok",
     folder: "ChillOut",
     file: "chill",
+    descTH:
+      "คาเฟ่และฟาร์มมินิซู มีสัตว์น่ารักๆ มากมาย เหมาะสำหรับพาเด็กๆ มาทำกิจกรรม",
+    descEN:
+      "A cafe and mini-zoo farm featuring cute animals. A perfect destination for family activities.",
   },
   {
     name: "Nine Than Cafe",
-    nameTH: "นายท่าน คาเฟ่ (หนองจอก)",
+    nameTH: "นายท่าน คาเฟ่",
     zone: "nongchok",
     folder: "NineThan",
     file: "nine",
+    descTH:
+      "ร้านกาแฟสไตล์ญี่ปุ่นมินิมอล โดดเด่นด้วยงานไม้และความเรียบง่าย สงบและผ่อนคลาย",
+    descEN:
+      "A Japanese minimalist coffee shop highlighted by wooden elements, simplicity, and calmness.",
   },
   {
     name: "Fairy Tale Cafe",
-    nameTH: "แฟรี่ เทล คาเฟ่ (หนองจอก)",
+    nameTH: "แฟรี่ เทล คาเฟ่",
     zone: "nongchok",
     folder: "FairyTale",
     file: "fairy",
+    descTH:
+      "คาเฟ่เหมือนหลุดเข้าไปในโลกนิทาน ตกแต่งน่ารัก เหมาะกับสายหวานที่ชอบถ่ายรูป",
+    descEN:
+      "A cafe that feels like a fairy tale. Adorably decorated and perfect for sweet photo ops.",
   },
   {
     name: "Again Please",
-    nameTH: "อะเกน พลีส (หนองจอก)",
+    nameTH: "อะเกน พลีส",
     zone: "nongchok",
     folder: "AgainPlease",
     file: "again",
+    descTH:
+      "คาเฟ่โปร่งโล่งสบายตา เครื่องดื่มอร่อยจนต้องขอเบิ้ลอีกแก้วสมชื่อร้าน",
+    descEN:
+      "A bright and airy cafe. The drinks are so good you'll be saying 'Again Please'!",
   },
   {
     name: "Wang Wela Café",
-    nameTH: "วางเวลา คาเฟ่ (หนองจอก)",
+    nameTH: "วางเวลา คาเฟ่",
     zone: "nongchok",
     folder: "WangWela",
     file: "wang",
+    descTH:
+      "วางเวลาและความวุ่นวายทิ้งไว้ แล้วมานั่งพักผ่อนชิลๆ ริมน้ำ รับลมเย็นสบาย",
+    descEN:
+      "Leave time and chaos behind. Come sit, relax by the water, and enjoy the cool breeze.",
   },
   {
     name: "Minna Cafe",
-    nameTH: "มินนา คาเฟ่ (หนองจอก)",
+    nameTH: "มินนา คาเฟ่",
     zone: "nongchok",
     folder: "Minna",
     file: "minna",
+    descTH:
+      "คาเฟ่สไตล์บ้านสวนผสมผสานความโมเดิร์น โอบล้อมด้วยสีเขียวของธรรมชาติแบบเต็มพิกัด",
+    descEN:
+      "A garden house cafe mixed with modern style, fully surrounded by the green of nature.",
   },
   {
     name: "Home Vintage Cafe",
-    nameTH: "โฮม วินเทจ คาเฟ่ (หนองจอก)",
+    nameTH: "โฮม วินเทจ คาเฟ่",
     zone: "nongchok",
     folder: "HomeVintage",
     file: "home",
+    descTH:
+      "คาเฟ่ในบ้านไม้สไตล์วินเทจแท้ๆ ให้ความรู้สึกย้อนยุค อบอุ่น และคลาสสิก",
+    descEN:
+      "A cafe set in an authentic vintage wooden house, providing a nostalgic, warm, and classic feel.",
   },
 ];
 
@@ -317,39 +398,21 @@ function getElements(selector) {
 
 // --- [6. Initialization] ---
 document.addEventListener("DOMContentLoaded", () => {
-  // Reset scroll position
   if (history.scrollRestoration) {
     history.scrollRestoration = "manual";
   }
   window.scrollTo(0, 0);
 
-  // Cache DOM elements
   cacheDOMElements();
-
-  // Initialize theme
   initializeTheme();
-
-  // Render content
   renderShops();
   renderTicker();
-
-  // Initialize lightbox
   initializeLightbox();
-
-  // Initialize search
   initializeSearch();
-
-  // Initialize navigation
   initializeNavigation();
 
-  // Initialize AOS
-  if (typeof AOS !== "undefined") {
-    setTimeout(() => {
-      AOS.init({ duration: 1000, once: true });
-    }, CONFIG.AOS_DELAY_MS);
-  }
+  // ลบ AOS.init() ออกจากตรงนี้แล้ว เพราะไปรันซ้ำซ้อนกับใน index.html
 
-  // Cleanup on page unload
   window.addEventListener("beforeunload", () => {
     AppState.autoSlideIntervals.forEach(clearInterval);
     if (AppState.searchTimeout) clearTimeout(AppState.searchTimeout);
@@ -402,7 +465,7 @@ function toggleLang() {
   const { ui, domElements } = AppState;
   ui.currentLang = ui.currentLang === "th" ? "en" : "th";
 
-  // Update all translated elements
+  // Update all translated elements (รวมถึง Zone ที่สร้างแบบ Dynamic)
   getElements("[data-key]").forEach((el) => {
     const key = el.getAttribute("data-key");
     if (translations[ui.currentLang]?.[key]) {
@@ -410,15 +473,13 @@ function toggleLang() {
     }
   });
 
-  // Update search placeholder
   if (domElements.searchInput) {
     domElements.searchInput.placeholder =
       ui.currentLang === "th"
-        ? "ค้นหาร้านค้า หรือเมนู..."
-        : "Search shops or menu...";
+        ? "ค้นหาร้านค้าที่นี่..."
+        : "Search shops here...";
   }
 
-  // Update language buttons
   getElements(".lang-btn").forEach((btn) => {
     btn.innerText = ui.currentLang.toUpperCase();
   });
@@ -431,13 +492,11 @@ function initializeLightbox() {
   const { lbImg, lbContainer } = AppState.domElements;
   if (!lbImg || !lbContainer) return;
 
-  // Zoom functionality
   lbImg.addEventListener("click", (e) => {
     e.stopPropagation();
     toggleLightboxZoom();
   });
 
-  // Drag functionality
   lbImg.addEventListener("mousedown", startLightboxDrag);
   lbImg.addEventListener("touchstart", startLightboxDrag, { passive: false });
   window.addEventListener("mousemove", moveLightboxDrag);
@@ -571,6 +630,16 @@ function initializeSearch() {
   if (!searchInput) return;
 
   searchInput.addEventListener("input", handleSearchInput);
+
+  // FIX: เมื่อกด Enter ให้ค้นหา และพับคีย์บอร์ดลง (Blur)
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      executeSearch();
+      searchInput.blur();
+      if (suggestionBox) suggestionBox.style.display = "none";
+    }
+  });
+
   document.addEventListener("click", (e) => {
     if (!searchInput.contains(e.target) && !suggestionBox?.contains(e.target)) {
       if (suggestionBox) suggestionBox.style.display = "none";
@@ -579,11 +648,9 @@ function initializeSearch() {
 }
 
 function handleSearchInput(e) {
-  const { ui } = AppState;
   const { searchInput, suggestionBox } = AppState.domElements;
   const query = e.target.value.toLowerCase().trim();
 
-  // Clear previous timeout
   if (AppState.searchTimeout) {
     clearTimeout(AppState.searchTimeout);
   }
@@ -633,7 +700,6 @@ function displaySearchSuggestions(query) {
     div.setAttribute("tabindex", "0");
 
     if (item.target) {
-      // Navigation item
       div.innerHTML = `<i class="fas ${item.icon}"></i> <span><b>เมนู:</b> ${item.name}</span>`;
       div.addEventListener("click", () => {
         document
@@ -642,19 +708,12 @@ function displaySearchSuggestions(query) {
         suggestionBox.style.display = "none";
         searchInput.value = "";
       });
-      div.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") div.click();
-      });
     } else {
-      // Shop item
       div.innerHTML = `<i class="fas fa-search"></i> <span>${item.name} <small>(${item.nameTH})</small></span>`;
       div.addEventListener("click", () => {
         searchInput.value = item.name;
         suggestionBox.style.display = "none";
         executeSearch();
-      });
-      div.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") div.click();
       });
     }
 
@@ -727,7 +786,6 @@ function initializeNavigation() {
   const { hamBtn, navMenu, hamIcon } = AppState.domElements;
   const navCloseBtn = getElement("navCloseBtn");
 
-  // ผูกคำสั่งเปิดเมนูกับปุ่มแฮมเบอร์เกอร์
   if (hamBtn) {
     hamBtn.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -735,7 +793,6 @@ function initializeNavigation() {
     });
   }
 
-  // ผูกคำสั่งปิดเมนูกับปุ่ม X
   if (navCloseBtn) {
     navCloseBtn.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -743,7 +800,6 @@ function initializeNavigation() {
     });
   }
 
-  // ถ้าคลิกพื้นที่ว่างในเว็บ (นอกเมนู) ให้ปิดเมนู
   document.addEventListener("click", (e) => {
     if (
       navMenu &&
@@ -755,14 +811,12 @@ function initializeNavigation() {
     }
   });
 
-  // ถ้าคลิกลิงก์ใดๆ ในเมนู ให้ปิดเมนูอัตโนมัติ
   if (navMenu) {
     navMenu.querySelectorAll("a, .lang-btn, .theme-btn").forEach((item) => {
       item.addEventListener("click", closeNavMenu);
     });
   }
 
-  // ดักเอาไว้เผื่อผู้ใช้ขยายจอกลับเป็น Desktop
   window.addEventListener("resize", () => {
     if (window.innerWidth > 1024) {
       closeNavMenu();
@@ -774,21 +828,13 @@ function openNavMenu() {
   const { navMenu, hamBtn } = AppState.domElements;
   const navBackdrop = document.getElementById("navBackdrop");
 
-  //
-  if (navMenu) {
-    navMenu.classList.add("active");
-  }
-  if (navBackdrop) {
-    navBackdrop.classList.add("active");
-  }
+  if (navMenu) navMenu.classList.add("active");
+  if (navBackdrop) navBackdrop.classList.add("active");
 
-  // ซ่อนปุ่มแฮมเบอร์เกอร์ฝั่งซ้าย
   if (hamBtn) {
     hamBtn.style.opacity = "0";
     hamBtn.style.pointerEvents = "none";
   }
-
-  // ล็อคหน้าจอไม่ให้ไถล
   document.body.style.overflow = "hidden";
 }
 
@@ -796,21 +842,13 @@ function closeNavMenu() {
   const { navMenu, hamBtn } = AppState.domElements;
   const navBackdrop = document.getElementById("navBackdrop");
 
-  //
-  if (navMenu) {
-    navMenu.classList.remove("active");
-  }
-  if (navBackdrop) {
-    navBackdrop.classList.remove("active");
-  }
+  if (navMenu) navMenu.classList.remove("active");
+  if (navBackdrop) navBackdrop.classList.remove("active");
 
-  // เอาปุ่มแฮมเบอร์เกอร์ฝั่งซ้ายกลับมา
   if (hamBtn) {
     hamBtn.style.opacity = "1";
     hamBtn.style.pointerEvents = "auto";
   }
-
-  // ปลดล็อคหน้าจอ
   document.body.style.overflow = "";
 }
 
@@ -823,6 +861,8 @@ function renderShops() {
 
   minGrid.innerHTML = "";
   nongGrid.innerHTML = "";
+
+  const currentLang = AppState.ui.currentLang;
 
   realShops.forEach((shop, shopIdx) => {
     const imgHtml = Array.from({ length: 8 }, (_, i) => {
@@ -839,16 +879,19 @@ function renderShops() {
       `;
     }).join("");
 
-    const zoneDisplay = shop.zone === "minburi" ? "ย่านมีนบุรี" : "ย่านหนองจอก";
+    // FIX: สร้าง data-key ให้แปลภาษาได้ Real-time
+    const zoneKey = shop.zone === "minburi" ? "zone-minburi" : "zone-nongchok";
+    const zoneDisplay = translations[currentLang][zoneKey];
 
+    // FIX: โยน shopIdx เข้าไปในฟังก์ชัน Modal แทนการส่ง String แบบเดิม
     const cardHtml = `
       <div class="shop-card" data-aos="fade-up">
         <div class="photo-gallery" title="คลิกเพื่อดูรูปขยาย">
             ${imgHtml}
         </div>
-        <div class="shop-info shop-info-clickable" onclick="openCafeModal('${shop.name}', '${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.jpg', '${shop.nameTH}')" title="คลิกเพื่อดูข้อมูลร้าน">
+        <div class="shop-info shop-info-clickable" onclick="openCafeModal(${shopIdx})" title="คลิกเพื่อดูข้อมูลร้าน">
           <div class="shop-name">${shop.name}</div>
-          <div class="shop-tag">${zoneDisplay}</div>
+          <div class="shop-tag lang-text" data-key="${zoneKey}">${zoneDisplay}</div>
           <div class="click-more-hint"><i class="fas fa-arrow-right"></i> อ่านรายละเอียด</div>
         </div>
       </div>
@@ -861,7 +904,6 @@ function renderShops() {
     }
   });
 
-  // Add event delegation for image clicks
   [minGrid, nongGrid].forEach((grid) => {
     grid.addEventListener("click", (e) => {
       if (e.target.classList.contains("photo-item")) {
@@ -931,17 +973,6 @@ window.changeBookView = function (src, thumb) {
   }
 };
 
-window.openQRModal = function () {
-  const modal = getElement("qrModal");
-  if (modal) modal.style.display = "flex";
-};
-
-window.closeQRModal = function () {
-  const modal = getElement("qrModal");
-  if (modal) modal.style.display = "none";
-};
-
-// Scroll progress bar
 window.addEventListener("scroll", () => {
   const winScroll =
     document.body.scrollTop || document.documentElement.scrollTop;
@@ -954,55 +985,59 @@ window.addEventListener("scroll", () => {
 });
 
 // ============================================================
-// [NEW] FILTER & MODAL LOGIC (สำหรับงานนิทรรศการ)
+// [NEW] FILTER & MODAL LOGIC (ปรับปรุงรับ Description แล้ว)
 // ============================================================
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. ระบบ Filter
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    if(filterBtns.length > 0) {
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // ล้างคลาส active เก่า แล้วใส่ให้ปุ่มที่โดนคลิก
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  if (filterBtns.length > 0) {
+    filterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
 
-                const filter = btn.getAttribute('data-filter');
-                const minSection = document.getElementById('minburi-section');
-                const nongSection = document.getElementById('nongchok-section');
+        const filter = btn.getAttribute("data-filter");
+        const minSection = document.getElementById("minburi-section");
+        const nongSection = document.getElementById("nongchok-section");
 
-                if(filter === 'all') {
-                    minSection.style.display = 'block';
-                    nongSection.style.display = 'block';
-                } else if(filter === 'minburi') {
-                    minSection.style.display = 'block';
-                    nongSection.style.display = 'none';
-                } else {
-                    minSection.style.display = 'none';
-                    nongSection.style.display = 'block';
-                }
-                // รีเฟรชแอนิเมชัน AOS ให้โหลดใหม่สวยๆ
-                if(typeof AOS !== 'undefined') AOS.refresh();
-            });
-        });
-    }
+        if (filter === "all") {
+          minSection.style.display = "block";
+          nongSection.style.display = "block";
+        } else if (filter === "minburi") {
+          minSection.style.display = "block";
+          nongSection.style.display = "none";
+        } else {
+          minSection.style.display = "none";
+          nongSection.style.display = "block";
+        }
+        if (typeof AOS !== "undefined") AOS.refresh();
+      });
+    });
+  }
 });
 
-// 2. ฟังก์ชันเปิด Modal
-window.openCafeModal = function(title, img, desc) {
-    document.getElementById('modalImg').src = img;
-    document.getElementById('modalTitle').innerText = title;
-    document.getElementById('modalDesc').innerText = desc;
-    document.getElementById('cafeModal').style.display = 'flex';
-    document.body.style.overflow = 'hidden'; // ล็อคไม่ให้จอหลังเลื่อน
+// FIX: Modal ดึงข้อมูลภาษาและ Description ตาม Array
+window.openCafeModal = function (shopIdx) {
+  const shop = realShops[shopIdx];
+  const currentLang = AppState.ui.currentLang;
+  const imgPath = `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.jpg`;
+
+  document.getElementById("modalImg").src = imgPath;
+
+  // สลับชื่อและคำอธิบายตามภาษาที่เลือก
+  document.getElementById("modalTitle").innerText =
+    currentLang === "th" ? shop.nameTH : shop.name;
+  document.getElementById("modalDesc").innerText =
+    currentLang === "th" ? shop.descTH : shop.descEN;
+
+  document.getElementById("cafeModal").style.display = "flex";
+  document.body.style.overflow = "hidden";
 };
 
-// 3. ฟังก์ชันปิด Modal
-window.closeModal = function() {
-    document.getElementById('cafeModal').style.display = 'none';
-    document.body.style.overflow = ''; // ปลดล็อคจอ
+window.closeModal = function () {
+  document.getElementById("cafeModal").style.display = "none";
+  document.body.style.overflow = "";
 };
 
-// คลิกพื้นหลังสีดำเพื่อปิด
-window.addEventListener('click', (e) => {
-    if (e.target.id === 'cafeModal') window.closeModal();
+window.addEventListener("click", (e) => {
+  if (e.target.id === "cafeModal") window.closeModal();
 });
