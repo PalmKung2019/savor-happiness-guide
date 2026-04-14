@@ -1,10 +1,9 @@
 /* ============================================================
-    SAVOR HAPPINESS - TOTAL INTEGRATED ENGINE (JS)
-    Consolidated UI Logic | Lightbox | Search | Multi-Lang
-    Author: Pran (Palm) - Graphic Design SPU
-    ============================================================ */
+   SAVOR HAPPINESS - TOTAL INTEGRATED ENGINE (JS)
+   Consolidated UI Logic | Lightbox | Search | Multi-Lang | Filters
+   ============================================================ */
 
-// --- [CONFIG CONSTANTS] ---
+// --- [1. CONFIG CONSTANTS] ---
 const CONFIG = {
   LIGHTBOX_ZOOM_SCALE: 2.5,
   TRANSITION_DURATION: "0.3s",
@@ -17,7 +16,7 @@ const CONFIG = {
   THEME_TRANSITION_MS: 2000,
 };
 
-// --- [1. App State Management] ---
+// --- [2. APP STATE MANAGEMENT] ---
 const AppState = {
   lightbox: {
     isZoomed: false,
@@ -37,87 +36,65 @@ const AppState = {
   },
   autoSlideIntervals: [],
   searchTimeout: null,
-  domElements: {
-    lbImg: null,
-    lbContainer: null,
-    searchInput: null,
-    suggestionBox: null,
-    hamBtn: null,
-    navMenu: null,
-    hamIcon: null,
-    logoImg: null,
-    themeBtns: null,
-  },
+  domElements: {},
 };
 
-// --- [2. Translation Object] ---
+// --- [3. TRANSLATION DICTIONARY (TH/EN)] ---
 const translations = {
   th: {
     "nav-home": "หน้าแรก",
     "nav-book": "หนังสือ",
-    "nav-highlights": "ร้านแนะนำ",
     "nav-merch": "ของที่ระลึก",
+    "nav-highlights": "ร้านแนะนำ",
     "nav-creator": "ผู้จัดทำ",
     "hero-subtitle": "DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS",
     "hero-title": "SAVOR HAPPINESS",
-    "hero-vibe": "สัมผัส มุมมอง รสชาติ.",
-    "hero-desc": "ไกด์บุ๊คที่จะพาคุณตกหลุมรักชานเมือง",
+    "hero-vibe": "VIBE. VISUAL. VACATION.",
+    "hero-desc": "ไกด์บุ๊คที่จะทำให้คุณตกหลุมรักชานเมือง",
+    "btn-start": "กดเริ่มเพื่อลิ้มรสความสุข",
     "book-title": "THE GUIDEBOOK",
     "book-desc":
       "Savor Happiness: ถ่ายทอดเสน่ห์ย่านมีนบุรี–หนองจอก ผ่าน Visual Storytelling ผสมผสานภาพถ่ายบรรยากาศจริงเข้ากับงานกราฟิกสีสันสดใส จัดวางแบบ Dynamic Layout ให้อ่านง่าย พร้อมแผนที่ Postcard ที่พกพาสะดวก",
-    "btn-read": "อ่านออนไลน์ (PDF)",
-    "btn-gallery": "ดูรูปเล่มเพิ่มเติม",
-    "btn-start": "กดเริ่มเพื่อลิ้มรสความสุข",
-    "btn-pdf": "เปิดอ่านตัวอย่าง PDF",
-    "author-name": "ปรานต์ แถวอินทร์ (ปาล์ม)",
-    "author-title": "ผู้จัดทำ",
-    "author-info": "นักออกแบบกราฟิก | คณะดิจิทัลมีเดีย มหาวิทยาลัยศรีปทุม #67",
-    "merch-section-title": "ของที่ระลึก",
+    "btn-pdf": '<i class="fas fa-file-pdf"></i> เปิดอ่านตัวอย่าง PDF',
     "merch-min-title": "Savor Happiness Sticker set",
     "zone-minburi": "ย่านมีนบุรี",
     "zone-nongchok": "ย่านหนองจอก",
-    "creator-title": "ผู้จัดทำ",
-    "qr-title": "อุดหนุนผลงาน",
-    "qr-subtitle":
-      "ขอบคุณที่ร่วมเป็นส่วนหนึ่งในการสนับสนุน Thesis Project: Savor Happiness",
-    "qr-thanks": "ขอบคุณทุกการสนับสนุนครับ ✨",
-    "btn-support": "แสดง QR Code สำหรับอุดหนุน",
+    "author-title": "ผู้จัดทำ",
+    "btn-modal-book": '<i class="fas fa-book-open"></i> ดูรูปเต็มในไกด์บุ๊ค',
+    "filter-all": "ทั้งหมด",
+    "filter-min": "ย่านมีนบุรี",
+    "filter-nong": "ย่านหนองจอก",
   },
   en: {
     "nav-home": "Home",
     "nav-book": "Guidebook",
+    "nav-merch": "Merchandise",
     "nav-highlights": "Highlights",
-    "nav-merch": "Merch",
     "nav-creator": "Creator",
     "hero-subtitle": "DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS",
     "hero-title": "SAVOR HAPPINESS",
     "hero-vibe": "VIBE. VISUAL. VACATION.",
     "hero-desc":
       "A guidebook that will make you fall in love with the suburbs.",
+    "btn-start": "Press Start to Savor Happiness",
     "book-title": "THE GUIDEBOOK",
     "book-desc":
       "Savor Happiness: Conveying the charm of Minburi-Nong Chok through Visual Storytelling. Combining real atmosphere photography with colorful graphics in a dynamic, easy-to-read layout, complete with a handy Postcard map.",
-    "btn-read": "Read Online (PDF)",
-    "btn-gallery": "View Gallery",
-    "btn-start": "Press Start to Savor Happiness",
-    "btn-pdf": "Preview PDF File",
-    "author-name": "Pran Taewin (Palm)",
-    "author-title": "Creator",
-    "author-info": "Graphic Designer | School of Digital Media, SPU #67",
-    "merch-section-title": "Merchandise",
+    "btn-pdf": '<i class="fas fa-file-pdf"></i> Preview PDF File',
     "merch-min-title": "Savor Happiness Sticker set",
     "zone-minburi": "Minburi Zone",
     "zone-nongchok": "Nong Chok Zone",
-    "creator-title": "Creator",
-    "qr-title": "Support My Work",
-    "qr-subtitle": "Thank you for supporting Savor Happiness Thesis Project.",
-    "qr-thanks": "Thank you for your support! ✨",
-    "btn-support": "Show Support QR Code",
+    "author-title": "Creator",
+    "btn-modal-book": '<i class="fas fa-book-open"></i> View in Guidebook',
+    "filter-all": "All",
+    "filter-min": "Minburi",
+    "filter-nong": "Nong Chok",
   },
 };
 
-// --- [3. Shop Data with Added Descriptions] ---
+// --- [4. COMPLETE SHOP DATA (20 CAFES WITH DESCRIPTIONS)] ---
 const realShops = [
+  // MINBURI ZONE (10)
   {
     name: "The Lobby Boy Coffee",
     nameTH: "เดอะ ล็อบบี้ บอย คอฟฟี่",
@@ -228,6 +205,8 @@ const realShops = [
     descEN:
       "A family-friendly riverside cafe where you can watch wild ducks swimming peacefully.",
   },
+
+  // NONGCHOK ZONE (10)
   {
     name: "Voodoo Cafe",
     nameTH: "วูดู คาเฟ่",
@@ -340,7 +319,7 @@ const realShops = [
   },
 ];
 
-// --- [4. Navigation Items] ---
+// --- [5. NAVIGATION ITEMS (For Search)] ---
 const NAV_ITEMS = [
   {
     name: "หน้าแรก (Home)",
@@ -352,66 +331,67 @@ const NAV_ITEMS = [
     name: "หนังสือ (The Guidebook)",
     target: "#book-feature",
     icon: "fa-book",
-    keywords: ["หนังสือ", "book"],
+    keywords: ["หนังสือ", "book", "guidebook"],
   },
   {
     name: "ของที่ระลึก (Merchandise)",
     target: "#merch",
     icon: "fa-gift",
-    keywords: ["ของที่ระลึก", "merch"],
+    keywords: ["ของที่ระลึก", "merch", "sticker", "postcard"],
   },
   {
     name: "ร้านแนะนำ (Highlights)",
     target: "#highlights",
     icon: "fa-star",
-    keywords: ["ร้านแนะนำ", "คาเฟ่"],
+    keywords: ["ร้านแนะนำ", "คาเฟ่", "cafe", "restaurant"],
   },
   {
     name: "ผู้จัดทำ (Creator)",
     target: "#author",
     icon: "fa-user",
-    keywords: ["ผู้จัดทำ", "ปาล์ม"],
+    keywords: ["ผู้จัดทำ", "ปาล์ม", "creator", "author"],
   },
 ];
 
-// --- [5. Utilities: DOM Management] ---
-function cacheDOMElements() {
-  const { domElements } = AppState;
-  domElements.lbImg = document.getElementById("lightboxImg");
-  domElements.lbContainer = document.getElementById("simpleLightbox");
-  domElements.searchInput = document.getElementById("shopSearchInput");
-  domElements.suggestionBox = document.getElementById("searchSuggestions");
-  domElements.hamBtn = document.getElementById("hamburgerBtn");
-  domElements.navMenu = document.getElementById("navLinks");
-  domElements.hamIcon = document.querySelector("#hamburgerBtn i");
-  domElements.logoImg = document.getElementById("mainLogo");
-  domElements.themeBtns = document.querySelectorAll(".theme-btn");
-}
-
+// --- [6. INITIALIZATION & DOM MANAGEMENT] ---
 function getElement(id) {
   return document.getElementById(id);
 }
-
 function getElements(selector) {
   return document.querySelectorAll(selector);
 }
 
-// --- [6. Initialization] ---
+function cacheDOMElements() {
+  const { domElements } = AppState;
+  domElements.lbImg = getElement("lightboxImg");
+  domElements.lbContainer = getElement("simpleLightbox");
+  domElements.searchInput = getElement("shopSearchInput");
+  domElements.suggestionBox = getElement("searchSuggestions");
+  domElements.hamBtn = getElement("hamburgerBtn");
+  domElements.navMenu = getElement("navLinks");
+  domElements.logoImg = getElement("mainLogo");
+  domElements.themeBtns = getElements(".theme-btn");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  if (history.scrollRestoration) {
-    history.scrollRestoration = "manual";
-  }
+  if (history.scrollRestoration) history.scrollRestoration = "manual";
   window.scrollTo(0, 0);
 
   cacheDOMElements();
   initializeTheme();
+
+  // Render Data
   renderShops();
   renderTicker();
+
+  // Set Initial Language
+  applyLanguage(AppState.ui.currentLang);
+
+  // Initializers
   initializeLightbox();
   initializeSearch();
   initializeNavigation();
-
-  // ลบ AOS.init() ออกจากตรงนี้แล้ว เพราะไปรันซ้ำซ้อนกับใน index.html
+  initializeFilters();
 
   window.addEventListener("beforeunload", () => {
     AppState.autoSlideIntervals.forEach(clearInterval);
@@ -419,21 +399,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// --- [7. Theme Management] ---
+// --- [7. THEME MANAGEMENT] ---
 function initializeTheme() {
-  const { ui, domElements } = AppState;
-
-  if (ui.isDarkMode) {
-    applyDarkTheme();
-  }
+  if (AppState.ui.isDarkMode) applyDarkTheme();
 }
 
 function applyDarkTheme() {
   const { domElements } = AppState;
   document.documentElement.setAttribute("data-theme", "dark");
-  if (domElements.logoImg) {
-    domElements.logoImg.src = CONFIG.LOGO_DARK;
-  }
+  if (domElements.logoImg) domElements.logoImg.src = CONFIG.LOGO_DARK;
   domElements.themeBtns.forEach((btn) => {
     btn.innerText = "DARK";
     btn.classList.add("active-dark");
@@ -445,9 +419,7 @@ function applyDarkTheme() {
 function applyLightTheme() {
   const { domElements } = AppState;
   document.documentElement.removeAttribute("data-theme");
-  if (domElements.logoImg) {
-    domElements.logoImg.src = CONFIG.LOGO_LIGHT;
-  }
+  if (domElements.logoImg) domElements.logoImg.src = CONFIG.LOGO_LIGHT;
   domElements.themeBtns.forEach((btn) => {
     btn.innerText = "LIGHT";
     btn.classList.remove("active-dark");
@@ -456,38 +428,289 @@ function applyLightTheme() {
   AppState.ui.isDarkMode = false;
 }
 
-function toggleTheme() {
+window.toggleTheme = function () {
   AppState.ui.isDarkMode ? applyLightTheme() : applyDarkTheme();
-}
+};
 
-// --- [8. Language Management] ---
-function toggleLang() {
-  const { ui, domElements } = AppState;
-  ui.currentLang = ui.currentLang === "th" ? "en" : "th";
-
-  // Update all translated elements (รวมถึง Zone ที่สร้างแบบ Dynamic)
+// --- [8. LANGUAGE MANAGEMENT (Real-time)] ---
+function applyLanguage(lang) {
+  // 1. Translate Data-Key elements
   getElements("[data-key]").forEach((el) => {
     const key = el.getAttribute("data-key");
-    if (translations[ui.currentLang]?.[key]) {
-      el.innerHTML = translations[ui.currentLang][key];
+    if (translations[lang]?.[key]) {
+      el.innerHTML = translations[lang][key];
     }
   });
 
-  if (domElements.searchInput) {
-    domElements.searchInput.placeholder =
-      ui.currentLang === "th"
-        ? "ค้นหาร้านค้าที่นี่..."
-        : "Search shops here...";
+  // 2. Translate Search Placeholder
+  const searchInput = AppState.domElements.searchInput;
+  if (searchInput) {
+    searchInput.placeholder =
+      lang === "th" ? "ค้นหาร้านค้าที่นี่..." : "Search shops here...";
   }
 
+  // 3. Update Language Buttons text
   getElements(".lang-btn").forEach((btn) => {
-    btn.innerText = ui.currentLang.toUpperCase();
+    btn.innerText = lang.toUpperCase();
   });
 
-  localStorage.setItem("preferredLang", ui.currentLang);
+  // 4. Update Filter Buttons
+  const filterBtns = getElements(".filter-btn");
+  if (filterBtns.length >= 3) {
+    filterBtns[0].innerText = translations[lang]["filter-all"];
+    filterBtns[1].innerText = translations[lang]["filter-min"];
+    filterBtns[2].innerText = translations[lang]["filter-nong"];
+  }
+
+  // 5. Update Shop Cards zone tags dynamically
+  getElements(".shop-tag").forEach((tag) => {
+    const isMinburi = tag.getAttribute("data-zone") === "minburi";
+    tag.innerText =
+      translations[lang][isMinburi ? "zone-minburi" : "zone-nongchok"];
+  });
 }
 
-// --- [9. Lightbox Management] ---
+window.toggleLang = function () {
+  AppState.ui.currentLang = AppState.ui.currentLang === "th" ? "en" : "th";
+  localStorage.setItem("preferredLang", AppState.ui.currentLang);
+  applyLanguage(AppState.ui.currentLang);
+};
+
+// --- [9. CONTENT RENDERING (Injecting Shops)] ---
+function renderShops() {
+  const minGrid = getElement("minburi-list");
+  const nongGrid = getElement("nongchok-list");
+
+  if (!minGrid || !nongGrid) return;
+
+  minGrid.innerHTML = "";
+  nongGrid.innerHTML = "";
+
+  realShops.forEach((shop, shopIdx) => {
+    // Generate 8 images for auto-slide gallery
+    const imgHtml = Array.from({ length: 8 }, (_, i) => {
+      const fullPath = `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}${i}.jpg`;
+      return `
+        <img 
+          class="photo-item ${i === 0 ? "active" : ""}" 
+          src="${fullPath}" 
+          alt="${shop.name} - Photo ${i + 1}"
+          data-shop-idx="${shopIdx}"
+          data-img-idx="${i}"
+          loading="lazy"
+          onerror="this.src = this.src.replace('.jpg', '.JPG'); this.onerror = () => { this.style.display='none'; };">
+      `;
+    }).join("");
+
+    // Generate Card HTML
+    const cardHtml = `
+      <div class="shop-card" data-aos="fade-up">
+        <div class="photo-gallery" title="คลิกเพื่อดูรูปขยาย">
+            ${imgHtml}
+        </div>
+        <div class="shop-info shop-info-clickable" onclick="openCafeModal(${shopIdx})" title="คลิกเพื่อดูข้อมูลร้าน">
+          <div class="shop-name">${shop.name}</div>
+          <div class="shop-tag" data-zone="${shop.zone}"></div>
+          <div class="click-more-hint"><i class="fas fa-arrow-right"></i> <span class="read-more-text">อ่านรายละเอียด</span></div>
+        </div>
+      </div>
+    `;
+
+    if (shop.zone === "minburi") {
+      minGrid.insertAdjacentHTML("beforeend", cardHtml);
+    } else {
+      nongGrid.insertAdjacentHTML("beforeend", cardHtml);
+    }
+  });
+
+  // Attach Lightbox clicks to images
+  [minGrid, nongGrid].forEach((grid) => {
+    grid.addEventListener("click", (e) => {
+      if (e.target.classList.contains("photo-item")) {
+        const shopIdx = parseInt(e.target.getAttribute("data-shop-idx"));
+        const imgIdx = parseInt(e.target.getAttribute("data-img-idx"));
+        window.openSimpleLightbox(imgIdx, shopIdx);
+      }
+    });
+  });
+
+  setTimeout(startAutoSlide, 300);
+}
+
+function startAutoSlide() {
+  getElements(".photo-gallery").forEach((gallery) => {
+    const images = gallery.querySelectorAll(".photo-item");
+    if (images.length <= 1) return;
+
+    let idx = 0;
+    const intervalId = setInterval(() => {
+      images[idx].classList.remove("active");
+      idx = (idx + 1) % images.length;
+      images[idx].classList.add("active");
+    }, CONFIG.AUTO_SLIDE_INTERVAL);
+
+    AppState.autoSlideIntervals.push(intervalId);
+  });
+}
+
+function renderTicker() {
+  const t1 = getElement("shopTickerInner");
+  const t2 = getElement("shopTickerInnerDup");
+  if (!t1 || !t2) return;
+
+  const content = realShops
+    .map(
+      (shop) =>
+        `<div class="ticker-item">${shop.name}</div><div class="ticker-sep">SAVOR HAPPINESS 🍴</div>`,
+    )
+    .join("");
+
+  t1.innerHTML = content;
+  t2.innerHTML = content;
+}
+
+// --- [10. SEARCH MANAGEMENT] ---
+function initializeSearch() {
+  const { searchInput, suggestionBox } = AppState.domElements;
+  if (!searchInput) return;
+
+  searchInput.addEventListener("input", handleSearchInput);
+
+  // FIX: User hits Enter -> Execute Search, Blur Keyboard, Hide Suggestions
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      executeSearch();
+      searchInput.blur();
+      if (suggestionBox) suggestionBox.style.display = "none";
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!searchInput.contains(e.target) && !suggestionBox?.contains(e.target)) {
+      if (suggestionBox) suggestionBox.style.display = "none";
+    }
+  });
+}
+
+function handleSearchInput(e) {
+  const { suggestionBox } = AppState.domElements;
+  const query = e.target.value.toLowerCase().trim();
+
+  if (AppState.searchTimeout) clearTimeout(AppState.searchTimeout);
+  if (!suggestionBox) return;
+
+  if (query === "") {
+    suggestionBox.style.display = "none";
+    return;
+  }
+
+  AppState.searchTimeout = setTimeout(() => {
+    displaySearchSuggestions(query);
+  }, CONFIG.SEARCH_DEBOUNCE_MS);
+}
+
+function displaySearchSuggestions(query) {
+  const { suggestionBox, searchInput } = AppState.domElements;
+  suggestionBox.innerHTML = "";
+
+  const matchedNav = NAV_ITEMS.filter(
+    (item) =>
+      item.keywords.some((key) => key.includes(query)) ||
+      item.name.toLowerCase().includes(query),
+  );
+
+  const matchedShops = realShops
+    .filter(
+      (shop) =>
+        shop.name.toLowerCase().includes(query) ||
+        shop.nameTH?.toLowerCase().includes(query),
+    )
+    .slice(0, CONFIG.MAX_SEARCH_RESULTS);
+
+  const allResults = [...matchedNav, ...matchedShops];
+
+  if (allResults.length === 0) {
+    suggestionBox.style.display = "none";
+    return;
+  }
+
+  allResults.forEach((item) => {
+    const div = document.createElement("div");
+    div.className = "suggestion-item";
+
+    if (item.target) {
+      div.innerHTML = `<i class="fas ${item.icon}"></i> <span><b>เมนู:</b> ${item.name}</span>`;
+      div.addEventListener("click", () => {
+        document
+          .querySelector(item.target)
+          ?.scrollIntoView({ behavior: "smooth" });
+        suggestionBox.style.display = "none";
+        searchInput.value = "";
+      });
+    } else {
+      div.innerHTML = `<i class="fas fa-search"></i> <span>${item.name} <small>(${item.nameTH})</small></span>`;
+      div.addEventListener("click", () => {
+        searchInput.value = item.name;
+        suggestionBox.style.display = "none";
+        executeSearch();
+      });
+    }
+    suggestionBox.appendChild(div);
+  });
+
+  suggestionBox.style.display = "block";
+}
+
+function executeSearch() {
+  const { searchInput } = AppState.domElements;
+  if (!searchInput) return;
+
+  const query = searchInput.value.toLowerCase().trim();
+  const shopCards = getElements(".shop-card");
+
+  if (query === "") {
+    shopCards.forEach((card) => {
+      card.style.display = "";
+      card.style.opacity = "1";
+    });
+    return;
+  }
+
+  const navMatch = NAV_ITEMS.find((item) =>
+    item.keywords.some((key) => query.includes(key)),
+  );
+  let firstMatch = null;
+
+  shopCards.forEach((card) => {
+    const nameText =
+      card.querySelector(".shop-name")?.innerText.toLowerCase() || "";
+    const matches =
+      nameText.includes(query) ||
+      realShops.some(
+        (shop) =>
+          shop.name.toLowerCase() === nameText &&
+          shop.nameTH?.toLowerCase().includes(query),
+      );
+
+    if (matches) {
+      card.style.display = "";
+      card.style.opacity = "1";
+      if (!firstMatch) firstMatch = card;
+    } else {
+      card.style.display = "none";
+    }
+  });
+
+  if (navMatch) {
+    document
+      .querySelector(navMatch.target)
+      ?.scrollIntoView({ behavior: "smooth" });
+  } else if (firstMatch) {
+    firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+}
+
+// --- [11. LIGHTBOX MANAGEMENT] ---
 function initializeLightbox() {
   const { lbImg, lbContainer } = AppState.domElements;
   if (!lbImg || !lbContainer) return;
@@ -521,7 +744,6 @@ function toggleLightboxZoom() {
 function resetLightboxPosition() {
   const { lbImg } = AppState.domElements;
   const { lightbox } = AppState;
-
   lightbox.translateX = 0;
   lightbox.translateY = 0;
   lightbox.lastX = 0;
@@ -532,7 +754,6 @@ function resetLightboxPosition() {
 function startLightboxDrag(e) {
   const { lbImg } = AppState.domElements;
   const { lightbox } = AppState;
-
   if (!lightbox.isZoomed) return;
 
   lightbox.isDragging = true;
@@ -549,7 +770,6 @@ function startLightboxDrag(e) {
 function moveLightboxDrag(e) {
   const { lbImg } = AppState.domElements;
   const { lightbox } = AppState;
-
   if (!lightbox.isDragging) return;
 
   const pageX = e.pageX || (e.touches?.[0].pageX ?? 0);
@@ -563,7 +783,6 @@ function moveLightboxDrag(e) {
 function stopLightboxDrag() {
   const { lbImg } = AppState.domElements;
   const { lightbox } = AppState;
-
   if (!lightbox.isDragging) return;
 
   lightbox.isDragging = false;
@@ -578,9 +797,11 @@ window.openSimpleLightbox = function (indexOrSrc, shopIdx) {
   const { lightbox } = AppState;
 
   if (typeof indexOrSrc === "string" && shopIdx === undefined) {
+    // Open single image (e.g. Map, Book cover)
     lightbox.currentGallery = [indexOrSrc];
     lightbox.currentImgIdx = 0;
   } else {
+    // Open gallery for a specific shop
     const shop = realShops[shopIdx];
     if (!shop) return;
 
@@ -623,167 +844,9 @@ window.changeImg = function (step) {
   }
 };
 
-// --- [10. Search Management] ---
-function initializeSearch() {
-  const { searchInput, suggestionBox } = AppState.domElements;
-
-  if (!searchInput) return;
-
-  searchInput.addEventListener("input", handleSearchInput);
-
-  // FIX: เมื่อกด Enter ให้ค้นหา และพับคีย์บอร์ดลง (Blur)
-  searchInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      executeSearch();
-      searchInput.blur();
-      if (suggestionBox) suggestionBox.style.display = "none";
-    }
-  });
-
-  document.addEventListener("click", (e) => {
-    if (!searchInput.contains(e.target) && !suggestionBox?.contains(e.target)) {
-      if (suggestionBox) suggestionBox.style.display = "none";
-    }
-  });
-}
-
-function handleSearchInput(e) {
-  const { searchInput, suggestionBox } = AppState.domElements;
-  const query = e.target.value.toLowerCase().trim();
-
-  if (AppState.searchTimeout) {
-    clearTimeout(AppState.searchTimeout);
-  }
-
-  if (!suggestionBox) return;
-
-  if (query === "") {
-    suggestionBox.style.display = "none";
-    return;
-  }
-
-  AppState.searchTimeout = setTimeout(() => {
-    displaySearchSuggestions(query);
-  }, CONFIG.SEARCH_DEBOUNCE_MS);
-}
-
-function displaySearchSuggestions(query) {
-  const { suggestionBox, searchInput } = AppState.domElements;
-
-  suggestionBox.innerHTML = "";
-
-  const matchedNav = NAV_ITEMS.filter(
-    (item) =>
-      item.keywords.some((key) => key.includes(query)) ||
-      item.name.toLowerCase().includes(query),
-  );
-
-  const matchedShops = realShops
-    .filter(
-      (shop) =>
-        shop.name.toLowerCase().includes(query) ||
-        shop.nameTH?.toLowerCase().includes(query),
-    )
-    .slice(0, CONFIG.MAX_SEARCH_RESULTS);
-
-  const allResults = [...matchedNav, ...matchedShops];
-
-  if (allResults.length === 0) {
-    suggestionBox.style.display = "none";
-    return;
-  }
-
-  allResults.forEach((item) => {
-    const div = document.createElement("div");
-    div.className = "suggestion-item";
-    div.setAttribute("role", "button");
-    div.setAttribute("tabindex", "0");
-
-    if (item.target) {
-      div.innerHTML = `<i class="fas ${item.icon}"></i> <span><b>เมนู:</b> ${item.name}</span>`;
-      div.addEventListener("click", () => {
-        document
-          .querySelector(item.target)
-          ?.scrollIntoView({ behavior: "smooth" });
-        suggestionBox.style.display = "none";
-        searchInput.value = "";
-      });
-    } else {
-      div.innerHTML = `<i class="fas fa-search"></i> <span>${item.name} <small>(${item.nameTH})</small></span>`;
-      div.addEventListener("click", () => {
-        searchInput.value = item.name;
-        suggestionBox.style.display = "none";
-        executeSearch();
-      });
-    }
-
-    suggestionBox.appendChild(div);
-  });
-
-  suggestionBox.style.display = "block";
-}
-
-function executeSearch() {
-  const { searchInput } = AppState.domElements;
-  if (!searchInput) return;
-
-  const query = searchInput.value.toLowerCase().trim();
-  const shopCards = getElements(".shop-card");
-
-  if (query === "") {
-    shopCards.forEach((card) => {
-      card.style.display = "";
-      card.style.opacity = "1";
-    });
-    return;
-  }
-
-  const navMap = [
-    { keywords: ["หนังสือ", "book", "guidebook"], target: "#book-feature" },
-    { keywords: ["ของที่ระลึก", "merch", "sticker"], target: "#merch" },
-    { keywords: ["ร้านแนะนำ", "highlights", "cafe"], target: "#highlights" },
-    { keywords: ["ผู้จัดทำ", "creator", "author"], target: "#author" },
-    { keywords: ["หน้าแรก", "home"], target: "#home" },
-  ];
-
-  const navMatch = navMap.find((item) =>
-    item.keywords.some((key) => query.includes(key)),
-  );
-
-  let firstMatch = null;
-
-  shopCards.forEach((card) => {
-    const nameText =
-      card.querySelector(".shop-name")?.innerText.toLowerCase() || "";
-    const matches =
-      nameText.includes(query) ||
-      realShops.some(
-        (shop) =>
-          shop.name.toLowerCase() === nameText &&
-          shop.nameTH?.toLowerCase().includes(query),
-      );
-
-    if (matches) {
-      card.style.display = "";
-      card.style.opacity = "1";
-      if (!firstMatch) firstMatch = card;
-    } else {
-      card.style.display = "none";
-    }
-  });
-
-  if (navMatch) {
-    document
-      .querySelector(navMatch.target)
-      ?.scrollIntoView({ behavior: "smooth" });
-  } else if (firstMatch) {
-    firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
-  }
-}
-
-// --- [11. Navigation Management] ---
+// --- [12. NAVIGATION & FILTERS] ---
 function initializeNavigation() {
-  const { hamBtn, navMenu, hamIcon } = AppState.domElements;
+  const { hamBtn, navMenu } = AppState.domElements;
   const navCloseBtn = getElement("navCloseBtn");
 
   if (hamBtn) {
@@ -818,19 +881,16 @@ function initializeNavigation() {
   }
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 1024) {
-      closeNavMenu();
-    }
+    if (window.innerWidth > 1024) closeNavMenu();
   });
 }
 
 function openNavMenu() {
   const { navMenu, hamBtn } = AppState.domElements;
-  const navBackdrop = document.getElementById("navBackdrop");
+  const navBackdrop = getElement("navBackdrop");
 
   if (navMenu) navMenu.classList.add("active");
   if (navBackdrop) navBackdrop.classList.add("active");
-
   if (hamBtn) {
     hamBtn.style.opacity = "0";
     hamBtn.style.pointerEvents = "none";
@@ -840,11 +900,10 @@ function openNavMenu() {
 
 function closeNavMenu() {
   const { navMenu, hamBtn } = AppState.domElements;
-  const navBackdrop = document.getElementById("navBackdrop");
+  const navBackdrop = getElement("navBackdrop");
 
   if (navMenu) navMenu.classList.remove("active");
   if (navBackdrop) navBackdrop.classList.remove("active");
-
   if (hamBtn) {
     hamBtn.style.opacity = "1";
     hamBtn.style.pointerEvents = "auto";
@@ -852,106 +911,71 @@ function closeNavMenu() {
   document.body.style.overflow = "";
 }
 
-// --- [12. Content Rendering] ---
-function renderShops() {
-  const minGrid = getElement("minburi-list");
-  const nongGrid = getElement("nongchok-list");
+function initializeFilters() {
+  const filterBtns = getElements(".filter-btn");
+  if (filterBtns.length > 0) {
+    filterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
 
-  if (!minGrid || !nongGrid) return;
+        const filter = btn.getAttribute("data-filter");
+        const minSection = getElement("minburi-section");
+        const nongSection = getElement("nongchok-section");
 
-  minGrid.innerHTML = "";
-  nongGrid.innerHTML = "";
+        if (filter === "all") {
+          minSection.style.display = "block";
+          nongSection.style.display = "block";
+        } else if (filter === "minburi") {
+          minSection.style.display = "block";
+          nongSection.style.display = "none";
+        } else {
+          minSection.style.display = "none";
+          nongSection.style.display = "block";
+        }
 
-  const currentLang = AppState.ui.currentLang;
-
-  realShops.forEach((shop, shopIdx) => {
-    const imgHtml = Array.from({ length: 8 }, (_, i) => {
-      const fullPath = `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}${i}.jpg`;
-      return `
-        <img 
-          class="photo-item ${i === 0 ? "active" : ""}" 
-          src="${fullPath}" 
-          alt="${shop.name} - Photo ${i + 1}"
-          data-shop-idx="${shopIdx}"
-          data-img-idx="${i}"
-          loading="lazy"
-          onerror="this.src = this.src.replace('.jpg', '.JPG'); this.onerror = () => { this.style.display='none'; };">
-      `;
-    }).join("");
-
-    // FIX: สร้าง data-key ให้แปลภาษาได้ Real-time
-    const zoneKey = shop.zone === "minburi" ? "zone-minburi" : "zone-nongchok";
-    const zoneDisplay = translations[currentLang][zoneKey];
-
-    // FIX: โยน shopIdx เข้าไปในฟังก์ชัน Modal แทนการส่ง String แบบเดิม
-    const cardHtml = `
-      <div class="shop-card" data-aos="fade-up">
-        <div class="photo-gallery" title="คลิกเพื่อดูรูปขยาย">
-            ${imgHtml}
-        </div>
-        <div class="shop-info shop-info-clickable" onclick="openCafeModal(${shopIdx})" title="คลิกเพื่อดูข้อมูลร้าน">
-          <div class="shop-name">${shop.name}</div>
-          <div class="shop-tag lang-text" data-key="${zoneKey}">${zoneDisplay}</div>
-          <div class="click-more-hint"><i class="fas fa-arrow-right"></i> อ่านรายละเอียด</div>
-        </div>
-      </div>
-    `;
-
-    if (shop.zone === "minburi") {
-      minGrid.insertAdjacentHTML("beforeend", cardHtml);
-    } else {
-      nongGrid.insertAdjacentHTML("beforeend", cardHtml);
-    }
-  });
-
-  [minGrid, nongGrid].forEach((grid) => {
-    grid.addEventListener("click", (e) => {
-      if (e.target.classList.contains("photo-item")) {
-        const shopIdx = parseInt(e.target.getAttribute("data-shop-idx"));
-        const imgIdx = parseInt(e.target.getAttribute("data-img-idx"));
-        window.openSimpleLightbox(imgIdx, shopIdx);
-      }
+        // Refresh AOS if exists to prevent layout breaking
+        if (typeof AOS !== "undefined") AOS.refresh();
+      });
     });
-  });
-
-  setTimeout(startAutoSlide, 300);
+  }
 }
 
-function startAutoSlide() {
-  getElements(".photo-gallery").forEach((gallery) => {
-    const images = gallery.querySelectorAll(".photo-item");
-    if (images.length <= 1) return;
+// --- [13. MODAL LOGIC (CAFE DETAILS)] ---
+window.openCafeModal = function (shopIdx) {
+  const shop = realShops[shopIdx];
+  const currentLang = AppState.ui.currentLang;
+  const imgPath = `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.jpg`;
 
-    let idx = 0;
-    const intervalId = setInterval(() => {
-      images[idx].classList.remove("active");
-      idx = (idx + 1) % images.length;
-      images[idx].classList.add("active");
-    }, CONFIG.AUTO_SLIDE_INTERVAL);
+  getElement("modalImg").src = imgPath;
 
-    AppState.autoSlideIntervals.push(intervalId);
-  });
-}
+  // Support Thai & English based on current state
+  getElement("modalTitle").innerText =
+    currentLang === "th" ? shop.nameTH : shop.name;
+  getElement("modalDesc").innerText =
+    currentLang === "th" ? shop.descTH : shop.descEN;
 
-function renderTicker() {
-  const t1 = getElement("shopTickerInner");
-  const t2 = getElement("shopTickerInnerDup");
+  // Update button text language
+  const modalBtn = document.querySelector("#cafeModal .btn-primary");
+  if (modalBtn) {
+    modalBtn.innerHTML = translations[currentLang]["btn-modal-book"];
+  }
 
-  if (!t1 || !t2) return;
+  getElement("cafeModal").style.display = "flex";
+  document.body.style.overflow = "hidden";
+};
 
-  const content = realShops
-    .map(
-      (shop) =>
-        `<div class="ticker-item">${shop.name}</div><div class="ticker-sep">SAVOR HAPPINESS 🍴</div>`,
-    )
-    .join("");
+window.closeModal = function () {
+  getElement("cafeModal").style.display = "none";
+  document.body.style.overflow = "";
+};
 
-  t1.innerHTML = content;
-  t2.innerHTML = content;
-}
+window.addEventListener("click", (e) => {
+  if (e.target.id === "cafeModal") window.closeModal();
+});
 
-// --- [13. Utility Functions] ---
-function copyContact() {
+// --- [14. MISCELLANEOUS UTILITIES] ---
+window.copyContact = function () {
   navigator.clipboard.writeText("palmy1983ch@gmail.com").then(() => {
     const btn = document.querySelector(".copy-btn");
     if (btn) {
@@ -962,7 +986,7 @@ function copyContact() {
       }, CONFIG.THEME_TRANSITION_MS);
     }
   });
-}
+};
 
 window.changeBookView = function (src, thumb) {
   const mainImg = getElement("mainBookImg");
@@ -982,62 +1006,4 @@ window.addEventListener("scroll", () => {
   const scrolled = (winScroll / height) * 100;
   const myBar = getElement("myBar");
   if (myBar) myBar.style.width = scrolled + "%";
-});
-
-// ============================================================
-// [NEW] FILTER & MODAL LOGIC (ปรับปรุงรับ Description แล้ว)
-// ============================================================
-document.addEventListener("DOMContentLoaded", () => {
-  const filterBtns = document.querySelectorAll(".filter-btn");
-  if (filterBtns.length > 0) {
-    filterBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        filterBtns.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        const filter = btn.getAttribute("data-filter");
-        const minSection = document.getElementById("minburi-section");
-        const nongSection = document.getElementById("nongchok-section");
-
-        if (filter === "all") {
-          minSection.style.display = "block";
-          nongSection.style.display = "block";
-        } else if (filter === "minburi") {
-          minSection.style.display = "block";
-          nongSection.style.display = "none";
-        } else {
-          minSection.style.display = "none";
-          nongSection.style.display = "block";
-        }
-        if (typeof AOS !== "undefined") AOS.refresh();
-      });
-    });
-  }
-});
-
-// FIX: Modal ดึงข้อมูลภาษาและ Description ตาม Array
-window.openCafeModal = function (shopIdx) {
-  const shop = realShops[shopIdx];
-  const currentLang = AppState.ui.currentLang;
-  const imgPath = `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.jpg`;
-
-  document.getElementById("modalImg").src = imgPath;
-
-  // สลับชื่อและคำอธิบายตามภาษาที่เลือก
-  document.getElementById("modalTitle").innerText =
-    currentLang === "th" ? shop.nameTH : shop.name;
-  document.getElementById("modalDesc").innerText =
-    currentLang === "th" ? shop.descTH : shop.descEN;
-
-  document.getElementById("cafeModal").style.display = "flex";
-  document.body.style.overflow = "hidden";
-};
-
-window.closeModal = function () {
-  document.getElementById("cafeModal").style.display = "none";
-  document.body.style.overflow = "";
-};
-
-window.addEventListener("click", (e) => {
-  if (e.target.id === "cafeModal") window.closeModal();
 });
