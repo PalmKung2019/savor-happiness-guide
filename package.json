@@ -1,0 +1,22 @@
+{
+  "name": "savor-happiness-guide",
+  "version": "1.0.0",
+  "description": "Digital guidebook for Minburi and Nongchok cafes and restaurants",
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build required'",
+    "lint": "echo 'No linter configured'"
+  },
+  "keywords": [
+    "guidebook",
+    "thailand",
+    "cafes",
+    "restaurants"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/speed-insights": "^1.0.14"
+  }
+}
