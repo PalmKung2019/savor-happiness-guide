@@ -1,12 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Savor Happiness | ลิ้มรสความสุข</title>
-    
-    <meta name="google-site-verification" content="PiOxnd4qygPzJ0PPKABMy_dLJLJqEgD155dg" />
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
@@ -15,12 +13,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    <link rel="stylesheet" href="style.css" />
 
-    <script>
-        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-    </script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -29,8 +23,457 @@
             <div class="hamburger-menu" id="hamburgerBtn" aria-label="เปิดเมนู" role="button" tabindex="0">
                 <i class="fas fa-bars"></i>
             </div>
-            </nav>
+
+            <div class="logo">
+                <a href="#home">
+                    <img src="img/logo/savorhappiness-1.png" class="logo-img" id="mainLogo" alt="Savor Happiness" />
+                </a>
+            </div>
+
+            <div class="nav-right-container">
+                <ul class="nav-links" id="navLinks">
+                    <button class="nav-close-btn" id="navCloseBtn" aria-label="ปิดเมนู">
+                        <i class="fas fa-times"></i>
+                    </button>
+
+                    <li><a href="#home" data-key="nav-home">หน้าแรก</a></li>
+                    <li><a href="#book-feature" data-key="nav-book">หนังสือ</a></li>
+                    <li><a href="#merch" data-key="nav-merch">ของที่ระลึก</a></li>
+                    <li><a href="#highlights" data-key="nav-highlights">ร้านแนะนำ</a></li>
+                    <li><a href="#author" data-key="nav-creator">ผู้จัดทำ</a></li>
+
+                    <li class="nav-controls-wrapper">
+                        <button class="lang-btn" onclick="toggleLang()">TH</button>
+                        <button class="theme-btn" onclick="toggleTheme()">LIGHT</button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="nav-backdrop" id="navBackdrop"></div>
+
+        <div class="search-wrapper">
+            <div class="search-input-group">
+                <input type="text" id="shopSearchInput" placeholder="ค้นหาร้านค้าที่นี่..." />
+                <button id="searchBtn">ค้นหา</button>
+            </div>
+            <div id="searchSuggestions"></div>
+        </div>
     </header>
 
-    </body>
+    <div class="scroll-progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <div class="one-page-container">
+
+        <section id="home">
+            <div class="hero-grid">
+                <div class="grid-item item-1"><img src="img/SavorPic6.jpg" alt="Savor Image 1" loading="lazy" /></div>
+                <div class="grid-item item-2"><img src="img/SavorPic11.jpg" alt="Savor Image 2" loading="lazy" /></div>
+                <div class="grid-item item-3"><img src="img/SavorPic21.JPG" alt="Savor Image 3" loading="lazy" /></div>
+                <div class="grid-item item-4"><img src="img/SavorPic7.jpg" alt="Savor Image 4" loading="lazy" /></div>
+                <div class="grid-item item-5"><img src="img/SavorPic23.jpg" alt="Savor Image 5" loading="lazy" /></div>
+                <div class="grid-item item-6"><img src="img/SavorPic4.jpg" alt="Savor Image 6" loading="lazy" /></div>
+                <div class="grid-item item-7"><img src="img/SavorPic17.JPG" alt="Savor Image 7" loading="lazy" /></div>
+                <div class="grid-item item-8"><img src="img/SavorPic19.JPG" alt="Savor Image 8" loading="lazy" /></div>
+                <div class="grid-item item-9"><img src="img/SavorPic10.jpg" alt="Savor Image 9" loading="lazy" /></div>
+                <div class="grid-item item-10"><img src="img/SavorPic20.JPG" alt="Savor Image 10" loading="lazy" />
+                </div>
+            </div>
+
+            <div class="hero-content-overlay" data-aos="zoom-in" data-aos-duration="1200">
+                <div class="content-wrapper">
+                    <p class="subtitle lang-text" data-key="hero-subtitle">DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS
+                    </p>
+                    <h1 class="lang-text" data-key="hero-title">SAVOR HAPPINESS</h1>
+                    <p class="subtitle-vibe lang-text" data-key="hero-vibe">VIBE. VISUAL. VACATION.</p>
+                    <p class="lang-text hero-desc" data-key="hero-desc">ไกด์บุ๊คที่จะทำให้คุณตกหลุมรักชานเมือง</p>
+                    <a href="#book-feature" class="btn-primary lang-text"
+                        data-key="btn-start">กดเริ่มเพื่อลิ้มรสความสุข</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="shop-ticker-banner">
+            <div class="shop-ticker-wrapper">
+                <div class="shop-ticker-track" id="shopTickerInner"></div>
+                <div class="shop-ticker-track" id="shopTickerInnerDup"></div>
+            </div>
+        </div>
+
+        <section class="video-experience-v2" data-aos="fade-up">
+            <div class="video-flex-container">
+                <div class="video-visual-side">
+                    <div class="video-wrapper">
+                        <video id="myVideo" autoplay muted loop playsinline>
+                            <source src="video/video0.mp4" type="video/mp4" />
+                            <source src="video/video0.mov" type="video/quicktime" />
+                        </video>
+                        <button id="muteBtn" class="mute-control-btn">
+                            <i id="muteIcon" class="fas fa-volume-mute"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="video-text-side">
+                    <div class="video-content-box">
+                        <span class="video-tag">Atmosphere</span>
+                        <h2 class="section-title">Savor the <br />Serenity</h2>
+                        <div class="video-description">
+                            <p>สัมผัสความสงบในมุมโปรดที่คุณอาจไม่เคยค้นพบ
+                                <br />บันทึกความทรงจำผ่านเลนส์และรสชาติที่ลงตัว
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="book-feature" class="section">
+            <div class="book-grid-container">
+                <div class="book-visual" data-aos="fade-right">
+                    <div class="main-img-container">
+                        <div class="book-float-wrapper">
+                            <img src="img/SavorHappiness-Cover.jpg" id="mainBookImg" class="inner-mockup fade-in"
+                                alt="Savor Happiness Guidebook" onclick="openSimpleLightbox(this.src)"
+                                style="cursor: zoom-in" loading="lazy" />
+                        </div>
+                    </div>
+
+                    <div class="book-thumbs">
+                        <img src="img/SavorHappiness-Cover.jpg" class="thumb-item active" alt="Cover"
+                            onclick="changeBookView(this.src, this)" loading="lazy" />
+                        <img src="img/SavorHappiness-Back.jpg" class="thumb-item" alt="Back"
+                            onclick="changeBookView(this.src, this)" loading="lazy" />
+                        <img src="img/SavorHappiness-Inside1.jpg" class="thumb-item" alt="Inside 1"
+                            onclick="changeBookView(this.src, this)" loading="lazy" />
+                        <img src="img/SavorHappiness-Inside2.jpg" class="thumb-item" alt="Inside 2"
+                            onclick="changeBookView(this.src, this)" loading="lazy" />
+                    </div>
+                </div>
+
+                <div class="book-text" data-aos="fade-left">
+                    <div class="book-card">
+                        <h2 class="section-title lang-text" data-key="book-title">THE GUIDEBOOK</h2>
+                        <div class="book-badge-row">
+                            <span class="badge">A5 Photobook</span>
+                            <span class="badge">126 Pages</span>
+                            <span class="badge">Minburi &amp; Nongchok</span>
+                        </div>
+                        <p class="book-spec-detail">FEATURING 20 CAFES &amp; RESTAURANTS</p>
+                        <p class="lang-text book-description" data-key="book-desc">
+                            Savor Happiness: ถ่ายทอดเสน่ห์ย่านมีนบุรี–หนองจอก ผ่าน Visual Storytelling
+                            ผสมผสานภาพถ่ายบรรยากาศจริงเข้ากับงานกราฟิกสีสันสดใส จัดวางแบบ Dynamic Layout ให้อ่านง่าย
+                            พร้อมแผนที่ Postcard ที่พกพาสะดวก
+                        </p>
+                        <div class="btn-group">
+                            <a href="pdf/SavorHappiness_Preview.pdf" target="_blank" class="btn-primary lang-text"
+                                data-key="btn-pdf">
+                                <i class="fas fa-file-pdf"></i> เปิดอ่านตัวอย่าง PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="merch" class="section">
+            <h2 class="section-title lang-text" data-key="nav-merch" data-aos="fade-up">ของที่ระลึก</h2>
+
+            <div class="merch-category" data-aos="fade-up">
+                <h3 class="merch-sub-title"><i class="fas fa-map-marked-alt"></i> Postcard Map | โปสการ์ดแผนที่
+                    มีนบุรี-หนองจอก</h3>
+                <div class="merch-grid">
+                    <div class="merch-card">
+                        <img src="img/PostcardMinburi.jpg" alt="Minburi Map" onclick="openSimpleLightbox(this.src)"
+                            style="cursor: zoom-in" loading="lazy" />
+                        <p>MinBuri Postcard Map | Savor Happiness</p>
+                    </div>
+                    <div class="merch-card">
+                        <img src="img/PostcardNongchok.jpg" alt="Nongchok Map" onclick="openSimpleLightbox(this.src)"
+                            style="cursor: zoom-in" loading="lazy" />
+                        <p>NongChok Postcard Map | Savor Happiness</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="merch-split-row" data-aos="fade-up">
+                <div class="merch-category sticker-side">
+                    <h3 class="merch-sub-title"><i class="fas fa-sticky-note"></i> Sticker | สติ๊กเกอร์</h3>
+                    <div class="merch-grid single-item-grid">
+                        <div class="merch-card">
+                            <img src="img/Stickers.jpg" alt="Minburi Sticker" onclick="openSimpleLightbox(this.src)"
+                                style="cursor: zoom-in" loading="lazy" />
+                            <p class="lang-text" data-key="merch-min-title">Savor Happiness Sticker set</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="merch-category bookmarks-side">
+                    <h3 class="merch-sub-title"><i class="fas fa-bookmark"></i> Bookmarks | ที่คั่นหนังสือ</h3>
+                    <div class="merch-grid bookmark-triple-grid">
+                        <div class="merch-card is-hero" data-aos="zoom-in" data-aos-delay="100">
+                            <img src="img/Bookmarks1.jpg" alt="Bookmark Design 1" onclick="openSimpleLightbox(this.src)"
+                                loading="lazy" />
+                            <p>Design 01</p>
+                        </div>
+                        <div class="merch-card is-secondary" data-aos="zoom-in" data-aos-delay="200">
+                            <img src="img/Bookmarks2.jpg" alt="Bookmark Design 2" onclick="openSimpleLightbox(this.src)"
+                                loading="lazy" />
+                            <p>Design 02</p>
+                        </div>
+                        <div class="merch-card is-secondary" data-aos="zoom-in" data-aos-delay="300">
+                            <img src="img/Bookmarks3.jpg" alt="Bookmark Design 3" onclick="openSimpleLightbox(this.src)"
+                                loading="lazy" />
+                            <p>Design 03</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="highlights" class="section">
+            <div class="filter-container" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">ทั้งหมด</button>
+                <button class="filter-btn" data-filter="minburi">ย่านมีนบุรี</button>
+                <button class="filter-btn" data-filter="nongchok">ย่านหนองจอก</button>
+            </div>
+
+            <div id="minburi-section" data-aos="fade-up">
+                <div class="district-label">MINBURI</div>
+                <div class="shop-grid" id="minburi-list"></div>
+            </div>
+
+            <div id="nongchok-section" style="margin-top: 40px;" data-aos="fade-up">
+                <div class="district-label">NONGCHOK</div>
+                <div class="shop-grid" id="nongchok-list"></div>
+            </div>
+        </section>
+
+        <section id="author" class="section" data-aos="fade-up">
+            <h2 class="section-title lang-text" data-key="author-title">ผู้จัดทำ</h2>
+            <div class="author-container">
+                <img src="img/Author_Palm.jpg" alt="Pran Taewin" class="author-img" loading="lazy" />
+                <div class="author-info">
+                    <h3 class="author-name">ปรานต์ แถวอินทร์ (Pran Taewin)</h3>
+                    <p class="author-role">นักออกแบบกราฟิก | คณะดิจิทัลมีเดีย มหาวิทยาลัยศรีปทุม #67</p>
+                    <div class="author-logos">
+                        <img src="img/logo/spu.jpg" alt="SPU" title="Sripatum University" />
+                        <img src="img/logo/sdm.jpg" alt="SDM" title="School of Digital Media" />
+                        <img src="img/logo/SavorHappiness.jpg" alt="Savor Happiness Theme" style="border-radius: 50%" />
+                    </div>
+                    <div class="author-socials">
+                        <a href="mailto:palmy1983ch@gmail.com" class="social-btn"><i class="fas fa-envelope"></i>
+                            Email</a>
+                        <a href="https://www.facebook.com/profile.php?id=61583912952191" target="_blank"
+                            class="social-btn"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="https://www.youtube.com/channel/UCMkdKbC24fxkU5E3BMWSt4Q" target="_blank"
+                            class="social-btn"><i class="fab fa-youtube"></i> YouTube</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="support" class="section support-hero" data-aos="fade-up">
+            <div class="support-glass-card">
+                <div class="support-text-side">
+                    <h2 class="support-heading"><i class="fas fa-heart"></i> อุดหนุนผลงาน</h2>
+                    <p class="support-sub">Savor Happiness Thesis Project</p>
+                    <p class="support-description">
+                        ทุกการสนับสนุนของคุณคือแรงผลักดันสำคัญสำหรับโปรเจกต์จบของเรา<br />
+                        ขอบคุณที่ร่วมเดินทางและลิ้มรสความสุขของชานเมืองไปด้วยกันครับ ✨
+                    </p>
+                    <div class="support-creator-tag">
+                        <img src="img/Author_Palm.jpg" alt="Palm" class="small-avatar" loading="lazy" />
+                        <span>โดย ปรานต์ แถวอินทร์ (ปาล์ม)</span>
+                    </div>
+                </div>
+                <div class="support-qr-side">
+                    <div class="qr-wrapper">
+                        <img src="img/qr-placeholder.png" alt="QR Code" class="qr-image" loading="lazy" />
+                        <div class="qr-scan-line"></div>
+                    </div>
+                    <p class="qr-hint">สแกนเพื่อสนับสนุน</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <div id="cafeModal" class="custom-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <img id="modalImg" src="" alt="Cafe Full Image" />
+            <h3 id="modalTitle">ชื่อคาเฟ่</h3>
+            <p id="modalDesc">รายละเอียดร้าน</p>
+            <a href="#book-feature" class="btn-primary" onclick="closeModal()">
+                <i class="fas fa-book-open"></i> ดูรูปเต็มในไกด์บุ๊ค
+            </a>
+        </div>
+    </div>
+
+    <div class="speed-dial-container" id="speedDialContainer">
+        <button class="speed-dial-main-btn" onclick="toggleSpeedDial()">
+            <img src="img/smile-normal.png" class="speed-dial-img img-normal" alt="Contact" />
+            <img src="img/smile-tongue.png" class="speed-dial-img img-active" alt="Contact Active" />
+        </button>
+        <div class="speed-dial-buttons">
+            <a href="Tel:0979465925" class="dial-btn phone-btn"><i class="fas fa-phone"></i></a>
+            <a href="https://line.me/ti/p/hoyPIxxf4K" class="dial-btn line-btn"><i class="fab fa-line"></i></a>
+            <button class="dial-btn copy-btn" onclick="copyContact()"><i class="fas fa-copy"></i></button>
+        </div>
+    </div>
+
+    <div id="simpleLightbox" class="lightbox-overlay" onclick="closeSimpleLightbox()"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 20000 !important; cursor: zoom-out; justify-content: center; align-items: center; backdrop-filter: blur(8px);">
+        <span class="close-btn"
+            style="position: absolute; top: 25px; right: 35px; color: white; font-size: 45px; cursor: pointer; transition: 0.3s; opacity: 0.7;"
+            onmouseover="this.style.opacity = 1" onmouseout="this.style.opacity = 0.7">&times;</span>
+        <button class="nav-btn prev" onclick="event.stopPropagation(); changeImg(-1);"
+            style="position: absolute; left: 30px; background: rgba(255, 255, 255, 0.05); color: white; border: 1px solid rgba(255, 255, 255, 0.2); width: 60px; height: 60px; font-size: 24px; cursor: pointer; border-radius: 50%; z-index: 20001; transition: 0.3s;"
+            onmouseover="this.style.background = 'rgba(255,255,255,0.2)'"
+            onmouseout="this.style.background = 'rgba(255,255,255,0.05)'">&#10094;</button>
+        <img id="lightboxImg" class="lightbox-content" src="" alt="Full View"
+            style="max-width: 90%; max-height: 85vh; object-fit: contain; border-radius: 8px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); transition: transform 0.3s ease-out;"
+            onclick="event.stopPropagation()" />
+        <button class="nav-btn next" onclick="event.stopPropagation(); changeImg(1);"
+            style="position: absolute; right: 30px; background: rgba(255, 255, 255, 0.05); color: white; border: 1px solid rgba(255, 255, 255, 0.2); width: 60px; height: 60px; font-size: 24px; cursor: pointer; border-radius: 50%; z-index: 20001; transition: 0.3s;"
+            onmouseover="this.style.background = 'rgba(255,255,255,0.2)'"
+            onmouseout="this.style.background = 'rgba(255,255,255,0.05)'">&#10095;</button>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-watermark" aria-hidden="true">SAVOR HAPPINESS</div>
+        <div class="footer-inner">
+            <div class="footer-col footer-col--brand">
+                <img src="img/logo/savorhappiness-1.png" alt="Savor Happiness" class="footer-logo" />
+                <p class="footer-tagline">DIGITAL MEDIA · GRAPHIC DESIGN · SPU THESIS</p>
+                <p class="footer-desc">บันทึกความทรงจำผ่านเลนส์<br />ย่านมีนบุรี–หนองจอก</p>
+                <a href="#support" class="footer-cta-btn"><i class="fas fa-qrcode"></i> อุดหนุนผลงาน</a>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-title">Navigate</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#book-feature">The Guidebook</a></li>
+                    <li><a href="#merch">Merchandise</a></li>
+                    <li><a href="#highlights">Highlights</a></li>
+                    <li><a href="#author">Creator</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-title">Explore</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="pdf/SavorHappiness_Preview.pdf" target="_blank">Preview PDF</a></li>
+                    <li><a href="#highlights">Minburi Cafes</a></li>
+                    <li><a href="#highlights">Nongchok Cafes</a></li>
+                    <li><a href="#merch">Sticker Set</a></li>
+                    <li><a href="#merch">Bookmarks</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-title">Connect</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="mailto:palmy1983ch@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
+                    <li><a href="https://www.facebook.com/profile.php?id=61583912952191" target="_blank"><i
+                                class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="https://www.youtube.com/channel/UCMkdKbC24fxkU5E3BMWSt4Q" target="_blank"><i
+                                class="fab fa-youtube"></i> YouTube</a></li>
+                    <li><a href="https://line.me/ti/p/hoyPIxxf4K" target="_blank"><i class="fab fa-line"></i> LINE</a>
+                    </li>
+                    <li><a href="Tel:0979465925"><i class="fas fa-phone"></i> 097-946-5925</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/profile.php?id=61583912952191" target="_blank"
+                    aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com/channel/UCMkdKbC24fxkU5E3BMWSt4Q" target="_blank"
+                    aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="mailto:palmy1983ch@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://line.me/ti/p/hoyPIxxf4K" target="_blank" aria-label="LINE"><i
+                        class="fab fa-line"></i></a>
+            </div>
+            <p class="footer-copy">© 2026 SAVOR HAPPINESS | Made with ❤️ for SPU Thesis — Pran Taewin</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // --- [1] Global Functions (Toggle Speed Dial) ---
+        window.toggleSpeedDial = function (e) {
+            if (e) e.stopPropagation();
+            const dial = document.getElementById("speedDialContainer");
+            if (dial) dial.classList.toggle("active");
+        };
+
+        // --- [2] Main Event Listeners ---
+        document.addEventListener("click", function (e) {
+            const dial = document.getElementById("speedDialContainer");
+            const muteBtn = document.getElementById("muteBtn");
+            const video = document.getElementById("myVideo");
+
+            // Mute/Unmute Video
+            if (muteBtn && muteBtn.contains(e.target) && video) {
+                const muteIcon = muteBtn.querySelector("i");
+                video.muted = !video.muted;
+                muteIcon.classList.toggle("fa-volume-mute", video.muted);
+                muteIcon.classList.toggle("fa-volume-up", !video.muted);
+            }
+
+            // Close Speed Dial when clicking outside
+            if (dial && dial.classList.contains("active") && !dial.contains(e.target)) {
+                dial.classList.remove("active");
+            }
+        });
+
+        // --- [3] Auto-inject & Initialize AOS ---
+        document.querySelectorAll("h1, h2, h3, img").forEach((el) => {
+            if (!el.hasAttribute("data-aos")) {
+                el.setAttribute("data-aos", "fade-up");
+            }
+        });
+
+        AOS.init({
+            duration: 500,
+            once: true,
+            easing: "ease-out-cubic",
+            offset: 50,
+        });
+
+        // --- [4] Security: Disable Dragging Images ---
+        window.onload = function () {
+            const allImages = document.getElementsByTagName("img");
+            for (let i = 0; i < allImages.length; i++) {
+                allImages[i].setAttribute("draggable", "false");
+                allImages[i].oncontextmenu = function () { return false; };
+                allImages[i].ondragstart = function () { return false; };
+            }
+        };
+
+        // --- [5] Security: Anti-Print Screen & Print ---
+        document.addEventListener("keyup", (e) => {
+            if (e.key === "PrintScreen") {
+                navigator.clipboard.writeText("ไม่อนุญาตให้แคปภาพลิขสิทธิ์ครับ");
+                alert("ระบบความปลอดภัย: ตรวจพบการแคปหน้าจอ เนื้อหาถูกล็อค");
+            }
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.ctrlKey && e.key === "p") {
+                alert("ไม่อนุญาตให้สั่งพิมพ์หน้าเว็บนี้ครับ");
+                e.preventDefault();
+            }
+        });
+    </script>
+
+    <script src="script.js" defer></script>
+
+</body>
+
 </html>
