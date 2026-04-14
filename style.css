@@ -1,11 +1,11 @@
 /* ============================================================
    SAVOR HAPPINESS — MASTER STYLESHEET
-   Consolidated: No Duplicate Selectors, Clean Responsive,
-   Video Black-Bar Fix, Book Card Centering, Dark Mode Contrast
+   Grouped & Categorized for Maintainability
+   (Includes Guidebook Ratio Fix, Foldable & Landscape)
    ============================================================ */
 
 /* ============================================================
-   [1] FONTS & CSS VARIABLES
+   [GROUP 1] FONTS, VARIABLES & BASE THEME
    ============================================================ */
 @font-face {
   font-family: "NangKaiThot";
@@ -35,7 +35,7 @@
   --nav-border: rgba(0, 122, 51, 0.1);
   --shadow-color: rgba(0, 0, 0, 0.08);
 
-  /* Legacy aliases (ให้โค้ดเก่าไม่พัง) */
+  /* Legacy aliases */
   --savor-green: var(--ci-green);
   --savor-orange: var(--ci-orange);
   --savor-cream: var(--ci-cream);
@@ -44,9 +44,6 @@
   --savor-olive: var(--ci-olive);
 }
 
-/* ============================================================
-   [2] DARK MODE ENGINE
-   ============================================================ */
 [data-theme="dark"] .logo-img {
   content: url("img/logo/savorhappiness-2.png") !important;
 }
@@ -61,9 +58,6 @@
   --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
-/* ============================================================
-   [3] GLOBAL RESET & ANTI-OVERFLOW
-   ============================================================ */
 * {
   margin: 0;
   padding: 0;
@@ -90,9 +84,6 @@ body {
   padding-top: 85px !important;
 }
 
-/* ============================================================
-   [4] GLOBAL IMAGE SECURITY & OPTIMIZATION
-   ============================================================ */
 img {
   content-visibility: auto;
   object-fit: cover;
@@ -105,7 +96,7 @@ img {
 }
 
 /* ============================================================
-   [6] SCROLL PROGRESS BAR
+   [GROUP 2] LAYOUTS & MAIN SECTIONS
    ============================================================ */
 .scroll-progress-container {
   position: fixed;
@@ -118,39 +109,27 @@ img {
   pointer-events: none;
 }
 
-/* MICRO: Progress bar — gradient fill with animated glow */
 .progress-bar {
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--ci-green) 0%,
-    var(--ci-orange) 60%,
-    var(--ci-yellow) 100%
-  );
+  background: linear-gradient(90deg, var(--ci-green) 0%, var(--ci-orange) 60%, var(--ci-yellow) 100%);
   width: 0%;
   transition: width 0.15s cubic-bezier(0.22, 0.61, 0.36, 1);
-  box-shadow:
-    0 0 8px rgba(255, 140, 0, 0.55),
-    0 0 20px rgba(255, 140, 0, 0.25);
+  box-shadow: 0 0 8px rgba(255, 140, 0, 0.55), 0 0 20px rgba(255, 140, 0, 0.25);
   border-radius: 0 3px 3px 0;
 }
 
-/* ============================================================
-   [9] HERO SECTION
-   ============================================================ */
 #home {
-  min-height: 63vh; /* ปรับความสูงได้ตามต้องการ ถ้าอยากให้เต็มจอเป๊ะๆ เปลี่ยนเป็น 100vh ครับ */
+  min-height: 63vh;
   width: 100%;
-  position: relative; /* ล็อคกรอบของ Section นี้ไว้ ไม่ให้ Grid ทะลุออกไป */
-  overflow: hidden; /* ตัดส่วนที่ล้นออก ป้องกันการไปกวน Section ด้านล่าง */
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #000;
-  z-index: 1; /* กำหนดชั้นของ Hero ให้ชัดเจน */
+  z-index: 1;
 }
 
-/* One unified .hero-grid declaration */
 .hero-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -160,7 +139,7 @@ img {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1; /* ดันตารางภาพให้อยู่หลังสุดเสมอ */
+  z-index: -1;
 }
 
 .grid-item {
@@ -185,7 +164,7 @@ img {
 
 .hero-content-overlay {
   position: relative;
-  z-index: 10; /* ดันข้อความและกล่องค้นหาให้ลอยอยู่ด้านบนสุด */
+  z-index: 10;
   text-align: center;
   color: white;
   padding: 60px 20px;
@@ -198,16 +177,6 @@ img {
   flex-direction: column;
   align-items: center;
   gap: 8px;
-}
-
-/* ส่วนของกล่องค้นหา (Search Container) */
-.search-container {
-  width: 100%;
-  max-width: 800px;
-  margin-bottom: 30px;
-  background-color: #ffffff;
-  border-radius: 50px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* เพิ่มเงาให้กล่องค้นหาดูลอยขึ้นมา */
 }
 
 #home h1 {
@@ -238,9 +207,6 @@ img {
   color: rgba(255, 255, 255, 0.9);
 }
 
-/* ============================================================
-   [10] SECTION FORMATTING & TITLES
-   ============================================================ */
 .section {
   padding: 100px 15%;
   margin: 0 auto;
@@ -276,16 +242,144 @@ img {
 }
 
 /* ============================================================
-   [11] VIDEO EXPERIENCE SECTION
-   (aspect-ratio lock + no black bar)
+   [GROUP 3] COMPONENTS (CARDS, BUTTONS, SEARCH, VIDEO)
    ============================================================ */
+
+/* --- Search Bar --- */
+.search-container {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 30px;
+  background-color: #ffffff;
+  border-radius: 50px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.search-wrapper {
+  max-width: 850px;
+  margin: 37px auto 50px !important;
+  padding: 0 20px;
+  position: relative;
+  z-index: 100;
+}
+
+.search-input-group {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: clamp(6px, 2vw, 10px) clamp(6px, 2vw, 10px) clamp(6px, 2vw, 10px) clamp(15px, 4vw, 30px);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.search-input-group:focus-within {
+  transform: translateY(-2px);
+  border-color: #ff8c00;
+  box-shadow: 0 20px 50px rgba(255, 140, 0, 0.15);
+}
+
+#shopSearchInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
+  color: var(--savor-dark, #333);
+  background: transparent;
+  font-weight: 500;
+}
+
+#shopSearchInput::placeholder {
+  color: #bbb;
+}
+
+#searchBtn {
+  background: #007a33 !important;
+  color: #ffffff !important;
+  border: none;
+  padding: clamp(10px, 3vw, 14px) clamp(15px, 4vw, 35px);
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+#searchBtn:hover {
+  background: #ff8c00 !important;
+  transform: scale(1.02);
+}
+
+#searchSuggestions {
+  position: absolute;
+  top: calc(100% + 15px);
+  left: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  z-index: 1001;
+  display: none;
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.suggestion-item {
+  padding: 18px 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: 0.2s;
+  color: #444;
+  font-size: 1rem;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background: #fdfaf5;
+  color: #007a33;
+  padding-left: 35px;
+}
+
+.suggestion-item i {
+  color: #ff8c00;
+  font-size: 1.1rem;
+}
+
+[data-theme="dark"] .suggestion-item {
+  color: #444444 !important;
+}
+
+/* --- Video Section --- */
 .video-experience {
   padding-top: 100px;
   padding-bottom: 100px;
   background: var(--savor-cream);
 }
 
-/* Old-style container (used directly in some sections) */
 .video-container {
   position: relative;
   width: 90%;
@@ -296,7 +390,6 @@ img {
   isolation: isolate;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
   background: transparent;
-  /* no black bar */
 }
 
 .video-container video {
@@ -305,18 +398,15 @@ img {
   object-fit: cover;
 }
 
-/* Modern wrapper (used with #myVideo) */
 .video-wrapper {
   position: relative;
   width: 64%;
   max-width: 1000px;
   aspect-ratio: 16 / 9;
-  /* lock ratio → prevents letterbox gap */
   margin: 40px auto;
   border-radius: 10px;
   overflow: hidden;
   background: transparent;
-  /* ✅ no black bar ever */
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
@@ -324,7 +414,6 @@ img {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  /* fill wrapper, no letterbox */
   display: block !important;
   background: transparent !important;
 }
@@ -334,7 +423,6 @@ img {
   transition: transform 0.3s ease;
 }
 
-/* Overlay gradient for readability */
 .video-overlay {
   position: absolute;
   top: 0;
@@ -357,7 +445,6 @@ img {
   color: white;
 }
 
-/* Mute button */
 .mute-control-btn {
   position: absolute;
   bottom: 20px;
@@ -382,7 +469,6 @@ img {
   transform: scale(1.1);
 }
 
-/* Video content card */
 .video-content-box {
   background: #ffffff !important;
   padding: 50px 40px !important;
@@ -402,7 +488,6 @@ img {
   line-height: 1.2 !important;
 }
 
-/* Video description — single consolidated rule */
 .video-description {
   width: 100% !important;
   display: flex !important;
@@ -417,10 +502,8 @@ img {
   line-height: 1.8 !important;
   font-size: 1.15rem !important;
   color: #555 !important;
-  /* dark on white card → readable in both modes */
 }
 
-/* Video tag — hidden permanently */
 .video-tag {
   display: none !important;
   visibility: hidden !important;
@@ -428,15 +511,11 @@ img {
   pointer-events: none !important;
 }
 
-/* FIX: Video description — preserve sentence structure on mobile */
-/* <br> tags are allowed to wrap naturally; hiding them broke thai sentence flow */
 .video-description p br {
-  display: inline; /* override the mobile display:none at line ~1706 */
+  display: inline;
 }
 
-/* ============================================================
-   [12] SHOP GRID (2-col desktop / 1-col mobile)
-   ============================================================ */
+/* --- Shop Cards --- */
 .shop-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -464,9 +543,6 @@ img {
   box-shadow: 0 20px 40px rgba(0, 122, 51, 0.15);
 }
 
-/* ============================================================
-   [13] PHOTO GALLERY
-   ============================================================ */
 .photo-gallery {
   display: block;
   height: 320px;
@@ -512,9 +588,12 @@ img {
   font-size: 1.2rem;
   text-align: center;
   font-weight: 700;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
-/* combined border-radius override for card images */
 .shop-card img,
 .merch-card img,
 .author-profile-pic img {
@@ -522,9 +601,7 @@ img {
   object-fit: cover !important;
 }
 
-/* ============================================================
-   [14] TICKER BANNER
-   ============================================================ */
+/* --- Ticker Banner --- */
 .shop-ticker-banner {
   width: 100%;
   height: 70px;
@@ -570,9 +647,7 @@ img {
   margin: 0 10px;
 }
 
-/* ============================================================
-   [15] MERCH SECTION
-   ============================================================ */
+/* --- Merch Section --- */
 .merch-category {
   margin-bottom: 60px;
 }
@@ -589,14 +664,12 @@ img {
   padding-left: 20px;
 }
 
-/* Auto-fit grid for general merch */
 .merch-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 35px;
 }
 
-/* Bookmark triple grid override */
 .merch-grid.bookmark-triple-grid {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
@@ -636,9 +709,14 @@ img {
   transform: scale(1.05);
 }
 
-/* ============================================================
-   [17] PRIMARY BUTTON (single block)
-   ============================================================ */
+.merch-card p {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* --- Primary Button --- */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -651,23 +729,16 @@ img {
   text-decoration: none !important;
   font-weight: 700 !important;
   white-space: nowrap;
-  /* MICRO: Buttery 0.45s transition for premium lift feel */
-  transition:
-    background 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    transform   0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow  0.45s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: background 0.45s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1) !important;
   box-shadow: 0 5px 20px rgba(0, 122, 51, 0.25) !important;
   margin-top: 15px;
   animation: pulse-green 2s infinite;
 }
 
-/* MICRO: Button hover — elegant lift + brand glow */
 .btn-primary:hover {
   background: #005c26 !important;
   transform: translateY(-3px) scale(1.02) !important;
-  box-shadow:
-    0 10px 30px rgba(0, 122, 51, 0.35),
-    0 4px 12px rgba(0, 122, 51, 0.2) !important;
+  box-shadow: 0 10px 30px rgba(0, 122, 51, 0.35), 0 4px 12px rgba(0, 122, 51, 0.2) !important;
 }
 
 .btn-primary:active {
@@ -676,23 +747,7 @@ img {
   transition-duration: 0.1s !important;
 }
 
-@keyframes pulse-green {
-  0% {
-    box-shadow: 0 0 0 0 rgba(0, 122, 51, 0.4);
-  }
-
-  70% {
-    box-shadow: 0 0 0 15px rgba(0, 122, 51, 0);
-  }
-
-  100% {
-    box-shadow: 0 0 0 0 rgba(0, 122, 51, 0);
-  }
-}
-
-/* ============================================================
-   [18] LOGO BOX
-   ============================================================ */
+/* --- Logo Box --- */
 .logo-box {
   background: #ffffff !important;
   border: none !important;
@@ -703,7 +758,6 @@ img {
   transition: all 0.3s ease !important;
 }
 
-/* Logo box image — full color, no grayscale */
 .logo-box img {
   filter: none !important;
   -webkit-filter: grayscale(0) !important;
@@ -720,7 +774,6 @@ img {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Author logos grid — grayscale hover effect */
 .author-logos-grid {
   display: flex;
   gap: 32px;
@@ -741,9 +794,7 @@ img {
   opacity: 1;
 }
 
-/* ============================================================
-   [21] LIGHTBOX SYSTEM
-   ============================================================ */
+/* --- Lightbox --- */
 #simpleLightbox {
   display: none;
   position: fixed;
@@ -825,21 +876,18 @@ img {
 }
 
 /* ============================================================
-   [22] FOOTER — Redesigned (Giant Watermark + 4-Column Grid)
+   [GROUP 4] FOOTER
    ============================================================ */
-
-/* --- Base: rounded top, CI green background, clip the watermark --- */
 .footer {
   position: relative;
   background-color: var(--ci-green);
   color: rgba(255, 255, 255, 0.85);
-  border-radius: 40px 40px 0 0;     /* slide-up feel, matching the reference */
+  border-radius: 40px 40px 0 0;
   margin-top: 60px;
-  overflow: hidden;                  /* clips the watermark text cleanly */
+  overflow: hidden;
   padding: 0;
 }
 
-/* --- Giant watermark typography (decorative layer) --- */
 .footer-watermark {
   position: absolute;
   top: clamp(-5px, 1vw, 5px);
@@ -849,9 +897,8 @@ img {
   font-weight: 900;
   letter-spacing: -0.02em;
   white-space: nowrap;
-  /* Outline-only text = visible but never overpowers content */
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(251, 206, 74, 0.16); /* --ci-yellow, 16% opacity */
+  -webkit-text-stroke: 1.5px rgba(251, 206, 74, 0.16);
   text-transform: uppercase;
   pointer-events: none;
   user-select: none;
@@ -861,7 +908,6 @@ img {
   text-align: center;
 }
 
-/* --- Main 4-column content grid --- */
 .footer-inner {
   position: relative;
   z-index: 1;
@@ -873,7 +919,6 @@ img {
   padding: clamp(64px, 9vw, 110px) clamp(28px, 6%, 80px) clamp(44px, 5vw, 64px);
 }
 
-/* --- Brand column (col 1) --- */
 .footer-col--brand {
   display: flex;
   flex-direction: column;
@@ -883,7 +928,6 @@ img {
 .footer-logo {
   height: 38px;
   width: auto;
-  /* Always white on the green footer bg in both light & dark */
   filter: brightness(0) invert(1);
   margin-bottom: 2px;
   object-fit: contain;
@@ -908,7 +952,6 @@ img {
   overflow-wrap: break-word;
 }
 
-/* CTA button — yellow pill, green text */
 .footer-cta-btn {
   display: inline-flex;
   align-items: center;
@@ -934,7 +977,6 @@ img {
   box-shadow: 0 8px 22px rgba(255, 140, 0, 0.35);
 }
 
-/* --- Link columns (col 2, 3, 4) --- */
 .footer-col {
   display: flex;
   flex-direction: column;
@@ -984,22 +1026,14 @@ img {
   flex-shrink: 0;
 }
 
-/* --- Horizontal divider --- */
 .footer-divider {
   position: relative;
   z-index: 1;
   height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255, 255, 255, 0.12) 20%,
-    rgba(255, 255, 255, 0.12) 80%,
-    transparent
-  );
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.12) 20%, rgba(255, 255, 255, 0.12) 80%, transparent);
   margin: 0 clamp(28px, 6%, 80px);
 }
 
-/* --- Bottom bar: social icons + copyright --- */
 .footer-bottom {
   position: relative;
   z-index: 1;
@@ -1010,7 +1044,6 @@ img {
   padding: clamp(32px, 4vw, 52px) clamp(28px, 6%, 80px) clamp(36px, 4vw, 52px);
 }
 
-/* Social icon circles */
 .footer-socials {
   display: flex;
   gap: 12px;
@@ -1042,7 +1075,6 @@ img {
   box-shadow: 0 6px 18px rgba(251, 206, 74, 0.3);
 }
 
-/* Copyright line */
 .footer-copy {
   color: rgba(255, 255, 255, 0.3);
   font-size: 0.78rem;
@@ -1051,23 +1083,17 @@ img {
   margin: 0;
 }
 
-/* ============================================================
-   [22b] FOOTER — DARK MODE OVERRIDES
-   (footer stays green-family; deepen to near-black green)
-   ============================================================ */
 [data-theme="dark"] .footer {
-  background-color: #001f10; /* deep forest, complements olive page bg */
+  background-color: #001f10;
 }
 
 [data-theme="dark"] .footer-watermark {
   -webkit-text-stroke-color: rgba(251, 206, 74, 0.1);
 }
 
-/* Keep text readable — override the global [data-theme="dark"] footer p rule */
 [data-theme="dark"] .footer-desc,
 [data-theme="dark"] .footer-tagline,
 [data-theme="dark"] .footer-copy {
-  /* already rgba white — looks fine on #001f10 */
   color: rgba(255, 255, 255, 0.55) !important;
 }
 
@@ -1085,382 +1111,7 @@ img {
 }
 
 /* ============================================================
-   [22c] FOOTER — RESPONSIVE BREAKPOINTS
-   ============================================================ */
-
-/* Tablet: 2-column grid, brand spans full width */
-@media (max-width: 1024px) {
-  .footer {
-    border-radius: 28px 28px 0 0;
-  }
-
-  .footer-inner {
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(28px, 4vw, 50px);
-  }
-
-  .footer-col--brand {
-    grid-column: 1 / -1; /* full width row at top */
-  }
-}
-
-/* ============================================================
-   [22c-MOBILE] FOOTER — Portrait Mobile Polish
-   Replace this entire block when updating mobile footer styles.
-   ============================================================ */
-@media (max-width: 768px) {
-
-  /* -- Container: proportional rounded top + generous vertical breathing room -- */
-  .footer {
-    border-radius: 24px 24px 0 0;    /* softer than desktop 40px, still premium */
-    margin-top: 40px;
-  }
-
-  /* -- Watermark: gracefully scaled with clamp, never overflows -- */
-  .footer-watermark {
-    font-size: clamp(1.9rem, 10.5vw, 3.8rem);  /* tight control: no horizontal bleed */
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: rgba(251, 206, 74, 0.13); /* even softer on small screens */
-    top: 0;
-    letter-spacing: -0.01em;          /* tighten tracking at small size */
-  }
-
-  /* -- Inner grid: single column, generous gap + padding -- */
-  .footer-inner {
-    grid-template-columns: 1fr;
-    gap: 0;                            /* controlled individually per column via padding */
-    padding: 56px 28px 44px;          /* top: generous, sides: comfortable, bottom: breathes */
-    text-align: center;               /* ← centre-align all column content */
-    align-items: center;
-  }
-
-  /* -- Brand column: reset span, full-width centered -- */
-  .footer-col--brand {
-    grid-column: auto;
-    align-items: center;              /* centre logo, tagline, desc, CTA */
-    padding-bottom: 44px;            /* clear separation before first link col */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .footer-logo {
-    height: 34px;                     /* slightly tighter on mobile */
-  }
-
-  .footer-tagline {
-    font-size: 0.62rem;
-    letter-spacing: 2px;
-  }
-
-  .footer-desc {
-    font-size: 0.88rem;
-    max-width: 280px;                 /* keep Thai text from stretching wall-to-wall */
-    margin: 0 auto;                   /* centre the description block */
-  }
-
-  .footer-cta-btn {
-    width: 100%;
-    max-width: 260px;                 /* don't let button stretch too wide */
-    justify-content: center;
-    margin: 6px auto 0;              /* auto centres the block */
-    padding: 14px 24px;             /* taller = easier tap target */
-    font-size: 0.92rem;
-    /* Smooth active-state for touch */
-    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-  }
-
-  .footer-cta-btn:active {
-    transform: scale(0.97);           /* tactile press response */
-    box-shadow: 0 2px 8px rgba(251, 206, 74, 0.2);
-  }
-
-  /* -- Link columns: centred titles + generous row separation -- */
-  .footer-col {
-    align-items: center;              /* centre the entire column */
-    padding: 36px 0;                 /* ↑ was gap:32px — now each col breathes on its own */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  /* Last link column: no bottom rule (divider handles it) */
-  .footer-col:last-child {
-    border-bottom: none;
-    padding-bottom: 28px;
-  }
-
-  .footer-col-title {
-    text-align: center;
-    font-size: 0.62rem;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-  }
-
-  /* -- Nav list: centred, touch-friendly tap targets -- */
-  .footer-nav-list {
-    align-items: center;
-    gap: 0;                           /* spacing handled by li padding */
-  }
-
-  .footer-nav-list li {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  .footer-nav-list li a {
-    justify-content: center;
-    padding: 11px 16px;              /* 44px+ tap zone height via line-height + padding */
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.68);
-    border-radius: 8px;
-    width: 100%;
-    max-width: 240px;
-    /* Touch transition */
-    transition: color 0.2s ease, background 0.2s ease, transform 0.15s ease;
-  }
-
-  .footer-nav-list li a:hover,
-  .footer-nav-list li a:focus {
-    color: var(--ci-yellow);
-    background: rgba(251, 206, 74, 0.06); /* subtle yellow tint on hover/focus */
-    transform: none;                  /* no x-shift on mobile — feels wrong on touch */
-  }
-
-  .footer-nav-list li a:active {
-    transform: scale(0.97);           /* press feedback */
-    color: var(--ci-yellow);
-    background: rgba(251, 206, 74, 0.1);
-  }
-
-  /* -- Divider: tighter horizontal margin -- */
-  .footer-divider {
-    margin: 0 28px;
-  }
-
-  /* -- Bottom bar: generous padding, centred social row -- */
-  .footer-bottom {
-    padding: 36px 28px 48px;         /* top: breathing room, bottom: safe area margin */
-    gap: 20px;
-    align-items: center;
-    text-align: center;
-  }
-
-  .footer-socials {
-    gap: 14px;                        /* slightly more air between circles */
-    justify-content: center;
-  }
-
-  /* Touch-friendly social icon circles */
-  .footer-socials a {
-    width: 48px;                      /* 48px = Google recommended min touch target */
-    height: 48px;
-    font-size: 1rem;
-    /* Touch transition */
-    transition: background 0.2s ease, border-color 0.2s ease,
-                color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-  }
-
-  .footer-socials a:active {
-    transform: scale(0.93);           /* satisfying press-in feel */
-    box-shadow: 0 2px 10px rgba(251, 206, 74, 0.25);
-  }
-
-  .footer-copy {
-    font-size: 0.72rem;
-    letter-spacing: 0.3px;
-    color: rgba(255, 255, 255, 0.28);
-    line-height: 1.6;
-    max-width: 280px;
-    margin: 0 auto;
-  }
-}
-
-/* ============================================================
-   [22c-XS] FOOTER — Ultra-Small Screens (≤ 400px / Galaxy Fold etc.)
-   ============================================================ */
-@media (max-width: 400px) {
-
-  .footer {
-    border-radius: 18px 18px 0 0;
-  }
-
-  .footer-watermark {
-    font-size: clamp(1.5rem, 9.5vw, 2.8rem);
-    -webkit-text-stroke-width: 0.8px;
-  }
-
-  .footer-inner {
-    padding: 44px 20px 36px;
-  }
-
-  .footer-col--brand {
-    padding-bottom: 36px;
-  }
-
-  .footer-logo {
-    height: 30px;
-  }
-
-  .footer-desc {
-    font-size: 0.82rem;
-    max-width: 240px;
-  }
-
-  .footer-cta-btn {
-    font-size: 0.85rem;
-    padding: 13px 20px;
-  }
-
-  .footer-col-title {
-    font-size: 0.58rem;
-    letter-spacing: 2.5px;
-  }
-
-  .footer-nav-list li a {
-    font-size: 0.88rem;
-    padding: 10px 12px;
-  }
-
-  .footer-socials {
-    gap: 10px;
-  }
-
-  .footer-socials a {
-    width: 44px;                      /* minimum safe touch target */
-    height: 44px;
-    font-size: 0.88rem;
-  }
-
-  .footer-copy {
-    font-size: 0.68rem;
-    max-width: 240px;
-  }
-
-  .footer-bottom {
-    padding: 28px 20px 44px;
-  }
-}
-
-/* ============================================================
-   [23] SEARCH BAR (Luxury Style)
-   ============================================================ */
-.search-wrapper {
-  max-width: 850px;
-  margin: 37px auto 50px !important;
-  padding: 0 20px;
-  position: relative;
-  z-index: 100;
-}
-
-.search-input-group {
-  display: flex;
-  align-items: center;
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 10px 10px 10px 30px;
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.search-input-group:focus-within {
-  transform: translateY(-2px);
-  border-color: #ff8c00;
-  box-shadow: 0 20px 50px rgba(255, 140, 0, 0.15);
-}
-
-#shopSearchInput {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-size: 1.1rem;
-  color: var(--savor-dark, #333);
-  background: transparent;
-  font-weight: 500;
-}
-
-#shopSearchInput::placeholder {
-  color: #bbb;
-}
-
-#searchBtn {
-  background: #007a33 !important;
-  color: #ffffff !important;
-  border: none;
-  padding: 14px 35px;
-  border-radius: 10px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.3s;
-  letter-spacing: 0.5px;
-}
-
-#searchBtn:hover {
-  background: #ff8c00 !important;
-  transform: scale(1.02);
-}
-
-#searchSuggestions {
-  position: absolute;
-  top: calc(100% + 15px);
-  left: 20px;
-  right: 20px;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(15px);
-  border-radius: 10px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  z-index: 1001;
-  display: none;
-  overflow: hidden;
-  animation: slideUp 0.3s ease-out;
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.suggestion-item {
-  padding: 18px 25px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  transition: 0.2s;
-  color: #444;
-  font-size: 1rem;
-}
-
-.suggestion-item:last-child {
-  border-bottom: none;
-}
-
-.suggestion-item:hover {
-  background: #fdfaf5;
-  color: #007a33;
-  padding-left: 35px;
-}
-
-.suggestion-item i {
-  color: #ff8c00;
-  font-size: 1.1rem;
-}
-
-/* Suggestion box text stays dark → white glass bg */
-[data-theme="dark"] .suggestion-item {
-  color: #444444 !important;
-}
-
-/* ============================================================
-   [24] QR SUPPORT MODAL
+   [GROUP 5] MODALS, SUPPORT, AUTHOR
    ============================================================ */
 .qr-modal {
   display: none;
@@ -1549,7 +1200,6 @@ img {
   font-size: 1.1rem;
 }
 
-/* QR Card dark mode — white card, dark text */
 [data-theme="dark"] .qr-card {
   background: rgba(255, 255, 255, 0.9) !important;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1567,9 +1217,6 @@ img {
   color: #333333 !important;
 }
 
-/* ============================================================
-   [25] SUPPORT SECTION
-   ============================================================ */
 .support-container {
   display: flex;
   justify-content: center;
@@ -1607,46 +1254,297 @@ img {
   animation: shimmer 3s infinite;
 }
 
-@keyframes shimmer {
-  0% {
-    left: -60%;
-  }
-
-  20% {
-    left: 120%;
-  }
-
-  100% {
-    left: 120%;
-  }
+.support-hero {
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
 }
 
-@keyframes pulse-orange {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.5);
-  }
+.support-glass-card {
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(135deg, var(--ci-green, #007a33) 0%, #004d21 100%);
+  border-radius: 24px;
+  max-width: 900px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 122, 51, 0.25);
+  color: white;
+  position: relative;
+  transition: transform 0.4s ease;
+}
 
-  70% {
-    box-shadow: 0 0 0 15px rgba(255, 140, 0, 0);
-  }
+.support-glass-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0, 122, 51, 0.35);
+}
 
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0);
-  }
+.support-glass-card::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 250px;
+  height: 250px;
+  background: rgba(251, 206, 74, 0.15);
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.support-text-side {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+}
+
+.support-heading {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--ci-yellow, #fbce4a);
+  margin-bottom: 5px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.support-sub {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+.support-description {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  opacity: 0.85;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.support-creator-tag {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 20px 8px 8px;
+  border-radius: 50px;
+  width: fit-content;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.small-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid var(--ci-yellow, #fbce4a);
+  object-fit: cover;
+}
+
+.support-qr-side {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1;
+  backdrop-filter: blur(10px);
+}
+
+.qr-wrapper {
+  background: white;
+  padding: 15px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border: 4px solid var(--ci-yellow, #fbce4a);
+}
+
+.qr-wrapper img {
+  width: 180px;
+  height: 180px;
+  display: block;
+}
+
+.qr-scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--ci-orange, #ff8c00);
+  box-shadow: 0 0 15px var(--ci-orange, #ff8c00);
+  animation: scanQR 3s infinite linear;
+}
+
+.qr-hint {
+  color: var(--ci-yellow, #fbce4a);
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+  animation: pulse-hint 2s infinite;
+}
+
+[data-theme="dark"] .support-glass-card {
+  background: linear-gradient(135deg, #004d21 0%, #001f10 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.author-container {
+  max-width: 880px;
+  margin: 0 auto;
+  background: var(--bg-card, #ffffff);
+  border-radius: 30px;
+  padding: 50px 60px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+  text-align: left;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.author-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px rgba(0, 122, 51, 0.07);
+}
+
+.author-img {
+  width: 210px;
+  height: 210px;
+  border-radius: 50% !important;
+  object-fit: cover;
+  box-shadow: -15px 15px 0px rgba(0, 122, 51, 0.08);
+  margin-bottom: 0;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  flex-shrink: 0;
+}
+
+.author-img:hover {
+  transform: translate(5px, -5px);
+  box-shadow: -20px 20px 0px rgba(255, 140, 0, 0.2);
+}
+
+.author-info {
+  flex: 1;
+}
+
+.author-name {
+  font-size: 2.2rem;
+  color: var(--ci-green, #007a33) !important;
+  margin-bottom: 8px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.author-role {
+  font-size: 1.1rem;
+  color: var(--text-main, #555) !important;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  border-left: 3px solid var(--ci-orange, #ff8c00);
+  padding-left: 15px;
+}
+
+.author-logos {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.author-logos img {
+  height: 40px !important;
+  width: auto !important;
+  border-radius: 8px !important;
+  transition: transform 0.3s ease;
+}
+
+.author-logos img:hover {
+  transform: scale(1.1);
+}
+
+.author-socials {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 12px;
+  background: rgba(0, 122, 51, 0.05);
+  color: var(--ci-green, #007a33);
+  text-decoration: none !important;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  background: var(--ci-green, #007a33);
+  color: white !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 122, 51, 0.2);
+}
+
+[data-theme="dark"] .author-container {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .author-img {
+  box-shadow: -15px 15px 0px rgba(244, 225, 5, 0.15);
+}
+
+[data-theme="dark"] .author-img:hover {
+  box-shadow: -20px 20px 0px rgba(255, 140, 0, 0.3);
+}
+
+[data-theme="dark"] .author-name {
+  color: var(--ci-yellow, #f4e105) !important;
+}
+
+[data-theme="dark"] .author-role {
+  color: #dddddd !important;
+}
+
+[data-theme="dark"] .social-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+[data-theme="dark"] .social-btn:hover {
+  background: var(--ci-yellow, #f4e105);
+  color: #000 !important;
 }
 
 /* ============================================================
-   [26] DARK MODE — COMPREHENSIVE OVERRIDES
+   [GROUP 6] DARK MODE OVERRIDES
    ============================================================ */
-
-/* Body & global */
 [data-theme="dark"],
 [data-theme="dark"] body {
   background-color: var(--savor-olive) !important;
   color: #ffffff !important;
 }
 
-/* Nav */
 [data-theme="dark"] nav,
 [data-theme="dark"] .nav-links {
   background-color: rgb(0 122 51 / 0%) !important;
@@ -1659,15 +1557,14 @@ img {
   color: #ffffff !important;
 }
 
-/* Section titles */
 [data-theme="dark"] .section-title {
   color: #ffffff !important;
 }
+
 [data-theme="dark"] #author .section-title {
   color: #007A33 !important;
 }
 
-/* Section backgrounds */
 [data-theme="dark"] #highlights,
 [data-theme="dark"] #merch,
 [data-theme="dark"] #book-feature,
@@ -1675,7 +1572,6 @@ img {
   background-color: #004d21 !important;
 }
 
-/* District label */
 [data-theme="dark"] .district-label {
   color: #ffffff !important;
   background: rgba(255, 255, 255, 0.12) !important;
@@ -1687,7 +1583,6 @@ img {
   font-weight: 700;
 }
 
-/* Shop Card — white card, readable dark text */
 [data-theme="dark"] .shop-card {
   background-color: #ffffff !important;
   border: none !important;
@@ -1730,15 +1625,12 @@ img {
   line-height: 1.5;
 }
 
-/* Merch Card — white card, readable dark text (single block) */
 [data-theme="dark"] .merch-card {
   background-color: #ffffff !important;
   padding: 15px !important;
   border-radius: 10px;
   border: none !important;
-  transition:
-    transform 0.3s ease,
-    background 0.3s ease !important;
+  transition: transform 0.3s ease, background 0.3s ease !important;
 }
 
 [data-theme="dark"] .merch-card:hover {
@@ -1763,7 +1655,6 @@ img {
   opacity: 0.9;
 }
 
-/* Merch sub-title */
 [data-theme="dark"] .merch-sub-title {
   color: #ffffff !important;
   border-left: 4px solid var(--ci-orange) !important;
@@ -1776,12 +1667,10 @@ img {
   margin-right: 10px;
 }
 
-/* Bookmark section merch sub-title stays orange */
 [data-theme="dark"] #bookmark-section .merch-sub-title {
   color: var(--ci-orange) !important;
 }
 
-/* Guidebook text on white card */
 [data-theme="dark"] .book-text h2,
 [data-theme="dark"] .book-description,
 [data-theme="dark"] .support-card .section-title,
@@ -1789,17 +1678,14 @@ img {
   color: #ffffff !important;
 }
 
-/* Video content box title on white card */
 [data-theme="dark"] .video-content-box .section-title {
   color: #007a33 !important;
 }
 
-/* Video description on white card → dark text */
 [data-theme="dark"] .video-description p {
   color: #555 !important;
 }
 
-/* Light-mode explicit section colors */
 html:not([data-theme="dark"]) #highlights,
 html:not([data-theme="dark"]) #merch {
   background-color: #fcfcfc !important;
@@ -1858,593 +1744,8 @@ html:not([data-theme="dark"]) .merch-card p {
 }
 
 /* ============================================================
-   [27] ORIENTATION FIXES
+   [GROUP 7] NAVIGATION & SPEED DIAL
    ============================================================ */
-@media (max-height: 600px) and (orientation: landscape) {
-
-  body,
-  .scroll-progress-container {
-    padding-top: 55px !important;
-    top: 55px !important;
-  }
-}
-
-/* ============================================================
-   [28] PRINT GUARD
-   ============================================================ */
-@media print {
-  body {
-    display: none !important;
-  }
-}
-
-/* ============================================================
-   [29] RESPONSIVE ENGINE (CLEANED & FIXED)
-   ============================================================ */
-
-/* --- TABLET 1024px --- */
-@media (max-width: 1024px) {
-  .scroll-progress-container {
-    top: 70px !important;
-  }
-
-  /* Video adjustments */
-  .video-wrapper {
-    width: 92% !important;
-    margin: 20px auto !important;
-    border-radius: 10px !important;
-  }
-
-  #myVideo {
-    width: 100% !important;
-    height: 100% !important;
-    border-radius: 0 !important;
-  }
-
-  .video-text-side {
-    padding: 30px 15px !important;
-    text-align: center !important;
-  }
-
-  .video-flex-container {
-    flex-direction: column !important;
-  }
-
-  .video-content-box {
-    max-width: 100% !important;
-  }
-
-  /* Shop grid responsive */
-  .shop-grid {
-    gap: 25px !important;
-    padding: 0 15px !important;
-  }
-
-  .author-visual-side {
-    border-right: none;
-    border-bottom: 1px solid #eee;
-    width: 100%;
-    flex: none;
-  }
-
-  /* Search */
-  .search-wrapper {
-    max-width: 90%;
-    margin-top: 47px !important;
-  }
-}
-
-/* --- STANDARD MOBILE 768px --- */
-@media (max-width: 768px) {
-
-  /* Hero: 2x5 grid สำหรับมือถือแนวตั้ง */
-  .hero-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    grid-template-rows: repeat(5, 1fr) !important;
-  }
-
-  .hero-content-overlay {
-    padding: 40px 15px;
-  }
-
-  /* Single-column grids */
-  .shop-grid {
-    grid-template-columns: 1fr !important;
-    gap: 32px;
-    width: 95%;
-  }
-
-  .shop-card {
-    max-width: 350px;
-  }
-
-  [data-theme="dark"] .shop-info {
-    padding: 18px !important;
-    text-align: center;
-  }
-
-  [data-theme="dark"] .shop-card {
-    margin: 0 10px !important;
-  }
-
-  /* Merch bookmark grid: 2 cols */
-  .merch-grid.bookmark-triple-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-
-  [data-theme="dark"] .merch-grid {
-    gap: 20px !important;
-    padding: 0 10px !important;
-  }
-
-  .merch-card img {
-    width: 100% !important;
-    border-radius: 10px !important;
-    aspect-ratio: 1 / 1 !important;
-    object-fit: cover !important;
-  }
-
-  /* Typography */
-  .section {
-    padding: 60px 5% !important;
-  }
-
-  .section-title {
-    font-size: 1.8rem;
-    margin-bottom: 40px;
-  }
-
-  #home h1 {
-    font-size: clamp(2rem, 10vw, 3rem);
-  }
-
-  #home .hero-desc {
-    font-size: 0.9rem;
-    margin-bottom: 25px;
-  }
-
-  /* Video */
-  .video-container {
-    height: 350px;
-    width: 95%;
-  }
-
-  .video-content h2 {
-    font-size: 1.8rem;
-  }
-
-  .video-overlay {
-    padding: 30px;
-  }
-
-  .video-content-box {
-    padding: 35px 20px !important;
-    margin: 0 15px 30px !important;
-    width: auto !important;
-  }
-
-  .video-content-box .section-title {
-    font-size: 1.8rem !important;
-  }
-
-  .video-description p {
-    font-size: 1rem !important;
-    padding: 0 10px !important;
-    max-width: 100% !important;
-  }
-
-  /* FIX: Do NOT hide <br> tags — let text wrap naturally at narrow widths instead */
-  /* .video-description p br { display: none; } — REMOVED: was breaking sentence flow */
-  .video-description p {
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-
-  .logo-box {
-    width: 60px;
-    height: 60px;
-    padding: 6px;
-  }
-
-  .qr-card {
-    padding: 25px 15px !important;
-  }
-
-  .qr-header h3 {
-    font-size: 1.3rem !important;
-  }
-
-  /* Search */
-  .search-wrapper {
-    margin-top: 100px !important;
-  }
-
-  .search-input-group {
-    padding: 8px 8px 8px 20px;
-  }
-
-  #searchBtn {
-    padding: 12px 20px;
-    font-size: 0.95rem;
-  }
-}
-
-/* --- MOBILE 480px --- */
-@media (max-width: 480px) {
-  .thumb-item {
-    width: 60px;
-    height: 60px;
-    gap: 10px !important;
-  }
-
-  .merch-grid.bookmark-triple-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* --- SMALL/FOLD 400px --- */
-@media (max-width: 400px) {
-
-  .merch-grid.bookmark-triple-grid,
-  .shop-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  #home h1 {
-    font-size: 2rem !important;
-  }
-
-  #home .hero-desc {
-    font-size: 0.85rem !important;
-  }
-
-  .author-name {
-    font-size: 24px !important;
-  }
-
-  .contact-box {
-    width: 100%;
-    max-width: 260px;
-  }
-
-  .thumb-item {
-    width: 60px;
-    height: 60px;
-  }
-}
-
-/* --- MOBILE LANDSCAPE --- */
-@media (max-height: 600px) and (orientation: landscape) {
-  .hero-grid {
-    grid-template-columns: repeat(5, 1fr) !important;
-    grid-template-rows: repeat(2, 1fr) !important;
-  }
-
-  .hero-content-overlay {
-    padding-top: 80px;
-    padding-bottom: 20px;
-  }
-
-  .content-wrapper {
-    gap: 5px;
-  }
-
-  #home {
-    min-height: 110vh;
-  }
-
-  #home h1 {
-    font-size: clamp(1.6rem, 5vw, 2.5rem) !important;
-    margin-bottom: 5px;
-  }
-
-  #home .subtitle-vibe {
-    margin-bottom: 5px;
-    font-size: 0.8rem;
-  }
-
-  #home .hero-desc {
-    font-size: 0.8rem !important;
-    margin-bottom: 12px;
-    line-height: 1.3;
-  }
-
-  .btn-primary {
-    padding: 8px 20px;
-    font-size: 0.85rem;
-  }
-}
-
-/* ============================================================
-   [30] FLUID RESPONSIVE REFINEMENT
-   ============================================================ */
-:root {
-  --space-xs: clamp(8px, 1.5vw, 14px);
-  --space-sm: clamp(14px, 2.5vw, 24px);
-  --space-md: clamp(24px, 4vw, 48px);
-  --space-lg: clamp(48px, 7vw, 100px);
-  --space-xl: clamp(80px, 10vw, 140px);
-  --fs-body: clamp(0.9rem, 1.2vw, 1.1rem);
-  --fs-label: clamp(0.75rem, 1vw, 0.9rem);
-  --fs-card: clamp(1rem, 1.4vw, 1.25rem);
-  --fs-h2: clamp(1.6rem, 3.5vw, 2.4rem);
-  --fs-h3: clamp(1.2rem, 2.5vw, 1.8rem);
-}
-
-body {
-  font-size: var(--fs-body);
-}
-
-.section {
-  padding: var(--space-xl) clamp(5%, 10%, 15%);
-}
-
-@media (min-width: 1200px) {
-  .hero-content-overlay {
-    padding: 80px 40px;
-    max-width: 1100px;
-  }
-
-  .section-title {
-    font-size: clamp(2.4rem, 3vw, 3rem);
-    margin-bottom: 70px;
-  }
-
-  .shop-grid {
-    gap: clamp(32px, 4vw, 60px);
-    max-width: 1100px;
-  }
-
-  .book-card {
-    max-width: 960px !important;
-    padding: 60px 80px !important;
-  }
-
-  .video-wrapper {
-    max-width: 1000px;
-    margin: 68px auto !important;
-  }
-
-  .author-layout-card {
-    max-width: 1100px;
-  }
-
-  .footer-container {
-    padding: 0 8%;
-    gap: 60px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  .shop-grid {
-    gap: clamp(20px, 3vw, 36px);
-    width: 95%;
-  }
-
-  /* FIX: Nested @media is invalid CSS (ignored by browsers). Moved to standalone rule below. */
-
-  .section {
-    padding: var(--space-lg) 6%;
-  }
-
-  .book-grid-container {
-    gap: 40px !important;
-    padding: 40px 20px !important;
-  }
-
-  .thumb-item {
-    width: 80px;
-    height: 80px;
-  }
-
-  .shop-ticker-banner {
-    height: 60px;
-  }
-}
-
-/* FIX: Bookmark grid portrait — was inside invalid nested @media, now standalone */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-  .merch-grid.bookmark-triple-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 20px !important;
-  }
-}
-
-/* Dummy closing brace removed — real one follows next block */
-@media (min-width: 768px) and (max-width: 1024px) {
-}
-
-@media (max-width: 480px) {
-
-  .shop-grid,
-  .merch-grid,
-  .merch-grid.bookmark-triple-grid,
-  .shop-card {
-    max-width: 100% !important;
-    margin: 0 !important;
-  }
-
-  .merch-card {
-    padding: 18px !important;
-  }
-
-  .section {
-    padding: 48px 16px !important;
-  }
-
-  .section-title {
-    font-size: clamp(1.4rem, 6vw, 1.8rem) !important;
-    margin-bottom: 30px !important;
-  }
-
-  .district-label {
-    font-size: clamp(1rem, 5vw, 1.4rem) !important;
-    letter-spacing: 1.5px !important;
-    margin: 30px 0 20px 0 !important;
-  }
-
-  .book-card {
-    padding: 28px 18px !important;
-    margin: 16px 0 !important;
-    width: 100% !important;
-  }
-
-  .book-badge-row {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .book-thumbs {
-    gap: 8px !important;
-  }
-
-  .thumb-item {
-    width: 58px !important;
-    height: 58px !important;
-  }
-
-  .video-content-box {
-    padding: 28px 16px !important;
-    margin: 0 0 24px !important;
-  }
-
-  .video-content-box .section-title {
-    font-size: clamp(1.3rem, 5.5vw, 1.6rem) !important;
-  }
-
-  .btn-primary,
-  .btn-support-cta {
-    width: 100% !important;
-    min-height: 48px !important;
-    font-size: 1rem !important;
-    padding: 14px 20px !important;
-  }
-
-  /* FIX: Search wrapper — margin-top must clear the 70px nav bar */
-  .search-wrapper {
-    padding: 0 12px !important;
-    margin-top: 43px !important; /* was 42px → search bar was hidden behind nav */
-  }
-
-  #searchBtn {
-    padding: 12px 16px !important;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .author-centering-wrapper {
-    padding: 70px 12px 40px;
-    min-height: unset;
-  }
-
-  .author-layout-card {
-    margin: 0 !important;
-    border-radius: 10px;
-  }
-
-  .author-profile-pic {
-    width: 180px;
-    height: 180px;
-  }
-
-  .author-content-side {
-    padding: 30px 20px !important;
-  }
-
-  .contact-box {
-    width: 100% !important;
-    max-width: 300px;
-  }
-
-  .footer-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 24px;
-    padding: 0 20px;
-  }
-
-  .footer-brand {
-    min-width: unset;
-  }
-
-  /* FIX: Ticker banner — restore visibility on portrait mobile */
-  /* Previously: display:none caused banner to disappear in portrait, reappear in landscape */
-  .shop-ticker-banner {
-    height: 50px; /* slightly shorter on tiny screens */
-    margin: 24px 0;
-  }
-  .ticker-item {
-    font-size: 0.9rem;
-    padding: 0 16px;
-  }
-
-  .qr-card {
-    width: 95% !important;
-    padding: 24px 16px !important;
-  }
-
-  #searchSuggestions {
-    left: 0;
-    right: 0;
-  }
-
-  .photo-gallery {
-    height: 240px;
-  }
-}
-
-@media (max-width: 360px) {
-  #home h1 {
-    font-size: 1.7rem !important;
-    letter-spacing: 1px;
-  }
-
-  #home .subtitle-vibe {
-    font-size: 0.7rem !important;
-    letter-spacing: 2px;
-  }
-
-  .section-title {
-    font-size: 1.3rem !important;
-  }
-
-  .hero-content-overlay {
-    padding: 30px 12px;
-  }
-
-  .btn-primary {
-    font-size: 0.9rem !important;
-  }
-
-  .author-profile-pic {
-    width: 140px;
-    height: 140px;
-  }
-
-  .author-name {
-    font-size: 20px !important;
-  }
-
-  .contact-box {
-    max-width: 100%;
-    padding: 10px 14px;
-  }
-
-  .thumb-item {
-    width: 50px !important;
-    height: 50px !important;
-  }
-
-  .book-card {
-    padding: 20px 14px !important;
-  }
-}
-
-/* ----------------------------------------------------------
-   1. DESKTOP NAVIGATION (Default 1025px+)
-   ---------------------------------------------------------- */
 nav {
   display: flex;
   justify-content: space-between;
@@ -2456,31 +1757,22 @@ nav {
   top: 0;
   left: 0;
   z-index: 10000;
-  
-  /* กระจกฝ้าแบบหนา (92%) ช่วยให้ตัวหนังสืออ่านง่ายขึ้น */
-  background: rgba(255, 255, 255, 0.92); 
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  
-  /* ⚠️ ตัวแก้บั๊กเบลอลามทั้งหน้า (บังคับให้อยู่แค่ในกรอบเมนู) */
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
-  
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 [data-theme="dark"] nav {
-  /* โหมดมืด: กระจกฝ้าสีเขียวหนา (88%) */
   background-color: rgba(0, 122, 51, 0.88) !important;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  
-  /* ⚠️ ตัวแก้บั๊กเบลอลามโหมดมืด */
   transform: translateZ(0) !important;
   -webkit-transform: translateZ(0) !important;
-  
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
@@ -2536,9 +1828,6 @@ nav {
   display: none !important;
 }
 
-/* ----------------------------------------------------------
-   2. LANGUAGE & THEME BUTTONS
-   ---------------------------------------------------------- */
 .nav-controls-wrapper {
   display: flex;
   gap: 10px;
@@ -2602,104 +1891,6 @@ html:not([data-theme="dark"]) .theme-btn:hover {
   transform: translateY(-2px);
 }
 
-/* ----------------------------------------------------------
-   3. MOBILE NAVIGATION (Burger & Drawer)
-   ---------------------------------------------------------- */
-@media (max-width: 1024px) {
-  body {
-    padding-top: 70px !important;
-  }
-
-  nav {
-    height: 70px !important;
-    padding: 0 20px !important;
-    display: flex !important;
-    justify-content: space-between !important;
-  }
-
-  .hamburger-menu {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    color: #007a33;
-    z-index: 10002 !important;
-    cursor: pointer;
-    min-width: 44px;
-    min-height: 44px;
-    transition: transform 0.2s ease;
-  }
-  
-  .hamburger-menu:active {
-    transform: scale(0.9);
-  }
-
-  [data-theme="dark"] .hamburger-menu i {
-    color: #ffffff !important;
-  }
-
-  nav > .nav-right-container > .nav-controls-wrapper {
-    display: none !important;
-  }
-
-  /* Drawer Menu บนมือถือแบบกระจกหนา (96%) */
-  .nav-links {
-    position: fixed !important;
-    top: 0 !important;
-    right: -100% !important;
-    width: min(75%, 320px) !important;
-    height: 100dvh !important;
-    
-    background: rgba(255, 255, 255, 0.96) !important;
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 35px !important;
-    z-index: 10001 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    transition: right 0.45s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-links.active {
-    right: 0 !important;
-  }
-
-  [data-theme="dark"] .nav-links {
-    /* โหมดมืด: กระจกหนาสีเขียว (95%) */
-    background: rgba(0, 122, 51, 0.95) !important;
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
-  }
-
-  .nav-links .nav-controls-wrapper {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    gap: 15px !important;
-    width: 80% !important;
-    margin-top: 20px !important;
-    padding-top: 20px !important;
-    border-top: 1px solid rgba(128, 128, 128, 0.2) !important;
-  }
-
-  .nav-links .lang-btn,
-  .nav-links .theme-btn {
-    width: 110px !important;
-    height: 45px !important;
-    font-size: 0.9rem !important;
-    border-radius: 10px !important;
-  }
-}
-
-/* ----------------------------------------------------------
-   4. DRAWER CLOSE BUTTON & BACKDROP (อัปเกรดแก้บั๊กเบลอทั้งหน้า)
-   ---------------------------------------------------------- */
 .nav-close-btn {
   display: none !important;
   position: absolute;
@@ -2730,28 +1921,7 @@ html:not([data-theme="dark"]) .nav-close-btn {
   color: #ffffff;
 }
 
-@media (max-width: 1024px) {
-  .nav-links .nav-close-btn {
-    display: flex !important;
-  }
-}
-
-@media (min-width: 1025px) {
-  .nav-backdrop {
-    display: none !important;
-  }
-
-  .nav-close-btn,
-  .nav-links .nav-close-btn {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-  }
-}
-
-/* ----------------------------------------------------------
-   5. SPEED DIAL CHAT BUTTON (ULTIMATE FIX)
-   ---------------------------------------------------------- */
+/* Speed Dial */
 .speed-dial-container {
   position: fixed;
   bottom: 24px;
@@ -2867,27 +2037,22 @@ html:not([data-theme="dark"]) .nav-close-btn {
 }
 
 /* ============================================================
-   [THE GUIDEBOOK SECTION] - ULTIMATE FLUID RESPONSIVE
+   [GROUP 8] GUIDEBOOK SECTION (FIXED LAYOUT & ASPECT RATIO)
    ============================================================ */
-
-/* --- 1. โครงสร้างหลัก --- */
 .book-grid-container {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: clamp(30px, 5vw, 60px);
-  /* ยืดหยุ่นช่องไฟตามจอ */
   max-width: 1200px;
   margin: 0 auto;
   padding: clamp(20px, 4vw, 40px) 15px;
   flex-wrap: wrap;
-  /* ปัดตกลงมาอัตโนมัติเมื่อจอแคบ */
 }
 
 .book-visual {
   flex: 1 1 400px;
-  /* ยืดหดได้ แต่ไม่เล็กกว่า 400px ถ้าที่เป็นไปได้ */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2906,12 +2071,9 @@ html:not([data-theme="dark"]) .nav-close-btn {
   max-width: 100%;
 }
 
-/* --- 2. ส่วนรูปภาพ (Image & Thumbnails) --- */
 .book-float-wrapper {
   animation: floatBook 6s ease-in-out infinite;
-  /* เอฟเฟกต์หนังสือลอยเบาๆ */
   padding: 10px;
-  /* เผื่อพื้นที่ให้เงาไม่โดนตัด */
 }
 
 @keyframes floatBook {
@@ -2928,46 +2090,41 @@ html:not([data-theme="dark"]) .nav-close-btn {
   }
 }
 
-/* FIX: A5 Aspect Ratio — true portrait A5 = 1:√2 ≈ 1:1.414 */
-/* Previously: aspect-ratio: 4/3 made the book look like a landscape photo, not a standing physical book */
+/* ปรับ max-width เล่มใหญ่ไม่ให้ข่ม UI */
 .inner-mockup {
   width: 100%;
-  max-width: 340px;               /* narrower = taller, reinforces portrait book feel */
+  max-width: 300px;
   border-radius: 4px 15px 15px 4px;
-  box-shadow:
-    -8px 0 20px rgba(0, 0, 0, 0.12) inset,  /* deeper spine shadow */
-    -2px 0 6px rgba(0, 0, 0, 0.18) inset,   /* fine edge of spine */
-    18px 30px 55px rgba(0, 0, 0, 0.2);       /* drop shadow on surface */
+  box-shadow: -8px 0 20px rgba(0, 0, 0, 0.12) inset, -2px 0 6px rgba(0, 0, 0, 0.18) inset, 18px 30px 55px rgba(0, 0, 0, 0.2);
   cursor: zoom-in;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  aspect-ratio: 1 / 1.414;       /* A5 portrait ratio */
+  aspect-ratio: 1 / 1.414;
   object-fit: cover;
   display: block;
 }
 
 .inner-mockup:hover {
   transform: scale(1.03) rotate(-1deg);
-  /* หมุนนิดๆ ตอนเอาเมาส์ชี้ */
 }
 
+/* ปรับระยะและสัดส่วน Thumbnail ให้เป็นทรงหนังสือจริง */
 .book-thumbs {
   display: flex;
   justify-content: center;
-  gap: clamp(12px, 3vw, 11px);
-  /* ช่องไฟรูปเล็กยืดหดได้ */
+  gap: 15px;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: 28px;
+  margin-top: 20px;
 }
 
 .thumb-item {
-  width: clamp(60px, 15vw, 85px);
-  /* ขนาดรูปเล็กปรับตามหน้าจอ */
-  height: clamp(60px, 15vw, 85px);
+  width: clamp(50px, 15vw, 70px);
+  aspect-ratio: 1 / 1.414;
+  height: auto;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  border: 3px solid transparent;
+  border: 2px solid transparent;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   opacity: 0.5;
@@ -2990,10 +2147,8 @@ html:not([data-theme="dark"]) .nav-close-btn {
   box-shadow: 0 8px 20px rgba(251, 206, 74, 0.3);
 }
 
-/* --- 3. ส่วนเนื้อหา (Text Card & Badges) --- */
 .book-card {
   background: #ffffff;
-  /* ใช้ clamp จัดการ Padding ป้องกันจอเล็กแล้วขอบแน่นเกินไป */
   padding: clamp(30px, 5vw, 44px) clamp(20px, 5vw, 60px);
   border-radius: 20px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
@@ -3002,7 +2157,6 @@ html:not([data-theme="dark"]) .nav-close-btn {
   width: 100%;
   max-width: 850px;
   box-sizing: border-box;
-  /* สำคัญมาก ป้องกัน Card ทะลุจอ */
 }
 
 .book-card:hover {
@@ -3022,7 +2176,6 @@ html:not([data-theme="dark"]) .nav-close-btn {
 
 .book-card h2 {
   font-size: clamp(1.8rem, 4vw, 2.4rem);
-  /* ฟอนต์ยืดหยุ่น */
   margin-bottom: 20px;
   color: #007a33;
   font-weight: 800;
@@ -3033,7 +2186,6 @@ html:not([data-theme="dark"]) .nav-close-btn {
   color: #ffffff;
 }
 
-/* --- ป้ายแท็ก Badge --- */
 .book-badge-row {
   display: flex;
   justify-content: center;
@@ -3051,7 +2203,6 @@ html:not([data-theme="dark"]) .nav-close-btn {
   font-weight: 700;
   border: 1px solid rgba(0, 122, 51, 0.1);
   white-space: nowrap;
-  /* ห้ามคำในป้ายฉีกขาดจากกัน */
 }
 
 [data-theme="dark"] .badge {
@@ -3060,7 +2211,6 @@ html:not([data-theme="dark"]) .nav-close-btn {
   border-color: rgba(251, 206, 74, 0.3);
 }
 
-/* --- รายละเอียดเพิ่มเติม --- */
 .book-spec-detail {
   color: #ff8c00;
   font-weight: 800;
@@ -3070,7 +2220,6 @@ html:not([data-theme="dark"]) .nav-close-btn {
   font-size: clamp(0.85rem, 2vw, 1rem);
 }
 
-/* FIX: Text overflow guards — guaranteed no bleed on 320px screens */
 .book-description {
   color: #444;
   line-height: 1.8;
@@ -3078,71 +2227,21 @@ html:not([data-theme="dark"]) .nav-close-btn {
   font-size: clamp(0.95rem, 2vw, 1.1rem);
   word-wrap: break-word;
   overflow-wrap: break-word;
-  hyphens: auto;            /* hyphenate long Thai/English words */
-  -webkit-hyphens: auto;
-}
-
-/* FIX: Shop card text — overflow safe */
-.shop-name {
-  word-wrap: break-word !important;
-  overflow-wrap: break-word !important;
   hyphens: auto;
   -webkit-hyphens: auto;
-}
-
-/* FIX: Merch card text — overflow safe */
-.merch-card p {
-  word-wrap: break-word !important;
-  overflow-wrap: break-word !important;
-  hyphens: auto;
-  -webkit-hyphens: auto;
-}
-
-/* FIX: Video content box — fluid padding replaces hardcoded values */
-/* already uses !important overrides in media queries; add base fluid rule here */
-.video-content-box {
-  padding: clamp(28px, 5vw, 50px) clamp(16px, 5vw, 40px) !important;
-  margin: 0 auto clamp(20px, 4vw, 40px) !important;
-  max-width: min(850px, 96%) !important;  /* never wider than viewport */
-  box-sizing: border-box !important;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
 }
 
 [data-theme="dark"] .book-description {
   color: #dddddd;
 }
 
-/* ปรับปุ่มให้เต็มจอเฉพาะตอนอยู่บนมือถือ */
-@media (max-width: 600px) {
-
-  .book-card .btn-group,
-  .book-card .btn-primary {
-    width: 100%;
-    display: flex;
-  }
-}
-
 /* ============================================================
-   [MICRO-INTERACTIONS] — Awwwards-Level UX Polish
-   Add this block ONCE at the very end of style.css.
-   Touch nothing above — these rules only ADD or ENHANCE.
+   [GROUP 9] MICRO-INTERACTIONS
    ============================================================ */
-
-/* ----------------------------------------------------------
-   MI-1: Dark Mode Color Transition
-   Applies butter-smooth color easing to every element
-   when .theme-btn is toggled. Uses CSS custom property
-   transitions on the root — zero JS needed.
-   ---------------------------------------------------------- */
 html {
-  /* Transition all color-bearing CSS variables simultaneously */
-  transition:
-    background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    color            0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1), color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Smooth transition on every major surface element */
 body,
 nav,
 .book-card,
@@ -3156,44 +2255,20 @@ nav,
 .section,
 .district-label,
 .footer {
-  transition:
-    background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    color            0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color     0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow       0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1), color 0.45s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ----------------------------------------------------------
-   MI-2: Cinematic Image Hover
-   Slow, premium photography-gallery scale — applies to:
-   - .inner-mockup (A5 book cover)
-   - .thumb-item (book thumbnails)
-   - .photo-item (cafe slideshow images)
-   - .merch-card img (merchandise photography)
-   ---------------------------------------------------------- */
-
-/* Book cover — slow cinematic float-in */
 .inner-mockup {
-  transition:
-    transform  0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
 .inner-mockup:hover {
   transform: scale(1.03) rotate(-0.8deg) !important;
-  box-shadow:
-    -10px 0 28px rgba(0, 0, 0, 0.16) inset,
-    -2px  0  8px rgba(0, 0, 0, 0.22) inset,
-    24px 38px 65px rgba(0, 0, 0, 0.28) !important;
+  box-shadow: -10px 0 28px rgba(0, 0, 0, 0.16) inset, -2px 0 8px rgba(0, 0, 0, 0.22) inset, 24px 38px 65px rgba(0, 0, 0, 0.28) !important;
 }
 
-/* Thumbnails — subtle lift into focus */
 .thumb-item {
-  transition:
-    transform  0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    opacity    0.5s ease,
-    border-color 0.3s ease,
-    box-shadow   0.5s ease !important;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.5s ease, border-color 0.3s ease, box-shadow 0.5s ease !important;
 }
 
 .thumb-item:hover {
@@ -3202,26 +2277,20 @@ nav,
   box-shadow: 0 12px 28px rgba(0, 122, 51, 0.2) !important;
 }
 
-/* Cafe gallery slideshow images — hovering zooms the frame */
 .photo-gallery {
-  overflow: hidden;  /* already set, confirmed safe */
+  overflow: hidden;
 }
 
 .photo-item {
-  transition:
-    opacity    1.2s ease-in-out,
-    transform  0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  transition: opacity 1.2s ease-in-out, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
 .photo-gallery:hover .photo-item.active {
-  transform: scale(1.04); /* gentle Ken Burns effect on hover */
+  transform: scale(1.04);
 }
 
-/* Merch photography — slow zoom with shadow lift */
 .merch-card img {
-  transition:
-    transform  0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    box-shadow 0.55s ease !important;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.55s ease !important;
 }
 
 .merch-card img:hover {
@@ -3229,30 +2298,17 @@ nav,
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* Hero grid images — already have hover but slow them down */
 .grid-item img {
-  transition:
-    transform  0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    filter     0.6s ease !important;
+  transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s ease !important;
 }
 
-/* ----------------------------------------------------------
-   MI-3: Refined Button Glow States
-   Enhances .btn-support-cta (orange) to match the
-   upgraded .btn-primary (green) feel above.
-   ---------------------------------------------------------- */
 .btn-support-cta {
-  transition:
-    background 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    transform  0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: background 0.45s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .btn-support-cta:hover {
   transform: translateY(-3px) scale(1.02) !important;
-  box-shadow:
-    0 10px 30px rgba(255, 140, 0, 0.4),
-    0 4px 12px  rgba(255, 140, 0, 0.2) !important;
+  box-shadow: 0 10px 30px rgba(255, 140, 0, 0.4), 0 4px 12px rgba(255, 140, 0, 0.2) !important;
 }
 
 .btn-support-cta:active {
@@ -3260,34 +2316,17 @@ nav,
   transition-duration: 0.1s !important;
 }
 
-/* ----------------------------------------------------------
-   MI-4: Social Icon Glow (nav speed-dial + footer circles)
-   Each icon lifts slightly and blooms its brand color.
-   ---------------------------------------------------------- */
-
-/* Footer social circles */
 .footer-socials a {
-  transition:
-    background    0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color  0.3s ease,
-    color         0.3s ease,
-    transform     0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow    0.3s ease !important;
+  transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, color 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease !important;
 }
 
 .footer-socials a:hover {
   transform: translateY(-5px) scale(1.1) !important;
-  box-shadow:
-    0 8px 20px rgba(251, 206, 74, 0.35),
-    0 0   14px rgba(251, 206, 74, 0.2) !important;
+  box-shadow: 0 8px 20px rgba(251, 206, 74, 0.35), 0 0 14px rgba(251, 206, 74, 0.2) !important;
 }
 
-/* Speed-dial action buttons */
 .dial-btn {
-  transition:
-    transform  0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.3s ease,
-    background 0.25s ease !important;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, background 0.25s ease !important;
 }
 
 .dial-btn:hover {
@@ -3295,11 +2334,6 @@ nav,
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22) !important;
 }
 
-/* ----------------------------------------------------------
-   MI-5: Nav Link Hover Underline Slide
-   A sliding underline that grows from left on hover —
-   a hallmark of Awwwards-calibre navigation.
-   ---------------------------------------------------------- */
 .nav-links li a {
   position: relative;
   padding-bottom: 4px !important;
@@ -3325,57 +2359,27 @@ nav,
   background: var(--ci-yellow);
 }
 
-/* Disable the underline on mobile drawer (it looks off vertically stacked) */
-@media (max-width: 1024px) {
-  .nav-links li a::after {
-    display: none;
-  }
-}
-
-/* ----------------------------------------------------------
-   MI-6: Shop Card Entrance Hover
-   Elevates the entire card with a warm brand glow.
-   (Extends the existing shop-card hover without overriding layout)
-   ---------------------------------------------------------- */
 .shop-card {
-  transition:
-    transform  0.4s cubic-bezier(0.34, 1.2, 0.64, 1),
-    box-shadow 0.4s ease !important;
+  transition: transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1), box-shadow 0.4s ease !important;
 }
 
 .shop-card:hover {
   transform: translateY(-10px) !important;
-  box-shadow:
-    0 20px 45px rgba(0, 122, 51, 0.12),
-    0  8px 18px rgba(0, 122, 51, 0.08) !important;
+  box-shadow: 0 20px 45px rgba(0, 122, 51, 0.12), 0 8px 18px rgba(0, 122, 51, 0.08) !important;
 }
 
 [data-theme="dark"] .shop-card:hover {
-  box-shadow:
-    0 20px 45px rgba(0, 0, 0, 0.4),
-    0  8px 18px rgba(251, 206, 74, 0.08) !important;
-}
-
-/* ----------------------------------------------------------
-   MI-7: Scroll Progress Bar Track refinement
-   (Already upgraded above — this just ensures mobile top
-   position stays correct after the 70px nav breakpoint)
-   ---------------------------------------------------------- */
-@media (max-width: 1024px) {
-  .scroll-progress-container {
-    top: 70px !important;
-  }
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4), 0 8px 18px rgba(251, 206, 74, 0.08) !important;
 }
 
 /* ============================================================
-   [NEW] INTERACTIVE FEATURES (Filter & Modal) - SPU Thesis
+   [GROUP 10] INTERACTIVE FEATURES & AUTHOR
    ============================================================ */
-
-/* --- 1. Smart Filter Buttons --- */
 .filter-container {
   text-align: center;
   margin-bottom: 40px;
 }
+
 .filter-btn {
   background: transparent;
   border: 2px solid var(--ci-green, #007a33);
@@ -3388,7 +2392,9 @@ nav,
   font-size: 1rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.filter-btn.active, .filter-btn:hover {
+
+.filter-btn.active,
+.filter-btn:hover {
   background: var(--ci-green, #007a33);
   color: #ffffff;
   box-shadow: 0 6px 15px rgba(0, 122, 51, 0.25);
@@ -3399,28 +2405,32 @@ nav,
   border-color: var(--ci-yellow, #f4e105);
   color: var(--ci-yellow, #f4e105);
 }
+
 [data-theme="dark"] .filter-btn.active,
 [data-theme="dark"] .filter-btn:hover {
   background: var(--ci-yellow, #f4e105);
   color: #004d21;
 }
 
-/* --- 2. Shop Info Clickable Area (กดข้อมูลร้านเพื่อเปิด Modal) --- */
 .shop-info {
-  padding: 0 !important; /* Reset ของเดิมเพื่อจัด Layout ใหม่ */
+  padding: 0 !important;
 }
+
 .shop-info-clickable {
   position: relative;
   cursor: pointer;
   transition: background 0.3s ease;
   padding: 22px !important;
 }
+
 .shop-info-clickable:hover {
   background: rgba(0, 122, 51, 0.04);
 }
+
 [data-theme="dark"] .shop-info-clickable:hover {
   background: rgba(255, 255, 255, 0.05);
 }
+
 .click-more-hint {
   color: var(--ci-orange, #ff8c00);
   font-size: 0.9rem;
@@ -3429,27 +2439,31 @@ nav,
   display: flex;
   align-items: center;
   gap: 8px;
-  opacity: 0; /* ซ่อนไว้ก่อน จะโชว์ตอน Hover */
+  opacity: 0;
   transform: translateX(-10px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .shop-card:hover .click-more-hint {
   opacity: 1;
   transform: translateX(0);
 }
 
-/* --- 3. Custom Modal Pop-up --- */
 .custom-modal {
   display: none;
   position: fixed;
   z-index: 30000;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   align-items: center;
   justify-content: center;
 }
+
 .modal-content {
   background: var(--bg-card, #ffffff);
   padding: 40px;
@@ -3459,38 +2473,52 @@ nav,
   text-align: center;
   position: relative;
   animation: modalZoomIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
+
 @keyframes modalZoomIn {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
+
 .modal-content img {
   width: 100%;
   border-radius: 12px;
   margin-bottom: 20px;
   max-height: 250px;
   object-fit: cover;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
+
 .close-modal {
   position: absolute;
-  top: 15px; right: 25px;
+  top: 15px;
+  right: 25px;
   font-size: 32px;
   cursor: pointer;
   color: #888;
   transition: 0.2s;
 }
+
 .close-modal:hover {
   color: var(--ci-orange, #ff8c00);
   transform: scale(1.1);
 }
+
 #modalTitle {
   color: var(--ci-green, #007a33);
   font-size: 1.8rem;
   margin-bottom: 8px;
   font-weight: 800;
 }
+
 #modalDesc {
   color: #666;
   margin-bottom: 25px;
@@ -3498,17 +2526,20 @@ nav,
   line-height: 1.6;
 }
 
-[data-theme="dark"] #modalTitle { color: var(--ci-yellow, #f4e105); }
-[data-theme="dark"] #modalDesc { color: #ddd; }
+[data-theme="dark"] #modalTitle {
+  color: var(--ci-yellow, #f4e105);
+}
 
-/* ============================================================
-   [NEW] SUPPORT SECTION REDESIGN (การ์ด QR Code ล่างสุด)
-   ============================================================ */
+[data-theme="dark"] #modalDesc {
+  color: #ddd;
+}
+
 .support-hero {
   padding: 80px 20px;
   display: flex;
   justify-content: center;
 }
+
 .support-glass-card {
   display: flex;
   flex-direction: row;
@@ -3522,18 +2553,20 @@ nav,
   position: relative;
   transition: transform 0.4s ease;
 }
+
 .support-glass-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 30px 60px rgba(0, 122, 51, 0.35);
 }
 
-/* วงกลมแสงตกแต่งพื้นหลังการ์ด */
 .support-glass-card::before {
   content: '';
   position: absolute;
-  top: -60px; right: -60px;
-  width: 250px; height: 250px;
-  background: rgba(251, 206, 74, 0.15); /* สีเหลือง CI */
+  top: -60px;
+  right: -60px;
+  width: 250px;
+  height: 250px;
+  background: rgba(251, 206, 74, 0.15);
   border-radius: 50%;
   filter: blur(40px);
 }
@@ -3546,6 +2579,7 @@ nav,
   justify-content: center;
   z-index: 1;
 }
+
 .support-heading {
   font-size: clamp(2rem, 4vw, 2.8rem);
   color: var(--ci-yellow, #fbce4a);
@@ -3553,6 +2587,7 @@ nav,
   font-weight: 800;
   letter-spacing: 1px;
 }
+
 .support-sub {
   font-size: 1.1rem;
   opacity: 0.9;
@@ -3560,6 +2595,7 @@ nav,
   letter-spacing: 1px;
   color: #fff;
 }
+
 .support-description {
   font-size: 1.05rem;
   line-height: 1.8;
@@ -3567,6 +2603,7 @@ nav,
   margin-bottom: 30px;
   color: #fff;
 }
+
 .support-creator-tag {
   display: flex;
   align-items: center;
@@ -3578,8 +2615,10 @@ nav,
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
+
 .small-avatar {
-  width: 45px; height: 45px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   border: 2px solid var(--ci-yellow, #fbce4a);
   object-fit: cover;
@@ -3596,34 +2635,33 @@ nav,
   z-index: 1;
   backdrop-filter: blur(10px);
 }
+
 .qr-wrapper {
   background: white;
   padding: 15px;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
   margin-bottom: 15px;
   border: 4px solid var(--ci-yellow, #fbce4a);
 }
+
 .qr-wrapper img {
-  width: 180px; height: 180px;
+  width: 180px;
+  height: 180px;
   display: block;
 }
 
-/* เอฟเฟกต์เส้นสแกนเนอร์วิ่งขึ้นลง */
 .qr-scan-line {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 4px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
   background: var(--ci-orange, #ff8c00);
   box-shadow: 0 0 15px var(--ci-orange, #ff8c00);
   animation: scanQR 3s infinite linear;
-}
-@keyframes scanQR {
-  0% { top: 0; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
 }
 
 .qr-hint {
@@ -3633,29 +2671,12 @@ nav,
   font-size: 1.1rem;
   animation: pulse-hint 2s infinite;
 }
-@keyframes pulse-hint {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(0.95); }
-}
 
-/* Dark Mode Overrides */
 [data-theme="dark"] .support-glass-card {
   background: linear-gradient(135deg, #004d21 0%, #001f10 100%);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
-
-/* Responsive มือถือ */
-@media (max-width: 768px) {
-  .support-glass-card { flex-direction: column; }
-  .support-text-side { padding: 40px 30px 20px; text-align: center; align-items: center; }
-  .support-qr-side { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding: 40px 20px; }
-  .support-creator-tag { margin: 0 auto; }
-}
-
-/* ============================================================
-   [NEW] AUTHOR SECTION REDESIGN (EDITORIAL / MAGAZINE STYLE)
-   ============================================================ */
 
 .author-container {
   max-width: 880px;
@@ -3664,13 +2685,12 @@ nav,
   border-radius: 30px;
   padding: 50px 60px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
-  /* เปลี่ยนเลย์เอาต์เป็นแนวนอน ให้ดูเป็น Portfolio นิตยสารมากขึ้น */
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   align-items: center;
   gap: 50px;
-  text-align: left; /* จัดซ้ายดูเป็นทางการและอ่านง่ายขึ้น */
-  border: 1px solid rgba(0,0,0,0.02);
+  text-align: left;
+  border: 1px solid rgba(0, 0, 0, 0.02);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
@@ -3679,13 +2699,12 @@ nav,
   box-shadow: 0 30px 60px rgba(0, 122, 51, 0.07);
 }
 
-/* รูปลุคใหม่: ไม่มีขอบหนาๆ ใช้เงาแบบเยื้อง (Offset) สไตล์งานอาร์ต */
 .author-img {
   width: 210px;
   height: 210px;
   border-radius: 50% !important;
   object-fit: cover;
-  box-shadow: -15px 15px 0px rgba(0, 122, 51, 0.08); /* เงาเยื้องสีเขียวอ่อนๆ */
+  box-shadow: -15px 15px 0px rgba(0, 122, 51, 0.08);
   margin-bottom: 0;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   flex-shrink: 0;
@@ -3693,10 +2712,9 @@ nav,
 
 .author-img:hover {
   transform: translate(5px, -5px);
-  box-shadow: -20px 20px 0px rgba(255, 140, 0, 0.2); /* โดนชี้ปุ๊บ เงาเปลี่ยนสีเป็นส้ม */
+  box-shadow: -20px 20px 0px rgba(255, 140, 0, 0.2);
 }
 
-/* ส่วนกล่องข้อความ */
 .author-info {
   flex: 1;
 }
@@ -3709,20 +2727,19 @@ nav,
   letter-spacing: 0;
 }
 
-/* เพิ่มเส้นนำสายตา (Accent Line) ตรงคำอธิบายตัวตน */
 .author-role {
   font-size: 1.1rem;
   color: var(--text-main, #555) !important;
   margin-bottom: 30px;
   line-height: 1.6;
-  border-left: 3px solid var(--ci-orange, #ff8c00); 
+  border-left: 3px solid var(--ci-orange, #ff8c00);
   padding-left: 15px;
 }
 
 .author-logos {
   display: flex;
   gap: 15px;
-  justify-content: flex-start; /* จัดซ้าย */
+  justify-content: flex-start;
   margin-bottom: 30px;
   align-items: center;
 }
@@ -3742,17 +2759,16 @@ nav,
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  justify-content: flex-start; /* จัดซ้าย */
+  justify-content: flex-start;
 }
 
-/* ปุ่มกดสไตล์ใหม่ ทรงสี่เหลี่ยมมนๆ (Rounded Rectangle) ไม่ใช่ยาแคปซูลยาวๆ */
 .social-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   padding: 10px 22px;
-  border-radius: 12px; 
+  border-radius: 12px;
   background: rgba(0, 122, 51, 0.05);
   color: var(--ci-green, #007a33);
   text-decoration: none !important;
@@ -3768,17 +2784,14 @@ nav,
   box-shadow: 0 6px 15px rgba(0, 122, 51, 0.2);
 }
 
-/* ============================================================
-   --- Dark Mode Overrides ---
-   ============================================================ */
 [data-theme="dark"] .author-container {
   background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255,255,255,0.05);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  border-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
 [data-theme="dark"] .author-img {
-  box-shadow: -15px 15px 0px rgba(244, 225, 5, 0.15); /* เงาเยื้องสีเหลือง */
+  box-shadow: -15px 15px 0px rgba(244, 225, 5, 0.15);
 }
 
 [data-theme="dark"] .author-img:hover {
@@ -3794,7 +2807,7 @@ nav,
 }
 
 [data-theme="dark"] .social-btn {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
 }
 
@@ -3804,37 +2817,888 @@ nav,
 }
 
 /* ============================================================
-   --- Mobile Responsive (มือถือจะเด้งกลับมาวางแนวตั้งให้อ่านง่าย) ---
+   [GROUP 11] RESPONSIVE & MEDIA QUERIES (รวมถึง Foldable Fix)
    ============================================================ */
+
+@media (max-width: 1024px) {
+  body {
+    padding-top: 70px !important;
+  }
+
+  nav {
+    height: 70px !important;
+    padding: 0 20px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+  }
+
+  .hamburger-menu {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #007a33;
+    z-index: 10002 !important;
+    cursor: pointer;
+    min-width: 44px;
+    min-height: 44px;
+    transition: transform 0.2s ease;
+  }
+
+  .hamburger-menu:active {
+    transform: scale(0.9);
+  }
+
+  [data-theme="dark"] .hamburger-menu i {
+    color: #ffffff !important;
+  }
+
+  nav>.nav-right-container>.nav-controls-wrapper {
+    display: none !important;
+  }
+
+  .nav-links {
+    position: fixed !important;
+    top: 0 !important;
+    right: -100% !important;
+    width: min(75%, 320px) !important;
+    height: 100dvh !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 35px !important;
+    z-index: 10001 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transition: right 0.45s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.active {
+    right: 0 !important;
+  }
+
+  [data-theme="dark"] .nav-links {
+    background: rgba(0, 122, 51, 0.95) !important;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav-links .nav-controls-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 15px !important;
+    width: 80% !important;
+    margin-top: 20px !important;
+    padding-top: 20px !important;
+    border-top: 1px solid rgba(128, 128, 128, 0.2) !important;
+  }
+
+  .nav-links .lang-btn,
+  .nav-links .theme-btn {
+    width: 110px !important;
+    height: 45px !important;
+    font-size: 0.9rem !important;
+    border-radius: 10px !important;
+  }
+
+  .nav-links .nav-close-btn {
+    display: flex !important;
+  }
+
+  .footer {
+    border-radius: 28px 28px 0 0;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 4vw, 50px);
+  }
+
+  .footer-col--brand {
+    grid-column: 1 / -1;
+  }
+
+  .scroll-progress-container {
+    top: 70px !important;
+  }
+
+  .video-wrapper {
+    width: 92% !important;
+    margin: 20px auto !important;
+    border-radius: 10px !important;
+  }
+
+  #myVideo {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0 !important;
+  }
+
+  .video-content-box {
+    max-width: 100% !important;
+  }
+
+  .shop-grid {
+    gap: 25px !important;
+    padding: 0 15px !important;
+  }
+
+  .search-wrapper {
+    max-width: 90%;
+    margin-top: 47px !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .nav-backdrop {
+    display: none !important;
+  }
+
+  .nav-close-btn,
+  .nav-links .nav-close-btn {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .hero-content-overlay {
+    padding: 80px 40px;
+    max-width: 1100px;
+  }
+
+  .section-title {
+    font-size: clamp(2.4rem, 3vw, 3rem);
+    margin-bottom: 70px;
+  }
+
+  .shop-grid {
+    gap: clamp(32px, 4vw, 60px);
+    max-width: 1100px;
+  }
+
+  .book-card {
+    max-width: 960px !important;
+    padding: 60px 80px !important;
+  }
+
+  .video-wrapper {
+    max-width: 1000px;
+    margin: 68px auto !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .shop-grid {
+    gap: clamp(20px, 3vw, 36px);
+    width: 95%;
+  }
+
+  .section {
+    padding: var(--space-lg) 6%;
+  }
+
+  .book-grid-container {
+    gap: 40px !important;
+    padding: 40px 20px !important;
+  }
+
+  .thumb-item {
+    width: 65px;
+    height: auto;
+  }
+
+  .shop-ticker-banner {
+    height: 60px;
+  }
+}
+
 @media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: repeat(5, 1fr) !important;
+  }
+
+  .hero-content-overlay {
+    padding: 40px 15px;
+  }
+
+  .shop-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px;
+    width: 95%;
+  }
+
+  .shop-card {
+    max-width: 350px;
+  }
+
+  [data-theme="dark"] .shop-info {
+    padding: 18px !important;
+    text-align: center;
+  }
+
+  [data-theme="dark"] .shop-card {
+    margin: 0 10px !important;
+  }
+
+  .merch-grid.bookmark-triple-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  [data-theme="dark"] .merch-grid {
+    gap: 20px !important;
+    padding: 0 10px !important;
+  }
+
+  .merch-card img {
+    width: 100% !important;
+    border-radius: 10px !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: cover !important;
+  }
+
+  .section {
+    padding: 60px 5% !important;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+  }
+
+  #home h1 {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  #home .hero-desc {
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+  }
+
+  .video-container {
+    height: 350px;
+    width: 95%;
+  }
+
+  .video-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .video-overlay {
+    padding: 30px;
+  }
+
+  .video-content-box {
+    padding: 35px 20px !important;
+    margin: 0 15px 30px !important;
+    width: auto !important;
+  }
+
+  .video-content-box .section-title {
+    font-size: 1.8rem !important;
+  }
+
+  .video-description p {
+    font-size: 1rem !important;
+    padding: 0 10px !important;
+    max-width: 100% !important;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .logo-box {
+    width: 60px;
+    height: 60px;
+    padding: 6px;
+  }
+
+  .qr-card {
+    padding: 25px 15px !important;
+  }
+
+  .qr-header h3 {
+    font-size: 1.3rem !important;
+  }
+
+  .search-wrapper {
+    margin-top: 100px !important;
+  }
+
+  .search-input-group {
+    padding: 8px 8px 8px 20px;
+  }
+
+  #searchBtn {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+
+  .support-glass-card {
+    flex-direction: column;
+  }
+
+  .support-text-side {
+    padding: 40px 30px 20px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .support-qr-side {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px 20px;
+  }
+
+  .support-creator-tag {
+    margin: 0 auto;
+  }
+
   .author-container {
-    flex-direction: column; 
+    flex-direction: column;
     text-align: center;
     padding: 40px 20px;
     gap: 30px;
     margin: 0 15px;
   }
+
   .author-img {
     width: 160px;
     height: 160px;
     box-shadow: -10px 10px 0px rgba(0, 122, 51, 0.08);
   }
+
   .author-img:hover {
     transform: translate(3px, -3px);
     box-shadow: -12px 12px 0px rgba(255, 140, 0, 0.2);
   }
+
   .author-name {
     font-size: 1.8rem;
   }
+
   .author-role {
-    border-left: none; /* เอาเส้นนำสายตาออกตอนอยู่บนมือถือ */
+    border-left: none;
     padding-left: 0;
     font-size: 1rem;
   }
-  .author-logos, .author-socials {
-    justify-content: center; /* จัดให้อยู่ตรงกลางบนมือถือ */
+
+  .author-logos,
+  .author-socials {
+    justify-content: center;
   }
+
   .social-btn {
     padding: 12px 20px;
+  }
+
+  .footer {
+    border-radius: 24px 24px 0 0;
+    margin-top: 40px;
+  }
+
+  .footer-watermark {
+    font-size: clamp(1.9rem, 10.5vw, 3.8rem);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgba(251, 206, 74, 0.13);
+    top: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 56px 28px 44px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-col--brand {
+    grid-column: auto;
+    align-items: center;
+    padding-bottom: 44px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-logo {
+    height: 34px;
+  }
+
+  .footer-tagline {
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+  }
+
+  .footer-desc {
+    font-size: 0.88rem;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .footer-cta-btn {
+    width: 100%;
+    max-width: 260px;
+    justify-content: center;
+    margin: 6px auto 0;
+    padding: 14px 24px;
+    font-size: 0.92rem;
+  }
+
+  .footer-col {
+    align-items: center;
+    padding: 36px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .footer-col:last-child {
+    border-bottom: none;
+    padding-bottom: 28px;
+  }
+
+  .footer-col-title {
+    text-align: center;
+    font-size: 0.62rem;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+  }
+
+  .footer-nav-list {
+    align-items: center;
+    gap: 0;
+  }
+
+  .footer-nav-list li {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-nav-list li a {
+    justify-content: center;
+    padding: 11px 16px;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.68);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 240px;
+    transition: color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+  }
+
+  .footer-nav-list li a:hover,
+  .footer-nav-list li a:focus {
+    color: var(--ci-yellow);
+    background: rgba(251, 206, 74, 0.06);
+    transform: none;
+  }
+
+  .footer-nav-list li a:active {
+    transform: scale(0.97);
+    color: var(--ci-yellow);
+    background: rgba(251, 206, 74, 0.1);
+  }
+
+  .footer-divider {
+    margin: 0 28px;
+  }
+
+  .footer-bottom {
+    padding: 36px 28px 48px;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-socials {
+    gap: 14px;
+    justify-content: center;
+  }
+
+  .footer-socials a {
+    width: 48px;
+    height: 48px;
+    font-size: 1rem;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  }
+
+  .footer-copy {
+    font-size: 0.72rem;
+    letter-spacing: 0.3px;
+    color: rgba(255, 255, 255, 0.28);
+    line-height: 1.6;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  /* Guidebook Fixes for Tablet/Mobile */
+  .inner-mockup {
+    max-width: 250px;
+  }
+
+  .book-thumbs {
+    gap: 12px !important;
+    margin-top: 15px;
+  }
+
+  .thumb-item {
+    width: 55px !important;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .shop-grid,
+  .merch-grid,
+  .merch-grid.bookmark-triple-grid,
+  .shop-card {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .merch-card {
+    padding: 18px !important;
+  }
+
+  .section {
+    padding: 48px 16px !important;
+  }
+
+  .section-title {
+    font-size: clamp(1.4rem, 6vw, 1.8rem) !important;
+    margin-bottom: 30px !important;
+  }
+
+  .district-label {
+    font-size: clamp(1rem, 5vw, 1.4rem) !important;
+    letter-spacing: 1.5px !important;
+    margin: 30px 0 20px 0 !important;
+  }
+
+  .book-card {
+    padding: 28px 18px !important;
+    margin: 16px 0 !important;
+    width: 100% !important;
+  }
+
+  .book-badge-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .video-content-box {
+    padding: 28px 16px !important;
+    margin: 0 0 24px !important;
+  }
+
+  .video-content-box .section-title {
+    font-size: clamp(1.3rem, 5.5vw, 1.6rem) !important;
+  }
+
+  .btn-primary,
+  .btn-support-cta {
+    width: 100% !important;
+    min-height: 48px !important;
+    font-size: 1rem !important;
+    padding: 14px 20px !important;
+  }
+
+  .search-wrapper {
+    padding: 0 12px !important;
+    margin-top: 43px !important;
+  }
+
+  #searchBtn {
+    padding: 12px 16px !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .shop-ticker-banner {
+    height: 50px;
+    margin: 24px 0;
+  }
+
+  .ticker-item {
+    font-size: 0.9rem;
+    padding: 0 16px;
+  }
+
+  .qr-card {
+    width: 95% !important;
+    padding: 24px 16px !important;
+  }
+
+  #searchSuggestions {
+    left: 0;
+    right: 0;
+  }
+
+  .photo-gallery {
+    height: 240px;
+  }
+
+  .merch-grid.bookmark-triple-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Guidebook Fixes for Small Mobile */
+  .inner-mockup {
+    max-width: 200px;
+  }
+
+  .book-thumbs {
+    gap: 10px !important;
+  }
+
+  .thumb-item {
+    width: 50px !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 400px) {
+
+  .merch-grid.bookmark-triple-grid,
+  .shop-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  #home h1 {
+    font-size: 2rem !important;
+  }
+
+  #home .hero-desc {
+    font-size: 0.85rem !important;
+  }
+
+  .author-name {
+    font-size: 24px !important;
+  }
+
+  .footer {
+    border-radius: 18px 18px 0 0;
+  }
+
+  .footer-watermark {
+    font-size: clamp(1.5rem, 9.5vw, 2.8rem);
+    -webkit-text-stroke-width: 0.8px;
+  }
+
+  .footer-inner {
+    padding: 44px 20px 36px;
+  }
+
+  .footer-col--brand {
+    padding-bottom: 36px;
+  }
+
+  .footer-logo {
+    height: 30px;
+  }
+
+  .footer-desc {
+    font-size: 0.82rem;
+    max-width: 240px;
+  }
+
+  .footer-cta-btn {
+    font-size: 0.85rem;
+    padding: 13px 20px;
+  }
+
+  .footer-col-title {
+    font-size: 0.58rem;
+    letter-spacing: 2.5px;
+  }
+
+  .footer-nav-list li a {
+    font-size: 0.88rem;
+    padding: 10px 12px;
+  }
+
+  .footer-socials {
+    gap: 10px;
+  }
+
+  .footer-socials a {
+    width: 44px;
+    height: 44px;
+    font-size: 0.88rem;
+  }
+
+  .footer-copy {
+    font-size: 0.68rem;
+    max-width: 240px;
+  }
+
+  .footer-bottom {
+    padding: 28px 20px 44px;
+  }
+
+  /* Guidebook Fixes for Very Small Mobile */
+  .inner-mockup {
+    max-width: 180px;
+  }
+
+  .thumb-item {
+    width: 45px !important;
+    height: auto !important;
+  }
+}
+
+/* ============================================================
+   [GROUP 12] FOLDABLE SCREENS (HUAWEI MATE X6) & BROWSER FIX
+   ============================================================ */
+@media (max-width: 359px) {
+  .search-input-group {
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding: 15px !important;
+    border-radius: 20px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  #shopSearchInput {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 15px !important;
+    border-radius: 50px !important;
+    background: #ffffff !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  [data-theme="dark"] #shopSearchInput {
+    background: #2a2a2a !important;
+    color: #ffffff !important;
+  }
+
+  #searchBtn {
+    width: 100% !important;
+    padding: 15px !important;
+    border-radius: 50px !important;
+    font-size: 1.1rem !important;
+  }
+
+  #home h1 {
+    font-size: 1.7rem !important;
+    letter-spacing: 1px;
+  }
+
+  #home .subtitle-vibe {
+    font-size: 0.7rem !important;
+    letter-spacing: 2px;
+  }
+
+  .section-title {
+    font-size: 1.3rem !important;
+  }
+
+  .hero-content-overlay {
+    padding: 30px 12px;
+  }
+
+  .btn-primary {
+    font-size: 0.9rem !important;
+  }
+
+  .author-profile-pic {
+    width: 140px;
+    height: 140px;
+  }
+
+  .author-name {
+    font-size: 20px !important;
+  }
+
+  .book-card {
+    padding: 25px 15px !important;
+  }
+
+  .section {
+    padding: 50px 15px !important;
+  }
+
+  .shop-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Guidebook Fixes for Foldable Outer Screen */
+  .inner-mockup {
+    max-width: 160px;
+  }
+
+  .thumb-item {
+    width: 40px !important;
+    height: auto !important;
+  }
+}
+
+/* In-App Browser (Messenger/LINE) Landscape Fix */
+@media (max-height: 600px) and (orientation: landscape) {
+
+  body,
+  .scroll-progress-container {
+    padding-top: 55px !important;
+    top: 55px !important;
+  }
+
+  .hero-grid {
+    grid-template-columns: repeat(5, 1fr) !important;
+    grid-template-rows: repeat(2, 1fr) !important;
+  }
+
+  .hero-content-overlay {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+
+  .content-wrapper {
+    gap: 5px;
+  }
+
+  #home {
+    min-height: 100dvh !important;
+  }
+
+  #home h1 {
+    font-size: clamp(1.6rem, 5vw, 2.5rem) !important;
+    margin-bottom: 5px;
+  }
+
+  #home .subtitle-vibe {
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+  }
+
+  #home .hero-desc {
+    font-size: 0.8rem !important;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .search-wrapper {
+    margin-top: 15px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .btn-primary {
+    padding: 10px 25px !important;
+    font-size: 0.85rem !important;
+    margin-top: 5px !important;
+  }
+}
+
+/* Print Guard */
+@media print {
+  body {
+    display: none !important;
   }
 }
