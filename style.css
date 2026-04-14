@@ -175,7 +175,9 @@ img {
   height: 100%;
   object-fit: cover;
   filter: brightness(0.6);
-  transition: transform 0.8s ease, filter 0.5s ease;
+  transition:
+    transform 0.8s ease,
+    filter 0.5s ease;
 }
 
 .grid-item:hover img {
@@ -654,8 +656,8 @@ img {
   /* MICRO: Buttery 0.45s transition for premium lift feel */
   transition:
     background 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    transform   0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow  0.45s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1) !important;
   box-shadow: 0 5px 20px rgba(0, 122, 51, 0.25) !important;
   margin-top: 15px;
   animation: pulse-green 2s infinite;
@@ -833,9 +835,9 @@ img {
   position: relative;
   background-color: var(--ci-green);
   color: rgba(255, 255, 255, 0.85);
-  border-radius: 40px 40px 0 0;     /* slide-up feel, matching the reference */
+  border-radius: 40px 40px 0 0; /* slide-up feel, matching the reference */
   margin-top: 60px;
-  overflow: hidden;                  /* clips the watermark text cleanly */
+  overflow: hidden; /* clips the watermark text cleanly */
   padding: 0;
 }
 
@@ -1109,41 +1111,49 @@ img {
    Replace this entire block when updating mobile footer styles.
    ============================================================ */
 @media (max-width: 768px) {
-
   /* -- Container: proportional rounded top + generous vertical breathing room -- */
   .footer {
-    border-radius: 24px 24px 0 0;    /* softer than desktop 40px, still premium */
+    border-radius: 24px 24px 0 0; /* softer than desktop 40px, still premium */
     margin-top: 40px;
   }
 
   /* -- Watermark: gracefully scaled with clamp, never overflows -- */
   .footer-watermark {
-    font-size: clamp(1.9rem, 10.5vw, 3.8rem);  /* tight control: no horizontal bleed */
+    font-size: clamp(
+      1.9rem,
+      10.5vw,
+      3.8rem
+    ); /* tight control: no horizontal bleed */
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: rgba(251, 206, 74, 0.13); /* even softer on small screens */
+    -webkit-text-stroke-color: rgba(
+      251,
+      206,
+      74,
+      0.13
+    ); /* even softer on small screens */
     top: 0;
-    letter-spacing: -0.01em;          /* tighten tracking at small size */
+    letter-spacing: -0.01em; /* tighten tracking at small size */
   }
 
   /* -- Inner grid: single column, generous gap + padding -- */
   .footer-inner {
     grid-template-columns: 1fr;
-    gap: 0;                            /* controlled individually per column via padding */
-    padding: 56px 28px 44px;          /* top: generous, sides: comfortable, bottom: breathes */
-    text-align: center;               /* ← centre-align all column content */
+    gap: 0; /* controlled individually per column via padding */
+    padding: 56px 28px 44px; /* top: generous, sides: comfortable, bottom: breathes */
+    text-align: center; /* ← centre-align all column content */
     align-items: center;
   }
 
   /* -- Brand column: reset span, full-width centered -- */
   .footer-col--brand {
     grid-column: auto;
-    align-items: center;              /* centre logo, tagline, desc, CTA */
-    padding-bottom: 44px;            /* clear separation before first link col */
+    align-items: center; /* centre logo, tagline, desc, CTA */
+    padding-bottom: 44px; /* clear separation before first link col */
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .footer-logo {
-    height: 34px;                     /* slightly tighter on mobile */
+    height: 34px; /* slightly tighter on mobile */
   }
 
   .footer-tagline {
@@ -1153,30 +1163,33 @@ img {
 
   .footer-desc {
     font-size: 0.88rem;
-    max-width: 280px;                 /* keep Thai text from stretching wall-to-wall */
-    margin: 0 auto;                   /* centre the description block */
+    max-width: 280px; /* keep Thai text from stretching wall-to-wall */
+    margin: 0 auto; /* centre the description block */
   }
 
   .footer-cta-btn {
     width: 100%;
-    max-width: 260px;                 /* don't let button stretch too wide */
+    max-width: 260px; /* don't let button stretch too wide */
     justify-content: center;
-    margin: 6px auto 0;              /* auto centres the block */
-    padding: 14px 24px;             /* taller = easier tap target */
+    margin: 6px auto 0; /* auto centres the block */
+    padding: 14px 24px; /* taller = easier tap target */
     font-size: 0.92rem;
     /* Smooth active-state for touch */
-    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    transition:
+      background 0.2s ease,
+      transform 0.15s ease,
+      box-shadow 0.2s ease;
   }
 
   .footer-cta-btn:active {
-    transform: scale(0.97);           /* tactile press response */
+    transform: scale(0.97); /* tactile press response */
     box-shadow: 0 2px 8px rgba(251, 206, 74, 0.2);
   }
 
   /* -- Link columns: centred titles + generous row separation -- */
   .footer-col {
-    align-items: center;              /* centre the entire column */
-    padding: 36px 0;                 /* ↑ was gap:32px — now each col breathes on its own */
+    align-items: center; /* centre the entire column */
+    padding: 36px 0; /* ↑ was gap:32px — now each col breathes on its own */
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
 
@@ -1197,7 +1210,7 @@ img {
   /* -- Nav list: centred, touch-friendly tap targets -- */
   .footer-nav-list {
     align-items: center;
-    gap: 0;                           /* spacing handled by li padding */
+    gap: 0; /* spacing handled by li padding */
   }
 
   .footer-nav-list li {
@@ -1208,25 +1221,33 @@ img {
 
   .footer-nav-list li a {
     justify-content: center;
-    padding: 11px 16px;              /* 44px+ tap zone height via line-height + padding */
+    padding: 11px 16px; /* 44px+ tap zone height via line-height + padding */
     font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.68);
     border-radius: 8px;
     width: 100%;
     max-width: 240px;
     /* Touch transition */
-    transition: color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    transition:
+      color 0.2s ease,
+      background 0.2s ease,
+      transform 0.15s ease;
   }
 
   .footer-nav-list li a:hover,
   .footer-nav-list li a:focus {
     color: var(--ci-yellow);
-    background: rgba(251, 206, 74, 0.06); /* subtle yellow tint on hover/focus */
-    transform: none;                  /* no x-shift on mobile — feels wrong on touch */
+    background: rgba(
+      251,
+      206,
+      74,
+      0.06
+    ); /* subtle yellow tint on hover/focus */
+    transform: none; /* no x-shift on mobile — feels wrong on touch */
   }
 
   .footer-nav-list li a:active {
-    transform: scale(0.97);           /* press feedback */
+    transform: scale(0.97); /* press feedback */
     color: var(--ci-yellow);
     background: rgba(251, 206, 74, 0.1);
   }
@@ -1238,29 +1259,33 @@ img {
 
   /* -- Bottom bar: generous padding, centred social row -- */
   .footer-bottom {
-    padding: 36px 28px 48px;         /* top: breathing room, bottom: safe area margin */
+    padding: 36px 28px 48px; /* top: breathing room, bottom: safe area margin */
     gap: 20px;
     align-items: center;
     text-align: center;
   }
 
   .footer-socials {
-    gap: 14px;                        /* slightly more air between circles */
+    gap: 14px; /* slightly more air between circles */
     justify-content: center;
   }
 
   /* Touch-friendly social icon circles */
   .footer-socials a {
-    width: 48px;                      /* 48px = Google recommended min touch target */
+    width: 48px; /* 48px = Google recommended min touch target */
     height: 48px;
     font-size: 1rem;
     /* Touch transition */
-    transition: background 0.2s ease, border-color 0.2s ease,
-                color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease,
+      transform 0.15s ease,
+      box-shadow 0.2s ease;
   }
 
   .footer-socials a:active {
-    transform: scale(0.93);           /* satisfying press-in feel */
+    transform: scale(0.93); /* satisfying press-in feel */
     box-shadow: 0 2px 10px rgba(251, 206, 74, 0.25);
   }
 
@@ -1278,7 +1303,6 @@ img {
    [22c-XS] FOOTER — Ultra-Small Screens (≤ 400px / Galaxy Fold etc.)
    ============================================================ */
 @media (max-width: 400px) {
-
   .footer {
     border-radius: 18px 18px 0 0;
   }
@@ -1325,7 +1349,7 @@ img {
   }
 
   .footer-socials a {
-    width: 44px;                      /* minimum safe touch target */
+    width: 44px; /* minimum safe touch target */
     height: 44px;
     font-size: 0.88rem;
   }
@@ -1664,7 +1688,7 @@ img {
   color: #ffffff !important;
 }
 [data-theme="dark"] #author .section-title {
-  color: #007A33 !important;
+  color: #007a33 !important;
 }
 
 /* Section backgrounds */
@@ -1861,7 +1885,6 @@ html:not([data-theme="dark"]) .merch-card p {
    [27] ORIENTATION FIXES
    ============================================================ */
 @media (max-height: 600px) and (orientation: landscape) {
-
   body,
   .scroll-progress-container {
     padding-top: 55px !important;
@@ -1936,7 +1959,6 @@ html:not([data-theme="dark"]) .merch-card p {
 
 /* --- STANDARD MOBILE 768px --- */
 @media (max-width: 768px) {
-
   /* Hero: 2x5 grid สำหรับมือถือแนวตั้ง */
   .hero-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -2085,7 +2107,6 @@ html:not([data-theme="dark"]) .merch-card p {
 
 /* --- SMALL/FOLD 400px --- */
 @media (max-width: 400px) {
-
   .merch-grid.bookmark-triple-grid,
   .shop-grid {
     grid-template-columns: 1fr !important;
@@ -2256,7 +2277,6 @@ body {
 }
 
 @media (max-width: 480px) {
-
   .shop-grid,
   .merch-grid,
   .merch-grid.bookmark-triple-grid,
@@ -2456,16 +2476,16 @@ nav {
   top: 0;
   left: 0;
   z-index: 10000;
-  
+
   /* กระจกฝ้าแบบหนา (92%) ช่วยให้ตัวหนังสืออ่านง่ายขึ้น */
-  background: rgba(255, 255, 255, 0.92); 
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  
+
   /* ⚠️ ตัวแก้บั๊กเบลอลามทั้งหน้า (บังคับให้อยู่แค่ในกรอบเมนู) */
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
-  
+
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -2476,11 +2496,11 @@ nav {
   background-color: rgba(0, 122, 51, 0.88) !important;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  
+
   /* ⚠️ ตัวแก้บั๊กเบลอลามโหมดมืด */
   transform: translateZ(0) !important;
   -webkit-transform: translateZ(0) !important;
-  
+
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
@@ -2629,7 +2649,7 @@ html:not([data-theme="dark"]) .theme-btn:hover {
     min-height: 44px;
     transition: transform 0.2s ease;
   }
-  
+
   .hamburger-menu:active {
     transform: scale(0.9);
   }
@@ -2649,11 +2669,11 @@ html:not([data-theme="dark"]) .theme-btn:hover {
     right: -100% !important;
     width: min(75%, 320px) !important;
     height: 100dvh !important;
-    
+
     background: rgba(255, 255, 255, 0.96) !important;
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
-    
+
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
@@ -2932,15 +2952,15 @@ html:not([data-theme="dark"]) .nav-close-btn {
 /* Previously: aspect-ratio: 4/3 made the book look like a landscape photo, not a standing physical book */
 .inner-mockup {
   width: 100%;
-  max-width: 340px;               /* narrower = taller, reinforces portrait book feel */
+  max-width: 340px; /* narrower = taller, reinforces portrait book feel */
   border-radius: 4px 15px 15px 4px;
   box-shadow:
-    -8px 0 20px rgba(0, 0, 0, 0.12) inset,  /* deeper spine shadow */
-    -2px 0 6px rgba(0, 0, 0, 0.18) inset,   /* fine edge of spine */
-    18px 30px 55px rgba(0, 0, 0, 0.2);       /* drop shadow on surface */
+    -8px 0 20px rgba(0, 0, 0, 0.12) inset,
+    /* deeper spine shadow */ -2px 0 6px rgba(0, 0, 0, 0.18) inset,
+    /* fine edge of spine */ 18px 30px 55px rgba(0, 0, 0, 0.2); /* drop shadow on surface */
   cursor: zoom-in;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  aspect-ratio: 1 / 1.414;       /* A5 portrait ratio */
+  aspect-ratio: 1 / 1.414; /* A5 portrait ratio */
   object-fit: cover;
   display: block;
 }
@@ -3078,7 +3098,7 @@ html:not([data-theme="dark"]) .nav-close-btn {
   font-size: clamp(0.95rem, 2vw, 1.1rem);
   word-wrap: break-word;
   overflow-wrap: break-word;
-  hyphens: auto;            /* hyphenate long Thai/English words */
+  hyphens: auto; /* hyphenate long Thai/English words */
   -webkit-hyphens: auto;
 }
 
@@ -3103,7 +3123,7 @@ html:not([data-theme="dark"]) .nav-close-btn {
 .video-content-box {
   padding: clamp(28px, 5vw, 50px) clamp(16px, 5vw, 40px) !important;
   margin: 0 auto clamp(20px, 4vw, 40px) !important;
-  max-width: min(850px, 96%) !important;  /* never wider than viewport */
+  max-width: min(850px, 96%) !important; /* never wider than viewport */
   box-sizing: border-box !important;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -3115,7 +3135,6 @@ html:not([data-theme="dark"]) .nav-close-btn {
 
 /* ปรับปุ่มให้เต็มจอเฉพาะตอนอยู่บนมือถือ */
 @media (max-width: 600px) {
-
   .book-card .btn-group,
   .book-card .btn-primary {
     width: 100%;
@@ -3139,7 +3158,7 @@ html {
   /* Transition all color-bearing CSS variables simultaneously */
   transition:
     background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    color            0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Smooth transition on every major surface element */
@@ -3158,9 +3177,9 @@ nav,
 .footer {
   transition:
     background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    color            0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color     0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow       0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ----------------------------------------------------------
@@ -3175,7 +3194,7 @@ nav,
 /* Book cover — slow cinematic float-in */
 .inner-mockup {
   transition:
-    transform  0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
@@ -3183,17 +3202,17 @@ nav,
   transform: scale(1.03) rotate(-0.8deg) !important;
   box-shadow:
     -10px 0 28px rgba(0, 0, 0, 0.16) inset,
-    -2px  0  8px rgba(0, 0, 0, 0.22) inset,
+    -2px 0 8px rgba(0, 0, 0, 0.22) inset,
     24px 38px 65px rgba(0, 0, 0, 0.28) !important;
 }
 
 /* Thumbnails — subtle lift into focus */
 .thumb-item {
   transition:
-    transform  0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    opacity    0.5s ease,
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.5s ease,
     border-color 0.3s ease,
-    box-shadow   0.5s ease !important;
+    box-shadow 0.5s ease !important;
 }
 
 .thumb-item:hover {
@@ -3204,13 +3223,13 @@ nav,
 
 /* Cafe gallery slideshow images — hovering zooms the frame */
 .photo-gallery {
-  overflow: hidden;  /* already set, confirmed safe */
+  overflow: hidden; /* already set, confirmed safe */
 }
 
 .photo-item {
   transition:
-    opacity    1.2s ease-in-out,
-    transform  0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    opacity 1.2s ease-in-out,
+    transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
 .photo-gallery:hover .photo-item.active {
@@ -3220,7 +3239,7 @@ nav,
 /* Merch photography — slow zoom with shadow lift */
 .merch-card img {
   transition:
-    transform  0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     box-shadow 0.55s ease !important;
 }
 
@@ -3232,8 +3251,8 @@ nav,
 /* Hero grid images — already have hover but slow them down */
 .grid-item img {
   transition:
-    transform  0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    filter     0.6s ease !important;
+    transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter 0.6s ease !important;
 }
 
 /* ----------------------------------------------------------
@@ -3244,7 +3263,7 @@ nav,
 .btn-support-cta {
   transition:
     background 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    transform  0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
     box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
@@ -3252,7 +3271,7 @@ nav,
   transform: translateY(-3px) scale(1.02) !important;
   box-shadow:
     0 10px 30px rgba(255, 140, 0, 0.4),
-    0 4px 12px  rgba(255, 140, 0, 0.2) !important;
+    0 4px 12px rgba(255, 140, 0, 0.2) !important;
 }
 
 .btn-support-cta:active {
@@ -3268,24 +3287,24 @@ nav,
 /* Footer social circles */
 .footer-socials a {
   transition:
-    background    0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color  0.3s ease,
-    color         0.3s ease,
-    transform     0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow    0.3s ease !important;
+    background 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease !important;
 }
 
 .footer-socials a:hover {
   transform: translateY(-5px) scale(1.1) !important;
   box-shadow:
     0 8px 20px rgba(251, 206, 74, 0.35),
-    0 0   14px rgba(251, 206, 74, 0.2) !important;
+    0 0 14px rgba(251, 206, 74, 0.2) !important;
 }
 
 /* Speed-dial action buttons */
 .dial-btn {
   transition:
-    transform  0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
     box-shadow 0.3s ease,
     background 0.25s ease !important;
 }
@@ -3306,7 +3325,7 @@ nav,
 }
 
 .nav-links li a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -3339,7 +3358,7 @@ nav,
    ---------------------------------------------------------- */
 .shop-card {
   transition:
-    transform  0.4s cubic-bezier(0.34, 1.2, 0.64, 1),
+    transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1),
     box-shadow 0.4s ease !important;
 }
 
@@ -3347,13 +3366,13 @@ nav,
   transform: translateY(-10px) !important;
   box-shadow:
     0 20px 45px rgba(0, 122, 51, 0.12),
-    0  8px 18px rgba(0, 122, 51, 0.08) !important;
+    0 8px 18px rgba(0, 122, 51, 0.08) !important;
 }
 
 [data-theme="dark"] .shop-card:hover {
   box-shadow:
     0 20px 45px rgba(0, 0, 0, 0.4),
-    0  8px 18px rgba(251, 206, 74, 0.08) !important;
+    0 8px 18px rgba(251, 206, 74, 0.08) !important;
 }
 
 /* ----------------------------------------------------------
@@ -3388,7 +3407,8 @@ nav,
   font-size: 1rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.filter-btn.active, .filter-btn:hover {
+.filter-btn.active,
+.filter-btn:hover {
   background: var(--ci-green, #007a33);
   color: #ffffff;
   box-shadow: 0 6px 15px rgba(0, 122, 51, 0.25);
@@ -3443,7 +3463,10 @@ nav,
   display: none;
   position: fixed;
   z-index: 30000;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -3459,11 +3482,17 @@ nav,
   text-align: center;
   position: relative;
   animation: modalZoomIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 @keyframes modalZoomIn {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 .modal-content img {
   width: 100%;
@@ -3471,11 +3500,12 @@ nav,
   margin-bottom: 20px;
   max-height: 250px;
   object-fit: cover;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 .close-modal {
   position: absolute;
-  top: 15px; right: 25px;
+  top: 15px;
+  right: 25px;
   font-size: 32px;
   cursor: pointer;
   color: #888;
@@ -3498,8 +3528,12 @@ nav,
   line-height: 1.6;
 }
 
-[data-theme="dark"] #modalTitle { color: var(--ci-yellow, #f4e105); }
-[data-theme="dark"] #modalDesc { color: #ddd; }
+[data-theme="dark"] #modalTitle {
+  color: var(--ci-yellow, #f4e105);
+}
+[data-theme="dark"] #modalDesc {
+  color: #ddd;
+}
 
 /* ============================================================
    [NEW] SUPPORT SECTION REDESIGN (การ์ด QR Code ล่างสุด)
@@ -3512,7 +3546,11 @@ nav,
 .support-glass-card {
   display: flex;
   flex-direction: row;
-  background: linear-gradient(135deg, var(--ci-green, #007a33) 0%, #004d21 100%);
+  background: linear-gradient(
+    135deg,
+    var(--ci-green, #007a33) 0%,
+    #004d21 100%
+  );
   border-radius: 24px;
   max-width: 900px;
   width: 100%;
@@ -3529,10 +3567,12 @@ nav,
 
 /* วงกลมแสงตกแต่งพื้นหลังการ์ด */
 .support-glass-card::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: -60px; right: -60px;
-  width: 250px; height: 250px;
+  top: -60px;
+  right: -60px;
+  width: 250px;
+  height: 250px;
   background: rgba(251, 206, 74, 0.15); /* สีเหลือง CI */
   border-radius: 50%;
   filter: blur(40px);
@@ -3579,7 +3619,8 @@ nav,
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 .small-avatar {
-  width: 45px; height: 45px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   border: 2px solid var(--ci-yellow, #fbce4a);
   object-fit: cover;
@@ -3600,30 +3641,44 @@ nav,
   background: white;
   padding: 15px;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
   margin-bottom: 15px;
   border: 4px solid var(--ci-yellow, #fbce4a);
 }
 .qr-wrapper img {
-  width: 180px; height: 180px;
+  width: 180px;
+  height: 180px;
   display: block;
 }
 
 /* เอฟเฟกต์เส้นสแกนเนอร์วิ่งขึ้นลง */
 .qr-scan-line {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 4px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
   background: var(--ci-orange, #ff8c00);
   box-shadow: 0 0 15px var(--ci-orange, #ff8c00);
   animation: scanQR 3s infinite linear;
 }
 @keyframes scanQR {
-  0% { top: 0; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
 }
 
 .qr-hint {
@@ -3634,23 +3689,42 @@ nav,
   animation: pulse-hint 2s infinite;
 }
 @keyframes pulse-hint {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(0.95); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
 }
 
 /* Dark Mode Overrides */
 [data-theme="dark"] .support-glass-card {
   background: linear-gradient(135deg, #004d21 0%, #001f10 100%);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 /* Responsive มือถือ */
 @media (max-width: 768px) {
-  .support-glass-card { flex-direction: column; }
-  .support-text-side { padding: 40px 30px 20px; text-align: center; align-items: center; }
-  .support-qr-side { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding: 40px 20px; }
-  .support-creator-tag { margin: 0 auto; }
+  .support-glass-card {
+    flex-direction: column;
+  }
+  .support-text-side {
+    padding: 40px 30px 20px;
+    text-align: center;
+    align-items: center;
+  }
+  .support-qr-side {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px 20px;
+  }
+  .support-creator-tag {
+    margin: 0 auto;
+  }
 }
 
 /* ============================================================
@@ -3666,12 +3740,14 @@ nav,
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
   /* เปลี่ยนเลย์เอาต์เป็นแนวนอน ให้ดูเป็น Portfolio นิตยสารมากขึ้น */
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   align-items: center;
   gap: 50px;
   text-align: left; /* จัดซ้ายดูเป็นทางการและอ่านง่ายขึ้น */
-  border: 1px solid rgba(0,0,0,0.02);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
 .author-container:hover {
@@ -3715,7 +3791,7 @@ nav,
   color: var(--text-main, #555) !important;
   margin-bottom: 30px;
   line-height: 1.6;
-  border-left: 3px solid var(--ci-orange, #ff8c00); 
+  border-left: 3px solid var(--ci-orange, #ff8c00);
   padding-left: 15px;
 }
 
@@ -3752,7 +3828,7 @@ nav,
   justify-content: center;
   gap: 8px;
   padding: 10px 22px;
-  border-radius: 12px; 
+  border-radius: 12px;
   background: rgba(0, 122, 51, 0.05);
   color: var(--ci-green, #007a33);
   text-decoration: none !important;
@@ -3773,8 +3849,8 @@ nav,
    ============================================================ */
 [data-theme="dark"] .author-container {
   background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255,255,255,0.05);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  border-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
 [data-theme="dark"] .author-img {
@@ -3794,7 +3870,7 @@ nav,
 }
 
 [data-theme="dark"] .social-btn {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
 }
 
@@ -3808,7 +3884,7 @@ nav,
    ============================================================ */
 @media (max-width: 768px) {
   .author-container {
-    flex-direction: column; 
+    flex-direction: column;
     text-align: center;
     padding: 40px 20px;
     gap: 30px;
@@ -3831,10 +3907,73 @@ nav,
     padding-left: 0;
     font-size: 1rem;
   }
-  .author-logos, .author-socials {
+  .author-logos,
+  .author-socials {
     justify-content: center; /* จัดให้อยู่ตรงกลางบนมือถือ */
   }
   .social-btn {
     padding: 12px 20px;
+  }
+}
+
+/* ============================================================
+   [31] ULTRA-NARROW SCREENS (HUAWEI Mate X6 Outer Screen, Z Fold < 340px)
+   เพิ่มความยืดหยุ่นให้หน้าจอพับด้านนอก โดยไม่กระทบ S22 Ultra
+   ============================================================ */
+@media (max-width: 340px) {
+  /* ปรับช่องค้นหาให้เรียงซ้อนกัน (Stack) เพื่อไม่ให้ปุ่มโดนบีบ */
+  .search-input-group {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 16px;
+  }
+
+  #shopSearchInput {
+    width: 100%;
+    text-align: center;
+    padding-left: 0;
+  }
+
+  #searchBtn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  /* ปรับขนาด Logo และ Nav ให้พอดีจอ */
+  nav {
+    padding: 0 15px !important;
+  }
+  .logo img {
+    height: 26px; /* ลดขนาดโลโก้ลงเล็กน้อย */
+  }
+
+  /* ปรับการ์ดต่างๆ ให้เต็มขอบและลด Padding ภายใน */
+  .shop-card,
+  .merch-card,
+  .book-card {
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .shop-info-clickable {
+    padding: 15px !important;
+  }
+
+  .book-card {
+    padding: 20px 15px !important;
+  }
+
+  .video-content-box {
+    padding: 20px 10px !important;
+  }
+
+  .section {
+    padding: 40px 10px !important;
+  }
+
+  #home h1 {
+    font-size: 1.8rem !important;
   }
 }
