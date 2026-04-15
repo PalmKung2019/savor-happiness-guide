@@ -489,7 +489,7 @@ function renderShops() {
   realShops.forEach((shop, shopIdx) => {
     // Generate 8 images for auto-slide gallery
     const imgHtml = Array.from({ length: 8 }, (_, i) => {
-      const fullPath = `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}${i}.jpg`;
+      const fullPath = `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}${i}.webp`;
       return `
         <img 
           class="photo-item ${i === 0 ? "active" : ""}" 
@@ -498,7 +498,7 @@ function renderShops() {
           data-shop-idx="${shopIdx}"
           data-img-idx="${i}"
           loading="lazy"
-          onerror="this.src = this.src.replace('.jpg', '.JPG'); this.onerror = () => { this.style.display='none'; };">
+          onerror="this.style.display='none';">
       `;
     }).join("");
 
@@ -807,7 +807,7 @@ window.openSimpleLightbox = function (indexOrSrc, shopIdx) {
 
     lightbox.currentGallery = Array.from(
       { length: 8 },
-      (_, i) => `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}${i}.jpg`,
+      (_, i) => `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}${i}.webp`,
     );
     lightbox.currentImgIdx = indexOrSrc;
   }
@@ -945,7 +945,7 @@ function initializeFilters() {
 window.openCafeModal = function (shopIdx) {
   const shop = realShops[shopIdx];
   const currentLang = AppState.ui.currentLang;
-  const imgPath = `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.jpg`;
+  const imgPath = `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.webp`;
 
   getElement("modalImg").src = imgPath;
 
