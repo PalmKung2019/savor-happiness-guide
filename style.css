@@ -3702,3 +3702,106 @@ nav,
     display: none !important;
   }
 }
+
+/* ============================================================
+   [GROUP 13] CTA RING & AMBIENT GLOW EFFECTS
+   ============================================================ */
+@keyframes savor-glow-pulse {
+
+  0%,
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+    opacity: 0.2;
+  }
+
+  50% {
+    transform: scale(1.15) translate(-45%, -45%);
+    opacity: 0.5;
+  }
+}
+
+.savor-ambient-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 122, 51, 0.4) 0%, rgba(244, 225, 5, 0.1) 40%, transparent 70%);
+  filter: blur(100px);
+  mix-blend-mode: screen;
+  animation: savor-glow-pulse 6s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes savor-ring-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.savor-cta-ring-wrapper {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  text-decoration: none;
+  color: var(--ci-green);
+}
+
+.savor-cta-ring-wrapper svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: savor-ring-spin 16s linear infinite;
+  transition: color 0.3s ease;
+}
+
+.savor-cta-ring-wrapper:hover svg {
+  animation-duration: 5s;
+  color: var(--ci-yellow);
+}
+
+.savor-cta-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--ci-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.savor-cta-ring-wrapper:hover .savor-cta-arrow {
+  background-color: var(--ci-green);
+  color: #fff;
+  transform: rotate(-45deg);
+  box-shadow: 0 0 15px rgba(0, 122, 51, 0.4);
+}
+
+/* ปรับให้เล็กลงในมือถือ ไม่บังเนื้อหา */
+@media (max-width: 768px) {
+  .savor-cta-ring-wrapper {
+    width: 100px;
+    height: 100px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .savor-cta-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+}
