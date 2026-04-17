@@ -3877,3 +3877,125 @@ html,
 body {
   overflow-x: hidden !important;
 }
+
+/* ============================================================
+   [FINE-TUNING] เก็บงานละเอียด ให้กริบทั้งคอมและมือถือ
+   ============================================================ */
+
+/* 1. จัดระเบียบ Search Bar ในมือถือ (ไม่ให้เบียดกัน) */
+@media screen and (max-width: 600px) {
+  .search-input-group {
+    padding: 5px 5px 5px 15px !important;
+    border-radius: 12px !important;
+  }
+
+  #shopSearchInput {
+    font-size: 0.9rem !important;
+  }
+
+  #searchBtn {
+    padding: 8px 15px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+/* 2. คุมระยะห่าง Title ให้สมดุล (ไม่ห่างเป็นทุ่ง) */
+@media screen and (max-width: 768px) {
+  .section-title {
+    font-size: 1.8rem !important;
+    margin-bottom: 30px !important;
+  }
+
+  .district-label {
+    font-size: 1.4rem !important;
+    margin: 30px 0 20px 0 !important;
+  }
+}
+
+/* 3. จัดการรูปใน Merch Card ให้สูงเท่ากันเป๊ะ */
+.merch-card img {
+  aspect-ratio: 4 / 3 !important;
+  object-fit: cover !important;
+  width: 100% !important;
+}
+
+/* 4. ปรับจูนปุ่ม PDF (ไม่ให้กว้างเกินไปในมือถือ) */
+@media screen and (max-width: 480px) {
+  .btn-primary {
+    width: 100% !important;
+    padding: 12px 20px !important;
+    font-size: 0.95rem !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+  }
+}
+
+/* 5. ป้องกันอาการ "ขยับซ้ายขวา" (Shake) เวลาเลื่อนหน้าจอ */
+body {
+  touch-action: pan-y;
+  /* อนุญาตให้รูดขึ้นลงได้อย่างเดียว กันหน้าจอเลื่อนซ้ายขวาจนพัง */
+}
+
+/* ============================================================
+   [RE-SCALE] ปรับสัดส่วน Book Feature ไม่ให้ใหญ่คับจอ
+   ============================================================ */
+
+/* 1. คุมขนาดกล่องรวมรูปเล่ม (ลดขนาดลงจากเดิม) */
+.book-visual {
+  width: 100% !important;
+  max-width: 500px !important;
+  /* บีบให้เล็กลงจากเดิมที่อาจจะกว้างถึง 600-800px */
+  margin: 0 auto 30px auto !important;
+  /* จัดกึ่งกลางและเว้นระยะห่างด้านล่าง */
+}
+
+/* 2. ปรับขนาดรูปเล่มหลัก (Main Image) */
+#mainBookImg {
+  width: 100% !important;
+  max-width: 380px !important;
+  /* ให้รูปเล่มดูพอดีๆ ไม่ใหญ่เบียดขอบ */
+  height: auto !important;
+  margin: 0 auto !important;
+  border-radius: 12px !important;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 3. จัดระเบียบรูปเล็ก (Thumbnails) ให้เล็กลงและเรียงสวย */
+.book-thumbs {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  margin-top: 15px !important;
+}
+
+.thumb-item {
+  width: 60px !important;
+  /* ลดขนาดจาก 70-80px เหลือ 60px */
+  height: 60px !important;
+  border-radius: 6px !important;
+  object-fit: cover !important;
+  cursor: pointer !important;
+}
+
+/* 4. ปรับจูนกล่องข้อความ (The Guidebook) ให้กระชับขึ้น */
+.book-card {
+  padding-top: 0 !important;
+  /* ลดระยะห่างด้านบนให้ขยับขึ้นมาใกล้รูปมากขึ้น */
+  margin-top: 0 !important;
+}
+
+.section-title {
+  margin-bottom: 20px !important;
+}
+
+/* กรณีหน้าจอมือถือ (เล็กกว่า 600px) ให้เล็กลงไปอีกระดับ */
+@media screen and (max-width: 600px) {
+  #mainBookImg {
+    max-width: 280px !important;
+  }
+
+  .thumb-item {
+    width: 45px !important;
+    height: 45px !important;
+  }
+}
