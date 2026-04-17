@@ -3805,3 +3805,180 @@ nav,
     font-size: 0.9rem;
   }
 }
+
+/* ============================================================
+   [THE STABLE MASTER] SAVOR HAPPINESS - FINAL BUG FIX
+   มัดรวมชุดแก้: Logo + Filter + 2-Column (ถอดส่วน Book ที่พังออก)
+   ============================================================ */
+
+/* --- 1. โครงสร้างหลัก: ป้องกันหน้าจอไถข้าง --- */
+* {
+  box-sizing: border-box !important;
+}
+
+html,
+body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+/* --- 2. Header & โลโก้: ปรับขนาดให้สมดุล --- */
+.site-header nav {
+  height: 65px !important;
+  padding: 0 15px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.logo-img {
+  max-height: 35px !important;
+  width: auto !important;
+}
+
+/* --- 3. ปุ่ม Filter: ไถซ้าย-ขวาได้ (แก้ปัญหาปุ่มเด้งทับกัน) --- */
+.filter-container {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  gap: 12px !important;
+  padding: 10px 15px !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filter-container::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-btn {
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+  padding: 6px 18px !important;
+}
+
+/* --- 4. Shop Grid: 2 คอลัมน์แบบไม่โดนบีบ --- */
+@media screen and (max-width: 768px) {
+  .shop-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    padding: 5px 10px !important;
+  }
+
+  .shop-grid .card {
+    padding: 8px !important;
+    /* ลด Padding เพื่อคืนพื้นที่เนื้อหา */
+    margin-bottom: 0 !important;
+    background: var(--bg-card) !important;
+    border-radius: 12px !important;
+  }
+
+  .shop-grid .card img {
+    width: 100% !important;
+    aspect-ratio: 4 / 3 !important;
+    /* สัดส่วนรูปที่สวยใน 2 คอลัมน์ */
+    object-fit: cover !important;
+    border-radius: 8px !important;
+  }
+
+  .shop-grid .card h3 {
+    font-size: 0.9rem !important;
+    margin: 8px 0 4px 0 !important;
+    line-height: 1.2 !important;
+  }
+}
+
+/* --- 5. คุมระยะห่างทั่วไปในมือถือ (ไม่ยุ่งกับโครงสร้าง Book Feature) --- */
+@media screen and (max-width: 600px) {
+
+  .section,
+  section {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  /* ปรับจูนรูปเล่มหนังสือแค่ขนาด (ไม่แก้สีหรือกล่อง) เพื่อไม่ให้ล้นจอ */
+  #mainBookImg {
+    max-width: 350px !important;
+    width: 90% !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+}
+
+/* ============================================================
+   [THE FINAL MERCH FIX] จัดกึ่งกลาง และเว้นระยะ (Spacing)
+   ============================================================ */
+
+/* 1. คุมระยะห่างรอบตัวหนังสือและกล่องทั้งหมดให้สมดุล */
+.section {
+  padding-left: 5% !important;
+  padding-right: 5% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  /* จัดกึ่งกลางแนวแกน X */
+}
+
+/* 2. จัดการส่วน Merch ที่เคยชิดซ้าย ให้มาอยู่ตรงกลาง */
+.merch-category {
+  width: 100% !important;
+  max-width: 1100px !important;
+  margin: 0 auto 50px auto !important;
+  /* เว้นระยะห่างด้านล่างระหว่างหมวดหมู่ */
+  text-align: center !important;
+}
+
+/* 3. แก้ไขแถวที่แบ่ง Sticker และ Bookmarks ให้กางออกสมดุล */
+.merch-split-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  /* หัวใจสำคัญ: จัดกึ่งกลาง */
+  gap: 40px !important;
+  /* เพิ่มช่องว่างระหว่างซ้าย-ขวา */
+  width: 100% !important;
+  margin-top: 30px !important;
+}
+
+.sticker-side,
+.bookmarks-side {
+  flex: 1 1 450px !important;
+  /* บังคับให้ขยายเท่าๆ กัน */
+  max-width: 550px !important;
+}
+
+/* 4. จัดระเบียบ Grid ภายในการ์ดแต่ละใบ */
+.merch-grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 20px !important;
+}
+
+.merch-card {
+  flex: 1 1 280px !important;
+  max-width: 350px !important;
+  margin: 0 auto !important;
+}
+
+/* 5. เก็บงาน Book Feature (ที่ในรูปมันลอยไปขวา) */
+.book-grid-container {
+  width: 100% !important;
+  justify-content: center !important;
+  margin: 0 auto !important;
+}
+
+/* สำหรับหน้าจอมือถือ (จอเล็กกว่า 768px) */
+@media screen and (max-width: 768px) {
+  .merch-split-row {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .sticker-side,
+  .bookmarks-side {
+    width: 100% !important;
+    flex: 1 1 auto !important;
+  }
+}
