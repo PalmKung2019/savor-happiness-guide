@@ -2860,7 +2860,10 @@ nav,
   .nav-links {
     position: fixed !important;
     top: 0 !important;
-    right: -100% !important;
+    right: 0 !important;
+    /* แก้จาก -100% เป็น 0 */
+    transform: translateX(100%) !important;
+    /* ย้ายไปซ่อนด้านขวาด้วย transform */
     width: min(75%, 320px) !important;
     height: 100dvh !important;
     background: rgba(255, 255, 255, 0.96) !important;
@@ -2873,12 +2876,14 @@ nav,
     z-index: 10001 !important;
     margin: 0 !important;
     padding: 0 !important;
-    transition: right 0.45s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    transition: transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    /* เปลี่ยนจาก right เป็น transform */
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
   }
 
   .nav-links.active {
-    right: 0 !important;
+    transform: translateX(0) !important;
+    /* ดึงกลับมาโชว์ด้วย transform */
   }
 
   [data-theme="dark"] .nav-links {
@@ -3979,7 +3984,7 @@ body {
 
 /* 4. ปรับจูนกล่องข้อความ (The Guidebook) ให้กระชับขึ้น */
 .book-card {
-  padding-top: 0 !important;
+  /* padding-top: 0 !important; */
   /* ลดระยะห่างด้านบนให้ขยับขึ้นมาใกล้รูปมากขึ้น */
   margin-top: 0 !important;
 }
