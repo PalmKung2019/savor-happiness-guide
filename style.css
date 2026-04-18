@@ -2822,7 +2822,7 @@ nav,
 
 @media (max-width: 1024px) {
   body {
-    padding-top: 70px !important;
+    padding-top: 16px !important;
   }
 
   nav {
