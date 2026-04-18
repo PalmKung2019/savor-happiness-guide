@@ -616,7 +616,25 @@ img {
   margin-bottom: 60px;
 }
 
+/* Postcard sub-section only: 2-col grid for MinBuri + NongChok cards */
+#merch>.merch-category {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  align-items: start;
+}
+
+/* Postcard images — actual size 1500×770 (wide landscape) */
+#merch>.merch-category .merch-card img {
+  aspect-ratio: 1500 / 770;
+  height: auto;
+  width: 100%;
+  object-fit: contain;
+  background: var(--ci-cream);
+}
+
 .merch-sub-title {
+  grid-column: 1 / -1;
   margin: 40px 0 30px 0 !important;
   display: flex;
   align-items: center;
@@ -642,6 +660,68 @@ img {
   max-width: 1000px;
   margin: 30px auto 0 !important;
   padding: 0 !important;
+}
+
+/* Bookmark card image — fixed height to match sticker card */
+.merch-grid.bookmark-triple-grid .merch-card img {
+  aspect-ratio: auto;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* is-hero / is-secondary modifier (for bookmark cards) */
+.merch-card.is-hero,
+.merch-card.is-secondary {
+  width: 100% !important;
+}
+
+/* Single-item grid (Sticker section) */
+.merch-grid.single-item-grid {
+  grid-template-columns: 1fr !important;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* --- Merch Split Row (Sticker + Bookmarks side-by-side) --- */
+/* Note: HTML has a stray </div> that pushes .merch-split-row outside .section,
+   so we apply width/max-width/margin here directly to match the section layout */
+.merch-split-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 30px;
+  width: 90%;
+  max-width: 960px;
+  margin: 20px auto 60px;
+  box-sizing: border-box;
+}
+
+/* Sticker side */
+.sticker-side {
+  flex: 0 0 auto;
+  width: clamp(200px, 28%, 280px);
+  min-width: 0;
+}
+
+/* Sticker image — same height as bookmark images */
+.sticker-side .merch-card img {
+  height: 180px;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center;
+}
+
+.bookmarks-side {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* Postcard cards (direct children of merch-category, no grid wrapper) */
+.merch-category>.merch-card {
+  max-width: 100%;
 }
 
 .merch-card {
@@ -683,6 +763,15 @@ img {
   color: var(--savor-green);
   font-weight: 700;
   margin-top: 12px;
+}
+
+/* --- Button Group --- */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 /* --- Primary Button --- */
@@ -1966,17 +2055,21 @@ nav {
   flex-wrap: wrap;
 }
 
-.book-visual,
-.book-text {
-  flex: 1 1 400px;
+.book-visual {
+  flex: 0 0 auto;
+  width: clamp(260px, 42%, 440px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  max-width: 100%;
 }
 
 .book-text {
+  flex: 1 1 auto;
+  min-width: 280px;
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   text-align: center;
 }
@@ -2001,9 +2094,15 @@ nav {
   }
 }
 
+.main-img-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .inner-mockup {
   width: 100%;
-  max-width: 300px;
+  max-width: 360px;
   border-radius: 4px 15px 15px 4px;
   box-shadow: -8px 0 20px rgba(0, 0, 0, 0.12) inset, -2px 0 6px rgba(0, 0, 0, 0.18) inset, 18px 30px 55px rgba(0, 0, 0, 0.2);
   cursor: zoom-in;
@@ -2068,18 +2167,23 @@ nav {
   margin-top: 0 !important;
 }
 
+/* section-title inside book-card — reduce oversized margin */
+.book-card .section-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem) !important;
+  margin-bottom: 20px !important;
+  letter-spacing: 1px;
+}
+
+.book-card .section-title::after {
+  margin: 10px auto 0 !important;
+}
+
 .book-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 25px 50px rgba(0, 122, 51, 0.1);
 }
 
-.book-card h2 {
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  margin-bottom: 20px;
-  color: #007a33;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
+/* Remove duplicate h2 rule — properties handled by .book-card .section-title override above */
 
 .book-badge-row {
   display: flex;
@@ -2206,6 +2310,15 @@ nav {
     padding-top: 65px !important;
   }
 
+  /* Book feature: fluid at tablet — reduce image size slightly */
+  .book-visual {
+    width: clamp(220px, 38%, 360px);
+  }
+
+  .inner-mockup {
+    max-width: 280px;
+  }
+
   nav {
     height: 70px !important;
     padding: 0 20px !important;
@@ -2310,10 +2423,20 @@ nav {
     max-width: 100%;
   }
 
+  /* Keep horizontal padding percentage-based like desktop (15%)
+     Only reduce vertical padding at tablet */
   .section,
   section {
-    padding-left: 15px !important;
-    padding-right: 15px !important;
+    padding-top: 70px !important;
+    padding-bottom: 70px !important;
+    padding-left: 10% !important;
+    padding-right: 10% !important;
+  }
+
+  /* Hero section should not inherit section vertical padding */
+  #home {
+    padding-top: 30px !important;
+    padding-bottom: 0 !important;
   }
 
   .merch-split-row {
@@ -2321,6 +2444,12 @@ nav {
     flex-direction: column !important;
     align-items: center !important;
     gap: 30px !important;
+  }
+
+  .sticker-side,
+  .bookmarks-side {
+    width: 100% !important;
+    flex: none !important;
   }
 
   .click-more-hint {
@@ -2419,12 +2548,53 @@ nav {
     max-width: 350px;
   }
 
+  /* Postcard grid → 1 column on mobile */
+  #merch>.merch-category {
+    grid-template-columns: 1fr !important;
+  }
+
   .merch-grid.bookmark-triple-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 
+  /* Book feature — compact on mobile */
+  .book-grid-container {
+    flex-direction: column !important;
+    gap: 24px !important;
+    padding: 0 !important;
+  }
+
+  .book-visual {
+    width: 100% !important;
+    max-width: 240px !important;
+    margin: 0 auto !important;
+  }
+
+  .inner-mockup {
+    max-width: 160px !important;
+  }
+
+  .book-thumbs {
+    gap: 8px !important;
+  }
+
+  .thumb-item {
+    width: clamp(36px, 12vw, 52px) !important;
+  }
+
+  .book-text {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .book-card {
+    padding: 24px 20px !important;
+  }
+
+  /* Mobile: maintain same 15% horizontal as desktop, reduce vertical only */
   .section {
-    padding: 60px 5% !important;
+    padding: 50px 15% !important;
   }
 
   .section-title {
@@ -2442,8 +2612,14 @@ nav {
     width: auto !important;
   }
 
+  /* Hero section override — no top padding, hero fills below nav */
+  #home {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
   .search-wrapper {
-    margin-top: 100px !important;
+    margin-top: 20px !important;
   }
 
   .support-glass-card {
@@ -2531,8 +2707,9 @@ nav {
     font-size: 0.85rem !important;
   }
 
+  /* Reduce book image on small phones — override ID specificity issue */
   #mainBookImg {
-    max-width: 280px !important;
+    max-width: 150px !important;
   }
 
   .thumb-item {
@@ -2587,8 +2764,8 @@ nav {
 
   .search-wrapper {
     width: 90% !important;
-    margin-top: 85px !important;
-    margin-bottom: 20px !important;
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
     padding: 0 !important;
   }
 
@@ -2632,7 +2809,7 @@ nav {
   }
 
   .inner-mockup {
-    max-width: 200px;
+    max-width: 140px !important;
   }
 }
 
@@ -2662,7 +2839,7 @@ nav {
   }
 
   .inner-mockup {
-    max-width: 160px;
+    max-width: 120px !important;
   }
 }
 
@@ -2784,4 +2961,12 @@ nav {
   body {
     display: none !important;
   }
+}
+
+/* แก้ไขปัญหาสัดส่วนรูปภาพยืดในหมวดหนังสือและของที่ระลึก */
+.inner-mockup,
+.thumb-item,
+.merch-card img,
+.author-img {
+  height: auto !important;
 }
