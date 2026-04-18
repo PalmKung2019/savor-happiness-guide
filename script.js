@@ -532,6 +532,13 @@ function renderShops() {
     });
   });
 
+  // อัปเดต AOS ให้รู้จักการ์ดที่เพิ่งสร้างใหม่
+  if (typeof AOS !== "undefined") {
+    setTimeout(() => {
+      AOS.refresh();
+    }, 200);
+  }
+
   setTimeout(startAutoSlide, 300);
 }
 
@@ -574,7 +581,6 @@ function initializeSearch() {
 
   searchInput.addEventListener("input", handleSearchInput);
 
-  // FIX: User hits Enter -> Execute Search, Blur Keyboard, Hide Suggestions
   searchInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       executeSearch();
@@ -932,7 +938,6 @@ function initializeFilters() {
           nongSection.style.display = "block";
         }
 
-        // Refresh AOS if exists to prevent layout breaking
         if (typeof AOS !== "undefined") AOS.refresh();
       });
     });
@@ -972,7 +977,7 @@ window.addEventListener("click", (e) => {
   if (e.target.id === "cafeModal") window.closeModal();
 });
 
-// --- [14. MISCELLANEOUS UTILITIES] ---
+// --- [14. MISCELLANEOUS UTILITIES & SCROLL FIX] ---
 window.copyContact = function () {
   navigator.clipboard.writeText("palmy1983ch@gmail.com").then(() => {
     const btn = document.querySelector(".copy-btn");
@@ -995,13 +1000,25 @@ window.changeBookView = function (src, thumb) {
   }
 };
 
-window.addEventListener("scroll", () => {
-  const winScroll =
-    document.body.scrollTop || document.documentElement.scrollTop;
-  const height =
-    document.documentElement.scrollHeight -
-    document.documentElement.clientHeight;
-  const scrolled = (winScroll / height) * 100;
-  const myBar = getElement("myBar");
-  if (myBar) myBar.style.width = scrolled + "%";
-});
+// [PERFORMANCE FIX]: ทำให้แถบสีด้านบนวิ่งลื่นขึ้น และไม่โหลดเครื่องตอนเลื่อนจอ
+let isScrolling = false;
+window.addEventListener(
+  "scroll",
+  () => {
+    if (!isScrolling) {
+      window.requestAnimationFrame(() => {
+        const winScroll =
+          document.body.scrollTop || document.documentElement.scrollTop;
+        const height =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        const myBar = getElement("myBar");
+        if (myBar) myBar.style.width = scrolled + "%";
+        isScrolling = false;
+      });
+      isScrolling = true;
+    }
+  },
+  { passive: true },
+);
