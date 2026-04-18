@@ -101,10 +101,9 @@ const realShops = [
     zone: "minburi",
     folder: "LobbyBoy",
     file: "lobby",
-    descTH:
-      "คาเฟ่สไตล์วินเทจคลาสสิกที่ได้รับแรงบันดาลใจจากภาพยนตร์ โดดเด่นด้วยเมนูกาแฟสเปเชียลตี้และมุมถ่ายรูปสุดเก๋",
+    descTH: "คาเฟ่สายดริปที่เท่จัดแต่จริงใจด้วยหมูกรอบคั่วพริกเกลือระดับตำนาน",
     descEN:
-      "A classic vintage cafe inspired by movies. Known for its specialty coffee and aesthetic photo spots.",
+      "A seriously cool drip coffee spot serving up unexpectedly legendary crispy pork with chili and salt.",
   },
   {
     name: "De Wila Cat Hotel & Café",
@@ -113,9 +112,9 @@ const realShops = [
     folder: "DeWila",
     file: "dewila",
     descTH:
-      "พื้นที่แห่งความสุขสำหรับคนรักแมว บริการคาเฟ่พร้อมโรงแรมแมว บรรยากาศอบอุ่นเป็นกันเอง",
+      "หลบมานั่งนิ่งๆ ปล่อยใจไปกับฝูงแมวนุ่มฟูในบ้านที่อบอวลด้วยความอบอุ่น",
     descEN:
-      "A paradise for cat lovers featuring a cozy cafe and professional cat hotel services.",
+      "Escape the rush and unwind in a cozy house surrounded by a fluffy feline family.",
   },
   {
     name: "Chomna Bar & Terrace",
@@ -124,9 +123,9 @@ const realShops = [
     folder: "Chomna",
     file: "chomna",
     descTH:
-      "ร้านอาหารบรรยากาศริมทุ่งนาสุดชิล เหมาะสำหรับนั่งรับลมเย็นๆ พร้อมทานอาหารไทยรสจัดจ้าน",
+      "ทิ้งความวุ่นวายมานั่งรับลมริมนา จบด้วยมื้อไทย รสจัดจ้านที่เติมพลังให้ชีวิต",
     descEN:
-      "A relaxing bar and terrace overlooking lush paddy fields, serving authentic and spicy Thai cuisine.",
+      "Leave the chaos behind for relaxing rice field breezes and bold, energizing Thai dishes.",
   },
   {
     name: "Prakai Cafe & Cuisine",
@@ -135,9 +134,9 @@ const realShops = [
     folder: "Prakai",
     file: "prakai",
     descTH:
-      "คาเฟ่ริมน้ำบรรยากาศร่มรื่น ตกแต่งสไตล์แคมป์ปิ้งธรรมชาติ มีน้ำตกจำลองและจุดถ่ายรูปมากมาย",
+      "สัมผัสละอองน้ำคลายร้อนในป่ากลางเมือง พื้นที่ชาร์จแบตที่เย็นสบายตั้งแต่ก้าวแรก",
     descEN:
-      "A nature-inspired riverside cafe with camping-style decor, an artificial waterfall, and plenty of photo angles.",
+      "A refreshing urban forest oasis where cool mist recharges your soul from the very first step.",
   },
   {
     name: "Trees & Co.",
@@ -146,9 +145,9 @@ const realShops = [
     folder: "TreesCo",
     file: "trees",
     descTH:
-      "โอเอซิสใจกลางมีนบุรี ร่มรื่นด้วยต้นไม้ใหญ่ โดดเด่นเรื่องเบเกอรี่โฮมเมดและเครื่องดื่มสูตรพิเศษ",
+      "พักสายตาไปกับความเขียวขจีของแมกไม้ ในพื้นที่เงียบสงบที่ชวนให้หยุดเวลาไว้ช้าๆ",
     descEN:
-      "An oasis in Minburi surrounded by large trees, highlighting homemade bakeries and signature drinks.",
+      "Rest your eyes on lush greenery in a tranquil space that makes time stand still.",
   },
   {
     name: "Rim Lagoon Café",
@@ -157,9 +156,9 @@ const realShops = [
     folder: "RimLagoon",
     file: "rim",
     descTH:
-      "พักผ่อนริมทะเลสาบส่วนตัว ท่ามกลางธรรมชาติที่เงียบสงบ เหมาะกับการหลีกหนีความวุ่นวาย",
+      "ทิ้งตัวพักผ่อนริมบึงกว้าง ในบ้านไม้หลังใหญ่ที่ต้อนรับเราด้วยความอบอุ่นเหมือนแวะมาหาเพื่อน",
     descEN:
-      "Relax by a private lagoon. A peaceful retreat surrounded by nature to escape the city's hustle.",
+      "Unwind by a wide lagoon in a large, welcoming wooden house that feels like visiting a good friend.",
   },
   {
     name: "James 500 City Camp",
@@ -168,9 +167,9 @@ const realShops = [
     folder: "James500",
     file: "james",
     descTH:
-      "ยกแคมป์ปิ้งมาไว้ในเมือง! คาเฟ่สไตล์ Outdoor ให้กลิ่นอายการผจญภัยพร้อมอาหารฟิวชั่น",
+      "วาร์ปมาแคมป์ปิ้งริมน้ำให้หายเหนื่อย เปลี่ยนวันว่างให้เป็นทริปพักใจที่เรียบง่ายแต่โคตรชิลล์",
     descEN:
-      "Bringing camping to the city! An outdoor-style cafe offering adventurous vibes and fusion food.",
+      "Transport yourself to a riverside campsite for a simple, incredibly chill getaway right in the city.",
   },
   {
     name: "Cat's Eye Cafe",
@@ -179,9 +178,9 @@ const realShops = [
     folder: "CatsEye",
     file: "cat",
     descTH:
-      "คาเฟ่ลับที่ซ่อนตัวอยู่เงียบๆ บรรยากาศสบายๆ เหมาะสำหรับการนั่งทำงานหรือจิบกาแฟยามบ่าย",
+      "แวะทักทายเจ้าถิ่นตัวนุ่มในคาเฟ่มินิมอลขนาดกะทัดรัด ที่เติมเต็มความสุขด้วยขนมโฮมเมดและรอยยิ้ม",
     descEN:
-      "A hidden cafe with a cozy atmosphere, perfect for working or enjoying an afternoon coffee.",
+      "Say hi to the fluffy locals in this compact, minimalist cafe filled with homemade treats and smiles.",
   },
   {
     name: "Daylight",
@@ -190,9 +189,9 @@ const realShops = [
     folder: "Daylight",
     file: "day",
     descTH:
-      "แสงแดดส่องถึงทุกมุม คาเฟ่สไตล์เกาหลีมินิมอล โทนสีขาวสะอาดตา ถ่ายรูปสวยทุกมุม",
+      "ชาร์จพลังบวกด้วยแสงธรรมชาติ ในคาเฟ่สีขาวมินิมอลที่เรียบง่ายแต่แสนละมุนตา",
     descEN:
-      "Filled with natural daylight. A Korean-minimalist cafe with clean white tones and perfect lighting.",
+      "Recharge your positive energy in a soothing, white minimalist cafe bathed in natural light.",
   },
   {
     name: "Wild Duck Cafe",
@@ -201,9 +200,9 @@ const realShops = [
     folder: "WildDuck",
     file: "duck",
     descTH:
-      "บรรยากาศริมน้ำที่เต็มไปด้วยเป็ดว่ายน้ำเพลินๆ ร่มรื่นและเป็นมิตรกับครอบครัว",
+      "สูดอากาศบริสุทธิ์ ชมเป็ดเล่นน้ำ พร้อมลิ้มรสอาหารไทยรสจัดจ้าน ท่ามกลางความเป็นส่วนตัวที่เงียบสงบ",
     descEN:
-      "A family-friendly riverside cafe where you can watch wild ducks swimming peacefully.",
+      "Breathe in the fresh air, watch ducks glide by, and enjoy bold Thai flavors in a perfectly peaceful setting.",
   },
 
   // NONGCHOK ZONE (10)
@@ -214,9 +213,9 @@ const realShops = [
     folder: "Voodoo",
     file: "voodoo",
     descTH:
-      "ตกแต่งสไตล์สวนยุโรปคลาสสิก หรูหรากว้างขวาง โดดเด่นด้วยสถาปัตยกรรมและของสะสมวินเทจ",
+      "เสน่ห์สไตล์ยุโรปวินเทจ ท่ามกลางสวนสวยที่เนรมิตความสุขให้ทุกย่างก้าว",
     descEN:
-      "Decorated in a classic European garden style, spacious and luxurious with vintage architecture.",
+      "Step into vintage European charm surrounded by a breathtakingly beautiful garden.",
   },
   {
     name: "All of Me Home Cafe",
@@ -225,9 +224,9 @@ const realShops = [
     folder: "AllOfMe",
     file: "all",
     descTH:
-      "คาเฟ่สไตล์โฮมมี่ อบอุ่นเหมือนนั่งเล่นบ้านเพื่อน เสิร์ฟขนมอบใหม่ๆ หอมกรุ่นทุกวัน",
+      "โฮมคาเฟ่ที่ต้อนรับคุณด้วยความรัก เหมือนได้กลับมาทานขนมฝีมือคนในครอบครัว",
     descEN:
-      "A homey cafe that feels like visiting a friend's house. Serving freshly baked goods every day.",
+      "A homey cafe welcoming you with love, serving baked goods that taste just like family recipes.",
   },
   {
     name: "Barakat Lunla Land",
@@ -236,9 +235,9 @@ const realShops = [
     folder: "Barakat",
     file: "barakat",
     descTH:
-      "จุดเช็คอินสไตล์ทุ่งหญ้าและฟาร์มสัตว์ ให้อารมณ์เหมือนไปเที่ยวพักผ่อนต่างจังหวัด",
+      "พื้นที่ความสุขริมทุ่งนา ลั้นลากับกิจกรรมขี่ม้า ขับรถ ATV และบรรยากาศของครอบครัว",
     descEN:
-      "A meadow and farm-style check-in spot, giving you the feeling of a provincial getaway.",
+      "A joyful space by the rice fields offering horseback riding, ATVs, and a fun family atmosphere.",
   },
   {
     name: "Chill Out Farm & Cafe",
@@ -247,9 +246,9 @@ const realShops = [
     folder: "ChillOut",
     file: "chill",
     descTH:
-      "คาเฟ่และฟาร์มมินิซู มีสัตว์น่ารักๆ มากมาย เหมาะสำหรับพาเด็กๆ มาทำกิจกรรม",
+      "สูดลมหายใจให้เต็มปอดในมินิฟาร์ม สัมผัสวิถีชีวิตที่แสนเรียบง่ายและเป็นกันเอง",
     descEN:
-      "A cafe and mini-zoo farm featuring cute animals. A perfect destination for family activities.",
+      "Take a deep breath of fresh air at this mini-farm offering a simple, friendly lifestyle.",
   },
   {
     name: "Nine Than Cafe",
@@ -257,10 +256,9 @@ const realShops = [
     zone: "nongchok",
     folder: "NineThan",
     file: "nine",
-    descTH:
-      "ร้านกาแฟสไตล์ญี่ปุ่นมินิมอล โดดเด่นด้วยงานไม้และความเรียบง่าย สงบและผ่อนคลาย",
+    descTH: "สัมผัสกลิ่นอายเขาใหญ่ใกล้กรุง จิบกาแฟรับลมหนาวกลางทุ่งนากว้าง",
     descEN:
-      "A Japanese minimalist coffee shop highlighted by wooden elements, simplicity, and calmness.",
+      "Experience a mountain-getaway vibe right near the city, sipping coffee with a cool breeze over vast rice fields.",
   },
   {
     name: "Fairy Tale Cafe",
@@ -269,9 +267,9 @@ const realShops = [
     folder: "FairyTale",
     file: "fairy",
     descTH:
-      "คาเฟ่เหมือนหลุดเข้าไปในโลกนิทาน ตกแต่งน่ารัก เหมาะกับสายหวานที่ชอบถ่ายรูป",
+      "หลุดเข้าไปในเทพนิยาย กับคาเฟ่สุดน่ารักที่ทำให้คุณรู้สึกเหมือนเป็นเจ้าหญิง",
     descEN:
-      "A cafe that feels like a fairy tale. Adorably decorated and perfect for sweet photo ops.",
+      "Step into a storybook at this incredibly cute cafe that makes you feel like royalty.",
   },
   {
     name: "Again Please",
@@ -280,9 +278,9 @@ const realShops = [
     folder: "AgainPlease",
     file: "again",
     descTH:
-      "คาเฟ่โปร่งโล่งสบายตา เครื่องดื่มอร่อยจนต้องขอเบิ้ลอีกแก้วสมชื่อร้าน",
+      "จิบมัทฉะแท้ท่ามกลางสวนสวยสไตล์อังกฤษ พื้นที่ลับย่านหนองจอกที่อบอุ่นเหมือนบ้านเพื่อน",
     descEN:
-      "A bright and airy cafe. The drinks are so good you'll be saying 'Again Please'!",
+      "Sip authentic matcha in an English garden—a cozy, hidden gem that feels just like a friend's home.",
   },
   {
     name: "Wang Wela Café",
@@ -291,9 +289,9 @@ const realShops = [
     folder: "WangWela",
     file: "wang",
     descTH:
-      "วางเวลาและความวุ่นวายทิ้งไว้ แล้วมานั่งพักผ่อนชิลๆ ริมน้ำ รับลมเย็นสบาย",
+      "เพราะเวลาคือของขวัญ... มาปล่อยใจให้ไหลไปช้าๆ ในพื้นที่แห่งการพักผ่อน",
     descEN:
-      "Leave time and chaos behind. Come sit, relax by the water, and enjoy the cool breeze.",
+      '"Because time is a gift." Let your worries drift away slowly in this ultimate relaxation space.',
   },
   {
     name: "Minna Cafe",
@@ -302,9 +300,9 @@ const realShops = [
     folder: "Minna",
     file: "minna",
     descTH:
-      "คาเฟ่สไตล์บ้านสวนผสมผสานความโมเดิร์น โอบล้อมด้วยสีเขียวของธรรมชาติแบบเต็มพิกัด",
+      "คาเฟ่สไตล์มินิมอลที่น้อยแต่มากด้วยความสุข อบอวลด้วยกลิ่นอายญี่ปุ่น",
     descEN:
-      "A garden house cafe mixed with modern style, fully surrounded by the green of nature.",
+      'A Japanese-inspired minimalist cafe where "less is more" brings true everyday happiness.',
   },
   {
     name: "Home Vintage Cafe",
@@ -313,9 +311,9 @@ const realShops = [
     folder: "HomeVintage",
     file: "home",
     descTH:
-      "คาเฟ่ในบ้านไม้สไตล์วินเทจแท้ๆ ให้ความรู้สึกย้อนยุค อบอุ่น และคลาสสิก",
+      "ย้อนวันวานไปกับของสะสมสุดคลาสสิก ในบ้านหลังเก่าที่เต็มไปด้วยความทรงจำ",
     descEN:
-      "A cafe set in an authentic vintage wooden house, providing a nostalgic, warm, and classic feel.",
+      "Travel back in time among classic collectibles in an old house full of beautiful memories.",
   },
 ];
 
