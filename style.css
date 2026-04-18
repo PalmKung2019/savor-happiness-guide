@@ -286,7 +286,7 @@ img {
   border: none;
   outline: none;
   font-size: clamp(0.9rem, 3vw, 1.1rem);
-  color: var(--text-main);
+  color: #007932;
   background: transparent;
   font-weight: 500;
 }
