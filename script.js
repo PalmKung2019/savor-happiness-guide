@@ -404,23 +404,21 @@ function renderShops() {
     ((e.innerHTML = ""),
     (t.innerHTML = ""),
     realShops.forEach((a, n) => {
-      let i = Array.from({ length: 8 }, (e, t) => {
-          let i = `${CONFIG.IMAGE_BASE_PATH}${a.folder}/${a.file}${t}.webp`;
-          return `
+      let firstImg = `
         <img 
-          class="photo-item ${0 === t ? "active" : ""}" 
-          src="${i}" 
-          alt="${a.name} - Photo ${t + 1}"
+          class="photo-item active" 
+          src="${CONFIG.IMAGE_BASE_PATH}${a.folder}/${a.file}0.webp" 
+          alt="${a.name} - Photo 1"
           data-shop-idx="${n}"
-          data-img-idx="${t}"
+          data-img-idx="0"
           loading="lazy"
           onerror="this.style.display='none';">
       `;
-        }).join(""),
-        o = `
+
+      let o = `
       <div class="shop-card" data-aos="fade-up">
-        <div class="photo-gallery" title="คลิกเพื่อดูรูปขยาย">
-            ${i}
+        <div class="photo-gallery" id="gallery-${n}" title="คลิกเพื่อดูรูปขยาย">
+            ${firstImg}
         </div>
         <div class="shop-info shop-info-clickable" onclick="openCafeModal(${n})" title="คลิกเพื่อดูข้อมูลร้าน">
           <div class="shop-name">${a.name}</div>
@@ -446,8 +444,40 @@ function renderShops() {
       setTimeout(() => {
         AOS.refresh();
       }, 200),
-    setTimeout(startAutoSlide, 300));
+    setTimeout(() => {
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(loadRemainingImagesAndSlide);
+      } else {
+        setTimeout(loadRemainingImagesAndSlide, 1500);
+      }
+    }, 500));
 }
+
+function loadRemainingImagesAndSlide() {
+  realShops.forEach((a, n) => {
+    let gallery = document.getElementById(`gallery-${n}`);
+    if (!gallery) return;
+
+    let extraImages = "";
+    for (let t = 1; t < 8; t++) {
+      let imgPath = `${CONFIG.IMAGE_BASE_PATH}${a.folder}/${a.file}${t}.webp`;
+      extraImages += `
+            <img 
+              class="photo-item" 
+              src="${imgPath}" 
+              alt="${a.name} - Photo ${t + 1}"
+              data-shop-idx="${n}"
+              data-img-idx="${t}"
+              loading="lazy"
+              onerror="this.style.display='none';">
+            `;
+    }
+    gallery.insertAdjacentHTML("beforeend", extraImages);
+  });
+
+  startAutoSlide();
+}
+
 function startAutoSlide() {
   getElements(".photo-gallery").forEach((e) => {
     let t = e.querySelectorAll(".photo-item");
