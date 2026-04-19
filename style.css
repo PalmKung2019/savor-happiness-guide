@@ -4,15 +4,19 @@
    ============================================================ */
 
 /* ============================================================
+   SAVOR HAPPINESS — MASTER STYLESHEET (PERFORMANCE OPTIMIZED)
+   Grouped & Categorized for Maintainability
+   ============================================================ */
+
+/* ============================================================
    [GROUP 1] FONTS, VARIABLES & BASE THEME
    ============================================================ */
 @font-face {
   font-family: "NangKaiThot";
-  src: url("fonts/MN-Nang-Kai-Thot-Regular.woff2") format("truetype");
+  src: url("fonts/MN-Nang-Kai-Thot-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-  /* ดึงฟอนต์ระบบมาใช้ก่อน ป้องกัน Text มองไม่เห็นตอนโหลด */
 }
 
 :root {
