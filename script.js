@@ -838,3 +838,79 @@ window.addEventListener(
   },
   { passive: !0 },
 );
+
+// ==========================================
+// [PERFORMANCE TWEAK] ย้ายจาก index.html
+// มารวมไว้ที่นี่เพื่อลด Render-blocking
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. ตรวจสอบว่ามี AOS หรือไม่ แล้ว Init
+  if (typeof AOS !== "undefined") {
+    AOS.init({
+      duration: 500,
+      once: true,
+      easing: "ease-out-cubic",
+      offset: 50,
+    });
+
+    // บังคับให้ส่วนข้อความต่างๆ ที่ไม่มี data-aos ทำอนิเมชั่น
+    document.querySelectorAll("h1, h2, h3, img").forEach((el) => {
+      if (!el.hasAttribute("data-aos")) {
+        el.setAttribute("data-aos", "fade-up");
+      }
+    });
+  }
+
+  // 2. ป้องกันการคลิกขวา ลากรูป
+  const allImages = document.getElementsByTagName("img");
+  for (let i = 0; i < allImages.length; i++) {
+    allImages[i].setAttribute("draggable", "false");
+    allImages[i].oncontextmenu = function () {
+      return false;
+    };
+    allImages[i].ondragstart = function () {
+      return false;
+    };
+  }
+});
+
+// 3. ปุ่มกด Speed Dial
+window.toggleSpeedDial = function (e) {
+  if (e) e.stopPropagation();
+  const dial = document.getElementById("speedDialContainer");
+  if (dial) dial.classList.toggle("active");
+};
+
+// 4. จัดการคลิกเพื่อซ่อนปุ่ม Speed Dial และปรับเสียง Video
+document.addEventListener("click", function (e) {
+  const dial = document.getElementById("speedDialContainer");
+  const muteBtn = document.getElementById("muteBtn");
+  const video = document.getElementById("myVideo");
+
+  if (muteBtn && muteBtn.contains(e.target) && video) {
+    const muteIcon = muteBtn.querySelector("i");
+    video.muted = !video.muted;
+    muteIcon.classList.toggle("fa-volume-mute", video.muted);
+    muteIcon.classList.toggle("fa-volume-up", !video.muted);
+  }
+
+  if (dial && dial.classList.contains("active") && !dial.contains(e.target)) {
+    dial.classList.remove("active");
+  }
+});
+
+// 5. ป้องกันการ Capture หน้าจอและการสั่งปริ้น
+document.addEventListener("keyup", (e) => {
+  if (e.key === "PrintScreen") {
+    navigator.clipboard.writeText("ไม่อนุญาตให้แคปภาพลิขสิทธิ์ครับ");
+    alert("ระบบความปลอดภัย: ตรวจพบการแคปหน้าจอ เนื้อหาถูกล็อค");
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.ctrlKey && e.key === "p") {
+    alert("ไม่อนุญาตให้สั่งพิมพ์หน้าเว็บนี้ครับ");
+    e.preventDefault();
+  }
+});
