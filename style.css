@@ -4,11 +4,6 @@
    ============================================================ */
 
 /* ============================================================
-   SAVOR HAPPINESS — MASTER STYLESHEET (PERFORMANCE OPTIMIZED)
-   Grouped & Categorized for Maintainability
-   ============================================================ */
-
-/* ============================================================
    [GROUP 1] FONTS, VARIABLES & BASE THEME
    ============================================================ */
 @font-face {
@@ -163,7 +158,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.9);
+  filter: brightness(0.6);
   transition: transform 0.8s ease, filter 0.5s ease;
   will-change: transform, filter;
   /* GPU Hint */
@@ -2045,56 +2040,63 @@ nav {
 }
 
 /* ============================================================
-   [GROUP 8] GUIDEBOOK SECTION
+   [GROUP 8] GUIDEBOOK SECTION (The True Fix - Perfect Flexbox)
    ============================================================ */
 .book-grid-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
-  gap: clamp(30px, 5vw, 60px);
-  max-width: 1200px;
+  align-items: center;
+  gap: clamp(40px, 6vw, 80px);
+  /* ระยะห่างระหว่างรูปกับการ์ด จะเกาะกลุ่มกันตรงกลางเสมอ */
+  max-width: 1150px;
   margin: 0 auto;
-  padding: clamp(20px, 4vw, 40px) 15px;
+  padding: clamp(60px, 8vw, 100px) 20px;
   flex-wrap: wrap;
+  /* ถ้าจอเริ่มเล็ก จะปัดตกบรรทัดให้อัตโนมัติ */
 }
 
+/* ฝั่งซ้าย (รูปภาพ) */
 .book-visual {
   flex: 0 0 auto;
-  width: clamp(260px, 42%, 440px);
+  width: 100%;
+  max-width: 380px;
+  /* คุมขนาดกล่องฝั่งซ้ายทั้งหมด */
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* 💥 แก้บั๊ก: บังคับให้หนังสือและ Thumbnails อยู่กึ่งกลางเสมอ */
 }
 
+/* ฝั่งขวา (ข้อความ) */
 .book-text {
-  flex: 1 1 auto;
-  min-width: 280px;
+  flex: 1 1 400px;
+  /* ยืดหยุ่นได้ แต่ขอพื้นที่ขั้นต่ำ 400px */
   max-width: 580px;
+  /* ไม่ให้การ์ดยืดอ้วนเกินไป */
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
 .book-float-wrapper {
   animation: floatBook 6s ease-in-out infinite;
-  padding: 10px;
+  padding: 15px;
   will-change: transform;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 @keyframes floatBook {
-  0% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
 
   50% {
     transform: translateY(-12px);
-  }
-
-  100% {
-    transform: translateY(0px);
   }
 }
 
@@ -2107,125 +2109,180 @@ nav {
 .inner-mockup {
   width: 100%;
   max-width: 360px;
-  border-radius: 4px 15px 15px 4px;
-  box-shadow: -8px 0 20px rgba(0, 0, 0, 0.12) inset, -2px 0 6px rgba(0, 0, 0, 0.18) inset, 18px 30px 55px rgba(0, 0, 0, 0.2);
-  cursor: zoom-in;
+  /* ขนาดหนังสือที่สวยกำลังดี ไม่เล็กไม่ใหญ่ */
   aspect-ratio: 1 / 1.414;
   object-fit: cover;
+  border-radius: 5px 16px 16px 5px;
+  box-shadow:
+    -6px 0 15px rgba(0, 0, 0, 0.05) inset,
+    -2px 0 5px rgba(0, 0, 0, 0.05) inset,
+    15px 25px 40px rgba(0, 0, 0, 0.12),
+    5px 10px 15px rgba(0, 0, 0, 0.08);
+  cursor: zoom-in;
   display: block;
   transform: translateZ(0);
-  /* Hardware Acceleration */
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease !important;
 }
 
 .inner-mockup:hover {
-  transform: scale(1.03) rotate(-0.8deg) !important;
-  box-shadow: -10px 0 28px rgba(0, 0, 0, 0.16) inset, -2px 0 8px rgba(0, 0, 0, 0.22) inset, 24px 38px 65px rgba(0, 0, 0, 0.28) !important;
+  transform: scale(1.03) rotate(-1.5deg) !important;
+  box-shadow:
+    -8px 0 18px rgba(0, 0, 0, 0.08) inset,
+    -2px 0 6px rgba(0, 0, 0, 0.08) inset,
+    25px 40px 60px rgba(0, 0, 0, 0.15),
+    8px 15px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
+/* --- ส่วนของ Thumbnails --- */
 .book-thumbs {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
+  /* กึ่งกลางเป๊ะๆ ตรงกับหนังสือแล้วครับ */
+  align-items: center;
+  gap: 14px;
+  flex-wrap: nowrap;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .thumb-item {
-  width: clamp(50px, 15vw, 70px);
+  width: calc((100% - 42px) / 4);
+  /* คำนวณแบ่ง 4 รูปพอดีเป๊ะ หักลบ Gap 14px * 3 */
+  max-width: 70px;
   aspect-ratio: 1 / 1.414;
-  height: auto;
+  height: auto !important;
   object-fit: cover;
   border-radius: 6px;
   cursor: pointer;
   border: 2px solid transparent;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
   opacity: 0.5;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.5s ease, border-color 0.3s ease, box-shadow 0.5s ease !important;
+  transform: translateZ(0);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
 }
 
 .thumb-item:hover {
-  transform: translateY(-6px) scale(1.06) !important;
+  transform: translateY(-4px) scale(1.08) !important;
   opacity: 1 !important;
-  box-shadow: 0 12px 28px rgba(0, 122, 51, 0.2) !important;
+  box-shadow: 0 10px 20px rgba(0, 122, 51, 0.15) !important;
 }
 
 .thumb-item.active {
   border-color: #007a33;
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   opacity: 1;
-  box-shadow: 0 8px 20px rgba(0, 122, 51, 0.25);
+  box-shadow: 0 8px 18px rgba(0, 122, 51, 0.25);
 }
 
+/* --- ส่วนของการ์ดข้อความ --- */
 .book-card {
   background: #ffffff;
-  padding: clamp(30px, 5vw, 44px) clamp(20px, 5vw, 60px);
-  border-radius: 20px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.03);
-  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease, border-color 0.4s ease;
+  padding: clamp(35px, 5vw, 55px) clamp(30px, 4vw, 50px);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
   width: 100%;
-  max-width: 850px;
   box-sizing: border-box;
-  margin-top: 0 !important;
-}
-
-/* section-title inside book-card — reduce oversized margin */
-.book-card .section-title {
-  font-size: clamp(1.6rem, 3.5vw, 2.2rem) !important;
-  margin-bottom: 20px !important;
-  letter-spacing: 1px;
-}
-
-.book-card .section-title::after {
-  margin: 10px auto 0 !important;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .book-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 25px 50px rgba(0, 122, 51, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(0, 122, 51, 0.08);
 }
 
-/* Remove duplicate h2 rule — properties handled by .book-card .section-title override above */
+.book-card .section-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem) !important;
+  margin-bottom: 20px !important;
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+.book-card .section-title::after {
+  margin: 15px auto 0 !important;
+  width: 60px !important;
+  height: 4px !important;
+  border-radius: 4px;
+}
 
 .book-badge-row {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
 }
 
 .badge {
-  background: #fbce4a;
+  background: #fffdf5;
   color: #007a33;
-  padding: 8px 20px;
+  padding: 6px 16px;
   border-radius: 50px;
-  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
   font-weight: 700;
-  border: 1px solid rgba(0, 122, 51, 0.1);
+  border: 1px solid rgba(251, 206, 74, 0.6);
   white-space: nowrap;
 }
 
 .book-spec-detail {
   color: #ff8c00;
   font-weight: 800;
-  letter-spacing: 2px;
-  margin-bottom: 18px;
+  letter-spacing: 1.5px;
+  margin-bottom: 15px;
   text-transform: uppercase;
-  font-size: clamp(0.85rem, 2vw, 1rem);
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
 }
 
 .book-description {
-  color: #444;
+  color: #555555;
   line-height: 1.8;
-  margin-bottom: 35px;
-  font-size: clamp(0.95rem, 2vw, 1.1rem);
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
-  -webkit-hyphens: auto;
+  margin-bottom: 30px;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.book-card .btn-group {
+  margin-top: auto;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 992px) {
+  .book-grid-container {
+    flex-direction: column;
+    /* เปลี่ยนเป็นเรียงบนลงล่างเมื่อจอแคบ */
+    gap: 40px;
+  }
+
+  .book-visual {
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 768px) {
+  .book-visual {
+    max-width: 320px;
+  }
+
+  .book-card {
+    padding: 35px 25px !important;
+    border-radius: 20px;
+  }
+
+  .book-thumbs {
+    gap: 10px;
+  }
+
+  .thumb-item {
+    width: calc((100% - 30px) / 4) !important;
+  }
 }
 
 /* ============================================================
@@ -2402,8 +2459,8 @@ nav {
   .filter-container {
     display: flex !important;
     flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    justify-content: flex-start !important;
+    /* overflow-x: auto !important; */
+    justify-content: center;
     gap: 10px !important;
     padding: 8px 0 !important;
     /* no side padding — section handles 15% */
@@ -2884,8 +2941,8 @@ nav {
 
   body,
   .scroll-progress-container {
-    padding-top: 55px !important;
-    top: 55px !important;
+    padding-top: 69px !important;
+    top: 6px !important;
   }
 
   .hero-grid {
@@ -3016,4 +3073,55 @@ nav {
 .merch-card img,
 .author-img {
   height: auto !important;
+}
+
+/* Modal Styles สำหรับเปิด PDF */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  /* ให้อยู่บนสุด */
+  backdrop-filter: blur(3px);
+  /* ทำให้พื้นหลังเบลอนิดๆ สไตล์ทันสมัย */
+}
+
+.modal-content {
+  background: white;
+  width: 90%;
+  max-width: 900px;
+  height: 85vh;
+  /* ความสูงของหน้าต่าง popup */
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: popupFadeIn 0.3s ease-out;
+}
+
+.modal-header {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+}
+
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
