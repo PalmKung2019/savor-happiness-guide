@@ -1,5 +1,5 @@
 /* ============================================================
-   SAVOR HAPPINESS — MASTER STYLESHEET (FULL VERSION)
+   SAVOR HAPPINESS — MASTER STYLESHEET (MERGED & OPTIMIZED)
    ============================================================ */
 
 /* --- FONTS --- */
@@ -13,7 +13,6 @@
 
 /* --- ROOT VARIABLES (LIGHT THEME) --- */
 :root {
-  /* Brand Colors */
   --ci-green: #007a33;
   --ci-olive: #93a35a;
   --ci-orange: #ff8c00;
@@ -22,47 +21,33 @@
   --ci-cream: #f8f2e6;
   --ci-white: #ffffff;
 
-  /* Theme Defaults */
   --bg-main: var(--ci-cream);
   --bg-nav: rgba(248, 242, 230, 0.85);
-  /* Glassmorphism using ci-cream */
   --bg-card: var(--ci-white);
   --card-border: rgba(0, 122, 51, 0.15);
   --text-main: var(--ci-green);
-  /* Accessibility: using ci-green for better contrast */
   --text-muted: var(--ci-olive);
-  /* Accessibility: using brand color */
   --text-card-title: var(--ci-green);
   --shadow-light: rgba(0, 122, 51, 0.08);
-  /* Brand shadow */
   --shadow-dark: rgba(0, 122, 51, 0.15);
-  /* Brand shadow */
   --input-bg: var(--ci-white);
   --modal-bg: rgba(0, 122, 51, 0.85);
-  /* Brand overlay */
   --scrollbar-track: var(--bg-main);
   --scrollbar-thumb: var(--ci-green);
 }
 
 /* --- DARK THEME OVERRIDES --- */
-[data-theme="dark"] .logo-img {
-  content: url("img/logo/savorhappiness-2.png");
-}
-
 [data-theme="dark"] {
   --bg-main: var(--ci-green);
-  /* Accessibility: green provides better contrast for dark mode */
-  --bg-nav: #004d21;
-  /* Solid, non-transparent dark green for nav in dark mode */
-  --bg-card: #005c26;
-  /* Darker green for cards */
+  --bg-nav: rgba(0, 122, 51, 0.85);
+  --bg-card: var(--ci-olive);
   --card-border: rgba(244, 225, 5, 0.2);
-  /* using ci-yellow */
   --text-main: var(--ci-white);
   --text-muted: var(--ci-soft-yellow);
   --text-card-title: var(--ci-yellow);
-  --shadow-dark: rgba(0, 0, 0, 0.6);
-  /* --input-bg: rgba(255, 255, 255, 0.1); */
+  --shadow-light: rgba(0, 0, 0, 0.3);
+  --shadow-dark: rgba(0, 0, 0, 0.4);
+  --input-bg: rgba(255, 255, 255, 0.1);
   --modal-bg: rgba(0, 0, 0, 0.95);
   --scrollbar-track: #004d21;
   --scrollbar-thumb: var(--ci-orange);
@@ -83,7 +68,6 @@ body {
   line-height: 1.8;
   scroll-behavior: smooth;
   padding-top: 180px;
-  /* Increased to account for header + search-wrapper */
   transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   overflow-x: hidden;
 }
@@ -112,7 +96,7 @@ img {
   background: var(--ci-orange);
 }
 
-/* --- ANIMATIONS (ValueWar Style) --- */
+/* --- ANIMATIONS --- */
 @keyframes fadeInSlideUp {
   from {
     opacity: 0;
@@ -186,15 +170,12 @@ img {
   left: 0;
   width: 100vw;
   background: var(--bg-nav);
-  /* Use dynamic theme variable instead of hardcoded gradient */
   box-shadow: 0 4px 32px rgba(0, 122, 51, 0.05);
-  /* Softer, boutique shadow */
   z-index: 10000;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  /* Luxury edge reflection */
 }
 
 nav {
@@ -202,11 +183,9 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 16px 5%;
-  /* 8px Grid */
   max-width: 1400px;
   margin: 0 auto;
   height: 88px;
-  /* 8px Grid */
 }
 
 .logo-img {
@@ -217,7 +196,6 @@ nav {
 .logo-img:hover {
   transform: scale(1.08) rotate(-2deg);
   filter: drop-shadow(0 4px 12px rgba(255, 140, 0, 0.3));
-  /* Subtle brand glow */
 }
 
 .nav-links {
@@ -225,7 +203,6 @@ nav {
   display: flex;
   align-items: center;
   gap: 32px;
-  /* 8px Grid */
 }
 
 .nav-links li a {
@@ -234,11 +211,9 @@ nav {
   text-decoration: none;
   position: relative;
   font-size: 1.15rem;
-  /* Slightly larger for boutique feel */
   letter-spacing: 0.5px;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   padding: 8px 4px;
-  /* Space for elegant line */
 }
 
 .nav-links li a::after {
@@ -246,10 +221,8 @@ nav {
   position: absolute;
   bottom: 0;
   left: 50%;
-  /* Start from center */
   width: 0;
   height: 2px;
-  /* Thinner, more elegant */
   background: var(--ci-orange);
   transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   border-radius: 2px;
@@ -257,13 +230,11 @@ nav {
 
 .nav-links li a:hover {
   color: var(--ci-orange);
-  /* Smooth color shift */
 }
 
 .nav-links li a:hover::after {
   width: 100%;
   left: 0;
-  /* Expands symmetrically */
 }
 
 .lang-btn,
@@ -304,15 +275,17 @@ nav {
   color: var(--ci-orange);
 }
 
-.nav-close-btn {
+.mobile-close-wrapper {
   display: none;
+  list-style: none;
+}
+
+.nav-close-btn {
   background: none;
   border: none;
   font-size: 32px;
   color: var(--text-main);
   cursor: pointer;
-  align-self: flex-end;
-  margin-bottom: 20px;
 }
 
 .nav-controls-wrapper {
@@ -328,14 +301,12 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Vertical Center */
   position: relative;
 }
 
 .search-input-group {
   display: flex;
   align-items: stretch;
-  /* Make input and button exactly the same height */
   justify-content: center;
   width: 100%;
   max-width: 600px;
@@ -346,7 +317,6 @@ nav {
   border: 1px solid var(--card-border);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   margin: 0 auto;
-  /* Horizontal center fallback */
 }
 
 .search-input-group:focus-within {
@@ -361,8 +331,6 @@ nav {
   outline: none;
   background: transparent;
   font-size: 1rem;
-  line-height: 1;
-  /* Precision Center: ไม่ให้ text ลอย */
   color: var(--text-main);
   margin: 0;
 }
@@ -373,14 +341,11 @@ nav {
   border: none;
   padding: 0 32px;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: 0.4s;
   font-size: 1.2rem;
-  line-height: 1;
-  /* Precision Center */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0;
 }
 
 #searchBtn:hover {
@@ -427,7 +392,7 @@ nav {
   padding-left: 25px;
 }
 
-/* --- 3. HERO SECTION --- */
+/* --- 3. HERO SECTION (CLEAN & SHARP MERGED) --- */
 #home {
   min-height: calc(100vh - 180px);
   width: 100%;
@@ -444,9 +409,7 @@ nav {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom,
-      rgba(0, 0, 0, 0.25) 0%,
-      rgba(0, 122, 51, 0.18) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, rgba(0, 122, 51, 0.18) 100%);
   z-index: 2;
   pointer-events: none;
 }
@@ -475,8 +438,7 @@ nav {
   object-fit: cover;
   filter: brightness(0.72) grayscale(10%);
   transform: scale(1.02);
-  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
-    filter 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), filter 1.2s cubic-bezier(0.25, 1, 0.5, 1);
   backface-visibility: hidden;
 }
 
@@ -518,13 +480,7 @@ nav {
   line-height: 1.15;
   margin: 0;
   padding: 0;
-  text-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.6),
-    0 2px 6px rgba(0, 0, 0, 0.4);
-}
-
-#home .btn-primary {
-  margin-top: 35px;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 .subtitle-vibe {
@@ -623,29 +579,23 @@ nav {
   align-items: center;
 }
 
-/* --- 5. GLOBAL SECTIONS & TYPOGRAPHY --- */
+/* --- 5. GLOBAL SECTIONS --- */
 .section {
   padding: 80px 10%;
   max-width: 1600px;
   margin: 0 auto;
-  /* Horizontal Alignment Lock */
   position: relative;
   min-height: calc(100vh - 180px);
-  /* Vertical Balance: หัก Header ออกให้กึ่งกลางหน้าจอแท้จริง */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* Vertical Center */
   align-items: center;
-  /* Horizontal Center */
   text-align: center;
   gap: 64px;
-  /* ใช้ gap จัดการระยะห่างแทน margin */
 }
 
 .section>* {
   width: 100%;
-  /* ป้องกันไม่ให้โดน align-items บีบจนแคบ */
 }
 
 .section-title {
@@ -657,7 +607,7 @@ nav {
   font-weight: bold;
   letter-spacing: 1px;
   line-height: 1.4;
-  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: color 0.4s ease;
   display: block;
 }
 
@@ -677,7 +627,6 @@ nav {
 
 .district-label {
   margin: 0;
-  /* Reset Residual Spacing */
   padding: 0;
   font-size: 2rem;
   font-weight: 800;
@@ -686,7 +635,7 @@ nav {
   letter-spacing: 4px;
 }
 
-/* --- 6. BUTTONS --- */
+/* --- 6. BUTTONS (WITH MERGED HOVER FX) --- */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -703,15 +652,16 @@ nav {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   margin-top: 6px;
-  box-shadow: 0 10px 25px rgba(0, 122, 51, 0.25);
   border: 2px solid transparent !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1.04);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .btn-primary:hover {
   background: #005c26 !important;
-  transform: translateY(-3px);
-  box-shadow: 0 15px 35px rgba(0, 122, 51, 0.4);
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
 }
 
 [data-theme="dark"] .btn-primary {
@@ -719,20 +669,21 @@ nav {
   color: var(--ci-yellow) !important;
   border-color: var(--ci-yellow) !important;
   box-shadow: 0 5px 15px rgba(244, 225, 5, 0.1);
+  transform: scale(1);
 }
 
 [data-theme="dark"] .btn-primary:hover {
   background: var(--ci-yellow) !important;
   color: #004d21 !important;
   box-shadow: 0 12px 30px rgba(244, 225, 5, 0.3);
+  transform: scale(1.05) translateY(-2px);
 }
 
-/* --- 7. CARD ARCHITECTURE (Highlights) --- */
+/* --- 7. CARD ARCHITECTURE --- */
 .shop-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 40px;
-  /* Multiple of 8 */
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -742,10 +693,8 @@ nav {
   background: var(--bg-card);
   border: 1px solid var(--card-border);
   border-radius: 16px;
-  /* 8px Grid */
   box-shadow: 0 8px 24px var(--shadow-light);
-  /* 8px Grid */
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s ease;
   overflow: hidden;
   position: relative;
 }
@@ -754,7 +703,6 @@ nav {
 .merch-card:hover {
   transform: translateY(-12px);
   box-shadow: 0 24px 48px var(--shadow-dark);
-  /* 8px Grid */
   border-color: var(--ci-orange);
   z-index: 2;
 }
@@ -762,12 +710,10 @@ nav {
 .photo-gallery {
   display: block;
   height: 344px;
-  /* 8px Grid */
   position: relative;
   background: #000;
   overflow: hidden;
   border-radius: 16px 16px 0 0;
-  /* 8px Grid */
 }
 
 .photo-item {
@@ -777,7 +723,7 @@ nav {
   top: 0;
   left: 0;
   opacity: 0;
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1s ease, transform 0.8s ease;
   z-index: 1;
   cursor: pointer;
 }
@@ -793,11 +739,10 @@ nav {
 
 .shop-info {
   padding: 24px 32px;
-  /* 8px Grid */
   background: var(--bg-card);
   color: var(--text-main);
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s ease;
 }
 
 .shop-name {
@@ -805,7 +750,6 @@ nav {
   color: var(--text-card-title);
   font-weight: 800;
   margin-bottom: 8px;
-  /* 8px Grid */
 }
 
 .shop-tag {
@@ -838,13 +782,12 @@ nav {
   transform: translateX(0);
 }
 
-/* --- MERCH SLIDER (AUTO-SCROLL) --- */
+/* --- MERCH SLIDER --- */
 .merch-slider-wrapper {
   overflow: hidden;
   white-space: nowrap;
   width: 100%;
   position: relative;
-  /* Soft fade edges */
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
@@ -867,7 +810,7 @@ nav {
   object-fit: cover;
   box-shadow: 0 8px 24px var(--shadow-light);
   cursor: zoom-in;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--card-border);
 }
 
@@ -882,8 +825,6 @@ nav {
     transform: translateX(0);
   }
 
-  /* Slide left exactly 5 images + 5 gaps (since each set is 5 images long) */
-  /* This relies on exact width matching, but since we have flex, we can do -50% to shift half of the 10 images */
   100% {
     transform: translateX(calc(-50% - 10px));
   }
@@ -981,7 +922,6 @@ nav {
   transform: scale(1.15);
 }
 
-/* Lightbox Navigation Buttons */
 .nav-btn {
   position: absolute;
   background: rgba(0, 0, 0, 0.4);
@@ -996,7 +936,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -1060,7 +1000,6 @@ nav {
   text-align: center;
 }
 
-/* Book Navigation Buttons */
 .book-nav-btn {
   position: absolute;
   top: 50%;
@@ -1143,9 +1082,7 @@ nav {
   align-items: center;
   text-align: center;
   gap: 24px;
-  /* [Content Grouping]: เว้นระยะห่างแม่นยำด้วย Gap */
   transform: translateY(-45px);
-  /* [Optical Correction]: ชดเชยความสูงของ Thumbnails (90px) + Gap (25px) เพื่อให้ Text ตรงกลางกับรูปภาพหลัก (Main Image Card) แบบเป๊ะๆ */
 }
 
 .book-card .section-title {
@@ -1162,7 +1099,6 @@ nav {
   justify-content: center;
   gap: 12px;
   margin: 0;
-  /* Reset Residual Spacing */
 }
 
 .badge {
@@ -1185,7 +1121,6 @@ nav {
   font-weight: 800;
   color: var(--ci-orange);
   margin: 0;
-  /* Reset Residual Spacing */
   letter-spacing: 1.5px;
   font-size: 1.1rem;
 }
@@ -1194,7 +1129,6 @@ nav {
   font-size: 1.2rem;
   line-height: 1.8;
   margin: 0;
-  /* Reset Residual Spacing */
 }
 
 /* --- 11. VIDEO EXPERIENCE --- */
@@ -1514,8 +1448,8 @@ video {
 }
 
 .speed-dial-main-btn {
-  width: 55px;
-  height: 55px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   background: var(--ci-white);
   border: none;
@@ -1573,15 +1507,15 @@ video {
 }
 
 .dial-btn {
-  width: 45px;
-  height: 45px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   background: var(--ci-white);
   color: #333;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 22px;
   text-decoration: none;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   transition: 0.3s;
@@ -1765,7 +1699,6 @@ video {
     font-size: 1.05rem;
   }
 
-  /* Mobile Navigation & Branding */
   .logo-img {
     height: 32px;
   }
@@ -1783,6 +1716,7 @@ video {
     font-size: 16px;
   }
 
+  /* Mobile Navigation */
   .hamburger-menu {
     display: block;
   }
@@ -1813,11 +1747,13 @@ video {
     font-size: 1.3rem;
   }
 
-  .nav-close-btn {
-    display: block;
+  .mobile-close-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 30px;
     position: absolute;
     top: 25px;
-    right: 30px;
+    right: 0;
   }
 
   .nav-backdrop {
