@@ -43,7 +43,7 @@ const AppState = {
 };
 
 // ==========================================
-// 1. DATA (ข้อมูล 20 ร้าน และ ภาษา)
+// 1. DATA
 // ==========================================
 const translations = {
   th: {
@@ -372,7 +372,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ==========================================
-// 3. CORE LOGIC (Render & Logic)
+// 3. CORE LOGIC
 // ==========================================
 function renderShops() {
   const minList = document.getElementById("minburi-list");
@@ -693,7 +693,7 @@ window.changeBookSlide = function (dir) {
 };
 
 // ==========================================
-// 5. UTILITIES (Theme, Lang, Nav, Ticker)
+// 5. UTILITIES
 // ==========================================
 window.toggleTheme = function () {
   AppState.ui.isDarkMode = !AppState.ui.isDarkMode;
