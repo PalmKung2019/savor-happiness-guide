@@ -5,30 +5,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Savor Happiness | ลิ้มรสความสุข</title>
-
     <meta name="description"
         content="Savor Happiness ไกด์บุ๊คที่จะทำให้คุณตกหลุมรักชานเมืองย่านมีนบุรี–หนองจอก รวม 20 คาเฟ่และร้านอาหาร พร้อมบรรยากาศสุดชิลล์">
-
-    <meta name="google-site-verification" content="nVudNCHo_PDfGj_EEI_Dji_oU262q8Kp4BUb_hJxEfU" />
-
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
     <link rel="icon" type="image/png" href="img/logo/logo-light.png?v=2" />
     <link rel="apple-touch-icon" href="img/logo/logo-light.png?v=2" />
-
     <link rel="preload" as="image" href="img/SavorPic6.webp" type="image/webp" fetchpriority="high" />
-    <link rel="preload" as="image" href="img/SavorPic11.webp" type="image/webp" fetchpriority="high" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
-
-    <script>
-        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-    </script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 
 <body>
@@ -37,25 +24,20 @@
             <div class="hamburger-menu" id="hamburgerBtn" aria-label="เปิดเมนู" role="button" tabindex="0">
                 <i class="fas fa-bars"></i>
             </div>
-
             <div class="logo">
                 <a href="#home">
                     <img src="img/logo/savorhappiness-1.png" class="logo-img" id="mainLogo" alt="Savor Happiness" />
                 </a>
             </div>
-
             <div class="nav-right-container">
                 <ul class="nav-links" id="navLinks">
-                    <button class="nav-close-btn" id="navCloseBtn" aria-label="ปิดเมนู">
-                        <i class="fas fa-times"></i>
-                    </button>
-
-                    <li><a href="#home" data-key="nav-home">หน้าแรก</a></li>
-                    <li><a href="#book-feature" data-key="nav-book">หนังสือ</a></li>
-                    <li><a href="#merch" data-key="nav-merch">ของที่ระลึก</a></li>
-                    <li><a href="#highlights" data-key="nav-highlights">ร้านแนะนำ</a></li>
-                    <li><a href="#author" data-key="nav-creator">ผู้จัดทำ</a></li>
-
+                    <button class="nav-close-btn" id="navCloseBtn" aria-label="ปิดเมนู"><i
+                            class="fas fa-times"></i></button>
+                    <li><a href="#home" class="lang-text" data-key="nav-home">หน้าแรก</a></li>
+                    <li><a href="#book-feature" class="lang-text" data-key="nav-book">หนังสือ</a></li>
+                    <li><a href="#merch" class="lang-text" data-key="nav-merch">ของที่ระลึก</a></li>
+                    <li><a href="#highlights" class="lang-text" data-key="nav-highlights">ร้านแนะนำ</a></li>
+                    <li><a href="#author" class="lang-text" data-key="nav-creator">ผู้จัดทำ</a></li>
                     <li class="nav-controls-wrapper">
                         <button class="lang-btn" onclick="toggleLang()">TH</button>
                         <button class="theme-btn" onclick="toggleTheme()">LIGHT</button>
@@ -63,13 +45,11 @@
                 </ul>
             </div>
         </nav>
-
         <div class="nav-backdrop" id="navBackdrop"></div>
-
         <div class="search-wrapper">
             <div class="search-input-group">
-                <input type="text" id="shopSearchInput" placeholder="ค้นหาร้านค้าที่นี่..." />
-                <button id="searchBtn">ค้นหา</button>
+                <input type="text" id="shopSearchInput" placeholder="ค้นหาร้านค้าที่นี่..." autocomplete="off" />
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
             </div>
             <div id="searchSuggestions"></div>
         </div>
@@ -79,32 +59,20 @@
         <div class="progress-bar" id="myBar"></div>
     </div>
 
-    <div class="one-page-container">
-
+    <main class="one-page-container">
         <section id="home">
             <div class="hero-grid">
-                <div class="grid-item item-1"><img src="img/SavorPic6.webp" alt="Savor Image 1" width="800" height="600"
-                        fetchpriority="high" /></div>
-                <div class="grid-item item-2"><img src="img/SavorPic11.webp" alt="Savor Image 2" width="800"
-                        height="600" fetchpriority="high" /></div>
-                <div class="grid-item item-3"><img src="img/SavorPic21.webp" alt="Savor Image 3" width="800"
-                        height="600" loading="lazy" /></div>
-                <div class="grid-item item-4"><img src="img/SavorPic7.webp" alt="Savor Image 4" width="800" height="600"
-                        loading="lazy" /></div>
-                <div class="grid-item item-5"><img src="img/SavorPic23.webp" alt="Savor Image 5" width="800"
-                        height="600" loading="lazy" /></div>
-                <div class="grid-item item-6"><img src="img/SavorPic4.webp" alt="Savor Image 6" width="800" height="600"
-                        loading="lazy" /></div>
-                <div class="grid-item item-7"><img src="img/SavorPic17.webp" alt="Savor Image 7" width="800"
-                        height="600" loading="lazy" /></div>
-                <div class="grid-item item-8"><img src="img/SavorPic19.webp" alt="Savor Image 8" width="800"
-                        height="600" loading="lazy" /></div>
-                <div class="grid-item item-9"><img src="img/SavorPic10.webp" alt="Savor Image 9" width="800"
-                        height="600" loading="lazy" /></div>
-                <div class="grid-item item-10"><img src="img/SavorPic20.webp" alt="Savor Image 10" width="800"
-                        height="600" loading="lazy" /></div>
+                <div class="grid-item"><img src="img/SavorPic6.webp" alt="Savor 1" fetchpriority="high" /></div>
+                <div class="grid-item"><img src="img/SavorPic11.webp" alt="Savor 2" fetchpriority="high" /></div>
+                <div class="grid-item"><img src="img/SavorPic21.webp" alt="Savor 3" loading="lazy" /></div>
+                <div class="grid-item"><img src="img/SavorPic7.webp" alt="Savor 4" loading="lazy" /></div>
+                <div class="grid-item"><img src="img/SavorPic23.webp" alt="Savor 5" loading="lazy" /></div>
+                <div class="grid-item"><img src="img/SavorPic4.webp" alt="Savor 6" loading="lazy" /></div>
+                <div class="grid-item"><img src="img/SavorPic17.webp" alt="Savor 7" loading="lazy" /></div>
+                <div class="grid-item"><img src="img/SavorPic19.webp" alt="Savor 8" loading="lazy" /></div>
+                <div class="grid-item"><img src="img/SavorPic10.webp" alt="Savor 9" loading="lazy" /></div>
+                <div class="grid-item"><img src="img/SavorPic20.webp" alt="Savor 10" loading="lazy" /></div>
             </div>
-
             <div class="hero-content-overlay" data-aos="zoom-in" data-aos-duration="1200">
                 <div class="content-wrapper">
                     <p class="subtitle lang-text" data-key="hero-subtitle">DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS
@@ -116,15 +84,13 @@
                         data-key="btn-start">กดเริ่มเพื่อลิ้มรสความสุข</a>
                 </div>
             </div>
-
-            <div class="savor-ambient-glow" style="top: 50%; left: 50%;"></div>
             <a href="#highlights" class="savor-cta-ring-wrapper">
                 <svg viewBox="0 0 100 100" class="overflow-visible p-2">
                     <defs>
                         <path id="showcase-circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"></path>
                     </defs>
-                    <text fill="currentColor" font-family="Helvetica, Arial, sans-serif" font-size="10"
-                        font-weight="bold" letter-spacing="0.15em">
+                    <text fill="currentColor" font-family="Helvetica, sans-serif" font-size="10" font-weight="bold"
+                        letter-spacing="0.15em">
                         <textPath href="#showcase-circle" startOffset="0%">EXPLORE HIGHLIGHTS • SAVOR HAPPINESS •
                         </textPath>
                     </text>
@@ -140,7 +106,7 @@
             </div>
         </div>
 
-        <section class="video-experience-v2" data-aos="fade-up">
+        <section class="video-experience-v2" data-aos="fadeInSlideUp">
             <div class="video-flex-container">
                 <div class="video-visual-side">
                     <div class="video-wrapper">
@@ -148,19 +114,16 @@
                             <source src="video/video0.mp4" type="video/mp4" />
                             <source src="video/video0.mov" type="video/quicktime" />
                         </video>
-                        <button id="muteBtn" class="mute-control-btn">
-                            <i id="muteIcon" class="fas fa-volume-mute"></i>
-                        </button>
+                        <button id="muteBtn" class="mute-control-btn"><i id="muteIcon"
+                                class="fas fa-volume-mute"></i></button>
                     </div>
                 </div>
-
                 <div class="video-text-side">
                     <div class="video-content-box">
                         <span class="video-tag">Atmosphere</span>
                         <h2 class="section-title">Savor the <br />Serenity</h2>
                         <div class="video-description">
-                            <p>สัมผัสความสงบในมุมโปรดที่คุณอาจไม่เคยค้นพบ
-                                <br />บันทึกความทรงจำผ่านเลนส์และรสชาติที่ลงตัว
+                            <p>สัมผัสความสงบในมุมโปรดที่คุณอาจไม่เคยค้นพบ<br />บันทึกความทรงจำผ่านเลนส์และรสชาติที่ลงตัว
                             </p>
                         </div>
                     </div>
@@ -170,307 +133,239 @@
 
         <section id="book-feature" class="section">
             <div class="book-grid-container">
-
-                <div class="book-visual" data-aos="fade-right">
-                    <div class="main-img-container">
+                <div class="book-visual" data-aos="fadeInSlideUp">
+                    <div class="main-img-container" style="position: relative;">
+                        <button class="book-nav-btn prev" onclick="changeBookSlide(-1)">&#10094;</button>
                         <div class="book-float-wrapper">
-                            <img src="img/SavorHappiness-Cover.webp" id="mainBookImg" class="inner-mockup fade-in"
+                            <img src="img/SavorHappiness-Cover.webp" id="mainBookImg" class="inner-mockup"
                                 alt="Savor Happiness Guidebook" onclick="openSimpleLightbox(this.src)"
-                                style="cursor: zoom-in" loading="lazy" width="400" height="566" draggable="false" />
+                                style="cursor: zoom-in" loading="lazy" />
                         </div>
+                        <button class="book-nav-btn next" onclick="changeBookSlide(1)">&#10095;</button>
                     </div>
-
                     <div class="book-thumbs">
-                        <img src="img/SavorHappiness-Cover.webp" class="thumb-item active" alt="Cover"
-                            onclick="changeBookView(this.src, this)" loading="lazy" width="100" height="141"
-                            draggable="false" />
-                        <img src="img/SavorHappiness-Back.webp" class="thumb-item" alt="Back"
-                            onclick="changeBookView(this.src, this)" loading="lazy" width="100" height="141"
-                            draggable="false" />
-                        <img src="img/SavorHappiness-Inside1.webp" class="thumb-item" alt="Inside 1"
-                            onclick="changeBookView(this.src, this)" loading="lazy" width="100" height="141"
-                            draggable="false" />
-                        <img src="img/SavorHappiness-Inside2.webp" class="thumb-item" alt="Inside 2"
-                            onclick="changeBookView(this.src, this)" loading="lazy" width="100" height="141"
-                            draggable="false" />
+                        <img src="img/SavorHappiness-Cover.webp" class="thumb-item active"
+                            onclick="changeBookView(this.src, this)" loading="lazy" />
+                        <img src="img/SavorHappiness-Back.webp" class="thumb-item"
+                            onclick="changeBookView(this.src, this)" loading="lazy" />
+                        <img src="img/SavorHappiness-Inside1.webp" class="thumb-item"
+                            onclick="changeBookView(this.src, this)" loading="lazy" />
+                        <img src="img/SavorHappiness-Inside2.webp" class="thumb-item"
+                            onclick="changeBookView(this.src, this)" loading="lazy" />
                     </div>
                 </div>
-
-                <div class="book-text" data-aos="fade-left">
+                <div class="book-text" data-aos="fadeInSlideUp" style="animation-delay: 0.1s;">
                     <div class="book-card">
-
-                        <h2 class="section-title lang-text" data-key="book-title" data-aos="fade-up">THE GUIDEBOOK</h2>
-
-                        <div class="book-badge-row" data-aos="fade-up" data-aos-delay="100">
+                        <h2 class="section-title lang-text" data-key="book-title" style="text-align: left;">THE
+                            GUIDEBOOK</h2>
+                        <div class="book-badge-row">
                             <span class="badge">A5 Photobook</span>
                             <span class="badge">126 Pages</span>
-                            <span class="badge">Minburi &amp; Nongchok</span>
+                            <span class="badge">Minburi & Nongchok</span>
                         </div>
-
-                        <p class="book-spec-detail" data-aos="fade-up" data-aos-delay="200">FEATURING 20 CAFES &amp;
-                            RESTAURANTS</p>
-
-                        <p class="lang-text book-description" data-key="book-desc" data-aos="fade-up"
-                            data-aos-delay="300">
+                        <p class="book-spec-detail">FEATURING 20 CAFES & RESTAURANTS</p>
+                        <p class="lang-text book-description" data-key="book-desc">
                             Savor Happiness: ถ่ายทอดเสน่ห์ย่านมีนบุรี–หนองจอก ผ่าน Visual Storytelling
                             ผสมผสานภาพถ่ายบรรยากาศจริงเข้ากับงานกราฟิกสีสันสดใส จัดวางแบบ Dynamic Layout ให้อ่านง่าย
                             พร้อมแผนที่ Postcard ที่พกพาสะดวก
                         </p>
-
-                        <div class="btn-group" data-aos="fade-up" data-aos-delay="400">
-                            <button type="button" id="previewBtn" class="btn-primary lang-text" data-key="btn-pdf"
-                                style="cursor: pointer; border: none;">
+                        <div class="btn-group">
+                            <button type="button" id="previewBtn" class="btn-primary lang-text" data-key="btn-pdf">
                                 <i class="fas fa-book-open"></i> เปิดอ่านตัวอย่าง
                             </button>
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </section>
 
-        <div id="pdfModal" class="modal-overlay" style="display: none;">
-
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <div class="header-title" style="display: flex; align-items: center; gap: 12px;">
-                        <i class="fas fa-book-open" style="font-size: 24px; color: #e74c3c;"></i>
-                        <div>
-                            <div style="font-weight: bold; line-height: 1.2;">ทดลองอ่านบางส่วน</div>
-                            <div style="font-size: 0.8rem; color: #666;">Savor Happiness Guidebook</div>
-                        </div>
-                    </div>
-                    <button id="closeModal" class="close-btn"
-                        style="background: #f1f1f1; border: none; cursor: pointer; padding: 8px 12px; border-radius: 4px; transition: 0.2s;">
-                        <i class="fas fa-times" style="font-size: 20px; color: #333;"></i>
-                    </button>
-                </div>
-
-                <style>
-                    .book-reader-custom {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        gap: 30px;
-                        padding: 40px 20px;
-                        background: #525659;
-                        overflow-y: auto;
-                        height: 100%;
-                    }
-
-                    .book-spread {
-                        display: flex;
-                        justify-content: center;
-                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-                        max-width: 900px;
-                        width: 100%;
-                        background: white;
-                    }
-
-                    .book-spread img {
-                        width: 50%;
-                        height: auto;
-                        display: block;
-                        object-fit: cover;
-                    }
-
-                    .cover-page {
-                        width: 45%;
-                        max-width: 450px;
-                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-                        display: block;
-                    }
-
-                    @media (max-width: 768px) {
-                        .book-reader-custom {
-                            padding: 20px 10px;
-                            gap: 15px;
-                        }
-
-                        .book-spread {
-                            flex-direction: column;
-                            box-shadow: none;
-                            background: transparent;
-                        }
-
-                        .book-spread img,
-                        .cover-page {
-                            width: 100%;
-                            max-width: 100%;
-                            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-                            margin-bottom: 15px;
-                        }
-                    }
-                </style>
-
-                <div class="modal-body" style="flex: 1; position: relative; overflow: hidden;">
-                    <div class="book-reader-custom">
-                        <img src="img/preview/page-1.webp" class="cover-page" alt="Cover Page">
-
-                        <div class="book-spread">
-                            <img src="img/preview/page-2.webp" alt="Page 2">
-                            <img src="img/preview/page-3.webp" alt="Page 3">
-                        </div>
-
-                        <div class="book-spread">
-                            <img src="img/preview/page-4.webp" alt="Page 4">
-                            <img src="img/preview/page-5.webp" alt="Page 5">
-                        </div>
-
-                        <div class="book-spread">
-                            <img src="img/preview/page-6.webp" alt="Page 6">
-                            <img src="img/preview/page-7.webp" alt="Page 7">
-                        </div>
-
-                        <div class="book-spread">
-                            <img src="img/preview/page-8.webp" alt="Page 8">
-                            <img src="img/preview/page-9.webp" alt="Page 9">
-                        </div>
-
-                        <div class="book-spread">
-                            <img src="img/preview/page-10.webp" alt="Page 10">
-                            <img src="img/preview/page-11.webp" alt="Page 11">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <section id="merch" class="section">
             <h2 class="section-title lang-text" data-key="nav-merch" data-aos="fade-up">ของที่ระลึก</h2>
-
-            <div class="merch-category" data-aos="fade-up">
-                <h3 class="merch-sub-title"><i class="fas fa-map-marked-alt"></i> Postcard Map | โปสการ์ดแผนที่
-                    มีนบุรี-หนองจอก</h3>
-                <div class="merch-card">
-                    <img src="img/PostcardMinburi.webp" alt="Minburi Map" onclick="openSimpleLightbox(this.src)"
-                        style="cursor: zoom-in" loading="lazy" width="800" height="600" />
-                    <p>MinBuri Postcard Map | Savor Happiness</p>
-                </div>
-                <div class="merch-card">
-                    <img src="img/PostcardNongchok.webp" alt="Nongchok Map" onclick="openSimpleLightbox(this.src)"
-                        style="cursor: zoom-in" loading="lazy" width="800" height="600" />
-                    <p>NongChok Postcard Map | Savor Happiness</p>
+            <div class="merch-category" data-aos="fadeInSlideUp">
+                <h3 class="merch-sub-title"><i class="fas fa-map-marked-alt"></i> Postcard Map | โปสการ์ดแผนที่</h3>
+                <div class="merch-split-row" style="margin-top: 0;">
+                    <div class="merch-card"><img src="img/PostcardMinburi.webp" alt="Minburi Map"
+                            onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in" loading="lazy" />
+                        <p>MinBuri Postcard</p>
+                    </div>
+                    <div class="merch-card"><img src="img/PostcardNongchok.webp" alt="Nongchok Map"
+                            onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in" loading="lazy" />
+                        <p>NongChok Postcard</p>
+                    </div>
                 </div>
             </div>
-    </div>
-
-    <div class="merch-split-row" data-aos="fade-up">
-        <div class="merch-category sticker-side">
-            <h3 class="merch-sub-title"><i class="fas fa-sticky-note"></i> Sticker | สติ๊กเกอร์</h3>
-            <div class="merch-grid single-item-grid">
-                <div class="merch-card">
-                    <img src="img/Sticker1.webp" alt="Minburi Sticker" onclick="openSimpleLightbox(this.src)"
-                        style="cursor: zoom-in" loading="lazy" />
-                    <p class="lang-text" data-key="merch-min-title">Savor Happiness Sticker set</p>
+            <div class="merch-split-row" data-aos="fadeInSlideUp">
+                <div class="merch-category sticker-side">
+                    <h3 class="merch-sub-title"><i class="fas fa-sticky-note"></i> Sticker</h3>
+                    <div class="merch-card" style="width: 100%; margin: 0;"><img src="img/Sticker1.webp"
+                            alt="Minburi Sticker" onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in"
+                            loading="lazy" />
+                        <p class="lang-text" data-key="merch-min-title">Savor Happiness Sticker set</p>
+                    </div>
+                </div>
+                <div class="merch-category bookmarks-side">
+                    <h3 class="merch-sub-title"><i class="fas fa-bookmark"></i> Bookmarks</h3>
+                    <div class="merch-card" style="width: 100%; margin: 0;"><img src="img/Mockup_Bookmarks.webp"
+                            alt="Bookmarks" onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in"
+                            loading="lazy" />
+                        <p class="lang-text" data-key="merch-bookmark-title">Savor Happiness Bookmarks</p>
+                    </div>
                 </div>
             </div>
-        </div>
+            </div>
 
-        <div class="merch-category bookmarks-side">
-            <h3 class="merch-sub-title"><i class="fas fa-bookmark"></i> Bookmarks | ที่คั่นหนังสือ</h3>
-            <div class="merch-grid bookmark-triple-grid">
-                <div class="merch-card is-hero" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="img/Bookmarks1.webp" alt="Bookmark Design 1" onclick="openSimpleLightbox(this.src)"
-                        loading="lazy" />
-                    <p>Design 01</p>
-                </div>
-                <div class="merch-card is-secondary" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="img/Bookmarks2.webp" alt="Bookmark Design 2" onclick="openSimpleLightbox(this.src)"
-                        loading="lazy" />
-                    <p>Design 02</p>
-                </div>
-                <div class="merch-card is-secondary" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="img/Bookmarks3.webp" alt="Bookmark Design 3" onclick="openSimpleLightbox(this.src)"
-                        loading="lazy" />
-                    <p>Design 03</p>
+            <div class="merch-slider-container" data-aos="fade-up" style="margin-top: 50px;">
+                <h3 class="merch-sub-title lang-text" data-key="btn-more-merch"
+                    style="text-align: center; margin-bottom: 20px;"><i class="fas fa-images"></i> ของที่ระลึกเพิ่มเติม
+                </h3>
+                <div class="merch-slider-wrapper">
+                    <div class="merch-slider-track">
+                        <!-- Original Set -->
+                        <img src="img/Fashion1.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
+                        <img src="img/Mockup_Bookmarks.webp" alt="Merch" onclick="openSimpleLightbox(this.src)"
+                            loading="lazy">
+                        <img src="img/Postcards.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
+                        <img src="img/Sticker1.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
+                        <img src="img/Mug_Mockup_1.webp" onclick="openSimpleLightbox(this.src)" loading="lazy">
+                        <img src="img/Mug_Mockup_2.webp" onclick="openSimpleLightbox(this.src)" loading="lazy">
+                        <!-- Duplicated Set for Infinite Loop -->
+                        <img src="img/Fashion1.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
+                        <img src="img/Mockup_Bookmarks.webp" alt="Merch" onclick="openSimpleLightbox(this.src)"
+                            loading="lazy">
+                        <img src="img/Postcards.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
+                        <img src="img/Sticker1.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
+                        <img src="img/Mug_Mockup_1.webp" onclick="openSimpleLightbox(this.src)" loading="lazy">
+                        <img src="img/Mug_Mockup_2.webp" onclick="openSimpleLightbox(this.src)" loading="lazy">
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    </section>
+        </section>
 
-    <section id="highlights" class="section">
-        <div class="filter-container" data-aos="fade-up">
-            <button class="filter-btn active" data-filter="all">ทั้งหมด</button>
-            <button class="filter-btn" data-filter="minburi">ย่านมีนบุรี</button>
-            <button class="filter-btn" data-filter="nongchok">ย่านหนองจอก</button>
-        </div>
+        <section id="highlights" class="section">
+            <h2 class="section-title lang-text" data-key="nav-highlights" data-aos="fade-up">ร้านแนะนำ</h2>
+            <div class="filter-container" data-aos="fadeInSlideUp">
+                <button class="filter-btn active" data-filter="all">ทั้งหมด</button>
+                <button class="filter-btn" data-filter="minburi">ย่านมีนบุรี</button>
+                <button class="filter-btn" data-filter="nongchok">ย่านหนองจอก</button>
+            </div>
+            <div id="minburi-section">
+                <div class="district-label" data-aos="fade-up">MINBURI</div>
+                <div class="shop-grid" id="minburi-list"></div>
+            </div>
+            <div id="nongchok-section" style="margin-top: 60px;">
+                <div class="district-label" data-aos="fade-up">NONGCHOK</div>
+                <div class="shop-grid" id="nongchok-list"></div>
+            </div>
+        </section>
 
-        <div id="minburi-section" data-aos="fade-up">
-            <div class="district-label">MINBURI</div>
-            <div class="shop-grid" id="minburi-list"></div>
-        </div>
-
-        <div id="nongchok-section" style="margin-top: 40px;" data-aos="fade-up">
-            <div class="district-label">NONGCHOK</div>
-            <div class="shop-grid" id="nongchok-list"></div>
-        </div>
-    </section>
-
-    <section id="author" class="section" data-aos="fade-up">
-        <h2 class="section-title lang-text" data-key="author-title">ผู้จัดทำ</h2>
-        <div class="author-container">
-            <img src="img/Author_Palm.webp" alt="Pran Taewin" class="author-img" loading="lazy" width="400"
-                height="400" />
-            <div class="author-info">
-                <h3 class="author-name">ปรานต์ แถวอินทร์ (Pran Taewin)</h3>
-                <p class="author-role">นักออกแบบกราฟิก | คณะดิจิทัลมีเดีย มหาวิทยาลัยศรีปทุม #67</p>
-                <div class="author-logos">
-                    <img src="img/logo/spu.jpg" alt="SPU" title="Sripatum University" />
-                    <img src="img/logo/sdm.jpg" alt="SDM" title="School of Digital Media" />
-                    <img src="img/logo/SavorHappiness.jpg" alt="Savor Happiness Theme" style="border-radius: 50%" />
-                </div>
-                <div class="author-socials">
-                    <a href="mailto:palmy1983ch@gmail.com" class="social-btn"><i class="fas fa-envelope"></i>
-                        Email</a>
-                    <a href="https://www.facebook.com/profile.php?id=61583912952191" target="_blank"
-                        class="social-btn"><i class="fab fa-facebook-f"></i> Facebook</a>
-                    <a href="https://www.youtube.com/channel/UCMkdKbC24fxkU5E3BMWSt4Q" target="_blank"
-                        class="social-btn"><i class="fab fa-youtube"></i> YouTube</a>
+        <section id="author" class="section" data-aos="fadeInSlideUp">
+            <h2 class="section-title lang-text" data-key="author-title">ผู้จัดทำ</h2>
+            <div class="author-container">
+                <img src="img/Author_Palm.webp" alt="Pran Taewin" class="author-img" loading="lazy" />
+                <div class="author-info">
+                    <h3 class="author-name">ปรานต์ แถวอินทร์ (Pran Taewin)</h3>
+                    <p class="author-role">นักออกแบบกราฟิก | คณะดิจิทัลมีเดีย มหาวิทยาลัยศรีปทุม #67</p>
+                    <div class="author-logos">
+                        <img src="img/logo/spu.jpg" alt="SPU" />
+                        <img src="img/logo/sdm.jpg" alt="SDM" />
+                        <img src="img/logo/SavorHappiness.jpg" alt="Savor Happiness Theme" style="border-radius: 50%" />
+                    </div>
+                    <div class="author-socials">
+                        <a href="mailto:palmy1983ch@gmail.com" class="social-btn"><i class="fas fa-envelope"></i>
+                            Email</a>
+                        <a href="https://www.facebook.com/profile.php?id=61583912952191" target="_blank"
+                            class="social-btn"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="https://www.youtube.com/channel/UCMkdKbC24fxkU5E3BMWSt4Q" target="_blank"
+                            class="social-btn"><i class="fab fa-youtube"></i> YouTube</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="support" class="section support-hero" data-aos="fade-up">
-        <div class="support-glass-card">
-            <div class="support-text-side">
-                <h2 class="support-heading"><i class="fas fa-heart"></i> อุดหนุนผลงาน</h2>
-                <p class="support-sub">Savor Happiness Thesis Project</p>
-                <p class="support-description">
-                    ทุกการสนับสนุนของคุณคือแรงผลักดันสำคัญสำหรับโปรเจกต์จบของเรา<br />
-                    ขอบคุณที่ร่วมเดินทางและลิ้มรสความสุขของชานเมืองไปด้วยกันครับ ✨
-                </p>
-                <div class="support-creator-tag">
-                    <img src="img/Author_Palm.webp" alt="Palm" class="small-avatar" loading="lazy" />
-                    <span>โดย ปรานต์ แถวอินทร์ (ปาล์ม)</span>
+        <section id="support" class="section support-hero" data-aos="fadeInSlideUp">
+            <div class="support-glass-card">
+                <div class="support-text-side">
+                    <h2 class="support-heading"><i class="fas fa-heart"></i> อุดหนุนผลงาน</h2>
+                    <p class="support-sub">Savor Happiness Thesis Project</p>
+                    <p class="support-description">
+                        ทุกการสนับสนุนของคุณคือแรงผลักดันสำคัญสำหรับโปรเจกต์จบของเรา<br />ขอบคุณที่ร่วมเดินทางและลิ้มรสความสุขของชานเมืองไปด้วยกันครับ
+                        ✨</p>
+                    <div class="support-creator-tag">
+                        <img src="img/Author_Palm.webp" alt="Palm" class="small-avatar" loading="lazy" />
+                        <span>โดย ปรานต์ แถวอินทร์ (ปาล์ม)</span>
+                    </div>
+                </div>
+                <div class="support-qr-side">
+                    <div class="qr-wrapper"><img src="img/qr-placeholder.webp" alt="QR Code" class="qr-image"
+                            loading="lazy" />
+                        <div class="qr-scan-line"></div>
+                    </div>
+                    <p class="qr-hint">สแกนเพื่อสนับสนุน</p>
                 </div>
             </div>
-            <div class="support-qr-side">
-                <div class="qr-wrapper">
-                    <img src="img/qr-placeholder.webp" alt="QR Code" class="qr-image" loading="lazy" />
-                    <div class="qr-scan-line"></div>
-                </div>
-                <p class="qr-hint">สแกนเพื่อสนับสนุน</p>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    </div>
-
-    <div id="cafeModal" class="custom-modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
+    <div id="cafeModal" class="modal-overlay">
+        <div class="modal-content custom-modal-animation">
+            <span class="close-modal" id="closeCafeModal">&times;</span>
             <img id="modalImg" src="" alt="Cafe Full Image" />
             <h3 id="modalTitle">ชื่อคาเฟ่</h3>
             <p id="modalDesc">รายละเอียดร้าน</p>
-            <a href="#book-feature" class="btn-primary" onclick="closeModal()">
+            <button class="btn-primary"
+                onclick="document.getElementById('closeCafeModal').click(); document.getElementById('book-feature').scrollIntoView({behavior: 'smooth'});">
                 <i class="fas fa-book-open"></i> ดูรูปเต็มในไกด์บุ๊ค
-            </a>
+            </button>
         </div>
+    </div>
+
+    <div id="pdfModal" class="modal-overlay">
+        <div class="modal-content custom-modal-animation" style="max-width: 900px; padding: 20px;">
+            <div class="modal-header"
+                style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 15px; margin-bottom: 20px;">
+                <div class="header-title" style="display: flex; align-items: center; gap: 12px; text-align: left;">
+                    <i class="fas fa-book-open" style="font-size: 24px; color: var(--ci-orange);"></i>
+                    <div>
+                        <div style="font-weight: bold; line-height: 1.2; font-size: 1.2rem;">ทดลองอ่านบางส่วน</div>
+                        <div style="font-size: 0.9rem; color: var(--text-muted);">Savor Happiness Guidebook</div>
+                    </div>
+                </div>
+                <button id="closePdfModal" class="close-btn"
+                    style="position: relative; top: 0; right: 0; background: rgba(0,0,0,0.05); border: none; padding: 8px 12px; border-radius: 8px; color: var(--text-main);"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body"
+                style="overflow-y: auto; max-height: 70vh; background: #e0e0e0; padding: 20px; border-radius: 12px;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                    <img src="img/preview/page-1.webp" alt="Page 1"
+                        style="width: 50%; max-width: 400px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);" loading="lazy">
+                    <div style="display: flex; width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                        <img src="img/preview/page-2.webp" alt="Page 2" style="width: 50%; margin: 0; border-radius: 0;"
+                            loading="lazy"><img src="img/preview/page-3.webp" alt="Page 3"
+                            style="width: 50%; margin: 0; border-radius: 0;" loading="lazy">
+                    </div>
+                    <div style="display: flex; width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                        <img src="img/preview/page-4.webp" alt="Page 4" style="width: 50%; margin: 0; border-radius: 0;"
+                            loading="lazy"><img src="img/preview/page-5.webp" alt="Page 5"
+                            style="width: 50%; margin: 0; border-radius: 0;" loading="lazy">
+                    </div>
+                    <div style="display: flex; width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                        <img src="img/preview/page-6.webp" alt="Page 6" style="width: 50%; margin: 0; border-radius: 0;"
+                            loading="lazy"><img src="img/preview/page-7.webp" alt="Page 7"
+                            style="width: 50%; margin: 0; border-radius: 0;" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="simpleLightbox" class="lightbox-overlay">
+        <span class="close-btn" id="closeLightboxBtn" style="font-size: 40px; right: 40px; top: 20px;">&times;</span>
+        <button class="nav-btn prev" onclick="event.stopPropagation(); changeImg(-1);">&#10094;</button>
+        <img id="lightboxImg" class="lightbox-content" src="" alt="Full View"
+            style="max-width: 90%; max-height: 85vh; object-fit: contain; transition: transform 0.3s;"
+            onclick="event.stopPropagation()" />
+        <button class="nav-btn next" onclick="event.stopPropagation(); changeImg(1);">&#10095;</button>
     </div>
 
     <div class="speed-dial-container" id="speedDialContainer">
@@ -479,38 +374,21 @@
             <img src="img/smile-tongue.webp" class="speed-dial-img img-active" alt="Contact Active" />
         </button>
         <div class="speed-dial-buttons">
-            <a href="Tel:0979465925" class="dial-btn phone-btn"><i class="fas fa-phone"></i></a>
-            <a href="https://line.me/ti/p/hoyPIxxf4K" class="dial-btn line-btn"><i class="fab fa-line"></i></a>
+            <a href="Tel:0979465925" class="dial-btn"><i class="fas fa-phone"></i></a>
+            <a href="https://line.me/ti/p/hoyPIxxf4K" target="_blank" class="dial-btn"><i class="fab fa-line"></i></a>
             <button class="dial-btn copy-btn" onclick="copyContact()"><i class="fas fa-copy"></i></button>
         </div>
     </div>
 
-    <div id="simpleLightbox" class="lightbox-overlay" onclick="closeSimpleLightbox()"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 20000 !important; cursor: zoom-out; justify-content: center; align-items: center; backdrop-filter: blur(8px);">
-        <span class="close-btn"
-            style="position: absolute; top: 25px; right: 35px; color: white; font-size: 45px; cursor: pointer; transition: 0.3s; opacity: 0.7;"
-            onmouseover="this.style.opacity = 1" onmouseout="this.style.opacity = 0.7">&times;</span>
-        <button class="nav-btn prev" onclick="event.stopPropagation(); changeImg(-1);"
-            style="position: absolute; left: 30px; background: rgba(255, 255, 255, 0.05); color: white; border: 1px solid rgba(255, 255, 255, 0.2); width: 60px; height: 60px; font-size: 24px; cursor: pointer; border-radius: 50%; z-index: 20001; transition: 0.3s;"
-            onmouseover="this.style.background = 'rgba(255,255,255,0.2)'"
-            onmouseout="this.style.background = 'rgba(255,255,255,0.05)'">&#10094;</button>
-        <img id="lightboxImg" class="lightbox-content" src="" alt="Full View"
-            style="max-width: 90%; max-height: 85vh; object-fit: contain; border-radius: 8px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); transition: transform 0.3s ease-out;"
-            onclick="event.stopPropagation()" />
-        <button class="nav-btn next" onclick="event.stopPropagation(); changeImg(1);"
-            style="position: absolute; right: 30px; background: rgba(255, 255, 255, 0.05); color: white; border: 1px solid rgba(255, 255, 255, 0.2); width: 60px; height: 60px; font-size: 24px; cursor: pointer; border-radius: 50%; z-index: 20001; transition: 0.3s;"
-            onmouseover="this.style.background = 'rgba(255,255,255,0.2)'"
-            onmouseout="this.style.background = 'rgba(255,255,255,0.05)'">&#10095;</button>
-    </div>
-
     <footer class="footer">
-        <div class="footer-watermark" aria-hidden="true">SAVOR HAPPINESS</div>
+        <div class="footer-watermark">SAVOR HAPPINESS</div>
         <div class="footer-inner">
             <div class="footer-col footer-col--brand">
                 <img src="img/logo/savorhappiness-1.png" alt="Savor Happiness" class="footer-logo" />
                 <p class="footer-tagline">DIGITAL MEDIA · GRAPHIC DESIGN · SPU THESIS</p>
-                <p class="footer-desc">บันทึกความทรงจำผ่านเลนส์<br />ย่านมีนบุรี–หนองจอก</p>
-                <a href="#support" class="footer-cta-btn"><i class="fas fa-qrcode"></i> อุดหนุนผลงาน</a>
+                <p style="color: #aaa; margin-bottom: 20px;">บันทึกความทรงจำผ่านเลนส์<br />ย่านมีนบุรี–หนองจอก</p>
+                <a href="#support" class="btn-primary" style="padding: 10px 20px; font-size: 0.9rem;"><i
+                        class="fas fa-qrcode"></i> อุดหนุนผลงาน</a>
             </div>
             <div class="footer-col">
                 <h4 class="footer-col-title">Navigate</h4>
@@ -523,17 +401,6 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h4 class="footer-col-title">Explore</h4>
-                <ul class="footer-nav-list">
-                    <li><a href="javascript:void(0)" onclick="document.getElementById('previewBtn').click();">Preview
-                            Guidebook</a></li>
-                    <li><a href="#highlights">Minburi Cafes</a></li>
-                    <li><a href="#highlights">Nongchok Cafes</a></li>
-                    <li><a href="#merch">Sticker Set</a></li>
-                    <li><a href="#merch">Bookmarks</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
                 <h4 class="footer-col-title">Connect</h4>
                 <ul class="footer-nav-list">
                     <li><a href="mailto:palmy1983ch@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
@@ -541,122 +408,19 @@
                                 class="fab fa-facebook"></i> Facebook</a></li>
                     <li><a href="https://www.youtube.com/channel/UCMkdKbC24fxkU5E3BMWSt4Q" target="_blank"><i
                                 class="fab fa-youtube"></i> YouTube</a></li>
-                    <li><a href="https://line.me/ti/p/hoyPIxxf4K" target="_blank"><i class="fab fa-line"></i> LINE</a>
-                    </li>
                     <li><a href="Tel:0979465925"><i class="fas fa-phone"></i> 097-946-5925</a></li>
                 </ul>
             </div>
         </div>
-
-        <div class="footer-divider"></div>
-
-        <div class="footer-bottom">
-            <div class="footer-socials">
-                <a href="https://www.facebook.com/profile.php?id=61583912952191" target="_blank"
-                    aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.youtube.com/channel/UCMkdKbC24fxkU5E3BMWSt4Q" target="_blank"
-                    aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="mailto:palmy1983ch@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://line.me/ti/p/hoyPIxxf4K" target="_blank" aria-label="LINE"><i
-                        class="fab fa-line"></i></a>
-            </div>
-            <p class="footer-copy">© 2026 SAVOR HAPPINESS | Made with ❤️ for SPU Thesis — Pran Taewin</p>
+        <div class="footer-divider"
+            style="height: 1px; background: rgba(255,255,255,0.1); margin: 40px auto 20px; max-width: 1200px;"></div>
+        <div class="footer-bottom" style="text-align: center; color: #777; font-size: 0.9rem; padding-bottom: 20px;">
+            <p>© 2026 SAVOR HAPPINESS | Thank you for being part of our story.</p>
         </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <script>
-        window.toggleSpeedDial = function (e) {
-            if (e) e.stopPropagation();
-            const dial = document.getElementById("speedDialContainer");
-            if (dial) dial.classList.toggle("active");
-        };
-
-        document.addEventListener("click", function (e) {
-            const dial = document.getElementById("speedDialContainer");
-            const muteBtn = document.getElementById("muteBtn");
-            const video = document.getElementById("myVideo");
-
-            if (muteBtn && muteBtn.contains(e.target) && video) {
-                const muteIcon = muteBtn.querySelector("i");
-                video.muted = !video.muted;
-                muteIcon.classList.toggle("fa-volume-mute", video.muted);
-                muteIcon.classList.toggle("fa-volume-up", !video.muted);
-            }
-
-            if (dial && dial.classList.contains("active") && !dial.contains(e.target)) {
-                dial.classList.remove("active");
-            }
-        });
-
-        document.querySelectorAll("h1, h2, h3, img").forEach((el) => {
-            if (!el.hasAttribute("data-aos")) {
-                el.setAttribute("data-aos", "fade-up");
-            }
-        });
-
-        AOS.init({
-            duration: 500,
-            once: true,
-            easing: "ease-out-cubic",
-            offset: 50,
-        });
-
-        window.onload = function () {
-            const allImages = document.getElementsByTagName("img");
-            for (let i = 0; i < allImages.length; i++) {
-                allImages[i].setAttribute("draggable", "false");
-                allImages[i].oncontextmenu = function () { return false; };
-                allImages[i].ondragstart = function () { return false; };
-            }
-        };
-
-        document.addEventListener("keyup", (e) => {
-            if (e.key === "PrintScreen") {
-                navigator.clipboard.writeText("ไม่อนุญาตให้แคปภาพลิขสิทธิ์ครับ");
-                alert("ระบบความปลอดภัย: ตรวจพบการแคปหน้าจอ เนื้อหาถูกล็อค");
-            }
-        });
-
-        document.addEventListener("keydown", (e) => {
-            if (e.ctrlKey && e.key === "p") {
-                alert("ไม่อนุญาตให้สั่งพิมพ์หน้าเว็บนี้ครับ");
-                e.preventDefault();
-            }
-        });
-
-        // Script สำหรับคุม Modal ทดลองอ่าน (เพิ่มเข้ามาใหม่)
-        document.addEventListener("DOMContentLoaded", function () {
-            const previewBtn = document.getElementById("previewBtn");
-            const pdfModal = document.getElementById("pdfModal");
-            const closeModalBtn = document.getElementById("closeModal");
-
-            if (previewBtn && pdfModal && closeModalBtn) {
-                previewBtn.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    pdfModal.style.display = "block";
-                    document.body.style.overflow = "hidden"; // ล็อกหน้าจอหลักไม่ให้เลื่อน
-                });
-
-                closeModalBtn.addEventListener("click", function () {
-                    pdfModal.style.display = "none";
-                    document.body.style.overflow = "auto"; // คืนค่าหน้าจอหลัก
-                });
-
-                // กดคลิกพื้นที่สีดำรอบๆ เพื่อปิด
-                pdfModal.addEventListener("click", function (e) {
-                    if (e.target === pdfModal) {
-                        pdfModal.style.display = "none";
-                        document.body.style.overflow = "auto";
-                    }
-                });
-            }
-        });
-    </script>
-
-    <script src="script.js" defer></script>
-
+    <script src="script.js"></script>
 </body>
 
 </html>
