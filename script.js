@@ -12,10 +12,26 @@ const CONFIG = {
   LIGHTBOX_ZOOM_SCALE: 2.5,
 };
 
+// ป้องกัน Error กรณี Browser มีการบล็อก LocalStorage
+function getStorage(key, defaultVal) {
+  try {
+    return localStorage.getItem(key) || defaultVal;
+  } catch (e) {
+    return defaultVal;
+  }
+}
+function setStorage(key, val) {
+  try {
+    localStorage.setItem(key, val);
+  } catch (e) {
+    console.warn("LocalStorage access denied");
+  }
+}
+
 const AppState = {
   ui: {
-    currentLang: localStorage.getItem("preferredLang") || "th",
-    isDarkMode: localStorage.getItem("theme") === "dark",
+    currentLang: getStorage("preferredLang", "th"),
+    isDarkMode: getStorage("theme", "light") === "dark",
   },
   lightbox: {
     isZoomed: false,
@@ -380,7 +396,6 @@ function renderShops() {
         </div>
       </div>
     `;
-
     if (shop.zone === "minburi")
       minList.insertAdjacentHTML("beforeend", cardHTML);
     else nongList.insertAdjacentHTML("beforeend", cardHTML);
@@ -449,7 +464,6 @@ function setupSearch() {
   const searchInput = document.getElementById("shopSearchInput");
   const searchSuggestions = document.getElementById("searchSuggestions");
   const searchBtn = document.getElementById("searchBtn");
-
   if (!searchInput || !searchSuggestions) return;
 
   const performSearch = () => {
@@ -606,30 +620,6 @@ window.openGalleryLightbox = function (shopIdx, imgIdx) {
   AppState.lightbox.isZoomed = false;
 };
 
-window.openExtraMerchGallery = function () {
-  AppState.lightbox.currentGallery = [
-    "img/Fashion1.webp",
-    "img/Mockup_Bookmarks.webp",
-    "img/Postcards.webp",
-    "img/Sticker1.webp",
-    "img/Mug_Mockup_1.webp",
-    "img/Mug_Mockup_2.webp",
-  ];
-  AppState.lightbox.currentImgIdx = 0;
-
-  const lbImg = document.getElementById("lightboxImg");
-  lbImg.src = AppState.lightbox.currentGallery[0];
-  lbImg.style.transform = "scale(1)";
-
-  document
-    .querySelectorAll("#simpleLightbox .nav-btn")
-    .forEach((btn) => (btn.style.display = "flex"));
-
-  document.getElementById("simpleLightbox").style.display = "flex";
-  document.body.style.overflow = "hidden";
-  AppState.lightbox.isZoomed = false;
-};
-
 window.changeImg = function (dir) {
   if (AppState.lightbox.currentGallery.length > 0) {
     AppState.lightbox.currentImgIdx =
@@ -655,13 +645,11 @@ function setupModals() {
     document.getElementById("simpleLightbox").style.display = "none";
     document.body.style.overflow = "";
   });
-
   document.getElementById("previewBtn").addEventListener("click", (e) => {
     e.preventDefault();
     document.getElementById("pdfModal").style.display = "flex";
     document.body.style.overflow = "hidden";
   });
-
   window.addEventListener("click", (e) => {
     if (
       e.target.classList.contains("modal-overlay") ||
@@ -671,7 +659,6 @@ function setupModals() {
       document.body.style.overflow = "";
     }
   });
-
   const lbImg = document.getElementById("lightboxImg");
   lbImg.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -710,7 +697,7 @@ window.changeBookSlide = function (dir) {
 // ==========================================
 window.toggleTheme = function () {
   AppState.ui.isDarkMode = !AppState.ui.isDarkMode;
-  localStorage.setItem("theme", AppState.ui.isDarkMode ? "dark" : "light");
+  setStorage("theme", AppState.ui.isDarkMode ? "dark" : "light");
   applyTheme(AppState.ui.isDarkMode);
 };
 
@@ -730,7 +717,7 @@ function applyTheme(isDark) {
 
 window.toggleLang = function () {
   AppState.ui.currentLang = AppState.ui.currentLang === "th" ? "en" : "th";
-  localStorage.setItem("preferredLang", AppState.ui.currentLang);
+  setStorage("preferredLang", AppState.ui.currentLang);
   applyLanguage(AppState.ui.currentLang);
 };
 
@@ -835,7 +822,6 @@ if (muteBtn && video) {
   });
 }
 
-// Security features
 document.querySelectorAll("img").forEach((img) => {
   img.setAttribute("draggable", false);
   img.oncontextmenu = () => false;
