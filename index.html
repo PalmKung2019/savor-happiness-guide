@@ -7,6 +7,14 @@
     <title>Savor Happiness | ลิ้มรสความสุข</title>
     <meta name="description"
         content="Savor Happiness ไกด์บุ๊คที่จะทำให้คุณตกหลุมรักชานเมืองย่านมีนบุรี–หนองจอก รวม 20 คาเฟ่และร้านอาหาร พร้อมบรรยากาศสุดชิลล์">
+
+    <meta property="og:title" content="Savor Happiness | ลิ้มรสความสุข" />
+    <meta property="og:description"
+        content="ไกด์บุ๊คที่จะทำให้คุณตกหลุมรักชานเมืองย่านมีนบุรี–หนองจอก รวม 20 คาเฟ่และร้านอาหาร" />
+    <meta property="og:image" content="https://savor-happiness-guide.vercel.app/img/SavorHappiness-Cover.webp" />
+    <meta property="og:url" content="https://savor-happiness-guide.vercel.app" />
+    <meta property="og:type" content="website" />
+
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="img/logo/logo-light.png?v=2" />
     <link rel="apple-touch-icon" href="img/logo/logo-light.png?v=2" />
@@ -31,8 +39,10 @@
             </div>
             <div class="nav-right-container">
                 <ul class="nav-links" id="navLinks">
-                    <button class="nav-close-btn" id="navCloseBtn" aria-label="ปิดเมนู"><i
-                            class="fas fa-times"></i></button>
+                    <li class="mobile-close-wrapper">
+                        <button class="nav-close-btn" id="navCloseBtn" aria-label="ปิดเมนู"><i
+                                class="fas fa-times"></i></button>
+                    </li>
                     <li><a href="#home" class="lang-text" data-key="nav-home">หน้าแรก</a></li>
                     <li><a href="#book-feature" class="lang-text" data-key="nav-book">หนังสือ</a></li>
                     <li><a href="#merch" class="lang-text" data-key="nav-merch">ของที่ระลึก</a></li>
@@ -135,22 +145,24 @@
             <div class="book-grid-container">
                 <div class="book-visual" data-aos="fadeInSlideUp">
                     <div class="main-img-container" style="position: relative;">
-                        <button class="book-nav-btn prev" onclick="changeBookSlide(-1)">&#10094;</button>
+                        <button class="book-nav-btn prev" aria-label="Previous"
+                            onclick="changeBookSlide(-1)">&#10094;</button>
                         <div class="book-float-wrapper">
                             <img src="img/SavorHappiness-Cover.webp" id="mainBookImg" class="inner-mockup"
                                 alt="Savor Happiness Guidebook" onclick="openSimpleLightbox(this.src)"
                                 style="cursor: zoom-in" loading="lazy" />
                         </div>
-                        <button class="book-nav-btn next" onclick="changeBookSlide(1)">&#10095;</button>
+                        <button class="book-nav-btn next" aria-label="Next"
+                            onclick="changeBookSlide(1)">&#10095;</button>
                     </div>
                     <div class="book-thumbs">
-                        <img src="img/SavorHappiness-Cover.webp" class="thumb-item active"
+                        <img src="img/SavorHappiness-Cover.webp" alt="Thumb" class="thumb-item active"
                             onclick="changeBookView(this.src, this)" loading="lazy" />
-                        <img src="img/SavorHappiness-Back.webp" class="thumb-item"
+                        <img src="img/SavorHappiness-Back.webp" alt="Thumb" class="thumb-item"
                             onclick="changeBookView(this.src, this)" loading="lazy" />
-                        <img src="img/SavorHappiness-Inside1.webp" class="thumb-item"
+                        <img src="img/SavorHappiness-Inside1.webp" alt="Thumb" class="thumb-item"
                             onclick="changeBookView(this.src, this)" loading="lazy" />
-                        <img src="img/SavorHappiness-Inside2.webp" class="thumb-item"
+                        <img src="img/SavorHappiness-Inside2.webp" alt="Thumb" class="thumb-item"
                             onclick="changeBookView(this.src, this)" loading="lazy" />
                     </div>
                 </div>
@@ -184,58 +196,63 @@
             <div class="merch-category" data-aos="fadeInSlideUp">
                 <h3 class="merch-sub-title"><i class="fas fa-map-marked-alt"></i> Postcard Map | โปสการ์ดแผนที่</h3>
                 <div class="merch-split-row" style="margin-top: 0;">
-                    <div class="merch-card"><img src="img/PostcardMinburi.webp" alt="Minburi Map"
-                            onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in" loading="lazy" />
+                    <div class="merch-card">
+                        <img src="img/PostcardMinburi.webp" alt="Minburi Map" onclick="openSimpleLightbox(this.src)"
+                            style="cursor: zoom-in" loading="lazy" />
                         <p>MinBuri Postcard</p>
                     </div>
-                    <div class="merch-card"><img src="img/PostcardNongchok.webp" alt="Nongchok Map"
-                            onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in" loading="lazy" />
+                    <div class="merch-card">
+                        <img src="img/PostcardNongchok.webp" alt="Nongchok Map" onclick="openSimpleLightbox(this.src)"
+                            style="cursor: zoom-in" loading="lazy" />
                         <p>NongChok Postcard</p>
                     </div>
                 </div>
             </div>
+
             <div class="merch-split-row" data-aos="fadeInSlideUp">
                 <div class="merch-category sticker-side">
                     <h3 class="merch-sub-title"><i class="fas fa-sticky-note"></i> Sticker</h3>
-                    <div class="merch-card" style="width: 100%; margin: 0;"><img src="img/Sticker1.webp"
-                            alt="Minburi Sticker" onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in"
-                            loading="lazy" />
+                    <div class="merch-card" style="width: 100%; margin: 0;">
+                        <img src="img/Sticker1.webp" alt="Minburi Sticker" onclick="openSimpleLightbox(this.src)"
+                            style="cursor: zoom-in" loading="lazy" />
                         <p class="lang-text" data-key="merch-min-title">Savor Happiness Sticker set</p>
                     </div>
                 </div>
                 <div class="merch-category bookmarks-side">
                     <h3 class="merch-sub-title"><i class="fas fa-bookmark"></i> Bookmarks</h3>
-                    <div class="merch-card" style="width: 100%; margin: 0;"><img src="img/Mockup_Bookmarks.webp"
-                            alt="Bookmarks" onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in"
-                            loading="lazy" />
+                    <div class="merch-card" style="width: 100%; margin: 0;">
+                        <img src="img/Mockup_Bookmarks.webp" alt="Bookmarks" onclick="openSimpleLightbox(this.src)"
+                            style="cursor: zoom-in" loading="lazy" />
                         <p class="lang-text" data-key="merch-bookmark-title">Savor Happiness Bookmarks</p>
                     </div>
                 </div>
             </div>
-            </div>
 
             <div class="merch-slider-container" data-aos="fade-up" style="margin-top: 50px;">
                 <h3 class="merch-sub-title lang-text" data-key="btn-more-merch"
-                    style="text-align: center; margin-bottom: 20px;"><i class="fas fa-images"></i> ของที่ระลึกเพิ่มเติม
+                    style="text-align: center; margin-bottom: 20px;">
+                    <i class="fas fa-images"></i> ของที่ระลึกเพิ่มเติม
                 </h3>
                 <div class="merch-slider-wrapper">
                     <div class="merch-slider-track">
-                        <!-- Original Set -->
                         <img src="img/Fashion1.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
                         <img src="img/Mockup_Bookmarks.webp" alt="Merch" onclick="openSimpleLightbox(this.src)"
                             loading="lazy">
                         <img src="img/Postcards.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
                         <img src="img/Sticker1.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
-                        <img src="img/Mug_Mockup_1.webp" onclick="openSimpleLightbox(this.src)" loading="lazy">
-                        <img src="img/Mug_Mockup_2.webp" onclick="openSimpleLightbox(this.src)" loading="lazy">
-                        <!-- Duplicated Set for Infinite Loop -->
+                        <img src="img/Mug_Mockup_1.webp" alt="Merch" onclick="openSimpleLightbox(this.src)"
+                            loading="lazy">
+                        <img src="img/Mug_Mockup_2.webp" alt="Merch" onclick="openSimpleLightbox(this.src)"
+                            loading="lazy">
                         <img src="img/Fashion1.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
                         <img src="img/Mockup_Bookmarks.webp" alt="Merch" onclick="openSimpleLightbox(this.src)"
                             loading="lazy">
                         <img src="img/Postcards.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
                         <img src="img/Sticker1.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
-                        <img src="img/Mug_Mockup_1.webp" onclick="openSimpleLightbox(this.src)" loading="lazy">
-                        <img src="img/Mug_Mockup_2.webp" onclick="openSimpleLightbox(this.src)" loading="lazy">
+                        <img src="img/Mug_Mockup_1.webp" alt="Merch" onclick="openSimpleLightbox(this.src)"
+                            loading="lazy">
+                        <img src="img/Mug_Mockup_2.webp" alt="Merch" onclick="openSimpleLightbox(this.src)"
+                            loading="lazy">
                     </div>
                 </div>
             </div>
@@ -289,15 +306,16 @@
                     <p class="support-sub">Savor Happiness Thesis Project</p>
                     <p class="support-description">
                         ทุกการสนับสนุนของคุณคือแรงผลักดันสำคัญสำหรับโปรเจกต์จบของเรา<br />ขอบคุณที่ร่วมเดินทางและลิ้มรสความสุขของชานเมืองไปด้วยกันครับ
-                        ✨</p>
+                        ✨
+                    </p>
                     <div class="support-creator-tag">
                         <img src="img/Author_Palm.webp" alt="Palm" class="small-avatar" loading="lazy" />
                         <span>โดย ปรานต์ แถวอินทร์ (ปาล์ม)</span>
                     </div>
                 </div>
                 <div class="support-qr-side">
-                    <div class="qr-wrapper"><img src="img/qr-placeholder.webp" alt="QR Code" class="qr-image"
-                            loading="lazy" />
+                    <div class="qr-wrapper">
+                        <img src="img/qr-placeholder.webp" alt="QR Code" class="qr-image" loading="lazy" />
                         <div class="qr-scan-line"></div>
                     </div>
                     <p class="qr-hint">สแกนเพื่อสนับสนุน</p>
@@ -330,7 +348,7 @@
                         <div style="font-size: 0.9rem; color: var(--text-muted);">Savor Happiness Guidebook</div>
                     </div>
                 </div>
-                <button id="closePdfModal" class="close-btn"
+                <button id="closePdfModal" class="close-btn" aria-label="Close"
                     style="position: relative; top: 0; right: 0; background: rgba(0,0,0,0.05); border: none; padding: 8px 12px; border-radius: 8px; color: var(--text-main);"><i
                         class="fas fa-times"></i></button>
             </div>
@@ -341,18 +359,21 @@
                         style="width: 50%; max-width: 400px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);" loading="lazy">
                     <div style="display: flex; width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
                         <img src="img/preview/page-2.webp" alt="Page 2" style="width: 50%; margin: 0; border-radius: 0;"
-                            loading="lazy"><img src="img/preview/page-3.webp" alt="Page 3"
-                            style="width: 50%; margin: 0; border-radius: 0;" loading="lazy">
+                            loading="lazy">
+                        <img src="img/preview/page-3.webp" alt="Page 3" style="width: 50%; margin: 0; border-radius: 0;"
+                            loading="lazy">
                     </div>
                     <div style="display: flex; width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
                         <img src="img/preview/page-4.webp" alt="Page 4" style="width: 50%; margin: 0; border-radius: 0;"
-                            loading="lazy"><img src="img/preview/page-5.webp" alt="Page 5"
-                            style="width: 50%; margin: 0; border-radius: 0;" loading="lazy">
+                            loading="lazy">
+                        <img src="img/preview/page-5.webp" alt="Page 5" style="width: 50%; margin: 0; border-radius: 0;"
+                            loading="lazy">
                     </div>
                     <div style="display: flex; width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
                         <img src="img/preview/page-6.webp" alt="Page 6" style="width: 50%; margin: 0; border-radius: 0;"
-                            loading="lazy"><img src="img/preview/page-7.webp" alt="Page 7"
-                            style="width: 50%; margin: 0; border-radius: 0;" loading="lazy">
+                            loading="lazy">
+                        <img src="img/preview/page-7.webp" alt="Page 7" style="width: 50%; margin: 0; border-radius: 0;"
+                            loading="lazy">
                     </div>
                 </div>
             </div>
@@ -361,20 +382,22 @@
 
     <div id="simpleLightbox" class="lightbox-overlay">
         <span class="close-btn" id="closeLightboxBtn" style="font-size: 40px; right: 40px; top: 20px;">&times;</span>
-        <button class="nav-btn prev" onclick="event.stopPropagation(); changeImg(-1);">&#10094;</button>
+        <button class="nav-btn prev" aria-label="Previous"
+            onclick="event.stopPropagation(); changeImg(-1);">&#10094;</button>
         <img id="lightboxImg" class="lightbox-content" src="" alt="Full View"
             style="max-width: 90%; max-height: 85vh; object-fit: contain; transition: transform 0.3s;"
             onclick="event.stopPropagation()" />
-        <button class="nav-btn next" onclick="event.stopPropagation(); changeImg(1);">&#10095;</button>
+        <button class="nav-btn next" aria-label="Next"
+            onclick="event.stopPropagation(); changeImg(1);">&#10095;</button>
     </div>
 
     <div class="speed-dial-container" id="speedDialContainer">
-        <button class="speed-dial-main-btn" onclick="toggleSpeedDial()">
+        <button class="speed-dial-main-btn" aria-label="Contact" onclick="toggleSpeedDial()">
             <img src="img/smile-normal.webp" class="speed-dial-img img-normal" alt="Contact" />
             <img src="img/smile-tongue.webp" class="speed-dial-img img-active" alt="Contact Active" />
         </button>
         <div class="speed-dial-buttons">
-            <a href="Tel:0979465925" class="dial-btn"><i class="fas fa-phone"></i></a>
+            <a href="tel:0979465925" class="dial-btn"><i class="fas fa-phone"></i></a>
             <a href="https://line.me/ti/p/hoyPIxxf4K" target="_blank" class="dial-btn"><i class="fab fa-line"></i></a>
             <button class="dial-btn copy-btn" onclick="copyContact()"><i class="fas fa-copy"></i></button>
         </div>
@@ -408,7 +431,7 @@
                                 class="fab fa-facebook"></i> Facebook</a></li>
                     <li><a href="https://www.youtube.com/channel/UCMkdKbC24fxkU5E3BMWSt4Q" target="_blank"><i
                                 class="fab fa-youtube"></i> YouTube</a></li>
-                    <li><a href="Tel:0979465925"><i class="fas fa-phone"></i> 097-946-5925</a></li>
+                    <li><a href="tel:0979465925"><i class="fas fa-phone"></i> 097-946-5925</a></li>
                 </ul>
             </div>
         </div>
