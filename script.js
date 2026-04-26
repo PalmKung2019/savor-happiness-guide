@@ -428,19 +428,44 @@ function loadRemainingImagesAndSlide() {
 }
 
 function startAutoSlide() {
+  // ใช้ IntersectionObserver ตรวจจับว่าแกลเลอรีไหนโผล่มาบนจอ
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const gallery = entry.target;
+        const items = gallery.querySelectorAll(".photo-item");
+        if (items.length <= 1) return;
+
+        if (entry.isIntersecting) {
+          // ถ้าอยู่บนจอ ให้เริ่มสลับรูป
+          let currentIdx = parseInt(gallery.dataset.currentIdx || "0");
+
+          const interval = setInterval(
+            () => {
+              items[currentIdx].classList.remove("active");
+              currentIdx = (currentIdx + 1) % items.length;
+              items[currentIdx].classList.add("active");
+              gallery.dataset.currentIdx = currentIdx; // จำค่าไว้
+            },
+            CONFIG.AUTO_SLIDE_INTERVAL + Math.random() * 1000,
+          );
+
+          // เก็บ ID ของ interval ไว้ที่ตัว DOM เพื่อใช้เคลียร์ทีหลัง
+          gallery.dataset.intervalId = interval;
+        } else {
+          // ถ้าเลื่อนผ่านไปแล้ว ให้หยุดทำงาน
+          if (gallery.dataset.intervalId) {
+            clearInterval(gallery.dataset.intervalId);
+            gallery.dataset.intervalId = "";
+          }
+        }
+      });
+    },
+    { threshold: 0.1 },
+  ); // โผล่มา 10% ของพื้นที่ก็ให้ทำงาน
+
   document.querySelectorAll(".photo-gallery").forEach((gallery) => {
-    const items = gallery.querySelectorAll(".photo-item");
-    if (items.length <= 1) return;
-    let currentIdx = 0;
-    const interval = setInterval(
-      () => {
-        items[currentIdx].classList.remove("active");
-        currentIdx = (currentIdx + 1) % items.length;
-        items[currentIdx].classList.add("active");
-      },
-      CONFIG.AUTO_SLIDE_INTERVAL + Math.random() * 1000,
-    );
-    AppState.autoSlideIntervals.push(interval);
+    observer.observe(gallery);
   });
 }
 
