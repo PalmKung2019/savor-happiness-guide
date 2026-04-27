@@ -602,6 +602,9 @@ nav {
   text-align: center;
   gap: 50px;
   width: 100%;
+  /* Performance Optimization Added */
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px;
 }
 
 .section>* {
@@ -877,7 +880,6 @@ nav {
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
-/* --- แก้ไข: ปลดล็อก Slider ให้เลื่อนได้ปกติ --- */
 .merch-slider-track {
   display: inline-flex;
   gap: 20px;
@@ -890,7 +892,6 @@ nav {
   animation-play-state: paused;
 }
 
-/* --- แก้ไข: ปลดล็อกรูปใน Slider ไม่ให้โดน max-width บีบ --- */
 .merch-slider-track img {
   height: 220px;
   width: auto;
