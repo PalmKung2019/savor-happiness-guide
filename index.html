@@ -23,7 +23,11 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="img/logo/logo-light.png?v=2" />
     <link rel="apple-touch-icon" href="img/logo/logo-light.png?v=2" />
+    
     <link rel="preload" as="image" href="img/SavorPic6.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="img/SavorHappiness-Cover.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="fonts/MN-Nang-Kai-Thot-Regular.woff2" as="font" type="font/woff2" crossorigin />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;700&display=swap" rel="stylesheet" />
@@ -39,7 +43,7 @@
             </div>
             <div class="logo">
                 <a href="#home">
-                    <img src="img/logo/savorhappiness-1.png" class="logo-img" id="mainLogo" alt="Savor Happiness" />
+                    <img src="img/logo/savorhappiness-1.png" class="logo-img" id="mainLogo" alt="Savor Happiness" width="200" height="40" />
                 </a>
             </div>
             <div class="nav-right-container">
@@ -77,16 +81,16 @@
     <main class="one-page-container">
         <section id="home">
             <div class="hero-grid">
-                <div class="grid-item"><img src="img/SavorPic6.webp" alt="Savor 1" fetchpriority="high" /></div>
-                <div class="grid-item"><img src="img/SavorPic11.webp" alt="Savor 2" fetchpriority="high" /></div>
-                <div class="grid-item"><img src="img/SavorPic21.webp" alt="Savor 3" loading="lazy" /></div>
-                <div class="grid-item"><img src="img/SavorPic7.webp" alt="Savor 4" loading="lazy" /></div>
-                <div class="grid-item"><img src="img/SavorPic23.webp" alt="Savor 5" loading="lazy" /></div>
-                <div class="grid-item"><img src="img/SavorPic4.webp" alt="Savor 6" loading="lazy" /></div>
-                <div class="grid-item"><img src="img/SavorPic17.webp" alt="Savor 7" loading="lazy" /></div>
-                <div class="grid-item"><img src="img/SavorPic19.webp" alt="Savor 8" loading="lazy" /></div>
-                <div class="grid-item"><img src="img/SavorPic10.webp" alt="Savor 9" loading="lazy" /></div>
-                <div class="grid-item"><img src="img/SavorPic20.webp" alt="Savor 10" loading="lazy" /></div>
+                <div class="grid-item"><img src="img/SavorPic6.webp" alt="Savor 1" width="400" height="600" fetchpriority="high" /></div>
+                <div class="grid-item"><img src="img/SavorPic11.webp" alt="Savor 2" width="400" height="600" fetchpriority="high" /></div>
+                <div class="grid-item"><img src="img/SavorPic21.webp" alt="Savor 3" width="400" height="600" loading="lazy" decoding="async" /></div>
+                <div class="grid-item"><img src="img/SavorPic7.webp" alt="Savor 4" width="400" height="600" loading="lazy" decoding="async" /></div>
+                <div class="grid-item"><img src="img/SavorPic23.webp" alt="Savor 5" width="400" height="600" loading="lazy" decoding="async" /></div>
+                <div class="grid-item"><img src="img/SavorPic4.webp" alt="Savor 6" width="400" height="600" loading="lazy" decoding="async" /></div>
+                <div class="grid-item"><img src="img/SavorPic17.webp" alt="Savor 7" width="400" height="600" loading="lazy" decoding="async" /></div>
+                <div class="grid-item"><img src="img/SavorPic19.webp" alt="Savor 8" width="400" height="600" loading="lazy" decoding="async" /></div>
+                <div class="grid-item"><img src="img/SavorPic10.webp" alt="Savor 9" width="400" height="600" loading="lazy" decoding="async" /></div>
+                <div class="grid-item"><img src="img/SavorPic20.webp" alt="Savor 10" width="400" height="600" loading="lazy" decoding="async" /></div>
             </div>
             <div class="hero-content-overlay" data-aos="zoom-in" data-aos-duration="1200">
                 <div class="content-wrapper">
@@ -154,21 +158,21 @@
                             onclick="changeBookSlide(-1)">&#10094;</button>
                         <div class="book-float-wrapper">
                             <img src="img/SavorHappiness-Cover.webp" id="mainBookImg" class="inner-mockup"
-                                alt="Savor Happiness Guidebook" onclick="openSimpleLightbox(this.src)"
-                                style="cursor: zoom-in" loading="lazy" />
+                                alt="Savor Happiness Guidebook" width="320" height="450" onclick="openSimpleLightbox(this.src)"
+                                style="cursor: zoom-in" loading="lazy" decoding="async" />
                         </div>
                         <button class="book-nav-btn next" aria-label="Next"
                             onclick="changeBookSlide(1)">&#10095;</button>
                     </div>
                     <div class="book-thumbs">
-                        <img src="img/SavorHappiness-Cover.webp" alt="Thumb" class="thumb-item active"
-                            onclick="changeBookView(this.src, this)" loading="lazy" />
-                        <img src="img/SavorHappiness-Back.webp" alt="Thumb" class="thumb-item"
-                            onclick="changeBookView(this.src, this)" loading="lazy" />
-                        <img src="img/SavorHappiness-Inside1.webp" alt="Thumb" class="thumb-item"
-                            onclick="changeBookView(this.src, this)" loading="lazy" />
-                        <img src="img/SavorHappiness-Inside2.webp" alt="Thumb" class="thumb-item"
-                            onclick="changeBookView(this.src, this)" loading="lazy" />
+                        <img src="img/SavorHappiness-Cover.webp" alt="Thumb" class="thumb-item active" width="70" height="70"
+                            onclick="changeBookView(this.src, this)" loading="lazy" decoding="async" />
+                        <img src="img/SavorHappiness-Back.webp" alt="Thumb" class="thumb-item" width="70" height="70"
+                            onclick="changeBookView(this.src, this)" loading="lazy" decoding="async" />
+                        <img src="img/SavorHappiness-Inside1.webp" alt="Thumb" class="thumb-item" width="70" height="70"
+                            onclick="changeBookView(this.src, this)" loading="lazy" decoding="async" />
+                        <img src="img/SavorHappiness-Inside2.webp" alt="Thumb" class="thumb-item" width="70" height="70"
+                            onclick="changeBookView(this.src, this)" loading="lazy" decoding="async" />
                     </div>
                 </div>
                 <div class="book-text" data-aos="fadeInSlideUp" style="animation-delay: 0.1s;">
@@ -202,13 +206,13 @@
                 <h3 class="merch-sub-title"><i class="fas fa-map-marked-alt"></i> Postcard Map | โปสการ์ดแผนที่</h3>
                 <div class="merch-split-row" style="margin-top: 0;">
                     <div class="merch-card">
-                        <img src="img/PostcardMinburi.webp" alt="Minburi Map" onclick="openSimpleLightbox(this.src)"
-                            style="cursor: zoom-in" loading="lazy" />
+                        <img src="img/PostcardMinburi.webp" alt="Minburi Map" width="500" height="350" onclick="openSimpleLightbox(this.src)"
+                            style="cursor: zoom-in" loading="lazy" decoding="async" />
                         <p>MinBuri Postcard</p>
                     </div>
                     <div class="merch-card">
-                        <img src="img/PostcardNongchok.webp" alt="Nongchok Map" onclick="openSimpleLightbox(this.src)"
-                            style="cursor: zoom-in" loading="lazy" />
+                        <img src="img/PostcardNongchok.webp" alt="Nongchok Map" width="500" height="350" onclick="openSimpleLightbox(this.src)"
+                            style="cursor: zoom-in" loading="lazy" decoding="async" />
                         <p>NongChok Postcard</p>
                     </div>
                 </div>
@@ -218,16 +222,16 @@
                 <div class="merch-category sticker-side">
                     <h3 class="merch-sub-title"><i class="fas fa-sticky-note"></i> Sticker</h3>
                     <div class="merch-card" style="width: 100%; margin: 0;">
-                        <img src="img/Sticker1.webp" alt="Minburi Sticker" onclick="openSimpleLightbox(this.src)"
-                            style="cursor: zoom-in" loading="lazy" />
+                        <img src="img/Sticker1.webp" alt="Minburi Sticker" width="500" height="350" onclick="openSimpleLightbox(this.src)"
+                            style="cursor: zoom-in" loading="lazy" decoding="async" />
                         <p class="lang-text" data-key="merch-min-title">Savor Happiness Sticker set</p>
                     </div>
                 </div>
                 <div class="merch-category bookmarks-side">
                     <h3 class="merch-sub-title"><i class="fas fa-bookmark"></i> Bookmarks</h3>
                     <div class="merch-card" style="width: 100%; margin: 0;">
-                        <img src="img/Mockup_Bookmarks.webp" alt="Bookmarks" onclick="openSimpleLightbox(this.src)"
-                            style="cursor: zoom-in" loading="lazy" />
+                        <img src="img/Mockup_Bookmarks.webp" alt="Bookmarks" width="500" height="350" onclick="openSimpleLightbox(this.src)"
+                            style="cursor: zoom-in" loading="lazy" decoding="async" />
                         <p class="lang-text" data-key="merch-bookmark-title">Savor Happiness Bookmarks</p>
                     </div>
                 </div>
@@ -240,26 +244,20 @@
                 </h3>
                 <div class="merch-slider-wrapper">
                     <div class="merch-slider-track">
-                        <img src="img/AllMerch.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
-                        <img src="img/Fashion.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
-                        <img src="img/Mockup_Bookmarks.webp" alt="Merch" onclick="openSimpleLightbox(this.src)"
-                            loading="lazy">
-                        <img src="img/Postcards.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
-                        <img src="img/Sticker1.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
-                        <img src="img/Mug_Mockup_1.webp" alt="Merch" onclick="openSimpleLightbox(this.src)"
-                            loading="lazy">
-                        <img src="img/Mug_Mockup_2.webp" alt="Merch" onclick="openSimpleLightbox(this.src)"
-                            loading="lazy">
-                        <img src="img/AllMerch.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
-                        <img src="img/Fashion.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
-                        <img src="img/Mockup_Bookmarks.webp" alt="Merch" onclick="openSimpleLightbox(this.src)"
-                            loading="lazy">
-                        <img src="img/Postcards.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
-                        <img src="img/Sticker1.webp" alt="Merch" onclick="openSimpleLightbox(this.src)" loading="lazy">
-                        <img src="img/Mug_Mockup_1.webp" alt="Merch" onclick="openSimpleLightbox(this.src)"
-                            loading="lazy">
-                        <img src="img/Mug_Mockup_2.webp" alt="Merch" onclick="openSimpleLightbox(this.src)"
-                            loading="lazy">
+                        <img src="img/AllMerch.webp" alt="Merch" width="300" height="220" onclick="openSimpleLightbox(this.src)" loading="lazy" decoding="async">
+                        <img src="img/Fashion.webp" alt="Merch" width="300" height="220" onclick="openSimpleLightbox(this.src)" loading="lazy" decoding="async">
+                        <img src="img/Mockup_Bookmarks.webp" alt="Merch" width="300" height="220" onclick="openSimpleLightbox(this.src)" loading="lazy" decoding="async">
+                        <img src="img/Postcards.webp" alt="Merch" width="300" height="220" onclick="openSimpleLightbox(this.src)" loading="lazy" decoding="async">
+                        <img src="img/Sticker1.webp" alt="Merch" width="300" height="220" onclick="openSimpleLightbox(this.src)" loading="lazy" decoding="async">
+                        <img src="img/Mug_Mockup_1.webp" alt="Merch" width="300" height="220" onclick="openSimpleLightbox(this.src)" loading="lazy" decoding="async">
+                        <img src="img/Mug_Mockup_2.webp" alt="Merch" width="300" height="220" onclick="openSimpleLightbox(this.src)" loading="lazy" decoding="async">
+                        <img src="img/AllMerch.webp" alt="Merch" width="300" height="220" onclick="openSimpleLightbox(this.src)" loading="lazy" decoding="async">
+                        <img src="img/Fashion.webp" alt="Merch" width="300" height="220" onclick="openSimpleLightbox(this.src)" loading="lazy" decoding="async">
+                        <img src="img/Mockup_Bookmarks.webp" alt="Merch" width="300" height="220" onclick="openSimpleLightbox(this.src)" loading="lazy" decoding="async">
+                        <img src="img/Postcards.webp" alt="Merch" width="300" height="220" onclick="openSimpleLightbox(this.src)" loading="lazy" decoding="async">
+                        <img src="img/Sticker1.webp" alt="Merch" width="300" height="220" onclick="openSimpleLightbox(this.src)" loading="lazy" decoding="async">
+                        <img src="img/Mug_Mockup_1.webp" alt="Merch" width="300" height="220" onclick="openSimpleLightbox(this.src)" loading="lazy" decoding="async">
+                        <img src="img/Mug_Mockup_2.webp" alt="Merch" width="300" height="220" onclick="openSimpleLightbox(this.src)" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
@@ -285,14 +283,14 @@
         <section id="author" class="section" data-aos="fadeInSlideUp">
             <h2 class="section-title lang-text" data-key="author-title">ผู้จัดทำ</h2>
             <div class="author-container">
-                <img src="img/Author_Palm.webp" alt="Pran Taewin" class="author-img" loading="lazy" />
+                <img src="img/Author_Palm.webp" alt="Pran Taewin" class="author-img" width="200" height="200" loading="lazy" decoding="async" />
                 <div class="author-info">
                     <h3 class="author-name">ปรานต์ แถวอินทร์ (Pran Taewin)</h3>
                     <p class="author-role">นักออกแบบกราฟิก | คณะดิจิทัลมีเดีย มหาวิทยาลัยศรีปทุม #67</p>
                     <div class="author-logos">
-                        <img src="img/logo/spu.jpg" alt="SPU" />
-                        <img src="img/logo/sdm.jpg" alt="SDM" />
-                        <img src="img/logo/SavorHappiness.jpg" alt="Savor Happiness Theme" style="border-radius: 50%" />
+                        <img src="img/logo/spu.jpg" alt="SPU" width="40" height="40" />
+                        <img src="img/logo/sdm.jpg" alt="SDM" width="40" height="40" />
+                        <img src="img/logo/SavorHappiness.jpg" alt="Savor Happiness Theme" width="40" height="40" style="border-radius: 50%" />
                     </div>
                     <div class="author-socials">
                         <a href="mailto:palmy1983ch@gmail.com" class="social-btn"><i class="fas fa-envelope"></i>
@@ -316,13 +314,13 @@
                         ✨
                     </p>
                     <div class="support-creator-tag">
-                        <img src="img/Author_Palm.webp" alt="Palm" class="small-avatar" loading="lazy" />
+                        <img src="img/Author_Palm.webp" alt="Palm" class="small-avatar" width="30" height="30" loading="lazy" decoding="async" />
                         <span>โดย ปรานต์ แถวอินทร์ (ปาล์ม)</span>
                     </div>
                 </div>
                 <div class="support-qr-side">
                     <div class="qr-wrapper">
-                        <img src="img/qr-placeholder.webp" alt="QR Code" class="qr-image" loading="lazy" />
+                        <img src="img/qr-placeholder.webp" alt="QR Code" class="qr-image" width="150" height="150" loading="lazy" decoding="async" />
                         <div class="qr-scan-line"></div>
                     </div>
                     <p class="qr-hint">สแกนเพื่อสนับสนุน</p>
@@ -334,7 +332,7 @@
     <div id="cafeModal" class="modal-overlay">
         <div class="modal-content custom-modal-animation">
             <span class="close-modal" id="closeCafeModal">&times;</span>
-            <img id="modalImg" src="" alt="Cafe Full Image" />
+            <img id="modalImg" src="" alt="Cafe Full Image" loading="lazy" decoding="async" />
             <h3 id="modalTitle">ชื่อคาเฟ่</h3>
             <p id="modalDesc">รายละเอียดร้าน</p>
             <button class="btn-primary"
@@ -363,36 +361,36 @@
                 style="overflow-y: auto; max-height: 70vh; background: #e0e0e0; padding: 20px; border-radius: 12px;">
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
                     <img src="img/preview/page-1.webp" alt="Page 1"
-                        style="width: 50%; max-width: 400px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);" loading="lazy">
+                        style="width: 50%; max-width: 400px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);" loading="lazy" decoding="async">
                     <div style="display: flex; width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
                         <img src="img/preview/page-2.webp" alt="Page 2" style="width: 50%; margin: 0; border-radius: 0;"
-                            loading="lazy">
+                            loading="lazy" decoding="async">
                         <img src="img/preview/page-3.webp" alt="Page 3" style="width: 50%; margin: 0; border-radius: 0;"
-                            loading="lazy">
+                            loading="lazy" decoding="async">
                     </div>
                     <div style="display: flex; width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
                         <img src="img/preview/page-4.webp" alt="Page 4" style="width: 50%; margin: 0; border-radius: 0;"
-                            loading="lazy">
+                            loading="lazy" decoding="async">
                         <img src="img/preview/page-5.webp" alt="Page 5" style="width: 50%; margin: 0; border-radius: 0;"
-                            loading="lazy">
+                            loading="lazy" decoding="async">
                     </div>
                     <div style="display: flex; width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
                         <img src="img/preview/page-6.webp" alt="Page 6" style="width: 50%; margin: 0; border-radius: 0;"
-                            loading="lazy">
+                            loading="lazy" decoding="async">
                         <img src="img/preview/page-7.webp" alt="Page 7" style="width: 50%; margin: 0; border-radius: 0;"
-                            loading="lazy">
+                            loading="lazy" decoding="async">
                     </div>
                     <div style="display: flex; width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
                         <img src="img/preview/page-8.webp" alt="Page 8" style="width: 50%; margin: 0; border-radius: 0;"
-                            loading="lazy">
+                            loading="lazy" decoding="async">
                         <img src="img/preview/page-9.webp" alt="Page 9" style="width: 50%; margin: 0; border-radius: 0;"
-                            loading="lazy">
+                            loading="lazy" decoding="async">
                     </div>
                     <div style="display: flex; width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
                         <img src="img/preview/page-10.webp" alt="Page 10"
-                            style="width: 50%; margin: 0; border-radius: 0;" loading="lazy">
+                            style="width: 50%; margin: 0; border-radius: 0;" loading="lazy" decoding="async">
                         <img src="img/preview/page-11.webp" alt="Page 11"
-                            style="width: 50%; margin: 0; border-radius: 0;" loading="lazy">
+                            style="width: 50%; margin: 0; border-radius: 0;" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
@@ -405,15 +403,15 @@
             onclick="event.stopPropagation(); changeImg(-1);">&#10094;</button>
         <img id="lightboxImg" class="lightbox-content" src="" alt="Full View"
             style="max-width: 90%; max-height: 85vh; object-fit: contain; transition: transform 0.3s;"
-            onclick="event.stopPropagation()" />
+            onclick="event.stopPropagation()" loading="lazy" decoding="async" />
         <button class="nav-btn next" aria-label="Next"
             onclick="event.stopPropagation(); changeImg(1);">&#10095;</button>
     </div>
 
     <div class="speed-dial-container" id="speedDialContainer">
         <button class="speed-dial-main-btn" aria-label="Contact" onclick="toggleSpeedDial()">
-            <img src="img/smile-normal.webp" class="speed-dial-img img-normal" alt="Contact" />
-            <img src="img/smile-tongue.webp" class="speed-dial-img img-active" alt="Contact Active" />
+            <img src="img/smile-normal.webp" class="speed-dial-img img-normal" alt="Contact" width="55" height="55" />
+            <img src="img/smile-tongue.webp" class="speed-dial-img img-active" alt="Contact Active" width="55" height="55" />
         </button>
         <div class="speed-dial-buttons">
             <a href="tel:0979465925" class="dial-btn"><i class="fas fa-phone"></i></a>
@@ -426,7 +424,7 @@
         <div class="footer-watermark">SAVOR HAPPINESS</div>
         <div class="footer-inner">
             <div class="footer-col footer-col--brand">
-                <img src="img/logo/savorhappiness-1.png" alt="Savor Happiness" class="footer-logo" />
+                <img src="img/logo/savorhappiness-1.png" alt="Savor Happiness" class="footer-logo" width="200" height="60" loading="lazy" decoding="async" />
                 <p class="footer-tagline">DIGITAL MEDIA · GRAPHIC DESIGN · SPU THESIS</p>
                 <p style="color: #aaa; margin-bottom: 20px;">บันทึกความทรงจำผ่านเลนส์<br />ย่านมีนบุรี–หนองจอก</p>
                 <a href="#support" class="btn-primary"
@@ -462,8 +460,8 @@
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>
