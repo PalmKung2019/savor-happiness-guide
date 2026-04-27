@@ -383,7 +383,8 @@ function renderShops() {
   nongList.innerHTML = "";
 
   realShops.forEach((shop, idx) => {
-    const firstImg = `<img class="photo-item active" src="${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.webp" alt="${shop.name}" data-shop-idx="${idx}" data-img-idx="0" loading="lazy" onerror="this.style.display='none';">`;
+    // เพิ่ม width, height, decoding="async" เพื่อประสิทธิภาพ Mobile
+    const firstImg = `<img class="photo-item active" src="${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.webp" alt="${shop.name}" data-shop-idx="${idx}" data-img-idx="0" width="600" height="400" loading="lazy" decoding="async" onerror="this.style.display='none';">`;
     const cardHTML = `
       <div class="shop-card fadeInSlideUp" style="animation-delay: ${idx * 0.05}s;">
         <div class="photo-gallery" id="gallery-${idx}" title="คลิกรูปเพื่อดูแบบเต็มจอ">
@@ -420,7 +421,8 @@ function loadRemainingImagesAndSlide() {
     if (!gallery) return;
     let extraImages = "";
     for (let i = 1; i < 8; i++) {
-      extraImages += `<img class="photo-item" src="${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}${i}.webp" alt="${shop.name}" data-shop-idx="${idx}" data-img-idx="${i}" loading="lazy" onerror="this.style.display='none';">`;
+      // เพิ่ม width, height, decoding="async" สำหรับภาพที่เหลือ
+      extraImages += `<img class="photo-item" src="${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}${i}.webp" alt="${shop.name}" data-shop-idx="${idx}" data-img-idx="${i}" width="600" height="400" loading="lazy" decoding="async" onerror="this.style.display='none';">`;
     }
     gallery.insertAdjacentHTML("beforeend", extraImages);
   });
@@ -428,7 +430,6 @@ function loadRemainingImagesAndSlide() {
 }
 
 function startAutoSlide() {
-  // ใช้ IntersectionObserver ตรวจจับว่าแกลเลอรีไหนโผล่มาบนจอ
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -437,7 +438,6 @@ function startAutoSlide() {
         if (items.length <= 1) return;
 
         if (entry.isIntersecting) {
-          // ถ้าอยู่บนจอ ให้เริ่มสลับรูป
           let currentIdx = parseInt(gallery.dataset.currentIdx || "0");
 
           const interval = setInterval(
@@ -445,15 +445,12 @@ function startAutoSlide() {
               items[currentIdx].classList.remove("active");
               currentIdx = (currentIdx + 1) % items.length;
               items[currentIdx].classList.add("active");
-              gallery.dataset.currentIdx = currentIdx; // จำค่าไว้
+              gallery.dataset.currentIdx = currentIdx; 
             },
             CONFIG.AUTO_SLIDE_INTERVAL + Math.random() * 1000,
           );
-
-          // เก็บ ID ของ interval ไว้ที่ตัว DOM เพื่อใช้เคลียร์ทีหลัง
           gallery.dataset.intervalId = interval;
         } else {
-          // ถ้าเลื่อนผ่านไปแล้ว ให้หยุดทำงาน
           if (gallery.dataset.intervalId) {
             clearInterval(gallery.dataset.intervalId);
             gallery.dataset.intervalId = "";
@@ -462,7 +459,7 @@ function startAutoSlide() {
       });
     },
     { threshold: 0.1 },
-  ); // โผล่มา 10% ของพื้นที่ก็ให้ทำงาน
+  );
 
   document.querySelectorAll(".photo-gallery").forEach((gallery) => {
     observer.observe(gallery);
