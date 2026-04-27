@@ -1,5 +1,5 @@
 /* ============================================================
-   SAVOR HAPPINESS — MASTER STYLESHEET (SLIDER FIXED!)
+   SAVOR HAPPINESS — MASTER STYLESHEET
    ============================================================ */
 
 @font-face {
@@ -602,7 +602,6 @@ nav {
   text-align: center;
   gap: 50px;
   width: 100%;
-  /* Performance Optimization Added */
   content-visibility: auto;
   contain-intrinsic-size: 1000px;
 }
@@ -808,7 +807,7 @@ nav {
 }
 
 /* ============================================================
-   MERCH SLIDER (FIXED FOR INFINITE SCROLL)
+   MERCH SLIDER
    ============================================================ */
 .merch-slider-container {
   width: 100%;
@@ -1701,7 +1700,7 @@ video {
 }
 
 /* ============================================================
-   16. RESPONSIVE DESIGN
+   16. RESPONSIVE DESIGN (เพิ่มการซ่อน Grid รูปในมือถือ)
    ============================================================ */
 
 @media (max-width: 992px) {
@@ -1774,9 +1773,15 @@ video {
     min-height: 450px;
   }
 
+  /* ปรับกรอบแสดงรูปภาพให้โชว์แค่ 6 รูป เพื่อลดภาระ (2 แถว x 3 คอลัมน์) */
   .hero-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: repeat(3, 1fr) !important;
+  }
+
+  /* คลาสสำหรับซ่อนรูปท้ายๆ ในมือถือ ดันคะแนน LCP */
+  .hide-on-mobile {
+    display: none !important;
   }
 
   .hero-content-overlay {
