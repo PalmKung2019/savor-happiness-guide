@@ -12,7 +12,6 @@ const CONFIG = {
   LIGHTBOX_ZOOM_SCALE: 2.5,
 };
 
-// ป้องกัน Error กรณี Browser มีการบล็อก LocalStorage
 function getStorage(key, defaultVal) {
   try {
     return localStorage.getItem(key) || defaultVal;
@@ -53,22 +52,42 @@ const translations = {
     "nav-highlights": "ร้านแนะนำ",
     "nav-creator": "ผู้จัดทำ",
     "hero-subtitle": "DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS",
-    "hero-title": "SAVOR HAPPINESS",
-    "hero-vibe": "VIBE. VISUAL. VACATION.",
-    "hero-desc": "ไกด์บุ๊คที่จะทำให้คุณตกหลุมรักชานเมือง",
-    "btn-start": "กดเริ่มเพื่อลิ้มรสความสุข",
+    "hero-title": 'SAVOR <br><span class="highlight">HAPPINESS</span>',
+    "hero-vibe": "20 คาเฟ่ลับย่านมีนบุรี-หนองจอก ที่คุณไม่ควรพลาด",
+    "hero-desc":
+      "ไกด์บุ๊คฉบับสมบูรณ์ที่รวบรวมเสน่ห์ของชานเมือง<br />บันทึกทุกความรู้สึกผ่านงานออกแบบที่ลิ้มรสความสุขได้จริง",
+    "btn-start": '<i class="fas fa-book-open"></i> สำรวจไกด์บุ๊ค',
+    "btn-view-shop": '<i class="fas fa-map-marker-alt"></i> ดูรายชื่อร้าน',
+    "video-desc":
+      "สัมผัสความสงบในมุมโปรดที่คุณอาจไม่เคยค้นพบ<br />บันทึกความทรงจำผ่านเลนส์และรสชาติที่ลงตัว",
     "book-title": "THE GUIDEBOOK",
+    "book-spec": "รวม 20 คาเฟ่และร้านอาหาร",
     "book-desc":
       "Savor Happiness: ถ่ายทอดเสน่ห์ย่านมีนบุรี–หนองจอก ผ่าน Visual Storytelling ผสมผสานภาพถ่ายบรรยากาศจริงเข้ากับงานกราฟิกสีสันสดใส จัดวางแบบ Dynamic Layout ให้อ่านง่าย พร้อมแผนที่ Postcard ที่พกพาสะดวก",
-    "btn-pdf": '<i class="fas fa-book-open"></i> เปิดอ่านตัวอย่าง PDF',
+    "btn-pdf": '<i class="fas fa-book-open"></i> เปิดอ่านตัวอย่าง',
+    "merch-postcard-title":
+      '<i class="fas fa-map-marked-alt"></i> Postcard Map | โปสการ์ดแผนที่',
     "merch-min-title": "Savor Happiness Sticker set",
+    "merch-bookmark-title": "Savor Happiness Bookmarks",
     "btn-more-merch": '<i class="fas fa-images"></i> ของที่ระลึกเพิ่มเติม',
     "zone-minburi": "ย่านมีนบุรี",
     "zone-nongchok": "ย่านหนองจอก",
     "author-title": "ผู้จัดทำ",
+    "author-name": "ปรานต์ แถวอินทร์ (Pran Taewin)",
+    "author-role": "นักออกแบบกราฟิก | คณะดิจิทัลมีเดีย มหาวิทยาลัยศรีปทุม #67",
+    "support-title": '<i class="fas fa-heart"></i> อุดหนุนผลงาน',
+    "support-desc":
+      "ทุกการสนับสนุนของคุณคือแรงผลักดันสำคัญสำหรับโปรเจกต์จบของเรา<br />ขอบคุณที่ร่วมเดินทางและลิ้มรสความสุขของชานเมืองไปด้วยกันครับ ✨",
+    "support-creator": "โดย ปรานต์ แถวอินทร์ (ปาล์ม)",
+    "support-qr-hint": "สแกนเพื่อสนับสนุน",
     "filter-all": "ทั้งหมด",
     "filter-min": "ย่านมีนบุรี",
     "filter-nong": "ย่านหนองจอก",
+    "modal-btn-guide": '<i class="fas fa-book-open"></i> ดูรูปเต็มในไกด์บุ๊ค',
+    "pdf-preview-title": "ทดลองอ่านบางส่วน",
+    "footer-desc": "บันทึกความทรงจำผ่านเลนส์<br />ย่านมีนบุรี–หนองจอก",
+    "footer-support": '<i class="fas fa-qrcode"></i> อุดหนุนผลงาน',
+    "read-more": "อ่านรายละเอียดร้าน",
   },
   en: {
     "nav-home": "Home",
@@ -77,23 +96,43 @@ const translations = {
     "nav-highlights": "Highlights",
     "nav-creator": "Creator",
     "hero-subtitle": "DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS",
-    "hero-title": "SAVOR HAPPINESS",
-    "hero-vibe": "VIBE. VISUAL. VACATION.",
+    "hero-title": 'SAVOR <br><span class="highlight">HAPPINESS</span>',
+    "hero-vibe": "20 Hidden Cafes in Minburi-Nong Chok You Shouldn't Miss",
     "hero-desc":
-      "A guidebook that will make you fall in love with the suburbs.",
-    "btn-start": "Press Start to Savor Happiness",
+      "A complete guidebook gathering the charm of the suburbs.<br />Capturing every feeling through design to truly savor happiness.",
+    "btn-start": '<i class="fas fa-book-open"></i> Explore Guidebook',
+    "btn-view-shop": '<i class="fas fa-map-marker-alt"></i> View Shops',
+    "video-desc":
+      "Experience tranquility in your new favorite spot.<br />Capture memories through the lens and perfect flavors.",
     "book-title": "THE GUIDEBOOK",
+    "book-spec": "FEATURING 20 CAFES & RESTAURANTS",
     "book-desc":
       "Savor Happiness: Conveying the charm of Minburi-Nong Chok through Visual Storytelling. Combining real atmosphere photography with colorful graphics in a dynamic layout, complete with a handy Postcard map.",
-    "btn-pdf": '<i class="fas fa-book-open"></i> Preview PDF',
+    "btn-pdf": '<i class="fas fa-book-open"></i> Preview Sample',
+    "merch-postcard-title":
+      '<i class="fas fa-map-marked-alt"></i> Postcard Map',
     "merch-min-title": "Savor Happiness Sticker set",
+    "merch-bookmark-title": "Savor Happiness Bookmarks",
     "btn-more-merch": '<i class="fas fa-images"></i> More Merchandise',
     "zone-minburi": "Minburi Zone",
     "zone-nongchok": "Nong Chok Zone",
     "author-title": "Creator",
+    "author-name": "Pran Taewin (Palm)",
+    "author-role": "Graphic Designer | School of Digital Media, SPU #67",
+    "support-title": '<i class="fas fa-heart"></i> Support My Work',
+    "support-desc":
+      "Every support is a major driving force for my thesis project.<br />Thank you for joining this journey and savoring happiness with us ✨",
+    "support-creator": "By Pran Taewin (Palm)",
+    "support-qr-hint": "Scan to support",
     "filter-all": "All",
     "filter-min": "Minburi",
     "filter-nong": "Nong Chok",
+    "modal-btn-guide": '<i class="fas fa-book-open"></i> View Full Guidebook',
+    "pdf-preview-title": "Preview Sample Pages",
+    "footer-desc":
+      "Capturing memories through the lens<br />in Minburi & Nongchok",
+    "footer-support": '<i class="fas fa-qrcode"></i> Support',
+    "read-more": "Read Details",
   },
 };
 
@@ -352,8 +391,8 @@ const NAV_ITEMS = [
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
   applyTheme(AppState.ui.isDarkMode);
-  applyLanguage(AppState.ui.currentLang);
-  renderShops();
+  renderShops(); // Render shop elements first so language can be applied
+  applyLanguage(AppState.ui.currentLang); // Apply translation to all elements
   renderTicker();
   setupScrollProgress();
   setupMobileNav();
@@ -383,7 +422,6 @@ function renderShops() {
   nongList.innerHTML = "";
 
   realShops.forEach((shop, idx) => {
-    // เพิ่ม width, height, decoding="async" เพื่อประสิทธิภาพ Mobile
     const firstImg = `<img class="photo-item active" src="${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.webp" alt="${shop.name}" data-shop-idx="${idx}" data-img-idx="0" width="600" height="400" loading="lazy" decoding="async" onerror="this.style.display='none';">`;
     const cardHTML = `
       <div class="shop-card fadeInSlideUp" style="animation-delay: ${idx * 0.05}s;">
@@ -393,7 +431,7 @@ function renderShops() {
         <div class="shop-info" onclick="openCafeModal(${idx})" title="คลิกเพื่อดูรายละเอียดร้าน">
           <div class="shop-name">${shop.name}</div>
           <div class="shop-tag" data-zone="${shop.zone}">${shop.zone === "minburi" ? "ย่านมีนบุรี" : "ย่านหนองจอก"}</div>
-          <div class="click-more-hint"><i class="fas fa-arrow-right"></i> <span class="read-more-text">อ่านรายละเอียดร้าน</span></div>
+          <div class="click-more-hint"><i class="fas fa-arrow-right"></i> <span class="read-more-text lang-text" data-key="read-more">อ่านรายละเอียดร้าน</span></div>
         </div>
       </div>
     `;
@@ -421,7 +459,6 @@ function loadRemainingImagesAndSlide() {
     if (!gallery) return;
     let extraImages = "";
     for (let i = 1; i < 8; i++) {
-      // เพิ่ม width, height, decoding="async" สำหรับภาพที่เหลือ
       extraImages += `<img class="photo-item" src="${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}${i}.webp" alt="${shop.name}" data-shop-idx="${idx}" data-img-idx="${i}" width="600" height="400" loading="lazy" decoding="async" onerror="this.style.display='none';">`;
     }
     gallery.insertAdjacentHTML("beforeend", extraImages);
@@ -445,7 +482,7 @@ function startAutoSlide() {
               items[currentIdx].classList.remove("active");
               currentIdx = (currentIdx + 1) % items.length;
               items[currentIdx].classList.add("active");
-              gallery.dataset.currentIdx = currentIdx; 
+              gallery.dataset.currentIdx = currentIdx;
             },
             CONFIG.AUTO_SLIDE_INTERVAL + Math.random() * 1000,
           );
@@ -604,8 +641,10 @@ window.openCafeModal = function (idx) {
   const lang = AppState.ui.currentLang;
   document.getElementById("modalImg").src =
     `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.webp`;
-  document.getElementById("modalTitle").innerText =
-    lang === "th" ? shop.nameTH : shop.name;
+
+  // บังคับให้ชื่อร้านคงความออริจินัลเสมอ (ห้ามแปล)
+  document.getElementById("modalTitle").innerText = shop.name;
+
   document.getElementById("modalDesc").innerText =
     lang === "th" ? shop.descTH : shop.descEN;
   document.getElementById("cafeModal").style.display = "flex";
