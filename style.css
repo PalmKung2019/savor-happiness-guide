@@ -565,7 +565,7 @@ nav {
 
 .floating-cover {
   width: 100%;
-  max-width: 420px;
+  /* max-width: 420px; */
   border-radius: 12px;
   box-shadow: -20px 30px 60px rgba(0, 0, 0, 0.3);
   animation: float 6s ease-in-out infinite;
