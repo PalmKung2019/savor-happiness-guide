@@ -57,7 +57,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "NangKaiThot", "Anuphan", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -66,14 +65,40 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Typography Hierarchy Setup */
 body {
   background: var(--bg-main);
   color: var(--text-main);
-  line-height: 1.8;
+  line-height: 1.6;
+  font-family: "Anuphan", sans-serif;
   padding-top: 180px;
   transition: background-color 0.4s ease, color 0.4s ease;
   overflow-x: hidden;
   width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.section-title,
+.hero-main-title,
+.shop-name,
+.nav-links a,
+.hero-sub-tag,
+.hero-thesis-tag,
+.btn-main,
+.btn-primary,
+.btn-outline,
+.district-label,
+.support-heading,
+.author-name,
+.merch-sub-title,
+.book-spec-detail {
+  font-family: "NangKaiThot", sans-serif;
+  letter-spacing: 0.5px;
 }
 
 img {
@@ -100,6 +125,7 @@ img {
   background: var(--ci-orange);
 }
 
+/* Keyframes Setup */
 @keyframes fadeInSlideUp {
   from {
     opacity: 0;
@@ -125,6 +151,10 @@ img {
 }
 
 @keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+
   100% {
     transform: rotate(360deg);
   }
@@ -149,6 +179,16 @@ img {
 
   50% {
     transform: translateY(-15px) rotate(2deg);
+  }
+}
+
+@keyframes scrollMerch {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-50% - 10px));
   }
 }
 
@@ -227,7 +267,6 @@ nav {
   text-decoration: none;
   position: relative;
   font-size: 1.15rem;
-  letter-spacing: 0.5px;
   transition: all 0.4s ease;
   padding: 8px 4px;
 }
@@ -352,6 +391,7 @@ nav {
   font-size: 1rem;
   color: var(--text-main);
   margin: 0;
+  font-family: "Anuphan", sans-serif;
 }
 
 #searchBtn {
@@ -411,10 +451,11 @@ nav {
   padding-left: 25px;
 }
 
-/* HERO SECTION (PREMIUM LAYOUT) */
+/* HERO SECTION */
 #home {
-  height: 90vh;
-  min-height: 750px;
+  height: calc(100vh - 280px);
+  min-height: 550px;
+  /* เพิ่มความสูงขั้นต่ำ ให้พอดีหนังสือไซส์ใหญ่ */
   width: 100%;
   position: relative;
   display: flex;
@@ -423,24 +464,6 @@ nav {
   padding: 0 5%;
   overflow: hidden;
   z-index: 1;
-}
-
-.hero-premium-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-
-.hero-bg-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.85) saturate(1.1);
-  transform: scale(1.02);
-}
-
-[data-theme="dark"] .hero-bg-img {
-  filter: brightness(0.4) saturate(0.8);
 }
 
 .hero-glass-overlay {
@@ -462,38 +485,39 @@ nav {
   max-width: 1200px;
   width: 100%;
   align-items: center;
-  gap: 50px;
+  gap: 40px;
 }
 
 .hero-text-content {
-  flex: 1.2;
-  padding-right: 20px;
+  flex: 1.1;
+  /* ปรับสัดส่วนให้ฝั่งรูปหนังสือมีพื้นที่เยอะขึ้น */
+  padding-right: 10px;
 }
 
 .hero-thesis-tag {
   color: var(--ci-orange);
   font-weight: 800;
   letter-spacing: 3px;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   margin-bottom: 10px;
 }
 
 .hero-main-title {
-  font-size: clamp(3.5rem, 7vw, 6rem);
+  font-size: clamp(2.8rem, 4.5vw, 5rem);
   font-weight: 900;
   line-height: 1.05;
   color: var(--text-main);
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   text-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .hero-main-title .highlight {
   color: var(--ci-orange);
-  font-family: 'Charm', cursive;
-  font-size: clamp(4rem, 8vw, 7rem);
+  /* font-family: 'Charm', cursive; */
+  font-size: clamp(3.5rem, 5.5vw, 6rem);
   font-weight: 700;
   display: inline-block;
-  margin-top: -10px;
+  margin-top: -5px;
 }
 
 [data-theme="dark"] .hero-main-title .highlight {
@@ -501,18 +525,18 @@ nav {
 }
 
 .hero-sub-tag {
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  margin-bottom: 25px;
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  margin-bottom: 20px;
   font-weight: 800;
   color: var(--text-main);
 }
 
 .hero-paragraph {
-  font-size: 1.15rem;
-  margin-bottom: 40px;
-  line-height: 1.7;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
   font-weight: 500;
   max-width: 550px;
+  line-height: 1.6;
 }
 
 .hero-cta {
@@ -521,15 +545,19 @@ nav {
 }
 
 .hero-visual-content {
-  flex: 0.8;
+  flex: 0.9;
   display: flex;
   justify-content: center;
   position: relative;
+  z-index: 15;
+  /* ยกเลเยอร์ขึ้นให้ไม่จม */
 }
 
+/* ขยายหนังสือให้ใหญ่สะใจ! */
 .floating-cover {
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  /* กลับมาใหญ่เบิ้มแล้ว */
   border-radius: 12px;
   box-shadow: -20px 30px 60px rgba(0, 0, 0, 0.3);
   animation: float 6s ease-in-out infinite;
@@ -610,20 +638,23 @@ nav {
   color: #004d21;
 }
 
-/* EXPLORE RING */
+/* EXPLORE RING (แก้ไขให้หมุนและตำแหน่งไม่ทับ) */
 .savor-cta-ring-wrapper {
   position: absolute;
   bottom: 30px;
-  right: 5%;
-  width: 85px;
-  height: 85px;
+  right: 3%;
+  /* ดันไปขวาสุดๆ หนีหนังสือ */
+  width: 95px;
+  /* ขยายขนาดวงให้ใหญ่ขึ้นนิดนึง ข้อความจะได้ไม่อึดอัด */
+  height: 95px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   color: var(--ci-green);
-  z-index: 20;
-  transition: 0.4s;
+  z-index: 50;
+  /* บังคับอยู่ชั้นบนสุด ป้องกันทับซ้อน */
+  transition: transform 0.4s, color 0.4s;
 }
 
 [data-theme="dark"] .savor-cta-ring-wrapper {
@@ -635,11 +666,19 @@ nav {
   color: var(--ci-orange);
 }
 
+.savor-cta-ring-wrapper svg {
+  animation: spin-slow 15s linear infinite;
+  transform-origin: center center;
+  /* จุดสำคัญที่ทำให้ SVG หมุนได้ศูนย์กลางเป๊ะๆ */
+  width: 100%;
+  height: 100%;
+}
+
 .savor-cta-arrow {
-  font-size: 20px;
+  font-size: 22px;
   background: var(--ci-orange);
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -647,6 +686,7 @@ nav {
   color: white;
   box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4);
   position: absolute;
+  z-index: 51;
 }
 
 /* TICKER */
@@ -708,10 +748,9 @@ nav {
 .section-title {
   margin: 0;
   text-align: center;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   color: var(--ci-green);
   font-weight: bold;
-  letter-spacing: 1px;
   line-height: 1.4;
   transition: color 0.4s ease;
   display: block;
@@ -725,10 +764,10 @@ nav {
   content: "";
   display: block;
   width: 60px;
-  height: 2px;
+  height: 4px;
   background: var(--ci-orange);
-  margin: 24px auto 0 auto;
-  border-radius: 2px;
+  margin: 20px auto 0 auto;
+  border-radius: 4px;
 }
 
 #minburi-section,
@@ -740,14 +779,14 @@ nav {
 
 .district-label {
   margin: 0 0 20px 0;
-  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
   font-weight: 800;
   color: var(--ci-orange);
   text-align: center;
   letter-spacing: 4px;
 }
 
-/* SHOP GRID */
+/* SHOP GRID & MERCH CARD */
 .shop-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -761,6 +800,7 @@ nav {
 .merch-card {
   background: var(--bg-card);
   border: 1px solid var(--card-border);
+  border-top: 5px solid var(--ci-green);
   border-radius: 16px;
   box-shadow: 0 8px 24px var(--shadow-light);
   transition: all 0.4s ease;
@@ -774,7 +814,7 @@ nav {
 .merch-card:hover {
   transform: translateY(-12px);
   box-shadow: 0 24px 48px var(--shadow-dark);
-  border-color: var(--ci-orange);
+  border-top-color: var(--ci-orange);
   z-index: 2;
 }
 
@@ -784,7 +824,6 @@ nav {
   position: relative;
   background: #000;
   overflow: hidden;
-  border-radius: 16px 16px 0 0;
 }
 
 .photo-item {
@@ -821,7 +860,7 @@ nav {
 }
 
 .shop-name {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: var(--text-card-title);
   font-weight: 800;
   margin-bottom: 8px;
@@ -885,26 +924,12 @@ nav {
 .merch-sub-title {
   color: var(--ci-orange);
   margin-bottom: 20px;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   gap: 10px;
   font-weight: bold;
   justify-content: center;
-}
-
-.merch-card {
-  background: var(--bg-card);
-  border-radius: 15px;
-  overflow: hidden;
-  text-align: center;
-  border: 1px solid var(--card-border);
-  box-shadow: 0 10px 25px var(--shadow-light);
-  transition: 0.3s;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .merch-card img {
@@ -918,7 +943,7 @@ nav {
 .merch-card p {
   padding: 15px;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--text-main);
 }
 
@@ -1028,10 +1053,11 @@ nav {
   text-align: center;
   box-shadow: 0 25px 60px var(--shadow-dark);
   position: relative;
+  border-top: 6px solid var(--ci-green);
 }
 
 [data-theme="dark"] .modal-content {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: var(--ci-yellow);
 }
 
 .close-modal,
@@ -1095,13 +1121,14 @@ nav {
 }
 
 #modalTitle {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: var(--text-card-title);
   margin-bottom: 10px;
+  font-family: "NangKaiThot", sans-serif;
 }
 
 #modalDesc {
-  font-size: 1rem;
+  font-size: 1.1rem;
   margin-bottom: 20px;
   color: var(--text-muted);
 }
@@ -1258,7 +1285,7 @@ nav {
   color: var(--ci-orange);
   margin: 0;
   letter-spacing: 1px;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .book-description {
@@ -1402,10 +1429,9 @@ video {
 }
 
 .author-info h3 {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   color: var(--text-card-title);
   margin-bottom: 10px;
-  font-weight: bold;
 }
 
 .author-role {
@@ -1502,9 +1528,8 @@ video {
 }
 
 .support-heading {
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin-bottom: 10px;
-  font-weight: bold;
 }
 
 .support-sub {
@@ -1736,13 +1761,19 @@ video {
   transform: translateX(5px);
 }
 
-/* RESPONSIVE DESIGN (PREMIUM HERO + FULL MODULES) */
+/* RESPONSIVE DESIGN */
 @media (max-width: 992px) {
+  #home {
+    height: auto;
+    min-height: auto;
+    padding-bottom: 40px;
+  }
+
   .hero-content-wrapper {
     flex-direction: column;
     text-align: center;
-    gap: 40px;
-    padding-top: 40px;
+    gap: 30px;
+    padding-top: 20px;
   }
 
   .hero-text-content {
@@ -1750,15 +1781,20 @@ video {
   }
 
   .hero-main-title {
-    font-size: 4.5rem;
+    font-size: 4rem;
   }
 
   .hero-main-title .highlight {
-    font-size: 5rem;
+    font-size: 4.8rem;
   }
 
   .hero-cta {
     justify-content: center;
+  }
+
+  /* ปรับหนังสือบนแท็บเล็ตให้เล็กลงนิดนึง */
+  .floating-cover {
+    max-width: 300px;
   }
 
   .hero-glass-overlay {
@@ -1826,21 +1862,23 @@ video {
 @media (max-width: 768px) {
   #home {
     height: auto;
-    min-height: 600px;
-    padding-bottom: 50px;
-    padding-top: 20px;
+    min-height: auto;
+    padding-top: 10px;
+    padding-bottom: 20px;
   }
 
   .hero-main-title {
-    font-size: 3rem;
+    font-size: 2.2rem;
+    margin-bottom: 5px;
   }
 
   .hero-main-title .highlight {
-    font-size: 3.5rem;
+    font-size: 2.8rem;
   }
 
   .hero-sub-tag {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 10px;
   }
 
   .hero-cta {
@@ -1849,12 +1887,14 @@ video {
     padding: 0 20px;
   }
 
+  /* ปรับหนังสือบนมือถือให้พอดีจอ ไม่เล็กเกิน ไม่ใหญ่เกิน */
   .floating-cover {
-    max-width: 280px;
+    max-width: 220px;
   }
 
   .hero-paragraph {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
   }
 
   .section {
@@ -1867,16 +1907,8 @@ video {
   }
 
   .savor-cta-ring-wrapper {
-    width: 70px;
-    height: 70px;
-    bottom: 20px;
-    right: 20px;
-  }
-
-  .savor-cta-arrow {
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
+    display: none;
+    /* ซ่อนวงกลมบนมือถือเพื่อลดความเกะกะ */
   }
 
   .hamburger-menu {
@@ -1951,7 +1983,7 @@ video {
   }
 
   .shop-name {
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin-bottom: 5px;
   }
 
@@ -1988,7 +2020,7 @@ video {
   }
 
   .merch-sub-title {
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-bottom: 15px;
     flex-direction: column;
     text-align: center;
@@ -2007,7 +2039,7 @@ video {
 
   .merch-card p {
     padding: 8px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     line-height: 1.2;
   }
 
@@ -2027,7 +2059,7 @@ video {
   }
 
   .author-info h3 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
 
   .author-role {
@@ -2068,7 +2100,7 @@ video {
   }
 
   .support-heading {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin-bottom: 8px;
   }
 
@@ -2157,7 +2189,7 @@ video {
   }
 
   .shop-name {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.2;
   }
 
@@ -2170,7 +2202,7 @@ video {
   }
 
   .merch-card p {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     padding: 6px;
   }
 
@@ -2180,7 +2212,7 @@ video {
   }
 }
 
-/* ใส่เพิ่มใน style.css สำหรับทำพื้นหลัง 10 รูป */
+/* Background Grids */
 .hero-bg-grid {
   position: absolute;
   top: 0;
