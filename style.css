@@ -1,5 +1,5 @@
 /* ============================================================
-   SAVOR HAPPINESS — MASTER STYLESHEET
+   SAVOR HAPPINESS — MASTER STYLESHEET (PREMIUM EDITION)
    ============================================================ */
 
 @font-face {
@@ -137,6 +137,18 @@ img {
 
   100% {
     transform: translateX(-100%);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(2deg);
   }
 }
 
@@ -399,118 +411,206 @@ nav {
   padding-left: 25px;
 }
 
-/* HERO SECTION */
+/* HERO SECTION (PREMIUM LAYOUT) */
 #home {
-  height: 70vh;
-  min-height: 500px;
+  height: 90vh;
+  min-height: 750px;
   width: 100%;
   position: relative;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000;
-  z-index: 1;
-}
-
-#home::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, rgba(0, 122, 51, 0.18) 100%);
-  z-index: 2;
-  pointer-events: none;
-}
-
-.hero-grid {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  z-index: 1;
-  will-change: transform;
-}
-
-.grid-item {
+  padding: 0 5%;
   overflow: hidden;
-  position: relative;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+  z-index: 1;
 }
 
-.grid-item img {
+.hero-premium-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-bg-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.72) grayscale(10%);
+  filter: brightness(0.85) saturate(1.1);
   transform: scale(1.02);
-  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), filter 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-  backface-visibility: hidden;
 }
 
-.grid-item:hover img {
-  transform: scale(1.06);
-  filter: brightness(0.9) grayscale(0%);
+[data-theme="dark"] .hero-bg-img {
+  filter: brightness(0.4) saturate(0.8);
 }
 
-.hero-content-overlay {
+.hero-glass-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--bg-main) 20%, transparent 80%);
+  opacity: 0.95;
+}
+
+[data-theme="dark"] .hero-glass-overlay {
+  background: linear-gradient(to right, var(--bg-main) 30%, transparent 100%);
+  opacity: 0.98;
+}
+
+.hero-content-wrapper {
   position: relative;
   z-index: 10;
-  text-align: center;
-  color: #fff;
-  padding: 20px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  height: 100%;
-  max-width: 900px;
+  max-width: 1200px;
   width: 100%;
+  align-items: center;
+  gap: 50px;
 }
 
-.subtitle {
-  font-size: 0.85rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
+.hero-text-content {
+  flex: 1.2;
+  padding-right: 20px;
+}
+
+.hero-thesis-tag {
   color: var(--ci-orange);
   font-weight: 800;
-  opacity: 0.95;
-  margin: 0;
+  letter-spacing: 3px;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
 }
 
-#home h1 {
-  font-size: clamp(2rem, 5vw, 3.8rem);
+.hero-main-title {
+  font-size: clamp(3.5rem, 7vw, 6rem);
   font-weight: 900;
-  letter-spacing: 1.5px;
-  color: #ffffff;
-  line-height: 1.15;
-  margin: 0;
-  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 2px 6px rgba(0, 0, 0, 0.4);
+  line-height: 1.05;
+  color: var(--text-main);
+  margin-bottom: 15px;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
-.subtitle-vibe {
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 2px;
-  color: #fff4a8;
-  opacity: 1;
-  margin: 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+.hero-main-title .highlight {
+  color: var(--ci-orange);
+  font-family: 'Charm', cursive;
+  font-size: clamp(4rem, 8vw, 7rem);
+  font-weight: 700;
+  display: inline-block;
+  margin-top: -10px;
 }
 
-.hero-desc {
-  font-size: clamp(0.9rem, 2vw, 1.15rem);
+[data-theme="dark"] .hero-main-title .highlight {
+  color: var(--ci-yellow);
+}
+
+.hero-sub-tag {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  margin-bottom: 25px;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.hero-paragraph {
+  font-size: 1.15rem;
+  margin-bottom: 40px;
+  line-height: 1.7;
   font-weight: 500;
-  color: #ffffff;
-  line-height: 1.5;
-  opacity: 0.95;
-  margin: 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  max-width: 550px;
 }
 
+.hero-cta {
+  display: flex;
+  gap: 15px;
+}
+
+.hero-visual-content {
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.floating-cover {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: -20px 30px 60px rgba(0, 0, 0, 0.3);
+  animation: float 6s ease-in-out infinite;
+}
+
+/* BUTTONS */
+.btn-main,
+.btn-primary {
+  background: var(--ci-green) !important;
+  color: white !important;
+  padding: 15px 35px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 800;
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid transparent !important;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 122, 51, 0.25);
+  font-size: 1.1rem !important;
+}
+
+.btn-main:hover,
+.btn-primary:hover {
+  transform: translateY(-5px);
+  background: #005c26 !important;
+  box-shadow: 0 15px 35px rgba(0, 122, 51, 0.4);
+}
+
+.btn-outline,
+.btn-secondary {
+  border: 2px solid var(--ci-green);
+  color: var(--ci-green);
+  padding: 13px 35px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 800;
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+}
+
+.btn-outline:hover,
+.btn-secondary:hover {
+  background: var(--ci-green);
+  color: white;
+  transform: translateY(-3px);
+}
+
+[data-theme="dark"] .btn-main,
+[data-theme="dark"] .btn-primary {
+  background: transparent !important;
+  color: var(--ci-yellow) !important;
+  border-color: var(--ci-yellow) !important;
+  box-shadow: 0 5px 15px rgba(244, 225, 5, 0.1);
+}
+
+[data-theme="dark"] .btn-main:hover,
+[data-theme="dark"] .btn-primary:hover {
+  background: var(--ci-yellow) !important;
+  color: #004d21 !important;
+  box-shadow: 0 12px 30px rgba(244, 225, 5, 0.3);
+}
+
+[data-theme="dark"] .btn-outline,
+[data-theme="dark"] .btn-secondary {
+  border-color: var(--ci-yellow);
+  color: var(--ci-yellow);
+}
+
+[data-theme="dark"] .btn-outline:hover,
+[data-theme="dark"] .btn-secondary:hover {
+  background: var(--ci-yellow);
+  color: #004d21;
+}
+
+/* EXPLORE RING */
 .savor-cta-ring-wrapper {
   position: absolute;
   bottom: 30px;
@@ -521,22 +621,18 @@ nav {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: white;
+  color: var(--ci-green);
   z-index: 20;
   transition: 0.4s;
+}
+
+[data-theme="dark"] .savor-cta-ring-wrapper {
+  color: var(--ci-white);
 }
 
 .savor-cta-ring-wrapper:hover {
   transform: scale(1.1);
   color: var(--ci-orange);
-}
-
-.savor-cta-ring-wrapper svg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  animation: spin-slow 15s linear infinite;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
 }
 
 .savor-cta-arrow {
@@ -550,6 +646,7 @@ nav {
   justify-content: center;
   color: white;
   box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4);
+  position: absolute;
 }
 
 /* TICKER */
@@ -602,8 +699,6 @@ nav {
   text-align: center;
   gap: 50px;
   width: 100%;
-  content-visibility: auto;
-  contain-intrinsic-size: 1000px;
 }
 
 .section>* {
@@ -652,48 +747,7 @@ nav {
   letter-spacing: 4px;
 }
 
-/* BUTTONS */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: #007a33 !important;
-  color: #ffffff !important;
-  padding: 14px 30px !important;
-  border-radius: 10px;
-  font-size: 1.1rem !important;
-  text-decoration: none !important;
-  font-weight: 700 !important;
-  white-space: nowrap;
-  margin-top: 6px;
-  border: 2px solid transparent !important;
-  transform: scale(1);
-  box-shadow: 0 10px 25px rgba(0, 122, 51, 0.25);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-}
-
-.btn-primary:hover {
-  background: #005c26 !important;
-  transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 15px 35px rgba(0, 122, 51, 0.4);
-}
-
-[data-theme="dark"] .btn-primary {
-  background: transparent !important;
-  color: var(--ci-yellow) !important;
-  border-color: var(--ci-yellow) !important;
-  box-shadow: 0 5px 15px rgba(244, 225, 5, 0.1);
-}
-
-[data-theme="dark"] .btn-primary:hover {
-  background: var(--ci-yellow) !important;
-  color: #004d21 !important;
-  box-shadow: 0 12px 30px rgba(244, 225, 5, 0.3);
-  transform: scale(1.05) translateY(-2px);
-}
-
-/* CARD ARCHITECTURE */
+/* SHOP GRID */
 .shop-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -806,9 +860,7 @@ nav {
   transform: translateX(0);
 }
 
-/* ============================================================
-   MERCH SLIDER
-   ============================================================ */
+/* MERCH SLIDER & CATEGORIES */
 .merch-slider-container {
   width: 100%;
   max-width: 1200px;
@@ -894,12 +946,11 @@ nav {
 .merch-slider-track img {
   height: 220px;
   width: auto;
-  max-width: none;
   border-radius: 16px;
   object-fit: cover;
   box-shadow: 0 8px 24px var(--shadow-light);
   cursor: zoom-in;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: 0.3s;
   border: 1px solid var(--card-border);
 }
 
@@ -907,16 +958,6 @@ nav {
   transform: scale(1.05) translateY(-5px);
   box-shadow: 0 12px 30px var(--shadow-dark);
   border-color: var(--ci-orange);
-}
-
-@keyframes scrollMerch {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(calc(-50% - 10px));
-  }
 }
 
 /* FILTER SYSTEM */
@@ -1493,10 +1534,6 @@ video {
   max-width: 350px;
 }
 
-.qr-wrapper {
-  position: relative;
-}
-
 .qr-image {
   width: 150px;
   border-radius: 15px;
@@ -1699,13 +1736,37 @@ video {
   transform: translateX(5px);
 }
 
-/* ============================================================
-   16. RESPONSIVE DESIGN (เพิ่มการซ่อน Grid รูปในมือถือ)
-   ============================================================ */
-
+/* RESPONSIVE DESIGN (PREMIUM HERO + FULL MODULES) */
 @media (max-width: 992px) {
-  .hero-content-overlay h1 {
-    font-size: 3rem;
+  .hero-content-wrapper {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+    padding-top: 40px;
+  }
+
+  .hero-text-content {
+    padding-right: 0;
+  }
+
+  .hero-main-title {
+    font-size: 4.5rem;
+  }
+
+  .hero-main-title .highlight {
+    font-size: 5rem;
+  }
+
+  .hero-cta {
+    justify-content: center;
+  }
+
+  .hero-glass-overlay {
+    background: linear-gradient(to top, var(--bg-main) 10%, rgba(248, 242, 230, 0.85) 100%);
+  }
+
+  [data-theme="dark"] .hero-glass-overlay {
+    background: linear-gradient(to top, var(--bg-main) 10%, rgba(0, 122, 51, 0.85) 100%);
   }
 
   .book-grid-container {
@@ -1763,48 +1824,42 @@ video {
 }
 
 @media (max-width: 768px) {
+  #home {
+    height: auto;
+    min-height: 600px;
+    padding-bottom: 50px;
+    padding-top: 20px;
+  }
+
+  .hero-main-title {
+    font-size: 3rem;
+  }
+
+  .hero-main-title .highlight {
+    font-size: 3.5rem;
+  }
+
+  .hero-sub-tag {
+    font-size: 1.2rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .floating-cover {
+    max-width: 280px;
+  }
+
+  .hero-paragraph {
+    font-size: 1rem;
+  }
+
   .section {
     padding: 50px 5%;
     gap: 40px;
-  }
-
-  #home {
-    height: 60vh;
-    min-height: 450px;
-  }
-
-  /* ปรับกรอบแสดงรูปภาพให้โชว์แค่ 6 รูป เพื่อลดภาระ (2 แถว x 3 คอลัมน์) */
-  .hero-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    grid-template-rows: repeat(3, 1fr) !important;
-  }
-
-  /* คลาสสำหรับซ่อนรูปท้ายๆ ในมือถือ ดันคะแนน LCP */
-  .hide-on-mobile {
-    display: none !important;
-  }
-
-  .hero-content-overlay {
-    padding: 80px 20px;
-    gap: 12px;
-  }
-
-  #home h1 {
-    font-size: 2.2rem;
-  }
-
-  .subtitle {
-    letter-spacing: 3px;
-    font-size: 0.8rem;
-  }
-
-  .subtitle-vibe {
-    font-size: 1rem;
-    letter-spacing: 2px;
-  }
-
-  .hero-desc {
-    font-size: 1rem;
   }
 
   .logo-img {
@@ -2081,8 +2136,12 @@ video {
 }
 
 @media (max-width: 480px) {
-  #home h1 {
-    font-size: 1.8rem;
+  .hero-main-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-main-title .highlight {
+    font-size: 2.8rem;
   }
 
   .shop-grid {
@@ -2118,5 +2177,42 @@ video {
   .speed-dial-container {
     bottom: 15px;
     right: 15px;
+  }
+}
+
+/* ใส่เพิ่มใน style.css สำหรับทำพื้นหลัง 10 รูป */
+.hero-bg-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  opacity: 0.15;
+  filter: grayscale(50%) blur(1px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .hero-bg-grid {
+  opacity: 0.08;
+  filter: grayscale(100%) blur(5px);
+}
+
+.bg-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .hero-bg-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .hide-on-mobile {
+    display: none !important;
   }
 }
