@@ -22,7 +22,6 @@
     <link rel="icon" type="image/png" href="img/logo/logo-light.png?v=2" />
     <link rel="apple-touch-icon" href="img/logo/logo-light.png?v=2" />
 
-    <!-- Preload font and premium hero image -->
     <link rel="preload" as="image" href="img/image_5bbd5e.jpg" type="image/jpeg" fetchpriority="high" />
     <link rel="preload" href="fonts/MN-Nang-Kai-Thot-Regular.woff2" as="font" type="font/woff2" crossorigin />
 
@@ -79,7 +78,6 @@
     </div>
 
     <main class="one-page-container">
-        <!-- HERO SECTION (PREMIUM VERSION - DO NOT REMOVE) -->
         <section id="home">
 
             <div class="hero-bg-grid">
@@ -111,19 +109,21 @@
                     <p class="hero-thesis-tag lang-text" data-key="hero-subtitle">GRAPHIC DESIGN THESIS EXHIBITION</p>
                     <h1 class="hero-main-title lang-text" data-key="hero-title">SAVOR <br><span
                             class="highlight">HAPPINESS</span></h1>
-                    <h2 class="hero-sub-tag">20 คาเฟ่ลับย่านมีนบุรี-หนองจอก ที่คุณไม่ควรพลาด</h2>
+                    <h2 class="hero-sub-tag lang-text" data-key="hero-vibe">20 คาเฟ่ลับย่านมีนบุรี-หนองจอก
+                        ที่คุณไม่ควรพลาด</h2>
                     <p class="hero-paragraph lang-text" data-key="hero-desc">
                         ไกด์บุ๊คฉบับสมบูรณ์ที่รวบรวมเสน่ห์ของชานเมือง
                         บันทึกทุกความรู้สึกผ่านงานออกแบบที่ลิ้มรสความสุขได้จริง</p>
                     <div class="hero-cta">
                         <a href="#book-feature" class="btn-main lang-text" data-key="btn-start"><i
                                 class="fas fa-book-open"></i> สำรวจไกด์บุ๊ค</a>
-                        <a href="#highlights" class="btn-outline"><i class="fas fa-map-marker-alt"></i>
-                            ดูรายชื่อร้าน</a>
+                        <a href="#highlights" class="btn-outline lang-text" data-key="btn-view-shop"><i
+                                class="fas fa-map-marker-alt"></i> ดูรายชื่อร้าน</a>
                     </div>
                 </div>
                 <div class="hero-visual-content">
-                    <img src="img/Cover_Img.webp" alt="Savor Happiness Book Cover" class="floating-cover" />
+                    <img src="img/Cover_Img.webp" alt="Savor Happiness Book Cover" class="floating-cover"
+                        draggable="false" />
                 </div>
             </div>
             <a href="#highlights" class="savor-cta-ring-wrapper">
@@ -141,7 +141,6 @@
             </a>
         </section>
 
-        <!-- TICKER -->
         <div class="shop-ticker-banner">
             <div class="shop-ticker-wrapper">
                 <div class="shop-ticker-track" id="shopTickerInner"></div>
@@ -149,7 +148,6 @@
             </div>
         </div>
 
-        <!-- VIDEO SECTION -->
         <section class="video-experience-v2" data-aos="fadeInSlideUp">
             <div class="video-flex-container">
                 <div class="video-visual-side">
@@ -167,7 +165,8 @@
                         <span class="video-tag">Atmosphere</span>
                         <h2 class="section-title">Savor the <br />Serenity</h2>
                         <div class="video-description">
-                            <p>สัมผัสความสงบในมุมโปรดที่คุณอาจไม่เคยค้นพบ<br />บันทึกความทรงจำผ่านเลนส์และรสชาติที่ลงตัว
+                            <p class="lang-text" data-key="video-desc">
+                                สัมผัสความสงบในมุมโปรดที่คุณอาจไม่เคยค้นพบ<br />บันทึกความทรงจำผ่านเลนส์และรสชาติที่ลงตัว
                             </p>
                         </div>
                     </div>
@@ -175,7 +174,6 @@
             </div>
         </section>
 
-        <!-- BOOK FEATURE SECTION -->
         <section id="book-feature" class="section">
             <div class="book-grid-container">
                 <div class="book-visual" data-aos="fadeInSlideUp">
@@ -211,7 +209,7 @@
                             <span class="badge">126 Pages</span>
                             <span class="badge">Minburi & Nongchok</span>
                         </div>
-                        <p class="book-spec-detail">FEATURING 20 CAFES & RESTAURANTS</p>
+                        <p class="book-spec-detail lang-text" data-key="book-spec">FEATURING 20 CAFES & RESTAURANTS</p>
                         <p class="lang-text book-description" data-key="book-desc">
                             Savor Happiness: ถ่ายทอดเสน่ห์ย่านมีนบุรี–หนองจอก ผ่าน Visual Storytelling
                             ผสมผสานภาพถ่ายบรรยากาศจริงเข้ากับงานกราฟิกสีสันสดใส จัดวางแบบ Dynamic Layout ให้อ่านง่าย
@@ -227,11 +225,11 @@
             </div>
         </section>
 
-        <!-- MERCHANDISE SECTION -->
         <section id="merch" class="section">
             <h2 class="section-title lang-text" data-key="nav-merch" data-aos="fade-up">ของที่ระลึก</h2>
             <div class="merch-category" data-aos="fadeInSlideUp">
-                <h3 class="merch-sub-title"><i class="fas fa-map-marked-alt"></i> Postcard Map | โปสการ์ดแผนที่</h3>
+                <h3 class="merch-sub-title lang-text" data-key="merch-postcard-title"><i
+                        class="fas fa-map-marked-alt"></i> Postcard Map | โปสการ์ดแผนที่</h3>
                 <div class="merch-split-row" style="margin-top: 0;">
                     <div class="merch-card">
                         <img src="img/PostcardMinburi.webp" alt="Minburi Map" width="500" height="350"
@@ -309,7 +307,6 @@
             </div>
         </section>
 
-        <!-- HIGHLIGHTS SECTION -->
         <section id="highlights" class="section">
             <h2 class="section-title lang-text" data-key="nav-highlights" data-aos="fade-up">ร้านแนะนำ</h2>
             <div class="filter-container" data-aos="fadeInSlideUp">
@@ -327,15 +324,15 @@
             </div>
         </section>
 
-        <!-- AUTHOR SECTION -->
         <section id="author" class="section" data-aos="fadeInSlideUp">
             <h2 class="section-title lang-text" data-key="author-title">ผู้จัดทำ</h2>
             <div class="author-container">
                 <img src="img/Author_Palm.webp" alt="Pran Taewin" class="author-img" width="200" height="200"
                     loading="lazy" decoding="async" />
                 <div class="author-info">
-                    <h3 class="author-name">ปรานต์ แถวอินทร์ (Pran Taewin)</h3>
-                    <p class="author-role">นักออกแบบกราฟิก | คณะดิจิทัลมีเดีย มหาวิทยาลัยศรีปทุม #67</p>
+                    <h3 class="author-name lang-text" data-key="author-name">ปรานต์ แถวอินทร์ (Pran Taewin)</h3>
+                    <p class="author-role lang-text" data-key="author-role">นักออกแบบกราฟิก | คณะดิจิทัลมีเดีย
+                        มหาวิทยาลัยศรีปทุม #67</p>
                     <div class="author-logos">
                         <img src="img/logo/spu.jpg" alt="SPU" width="40" height="40" />
                         <img src="img/logo/sdm.jpg" alt="SDM" width="40" height="40" />
@@ -354,20 +351,20 @@
             </div>
         </section>
 
-        <!-- SUPPORT SECTION -->
         <section id="support" class="section support-hero" data-aos="fadeInSlideUp">
             <div class="support-glass-card">
                 <div class="support-text-side">
-                    <h2 class="support-heading"><i class="fas fa-heart"></i> อุดหนุนผลงาน</h2>
+                    <h2 class="support-heading lang-text" data-key="support-title"><i class="fas fa-heart"></i>
+                        อุดหนุนผลงาน</h2>
                     <p class="support-sub">Savor Happiness Thesis Project</p>
-                    <p class="support-description">
+                    <p class="support-description lang-text" data-key="support-desc">
                         ทุกการสนับสนุนของคุณคือแรงผลักดันสำคัญสำหรับโปรเจกต์จบของเรา<br />ขอบคุณที่ร่วมเดินทางและลิ้มรสความสุขของชานเมืองไปด้วยกันครับ
                         ✨
                     </p>
                     <div class="support-creator-tag">
                         <img src="img/Author_Palm.webp" alt="Palm" class="small-avatar" width="30" height="30"
                             loading="lazy" decoding="async" />
-                        <span>โดย ปรานต์ แถวอินทร์ (ปาล์ม)</span>
+                        <span class="lang-text" data-key="support-creator">โดย ปรานต์ แถวอินทร์ (ปาล์ม)</span>
                     </div>
                 </div>
                 <div class="support-qr-side">
@@ -376,20 +373,19 @@
                             loading="lazy" decoding="async" />
                         <div class="qr-scan-line"></div>
                     </div>
-                    <p class="qr-hint">สแกนเพื่อสนับสนุน</p>
+                    <p class="qr-hint lang-text" data-key="support-qr-hint">สแกนเพื่อสนับสนุน</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- MODALS -->
     <div id="cafeModal" class="modal-overlay">
         <div class="modal-content custom-modal-animation">
             <span class="close-modal" id="closeCafeModal">&times;</span>
             <img id="modalImg" src="" alt="Cafe Full Image" loading="lazy" decoding="async" />
             <h3 id="modalTitle">ชื่อคาเฟ่</h3>
             <p id="modalDesc">รายละเอียดร้าน</p>
-            <button class="btn-primary"
+            <button class="btn-primary lang-text" data-key="modal-btn-guide"
                 onclick="document.getElementById('closeCafeModal').click(); document.getElementById('book-feature').scrollIntoView({behavior: 'smooth'});">
                 <i class="fas fa-book-open"></i> ดูรูปเต็มในไกด์บุ๊ค
             </button>
@@ -403,7 +399,8 @@
                 <div class="header-title" style="display: flex; align-items: center; gap: 12px; text-align: left;">
                     <i class="fas fa-book-open" style="font-size: 24px; color: var(--ci-orange);"></i>
                     <div>
-                        <div style="font-weight: bold; line-height: 1.2; font-size: 1.2rem;">ทดลองอ่านบางส่วน</div>
+                        <div style="font-weight: bold; line-height: 1.2; font-size: 1.2rem;" class="lang-text"
+                            data-key="pdf-preview-title">ทดลองอ่านบางส่วน</div>
                         <div style="font-size: 0.9rem; color: var(--text-muted);">Savor Happiness Guidebook</div>
                     </div>
                 </div>
@@ -463,7 +460,6 @@
             onclick="event.stopPropagation(); changeImg(1);">&#10095;</button>
     </div>
 
-    <!-- SPEED DIAL -->
     <div class="speed-dial-container" id="speedDialContainer">
         <button class="speed-dial-main-btn" aria-label="Contact" onclick="toggleSpeedDial()">
             <img src="img/smile-normal.webp" class="speed-dial-img img-normal" alt="Contact" width="55" height="55" />
@@ -477,7 +473,6 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-watermark">SAVOR HAPPINESS</div>
         <div class="footer-inner">
@@ -485,8 +480,9 @@
                 <img src="img/logo/savorhappiness-1.png" alt="Savor Happiness" class="footer-logo" loading="lazy"
                     decoding="async" />
                 <p class="footer-tagline">DIGITAL MEDIA · GRAPHIC DESIGN · SPU THESIS</p>
-                <p style="color: #aaa; margin-bottom: 20px;">บันทึกความทรงจำผ่านเลนส์<br />ย่านมีนบุรี–หนองจอก</p>
-                <a href="#support" class="btn-primary"
+                <p style="color: #aaa; margin-bottom: 20px;" class="lang-text" data-key="footer-desc">
+                    บันทึกความทรงจำผ่านเลนส์<br />ย่านมีนบุรี–หนองจอก</p>
+                <a href="#support" class="btn-primary lang-text" data-key="footer-support"
                     style="padding: 10px 20px !important; font-size: 0.9rem !important;"><i class="fas fa-qrcode"></i>
                     อุดหนุนผลงาน</a>
             </div>
