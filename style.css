@@ -455,7 +455,6 @@ nav {
 #home {
   height: calc(100vh - 280px);
   min-height: 550px;
-  /* เพิ่มความสูงขั้นต่ำ ให้พอดีหนังสือไซส์ใหญ่ */
   width: 100%;
   position: relative;
   display: flex;
@@ -490,7 +489,6 @@ nav {
 
 .hero-text-content {
   flex: 1.1;
-  /* ปรับสัดส่วนให้ฝั่งรูปหนังสือมีพื้นที่เยอะขึ้น */
   padding-right: 10px;
 }
 
@@ -550,14 +548,11 @@ nav {
   justify-content: center;
   position: relative;
   z-index: 15;
-  /* ยกเลเยอร์ขึ้นให้ไม่จม */
 }
 
-/* ขยายหนังสือให้ใหญ่สะใจ! */
 .floating-cover {
   width: 100%;
   max-width: 420px;
-  /* กลับมาใหญ่เบิ้มแล้ว */
   border-radius: 12px;
   box-shadow: -20px 30px 60px rgba(0, 0, 0, 0.3);
   animation: float 6s ease-in-out infinite;
@@ -638,14 +633,12 @@ nav {
   color: #004d21;
 }
 
-/* EXPLORE RING (แก้ไขให้หมุนและตำแหน่งไม่ทับ) */
+/* EXPLORE RING */
 .savor-cta-ring-wrapper {
   position: absolute;
   bottom: 30px;
   right: 3%;
-  /* ดันไปขวาสุดๆ หนีหนังสือ */
   width: 95px;
-  /* ขยายขนาดวงให้ใหญ่ขึ้นนิดนึง ข้อความจะได้ไม่อึดอัด */
   height: 95px;
   display: flex;
   align-items: center;
@@ -653,7 +646,6 @@ nav {
   text-decoration: none;
   color: var(--ci-green);
   z-index: 50;
-  /* บังคับอยู่ชั้นบนสุด ป้องกันทับซ้อน */
   transition: transform 0.4s, color 0.4s;
 }
 
@@ -669,7 +661,6 @@ nav {
 .savor-cta-ring-wrapper svg {
   animation: spin-slow 15s linear infinite;
   transform-origin: center center;
-  /* จุดสำคัญที่ทำให้ SVG หมุนได้ศูนย์กลางเป๊ะๆ */
   width: 100%;
   height: 100%;
 }
@@ -1761,8 +1752,12 @@ video {
   transform: translateX(5px);
 }
 
-/* RESPONSIVE DESIGN */
-@media (max-width: 992px) {
+/* ============================================================
+   RESPONSIVE DESIGN (แก้ปัญหาแท็บเล็ต/มือถือทับซ้อนกัน)
+   ============================================================ */
+
+/* สำหรับหน้าจอระดับ Tablet (เช่น iPad แนวตั้ง) */
+@media (max-width: 1024px) {
   #home {
     height: auto;
     min-height: auto;
@@ -1792,17 +1787,8 @@ video {
     justify-content: center;
   }
 
-  /* ปรับหนังสือบนแท็บเล็ตให้เล็กลงนิดนึง */
   .floating-cover {
     max-width: 300px;
-  }
-
-  .hero-glass-overlay {
-    background: linear-gradient(to top, var(--bg-main) 10%, rgba(248, 242, 230, 0.85) 100%);
-  }
-
-  [data-theme="dark"] .hero-glass-overlay {
-    background: linear-gradient(to top, var(--bg-main) 10%, rgba(0, 122, 51, 0.85) 100%);
   }
 
   .book-grid-container {
@@ -1823,6 +1809,7 @@ video {
     margin: 20px auto 0 auto;
   }
 
+  /* บังคับทุกส่วนให้ Stack เป็น 1 คอลัมน์บนแท็บเล็ต */
   .video-flex-container,
   .support-glass-card,
   .author-container {
@@ -1830,10 +1817,17 @@ video {
     text-align: center;
   }
 
+  /* แก้บั๊กรูป Merchandise บีบกัน */
+  .merch-split-row {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
   .support-qr-side {
     max-width: 100%;
     border-left: none;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 30px;
   }
 
   .footer-inner {
@@ -1859,10 +1853,9 @@ video {
   }
 }
 
+/* สำหรับหน้าจอระดับมือถือ */
 @media (max-width: 768px) {
   #home {
-    height: auto;
-    min-height: auto;
     padding-top: 10px;
     padding-bottom: 20px;
   }
@@ -1887,7 +1880,6 @@ video {
     padding: 0 20px;
   }
 
-  /* ปรับหนังสือบนมือถือให้พอดีจอ ไม่เล็กเกิน ไม่ใหญ่เกิน */
   .floating-cover {
     max-width: 220px;
   }
@@ -1908,7 +1900,6 @@ video {
 
   .savor-cta-ring-wrapper {
     display: none;
-    /* ซ่อนวงกลมบนมือถือเพื่อลดความเกะกะ */
   }
 
   .hamburger-menu {
@@ -1969,32 +1960,34 @@ video {
     opacity: 1;
   }
 
+  /* ร้านค้าให้แสดง 1 คอลัมน์บนมือถือ */
   .shop-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .photo-gallery {
-    height: 150px;
+    height: 200px;
+    /* เพิ่มความสูงรูปนิดนึงตอนกลายเป็น 1 คอลัมน์ */
   }
 
   .shop-info {
-    padding: 12px 15px;
+    padding: 15px 20px;
   }
 
   .shop-name {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     margin-bottom: 5px;
   }
 
   .shop-tag {
-    font-size: 0.75rem;
-    padding: 4px 10px;
-    margin-bottom: 8px;
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    margin-bottom: 10px;
   }
 
   .click-more-hint {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     padding-top: 5px;
   }
 
@@ -2015,8 +2008,8 @@ video {
   }
 
   .merch-split-row {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .merch-sub-title {
@@ -2031,16 +2024,14 @@ video {
   }
 
   .merch-card img {
-    height: 130px;
+    height: 200px;
     object-fit: cover;
     max-height: none;
-    border-bottom: 1px solid var(--card-border);
   }
 
   .merch-card p {
-    padding: 8px;
-    font-size: 0.9rem;
-    line-height: 1.2;
+    padding: 12px;
+    font-size: 1rem;
   }
 
   .merch-slider-track img {
@@ -2167,6 +2158,7 @@ video {
   }
 }
 
+/* สำหรับมือถือจอเล็กมากๆ */
 @media (max-width: 480px) {
   .hero-main-title {
     font-size: 2.2rem;
@@ -2177,33 +2169,33 @@ video {
   }
 
   .shop-grid {
-    gap: 10px;
+    gap: 15px;
   }
 
   .photo-gallery {
-    height: 120px;
+    height: 180px;
   }
 
   .shop-info {
-    padding: 10px;
+    padding: 12px;
   }
 
   .shop-name {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     line-height: 1.2;
   }
 
   .merch-split-row {
-    gap: 10px;
+    gap: 15px;
   }
 
   .merch-card img {
-    height: 100px;
+    height: 150px;
   }
 
   .merch-card p {
-    font-size: 0.8rem;
-    padding: 6px;
+    font-size: 0.9rem;
+    padding: 10px;
   }
 
   .speed-dial-container {
