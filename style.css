@@ -53,16 +53,25 @@
   content: url("img/logo/savorhappiness-2.png");
 }
 
+/* ล็อกโครงสร้างหลัก ป้องกันแถบขาวด้านขวาบนมือถือ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
 }
 
 html {
   scroll-padding-top: 180px;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+  /* บังคับไม่ให้ล้นขอบจอเด็ดขาด */
 }
 
 /* Typography Hierarchy Setup */
@@ -74,7 +83,9 @@ body {
   padding-top: 180px;
   transition: background-color 0.4s ease, color 0.4s ease;
   overflow-x: hidden;
+  /* ปิดการเลื่อนซ้ายขวา */
   width: 100%;
+  max-width: 100vw;
 }
 
 h1,
@@ -99,6 +110,8 @@ h6,
 .book-spec-detail {
   font-family: "NangKaiThot", sans-serif;
   letter-spacing: 0.5px;
+  word-break: break-word;
+  /* ป้องกันคำยาวทะลุจอ */
 }
 
 img {
@@ -1182,12 +1195,13 @@ nav {
   box-shadow: 0 8px 20px rgba(0, 122, 51, 0.3);
 }
 
+/* แก้ไขปุ่มลูกศร ให้หันมาอยู่ 'ด้านใน' กรอบ ป้องกันล้นจอ */
 .book-nav-btn.prev {
-  left: -20px;
+  left: 15px;
 }
 
 .book-nav-btn.next {
-  right: -20px;
+  right: 15px;
 }
 
 .inner-mockup {
@@ -1753,7 +1767,7 @@ video {
 }
 
 /* ============================================================
-   RESPONSIVE DESIGN (แก้ปัญหาแท็บเล็ต/มือถือทับซ้อนกัน)
+   RESPONSIVE DESIGN (แก้ไขปัญหาทะลุขอบจอมือถือ/แท็บเล็ต)
    ============================================================ */
 
 /* สำหรับหน้าจอระดับ Tablet (เช่น iPad แนวตั้ง) */
@@ -1809,7 +1823,6 @@ video {
     margin: 20px auto 0 auto;
   }
 
-  /* บังคับทุกส่วนให้ Stack เป็น 1 คอลัมน์บนแท็บเล็ต */
   .video-flex-container,
   .support-glass-card,
   .author-container {
@@ -1817,7 +1830,6 @@ video {
     text-align: center;
   }
 
-  /* แก้บั๊กรูป Merchandise บีบกัน */
   .merch-split-row {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -1853,7 +1865,7 @@ video {
   }
 }
 
-/* สำหรับหน้าจอระดับมือถือ */
+/* สำหรับหน้าจอระดับมือถือ (ทั่วไป) */
 @media (max-width: 768px) {
   #home {
     padding-top: 10px;
@@ -1877,7 +1889,16 @@ video {
   .hero-cta {
     flex-direction: column;
     width: 100%;
-    padding: 0 20px;
+    padding: 0;
+    /* ถอด Padding ออกเพื่อป้องกันทะลุกรอบ */
+    gap: 12px;
+  }
+
+  .btn-main,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
+    /* ให้ข้อความตรงกลาง */
   }
 
   .floating-cover {
@@ -1960,7 +1981,6 @@ video {
     opacity: 1;
   }
 
-  /* ร้านค้าให้แสดง 1 คอลัมน์บนมือถือ */
   .shop-grid {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -1968,7 +1988,6 @@ video {
 
   .photo-gallery {
     height: 200px;
-    /* เพิ่มความสูงรูปนิดนึงตอนกลายเป็น 1 คอลัมน์ */
   }
 
   .shop-info {
@@ -1996,15 +2015,24 @@ video {
   }
 
   .main-img-container {
-    padding: 20px;
+    padding: 30px 15px;
+  }
+
+  /* ย่อขนาดปุ่มกดเลื่อนหนังสือลงและวางให้ลึกเข้าในขอบ */
+  .book-nav-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
   }
 
   .book-nav-btn.prev {
-    left: -10px;
+    left: 5px;
+    /* ดันเข้าด้านในไม่ให้ทะลุจอ */
   }
 
   .book-nav-btn.next {
-    right: -10px;
+    right: 5px;
+    /* ดันเข้าด้านในไม่ให้ทะลุจอ */
   }
 
   .merch-split-row {
@@ -2158,14 +2186,16 @@ video {
   }
 }
 
-/* สำหรับมือถือจอเล็กมากๆ */
+/* สำหรับมือถือจอเล็กมากๆ (เช่น iPhone SE หรือต่ำกว่า 360px) */
 @media (max-width: 480px) {
   .hero-main-title {
-    font-size: 2.2rem;
+    font-size: 2rem;
+    /* ย่อฟอนต์ลงอีกเพื่อให้คำว่า HAPPINESS พอดีจอ */
   }
 
   .hero-main-title .highlight {
-    font-size: 2.8rem;
+    font-size: 2.4rem;
+    /* ย่อฟอนต์ลงอีกเพื่อให้คำว่า HAPPINESS พอดีจอ */
   }
 
   .shop-grid {
