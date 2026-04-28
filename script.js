@@ -52,7 +52,7 @@ const translations = {
     "nav-highlights": "ร้านแนะนำ",
     "nav-creator": "ผู้จัดทำ",
     "hero-subtitle": "DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS",
-    "hero-title": 'SAVOR <br><span class="highlight">HAPPINESS</span>',
+    "hero-title": 'FLAVOR <br><span class="highlight">FIRST</span>',
     "hero-vibe": "20 คาเฟ่ลับย่านมีนบุรี-หนองจอก ที่คุณไม่ควรพลาด",
     "hero-desc":
       "ไกด์บุ๊คฉบับสมบูรณ์ที่รวบรวมเสน่ห์ของชานเมือง<br />บันทึกทุกความรู้สึกผ่านงานออกแบบที่ลิ้มรสความสุขได้จริง",
@@ -96,7 +96,7 @@ const translations = {
     "nav-highlights": "Highlights",
     "nav-creator": "Creator",
     "hero-subtitle": "DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS",
-    "hero-title": 'SAVOR <br><span class="highlight">HAPPINESS</span>',
+    "hero-title": 'ลิ้ม <br><span class="highlight">รส</span>',
     "hero-vibe": "20 Hidden Cafes in Minburi-Nong Chok You Shouldn't Miss",
     "hero-desc":
       "A complete guidebook gathering the charm of the suburbs.<br />Capturing every feeling through design to truly savor happiness.",
