@@ -80,65 +80,66 @@
     <main class="one-page-container">
         <section id="home">
 
-            <div class="hero-bg-grid">
-                <div class="bg-item"><img src="img/SavorPic6.webp" alt="Background" fetchpriority="high" /></div>
-                <div class="bg-item"><img src="img/SavorPic11.webp" alt="Background" loading="lazy" decoding="async" />
-                </div>
-                <div class="bg-item"><img src="img/SavorPic21.webp" alt="Background" loading="lazy" decoding="async" />
-                </div>
-                <div class="bg-item"><img src="img/SavorPic7.webp" alt="Background" loading="lazy" decoding="async" />
-                </div>
-                <div class="bg-item"><img src="img/SavorPic23.webp" alt="Background" loading="lazy" decoding="async" />
-                </div>
-                <div class="bg-item"><img src="img/SavorPic4.webp" alt="Background" loading="lazy" decoding="async" />
-                </div>
-                <div class="bg-item hide-on-mobile"><img src="img/SavorPic17.webp" alt="Background" loading="lazy"
-                        decoding="async" /></div>
-                <div class="bg-item hide-on-mobile"><img src="img/SavorPic19.webp" alt="Background" loading="lazy"
-                        decoding="async" /></div>
-                <div class="bg-item hide-on-mobile"><img src="img/SavorPic10.webp" alt="Background" loading="lazy"
-                        decoding="async" /></div>
-                <div class="bg-item hide-on-mobile"><img src="img/SavorPic20.webp" alt="Background" loading="lazy"
-                        decoding="async" /></div>
+            <!-- Background -->
+            <div class="hero-bg">
+                <img src="img/bg-collage-small.webp" alt="Background" width="1200" height="800" loading="lazy"
+                    decoding="async" />
             </div>
 
-            <div class="hero-glass-overlay"></div>
+            <!-- Overlay -->
 
-            <div class="hero-content-wrapper" data-aos="zoom-out" data-aos-duration="1500">
+            <div class="hero-content-wrapper" data-aos="zoom-out" data-aos-duration="1200">
+
+                <!-- TEXT -->
                 <div class="hero-text-content">
-                    <p class="hero-thesis-tag lang-text" data-key="hero-subtitle">GRAPHIC DESIGN THESIS EXHIBITION</p>
-                    <h1 class="hero-main-title lang-text" data-key="hero-title">FLAVOR <br><span
-                            class="highlight">FIRST</span></h1>
-                    <h2 class="hero-sub-tag lang-text" data-key="hero-vibe">20 คาเฟ่ลับย่านมีนบุรี-หนองจอก
-                        ที่คุณไม่ควรพลาด</h2>
-                    <p class="hero-paragraph lang-text" data-key="hero-desc">
+                    <p class="hero-thesis-tag">GRAPHIC DESIGN THESIS EXHIBITION</p>
+
+                    <h1 class="hero-main-title">
+                        FLAVOR <br><span class="highlight">FIRST</span>
+                    </h1>
+
+                    <h2 class="hero-sub-tag">
+                        20 คาเฟ่ลับย่านมีนบุรี-หนองจอก ที่คุณไม่ควรพลาด
+                    </h2>
+
+                    <p class="hero-paragraph">
                         ไกด์บุ๊คฉบับสมบูรณ์ที่รวบรวมเสน่ห์ของชานเมือง
-                        บันทึกทุกความรู้สึกผ่านงานออกแบบที่ลิ้มรสความสุขได้จริง</p>
+                        บันทึกทุกความรู้สึกผ่านงานออกแบบที่ลิ้มรสความสุขได้จริง
+                    </p>
+
                     <div class="hero-cta">
-                        <a href="#book-feature" class="btn-main lang-text" data-key="btn-start"><i
-                                class="fas fa-book-open"></i> สำรวจไกด์บุ๊ค</a>
-                        <a href="#highlights" class="btn-outline lang-text" data-key="btn-view-shop"><i
-                                class="fas fa-map-marker-alt"></i> ดูรายชื่อร้าน</a>
+                        <a href="#book-feature" class="btn-main">
+                            <i class="fas fa-book-open"></i> สำรวจไกด์บุ๊ค
+                        </a>
+                        <a href="#highlights" class="btn-outline">
+                            <i class="fas fa-map-marker-alt"></i> ดูรายชื่อร้าน
+                        </a>
                     </div>
                 </div>
+
+                <!-- LCP -->
                 <div class="hero-visual-content">
-                    <img src="img/Cover_Img.webp" alt="Savor Happiness Book Cover" class="floating-cover"
-                        draggable="false" />
+                    <img src="img/Cover_Img.webp" alt="Savor Happiness Book Cover" class="floating-cover" width="500"
+                        height="500" loading="eager" fetchpriority="high" decoding="auto" draggable="false" />
                 </div>
+
             </div>
-            <a href="#highlights" class="savor-cta-ring-wrapper">
-                <svg viewBox="0 0 100 100" class="overflow-visible p-2">
+
+            <!-- CTA RING -->
+            <a href="#highlights" class="savor-cta-ring-wrapper" aria-label="Explore Highlights">
+                <svg viewBox="0 0 100 100" class="cta-ring-svg">
                     <defs>
                         <path id="showcase-circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"></path>
                     </defs>
-                    <text fill="currentColor" font-family="Helvetica, sans-serif" font-size="10" font-weight="bold"
-                        letter-spacing="0.15em">
-                        <textPath href="#showcase-circle" startOffset="0%">EXPLORE HIGHLIGHTS • SAVOR HAPPINESS •
+                    <text class="cta-ring-text">
+                        <textPath href="#showcase-circle" startOffset="0%">
+                            EXPLORE HIGHLIGHTS • SAVOR HAPPINESS •
                         </textPath>
                     </text>
                 </svg>
                 <div class="savor-cta-arrow">↘</div>
             </a>
+
         </section>
 
         <div class="shop-ticker-banner">
