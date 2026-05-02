@@ -22,7 +22,11 @@
     <link rel="icon" type="image/png" href="img/logo/logo-light.png?v=2" />
     <link rel="apple-touch-icon" href="img/logo/logo-light.png?v=2" />
 
-    <link rel="preload" as="image" href="img/SavorPic6.webp" type="image/webp" fetchpriority="high" />
+    <!-- ✅ พรีโหลดรูปภาพที่ต้องแสดงผลเป็นอันดับแรกสุด (LCP) -->
+    <link rel="preload" as="image" href="img/bg-collage-small.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="img/Cover_Img.webp" type="image/webp" fetchpriority="high" />
+
+    <!-- ✅ พรีโหลดฟอนต์หลัก -->
     <link rel="preload" href="fonts/MN-Nang-Kai-Thot-Regular.woff2" as="font" type="font/woff2" crossorigin />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -82,8 +86,8 @@
 
             <!-- Background -->
             <div class="hero-bg">
-                <img src="img/bg-collage-small.webp" alt="Background" width="1200" height="800" loading="lazy"
-                    decoding="async" />
+                <img src="img/bg-collage-small.webp" alt="Background" width="1200" height="800" loading="eager"
+                    fetchpriority="high" decoding="async" />
             </div>
 
             <!-- Overlay -->
@@ -518,6 +522,69 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script src="script.js" defer></script>
+
+    <!-- Script สำหรับของที่ระลึก (Auto-scroll & Drag to scroll) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slider = document.querySelector('.merch-slider-wrapper');
+
+            if (!slider) return;
+
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+            let autoScrollInterval;
+
+            const startAutoScroll = () => {
+                stopAutoScroll();
+                autoScrollInterval = setInterval(() => {
+                    slider.scrollLeft += 1.5;
+
+                    if (slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth)) {
+                        slider.scrollLeft = 0;
+                    }
+                }, 30);
+            };
+
+            const stopAutoScroll = () => {
+                clearInterval(autoScrollInterval);
+            };
+
+            startAutoScroll();
+
+            slider.addEventListener('mouseenter', stopAutoScroll);
+            slider.addEventListener('touchstart', stopAutoScroll, { passive: true });
+            slider.addEventListener('touchend', startAutoScroll);
+
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                slider.style.cursor = 'grabbing';
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+                stopAutoScroll();
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+                slider.style.cursor = 'grab';
+                startAutoScroll();
+            });
+
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+                slider.style.cursor = 'grab';
+                startAutoScroll();
+            });
+
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2;
+                slider.scrollLeft = scrollLeft - walk;
+            });
+        });
+    </script>
 </body>
 
 </html>
