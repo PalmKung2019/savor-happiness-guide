@@ -70,8 +70,6 @@ html {
   scroll-padding-top: 180px;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  max-width: 100vw;
-  /* บังคับไม่ให้ล้นขอบจอเด็ดขาด */
 }
 
 /* Typography Hierarchy Setup */
@@ -83,9 +81,7 @@ body {
   padding-top: 180px;
   transition: background-color 0.4s ease, color 0.4s ease;
   overflow-x: hidden;
-  /* ปิดการเลื่อนซ้ายขวา */
   width: 100%;
-  max-width: 100vw;
 }
 
 h1,
@@ -111,7 +107,6 @@ h6,
   font-family: "NangKaiThot", sans-serif;
   letter-spacing: 0.5px;
   word-break: break-word;
-  /* ป้องกันคำยาวทะลุจอ */
 }
 
 img {
@@ -524,7 +519,6 @@ nav {
 
 .hero-main-title .highlight {
   color: var(--ci-orange);
-  /* font-family: 'Charm', cursive; */
   font-size: clamp(3.5rem, 5.5vw, 6rem);
   font-weight: 700;
   display: inline-block;
@@ -565,7 +559,6 @@ nav {
 
 .floating-cover {
   width: 100%;
-  /* max-width: 420px; */
   border-radius: 12px;
   box-shadow: -20px 30px 60px rgba(0, 0, 0, 0.3);
   animation: float 6s ease-in-out infinite;
@@ -1195,7 +1188,6 @@ nav {
   box-shadow: 0 8px 20px rgba(0, 122, 51, 0.3);
 }
 
-/* แก้ไขปุ่มลูกศร ให้หันมาอยู่ 'ด้านใน' กรอบ ป้องกันล้นจอ */
 .book-nav-btn.prev {
   left: 15px;
 }
@@ -2190,12 +2182,10 @@ video {
 @media (max-width: 480px) {
   .hero-main-title {
     font-size: 2rem;
-    /* ย่อฟอนต์ลงอีกเพื่อให้คำว่า HAPPINESS พอดีจอ */
   }
 
   .hero-main-title .highlight {
     font-size: 2.4rem;
-    /* ย่อฟอนต์ลงอีกเพื่อให้คำว่า HAPPINESS พอดีจอ */
   }
 
   .shop-grid {
@@ -2244,14 +2234,16 @@ video {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   opacity: 0.15;
-  filter: grayscale(50%) blur(1px);
+  filter: grayscale(50%) blur(1px) brightness(0.6);
+  /* 👈 ลดแสงลงที่นี่ */
   z-index: 1;
   pointer-events: none;
 }
 
 [data-theme="dark"] .hero-bg-grid {
   opacity: 0.08;
-  filter: grayscale(100%) blur(5px);
+  filter: grayscale(100%) blur(5px) brightness(0.5);
+  /* 👈 ลดแสงลงในโหมดมืดด้วยนิดหน่อย */
 }
 
 .bg-item img {
@@ -2271,7 +2263,7 @@ video {
   }
 }
 
-/* 🔥 Background ใหม่ */
+/* 🔥 Background ใหม่ (เผื่อคุณสลับไปใช้รูปเดียว) */
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -2283,10 +2275,9 @@ video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(20px);
-  transform: scale(1.1);
-  /* กันขอบแตก */
-  opacity: 0.25;
+  opacity: 0.4;
+  filter: brightness(0.6);
+  /* 👈 ลดแสงลงที่นี่ */
 }
 
 /* content ต้องอยู่บน */
