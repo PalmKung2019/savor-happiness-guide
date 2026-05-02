@@ -2270,3 +2270,101 @@ video {
     display: none !important;
   }
 }
+
+/* 🔥 Background ใหม่ */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(20px);
+  transform: scale(1.1);
+  /* กันขอบแตก */
+  opacity: 0.25;
+}
+
+/* content ต้องอยู่บน */
+.hero-content-wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+/* กัน layout shift */
+.hero-visual-content img {
+  display: block;
+  max-width: 480px;
+  width: 100%;
+  height: auto;
+}
+
+.savor-cta-ring-wrapper {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  text-decoration: none;
+}
+
+/* SVG */
+.cta-ring-svg {
+  width: 100%;
+  height: 100%;
+  animation: rotateRing 12s linear infinite;
+}
+
+/* Text */
+.cta-ring-text {
+  fill: #333;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+}
+
+/* Arrow */
+.savor-cta-arrow {
+  position: absolute;
+  font-size: 20px;
+  color: #333;
+}
+
+/* Animation เบา ๆ (ไม่กระทบ performance) */
+@keyframes rotateRing {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hover */
+.savor-cta-ring-wrapper:hover .cta-ring-svg {
+  animation-duration: 6s;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .savor-cta-ring-wrapper {
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.savor-cta-ring-wrapper:hover {
+  transform: scale(1.1);
+  transition: 0.3s ease;
+}
