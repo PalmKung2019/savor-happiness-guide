@@ -4,7 +4,8 @@
 
 @font-face {
   font-family: "NangKaiThot";
-  src: url("fonts/MN-Nang-Kai-Thot-Regular.woff2") format("woff2");
+  /* ใส่ / ข้างหน้าเพื่อให้เริ่มหาจาก Root เหมือนใน HTML */
+  src: url("/fonts/MN-Nang-Kai-Thot-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
