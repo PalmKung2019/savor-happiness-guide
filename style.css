@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "NangKaiThot"; /* ชื่อที่ใช้อ้างอิง */
-  src: url("fonts/MN-Nang-Kai-Thot-Regular.woff2") format("woff2");
+  src: url("/fonts/MN-Nang-Kai-Thot-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
