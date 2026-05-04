@@ -2407,7 +2407,7 @@ video {
 .scroll-hint {
   text-align: center;
   color: var(--ci-orange);
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   margin-bottom: 20px;
   opacity: 0.8;
 }
