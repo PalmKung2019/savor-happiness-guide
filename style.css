@@ -3,16 +3,11 @@
    ============================================================ */
 
 @font-face {
-  font-family: "NangKaiThot"; /* ชื่อที่ใช้อ้างอิง */
-  src: url("/fonts/MN-Nang-Kai-Thot-Regular.woff2") format("woff2");
+  font-family: "NangKaiThot";
+  src: url("fonts/MN-Nang-Kai-Thot-Regular.woff2") format("woff2"); /* เอา / ออก */
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-}
-
-/* นำชื่อไปสั่งใช้งานกับทุกส่วนของเว็บ */
-* {
-  font-family: "NangKaiThot", sans-serif !important;
 }
 
 :root {
