@@ -391,14 +391,15 @@ const NAV_ITEMS = [
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
   applyTheme(AppState.ui.isDarkMode);
-  renderShops(); // Render shop elements first so language can be applied
-  applyLanguage(AppState.ui.currentLang); // Apply translation to all elements
+  renderShops();
+  applyLanguage(AppState.ui.currentLang);
   renderTicker();
   setupScrollProgress();
   setupMobileNav();
   setupFilters();
   setupSearch();
   setupModals();
+  setupMerchSlider();
 
   if (typeof AOS !== "undefined") {
     AOS.init({
@@ -422,9 +423,10 @@ function renderShops() {
   nongList.innerHTML = "";
 
   realShops.forEach((shop, idx) => {
+    const staggerDelay = (idx % 5) * 80;
     const firstImg = `<img class="photo-item active" src="${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.webp" alt="${shop.name}" data-shop-idx="${idx}" data-img-idx="0" width="600" height="400" loading="lazy" decoding="async" onerror="this.style.display='none';">`;
     const cardHTML = `
-      <div class="shop-card fadeInSlideUp" style="animation-delay: ${idx * 0.05}s;">
+      <div class="shop-card fadeInSlideUp" data-aos="fade-up" data-aos-delay="${staggerDelay}" style="animation-delay: ${idx * 0.05}s;">
         <div class="photo-gallery" id="gallery-${idx}" title="คลิกรูปเพื่อดูแบบเต็มจอ">
             ${firstImg}
         </div>
@@ -507,8 +509,12 @@ function setupFilters() {
   const filterBtns = document.querySelectorAll(".filter-btn");
   filterBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      filterBtns.forEach((b) => b.classList.remove("active"));
+      filterBtns.forEach((b) => {
+        b.classList.remove("active");
+        b.setAttribute("aria-pressed", "false");
+      });
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
       const filter = btn.getAttribute("data-filter");
       document.getElementById("minburi-section").style.display =
         filter === "all" || filter === "minburi" ? "block" : "none";
@@ -516,6 +522,13 @@ function setupFilters() {
         filter === "all" || filter === "nongchok" ? "block" : "none";
       if (typeof AOS !== "undefined") AOS.refresh();
     });
+  });
+  // Set initial aria-pressed state
+  filterBtns.forEach((btn) => {
+    btn.setAttribute(
+      "aria-pressed",
+      btn.classList.contains("active") ? "true" : "false",
+    );
   });
 }
 
@@ -652,19 +665,21 @@ window.openCafeModal = function (idx) {
 };
 
 window.openSimpleLightbox = function (src) {
+  const lb = document.getElementById("simpleLightbox");
   const lbImg = document.getElementById("lightboxImg");
   lbImg.src = src;
   lbImg.style.transform = "scale(1)";
   document
     .querySelectorAll("#simpleLightbox .nav-btn")
     .forEach((btn) => (btn.style.display = "none"));
-  document.getElementById("simpleLightbox").style.display = "flex";
+  lb.classList.add("is-open");
   document.body.style.overflow = "hidden";
   AppState.lightbox.isZoomed = false;
 };
 
 window.openGalleryLightbox = function (shopIdx, imgIdx) {
   const shop = realShops[shopIdx];
+  const lb = document.getElementById("simpleLightbox");
   AppState.lightbox.currentGallery = Array.from(
     { length: 8 },
     (_, i) => `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}${i}.webp`,
@@ -676,7 +691,7 @@ window.openGalleryLightbox = function (shopIdx, imgIdx) {
   document
     .querySelectorAll("#simpleLightbox .nav-btn")
     .forEach((btn) => (btn.style.display = "flex"));
-  document.getElementById("simpleLightbox").style.display = "flex";
+  lb.classList.add("is-open");
   document.body.style.overflow = "hidden";
   AppState.lightbox.isZoomed = false;
 };
@@ -694,6 +709,11 @@ window.changeImg = function (dir) {
 };
 
 function setupModals() {
+  const closeLightbox = () => {
+    document.getElementById("simpleLightbox").classList.remove("is-open");
+    document.body.style.overflow = "";
+  };
+
   document.getElementById("closeCafeModal").addEventListener("click", () => {
     document.getElementById("cafeModal").style.display = "none";
     document.body.style.overflow = "";
@@ -702,21 +722,29 @@ function setupModals() {
     document.getElementById("pdfModal").style.display = "none";
     document.body.style.overflow = "";
   });
-  document.getElementById("closeLightboxBtn").addEventListener("click", () => {
-    document.getElementById("simpleLightbox").style.display = "none";
-    document.body.style.overflow = "";
-  });
+  document
+    .getElementById("closeLightboxBtn")
+    .addEventListener("click", closeLightbox);
   document.getElementById("previewBtn").addEventListener("click", (e) => {
     e.preventDefault();
     document.getElementById("pdfModal").style.display = "flex";
     document.body.style.overflow = "hidden";
   });
   window.addEventListener("click", (e) => {
-    if (
-      e.target.classList.contains("modal-overlay") ||
-      e.target.classList.contains("lightbox-overlay")
-    ) {
+    if (e.target.classList.contains("modal-overlay")) {
       e.target.style.display = "none";
+      document.body.style.overflow = "";
+    }
+    if (e.target.classList.contains("lightbox-overlay")) {
+      closeLightbox();
+    }
+  });
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".modal-overlay").forEach((m) => {
+        m.style.display = "none";
+      });
+      closeLightbox();
       document.body.style.overflow = "";
     }
   });
@@ -783,6 +811,7 @@ window.toggleLang = function () {
 };
 
 function applyLanguage(lang) {
+  document.documentElement.lang = lang;
   document.querySelectorAll(".lang-text").forEach((el) => {
     const key = el.getAttribute("data-key");
     if (translations[lang] && translations[lang][key])
@@ -893,3 +922,84 @@ document.addEventListener("keyup", (e) => {
     alert("ไม่อนุญาตให้แคปภาพลิขสิทธิ์ครับ");
   }
 });
+
+// ==========================================
+// 6. MERCH SLIDER (moved from inline script)
+// ==========================================
+function setupMerchSlider() {
+  const slider = document.querySelector(".merch-slider-wrapper");
+  if (!slider) return;
+
+  let isDown = false;
+  let isDragging = false; // ✅
+  let startX;
+  let scrollLeft;
+  let autoScrollInterval;
+
+  const startAutoScroll = () => {
+    stopAutoScroll();
+    autoScrollInterval = setInterval(() => {
+      slider.scrollLeft += 1.5;
+      if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth) {
+        slider.scrollLeft = 0;
+      }
+    }, 30);
+  };
+
+  const stopAutoScroll = () => {
+    clearInterval(autoScrollInterval);
+  };
+
+  startAutoScroll();
+
+  slider.addEventListener("mouseenter", stopAutoScroll);
+  slider.addEventListener("touchstart", stopAutoScroll, { passive: true });
+  slider.addEventListener("touchend", startAutoScroll);
+
+  slider.addEventListener("mousedown", (e) => {
+    isDown = true;
+    isDragging = false; // ✅ รีเซ็ตการลากใหม่ทุกครั้งที่กดเมาส์ลง
+    slider.style.cursor = "grabbing";
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+    stopAutoScroll();
+  });
+
+  slider.addEventListener("mouseleave", () => {
+    isDown = false;
+    slider.style.cursor = "grab";
+    startAutoScroll();
+  });
+
+  slider.addEventListener("mouseup", () => {
+    isDown = false;
+    slider.style.cursor = "grab";
+    startAutoScroll();
+  });
+
+  slider.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2;
+
+    // ✅ ถ้าระยะเมาส์ขยับเกิน 5px ถือว่า "ตั้งใจลาก"
+    if (Math.abs(walk) > 5) {
+      isDragging = true;
+    }
+
+    slider.scrollLeft = scrollLeft - walk;
+  });
+
+  // ✅ ดักจับการคลิกแบบเด็ดขาด ไม่ให้มันไปทริกเกอร์ Lightbox ถ้ารู้ว่าลากมา
+  slider.addEventListener(
+    "click",
+    (e) => {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    },
+    true,
+  );
+}
