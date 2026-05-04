@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "NangKaiThot";
-  src: url("/fonts/MN-Nang-Kai-Thot-Regular.woff2") format("woff2");
+  src: url("fonts/MN-Nang-Kai-Thot-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -1443,7 +1443,10 @@ video {
   display: flex;
   gap: 40px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  /* ✅ เปลี่ยนจาก center เป็น flex-start เพื่อดันรูปไปทางซ้าย */
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .author-img {
