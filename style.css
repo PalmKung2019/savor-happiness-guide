@@ -31,6 +31,8 @@
   --modal-bg: rgba(0, 122, 51, 0.85);
   --scrollbar-track: var(--bg-main);
   --scrollbar-thumb: var(--ci-green);
+  --footer-bg: #0a0a0a;
+  --cta-text-color: #333;
 }
 
 [data-theme="dark"] {
@@ -53,7 +55,6 @@
   content: url("img/logo/savorhappiness-2.png");
 }
 
-/* ล็อกโครงสร้างหลัก ป้องกันแถบขาวด้านขวาบนมือถือ */
 *,
 *::before,
 *::after {
@@ -72,7 +73,6 @@ html {
   overflow-x: hidden;
 }
 
-/* Typography Hierarchy Setup */
 body {
   background: var(--bg-main);
   color: var(--text-main);
@@ -116,6 +116,14 @@ img {
   max-width: 100%;
 }
 
+.floating-cover {
+  will-change: transform;
+}
+
+.shop-ticker-track {
+  will-change: transform;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -133,7 +141,6 @@ img {
   background: var(--ci-orange);
 }
 
-/* Keyframes Setup */
 @keyframes fadeInSlideUp {
   from {
     opacity: 0;
@@ -179,6 +186,7 @@ img {
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0) rotate(-2deg);
@@ -189,9 +197,23 @@ img {
   }
 }
 
+@keyframes rotateRing {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .fadeInSlideUp {
   animation: fadeInSlideUp 0.6s ease forwards;
   opacity: 0;
+}
+
+.book-text--delayed {
+  animation-delay: 0.1s;
 }
 
 .custom-modal-animation {
@@ -628,7 +650,6 @@ nav {
   color: #004d21;
 }
 
-/* EXPLORE RING */
 .savor-cta-ring-wrapper {
   position: absolute;
   bottom: 30px;
@@ -695,7 +716,7 @@ nav {
   display: flex;
   gap: 40px;
   padding-right: 40px;
-  animation: ticker 40s linear infinite;
+  animation: ticker 115s linear infinite;
 }
 
 .ticker-item {
@@ -737,7 +758,6 @@ nav {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   color: var(--ci-green);
   font-weight: bold;
-  line-height: 1.4;
   transition: color 0.4s ease;
   display: block;
 }
@@ -756,23 +776,32 @@ nav {
   border-radius: 4px;
 }
 
+/* ✅ แก้ไขให้อยู่กึ่งกลางเป๊ะๆ ไม่ขยับตอน Filter */
 #minburi-section,
 #nongchok-section {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#nongchok-section:not([style*="display: none"]) {
+  margin-top: 40px;
 }
 
 .district-label {
-  margin: 0 0 20px 0;
+  margin: 0 auto 30px auto;
   font-size: clamp(1.8rem, 4vw, 2.2rem);
   font-weight: 800;
   color: var(--ci-orange);
   text-align: center;
   letter-spacing: 4px;
+  width: 100%;
 }
 
-/* SHOP GRID & MERCH CARD */
+/* SHOP GRID & CARDS */
 .shop-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -782,8 +811,7 @@ nav {
   margin: 0 auto;
 }
 
-.shop-card,
-.merch-card {
+.shop-card {
   background: var(--bg-card);
   border: 1px solid var(--card-border);
   border-top: 5px solid var(--ci-green);
@@ -796,8 +824,7 @@ nav {
   flex-direction: column;
 }
 
-.shop-card:hover,
-.merch-card:hover {
+.shop-card:hover {
   transform: translateY(-12px);
   box-shadow: 0 24px 48px var(--shadow-dark);
   border-top-color: var(--ci-orange);
@@ -885,54 +912,11 @@ nav {
   transform: translateX(0);
 }
 
-/* =========================================
-   MERCH SLIDER & CATEGORIES (รองรับ Drag & Drop)
-   ========================================= */
+/* ✅ MERCHANDISE SLIDER & CARDS (รูปขยายตามสัดส่วน ไม่โดนตัดขอบ) */
 .merch-slider-container {
   width: 100%;
   max-width: 1200px;
   margin: 50px auto 0;
-}
-
-.merch-category {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.merch-split-row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 30px auto 0;
-}
-
-.merch-sub-title {
-  color: var(--ci-orange);
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: bold;
-  justify-content: center;
-}
-
-.merch-card img {
-  width: 100%;
-  height: auto;
-  max-height: 250px;
-  object-fit: cover;
-  border-bottom: 1px solid var(--card-border);
-}
-
-.merch-card p {
-  padding: 15px;
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: var(--text-main);
 }
 
 .merch-slider-wrapper {
@@ -941,10 +925,11 @@ nav {
   white-space: nowrap;
   width: 100%;
   position: relative;
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
   scrollbar-width: none;
   -ms-overflow-style: none;
+  padding: 20px 0;
 }
 
 .merch-slider-wrapper::-webkit-scrollbar {
@@ -953,31 +938,51 @@ nav {
 
 .merch-slider-track {
   display: inline-flex;
-  gap: 20px;
-  padding: 10px 0;
+  gap: 30px;
+  padding: 10px 20px;
+  width: max-content;
+  align-items: stretch;
+}
+
+.merch-card {
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  border-top: 5px solid var(--ci-green);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px var(--shadow-light);
+  transition: all 0.4s ease;
+  overflow: hidden;
+  display: inline-flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  text-align: center;
+  cursor: pointer;
+  white-space: normal;
   width: max-content;
 }
 
-.merch-slider-track img {
+.merch-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 24px 48px var(--shadow-dark);
+  border-top-color: var(--ci-orange);
+}
+
+.merch-card img {
   height: 220px;
   width: auto;
-  border-radius: 16px;
-  object-fit: cover;
-  box-shadow: 0 8px 24px var(--shadow-light);
-  cursor: grab;
-  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
-  border: 1px solid var(--card-border);
-  -webkit-user-drag: none;
+  max-width: none;
+  display: block;
+  border-bottom: 1px solid var(--card-border);
+  pointer-events: none;
 }
 
-.merch-slider-track img:active {
-  cursor: grabbing;
-}
-
-.merch-slider-track img:hover {
-  transform: scale(1.05) translateY(-5px);
-  box-shadow: 0 12px 30px var(--shadow-dark);
-  border-color: var(--ci-orange);
+.merch-card p {
+  padding: 15px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin: 0;
+  width: 100%;
 }
 
 /* FILTER SYSTEM */
@@ -1024,8 +1029,7 @@ nav {
 }
 
 /* MODALS & LIGHTBOXES */
-.modal-overlay,
-.lightbox-overlay {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -1037,6 +1041,28 @@ nav {
   justify-content: center;
   align-items: center;
   z-index: 30000;
+}
+
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(255 255 255 / 85%);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 30000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox-overlay.is-open {
+  opacity: 1;
+  pointer-events: all;
 }
 
 .modal-content {
@@ -1201,7 +1227,7 @@ nav {
   display: inline-block;
   border-radius: 10px;
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
-  transition: 0.4s ease;
+  transition: opacity 0.3s ease, transform 0.4s ease;
 }
 
 .book-thumbs {
@@ -1366,6 +1392,21 @@ video {
   text-align: center;
 }
 
+.video-content-box .section-title {
+  margin-bottom: 20px;
+}
+
+.video-description {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 16px;
+}
+
+.book-card .section-title {
+  line-height: 1.1;
+}
+
 .video-tag {
   display: inline-block;
   padding: 6px 15px;
@@ -1378,37 +1419,36 @@ video {
   letter-spacing: 1px;
 }
 
-.video-description {
-  font-size: 1.1rem;
-  color: var(--text-muted);
+/* ✅ UNIFIED AUTHOR & SUPPORT SECTION */
+.unified-author-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 30px;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 4px solid var(--ci-green);
+  box-shadow: 0 20px 50px var(--shadow-light);
+  transition: all 0.4s ease;
 }
 
-/* AUTHOR & SUPPORT SECTION */
-.author-container {
-  background: var(--bg-card);
-  border-radius: 30px;
-  padding: 40px;
+[data-theme="dark"] .unified-author-card {
+  border-color: var(--ci-yellow);
+}
+
+.author-profile-side {
+  padding: 50px;
   display: flex;
   gap: 40px;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 20px 40px var(--shadow-light);
-  transition: 0.4s;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  border: 1px solid var(--card-border);
-}
-
-.author-container:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 30px 60px var(--shadow-dark);
-  border-color: var(--ci-orange);
 }
 
 .author-img {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   box-shadow: -15px 15px 0px rgba(0, 122, 51, 0.1);
   border: 5px solid var(--bg-main);
@@ -1419,45 +1459,43 @@ video {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .author-info h3 {
   font-size: 1.8rem;
   color: var(--text-card-title);
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .author-role {
   font-size: 1rem;
   color: var(--text-muted);
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
+/* ✅ แก้ไขโลโก้ให้เท่ากันเป๊ะ ไม่แหว่ง */
 .author-logos {
   display: flex;
   gap: 15px;
-  margin: 20px 0;
+  margin-bottom: 20px;
   flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
 }
 
 .author-logos img {
+  width: 40px;
   height: 40px;
-  width: auto;
-  max-width: 100%;
   object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  /* ลบความโค้งออก */
 }
 
 .author-socials {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  margin-top: 20px;
-  justify-content: center;
 }
 
 .social-btn {
@@ -1491,84 +1529,72 @@ video {
   color: #333;
 }
 
-.support-glass-card {
+.author-support-side {
   background: linear-gradient(135deg, var(--ci-green) 0%, #004d21 100%);
-  border-radius: 30px;
-  box-shadow: 0 20px 50px rgba(0, 122, 51, 0.3);
+  padding: 40px 50px;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   color: white;
-  transition: 0.4s;
-  overflow: hidden;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
   position: relative;
 }
 
-.support-glass-card::before {
+.author-support-side::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.1), transparent 60%);
   pointer-events: none;
 }
 
 .support-text-side {
-  padding: 40px;
   flex: 1.5;
   z-index: 1;
+  text-align: left;
 }
 
 .support-heading {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
+  font-size: 2rem;
+  margin-bottom: 5px;
 }
 
 .support-sub {
   color: var(--ci-yellow);
   font-weight: 800;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font-size: 1.1rem;
   letter-spacing: 1px;
 }
 
-.support-creator-tag {
-  display: flex;
-  align-items: center;
+.support-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.9;
 }
 
 .support-qr-side {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 40px;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(15px);
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
-  z-index: 1;
-  width: 100%;
-  max-width: 350px;
 }
 
 .qr-image {
-  width: 150px;
-  border-radius: 15px;
-  border: 6px solid white;
-  margin-bottom: 15px;
+  width: 130px;
+  border-radius: 12px;
+  border: 5px solid white;
+  margin-bottom: 10px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-.small-avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  vertical-align: middle;
-  margin-right: 10px;
-  border: 2px solid white;
+.qr-hint {
+  font-size: 0.85rem;
+  font-weight: bold;
+  opacity: 0.9;
 }
 
 /* SPEED DIAL */
@@ -1607,7 +1633,7 @@ video {
   position: absolute;
   top: 0;
   left: 0;
-  transition: 0.4s ease;
+  transition: 0s ease;
 }
 
 .img-active {
@@ -1667,7 +1693,7 @@ video {
 
 /* FOOTER */
 .footer {
-  background: #0a0a0a;
+  background: var(--footer-bg);
   color: #ddd;
   padding: 80px 5% 30px;
   position: relative;
@@ -1756,11 +1782,151 @@ video {
   transform: translateX(5px);
 }
 
-/* ============================================================
-   RESPONSIVE DESIGN (แก้ไขปัญหาทะลุขอบจอมือถือ/แท็บเล็ต)
-   ============================================================ */
+.footer-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 40px auto 20px;
+  max-width: 1200px;
+}
 
-/* สำหรับหน้าจอระดับ Tablet (เช่น iPad แนวนอน/แนวตั้ง) */
+.footer-bottom {
+  text-align: center;
+  color: #777;
+  font-size: 0.9rem;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 40px;
+  padding-top: 20px;
+}
+
+.footer-desc {
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.btn-primary--sm {
+  padding: 10px 20px;
+  font-size: 0.9rem;
+}
+
+/* ✅ PDF MODAL FIXES */
+.pdf-modal-content {
+  max-width: 900px !important;
+  padding: 20px !important;
+}
+
+.pdf-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.pdf-modal-header-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.pdf-modal-icon {
+  font-size: 24px;
+  color: var(--ci-orange);
+}
+
+.pdf-modal-title {
+  font-weight: bold;
+  line-height: 1.2;
+  font-size: 1.2rem;
+}
+
+.pdf-modal-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.pdf-close-btn {
+  position: relative;
+  top: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.pdf-close-btn:hover {
+  background: var(--ci-orange);
+  color: white;
+}
+
+.pdf-modal-body {
+  overflow-y: auto;
+  max-height: 70vh;
+  background: #e0e0e0;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.pdf-pages-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.pdf-modal-content img {
+  max-height: none !important;
+  margin-bottom: 0 !important;
+}
+
+.pdf-cover-img {
+  width: 80% !important;
+  max-width: 450px !important;
+  height: auto !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 4px !important;
+}
+
+.pdf-spread {
+  display: flex;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.pdf-spread img {
+  width: 50% !important;
+  height: auto !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  object-fit: contain !important;
+  display: block;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 85vh;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  cursor: zoom-in;
+}
+
+.lightbox-close-btn {
+  font-size: 40px;
+  position: absolute;
+  right: 40px;
+  top: 20px;
+  z-index: 10;
+}
+
+/* RESPONSIVE DESIGN */
 @media (max-width: 1024px) {
   #home {
     height: auto;
@@ -1815,13 +1981,10 @@ video {
     gap: 40px;
   }
 
-  .book-card {
-    align-items: center;
-    text-align: center;
-  }
-
+  .book-card,
   .book-card .section-title {
     text-align: center;
+    align-items: center;
   }
 
   .book-card .section-title::after {
@@ -1829,22 +1992,19 @@ video {
   }
 
   .video-flex-container,
-  .support-glass-card,
-  .author-container {
+  .unified-author-card {
     flex-direction: column;
     text-align: center;
   }
 
-  .merch-split-row {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .support-qr-side {
+  .author-support-side {
     max-width: 100%;
     border-left: none;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     padding: 30px;
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
   }
 
   .footer-inner {
@@ -1857,10 +2017,6 @@ video {
     text-align: center;
   }
 
-  .support-creator-tag {
-    justify-content: center;
-  }
-
   .shop-grid {
     gap: 20px;
   }
@@ -1870,7 +2026,6 @@ video {
   }
 }
 
-/* สำหรับหน้าจอระดับมือถือ (ทั่วไป) */
 @media (max-width: 768px) {
   #home {
     padding-top: 10px;
@@ -2035,41 +2190,11 @@ video {
     right: 5px;
   }
 
-  .merch-split-row {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .merch-sub-title {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
+  .author-profile-side {
     flex-direction: column;
-    text-align: center;
-  }
-
-  .merch-card {
-    border-radius: 12px;
-  }
-
-  .merch-card img {
-    height: 200px;
-    object-fit: cover;
-    max-height: none;
-  }
-
-  .merch-card p {
-    padding: 12px;
-    font-size: 1rem;
-  }
-
-  .merch-slider-track img {
-    height: 120px;
-  }
-
-  .author-container {
     padding: 30px 20px;
+    text-align: center;
     gap: 20px;
-    border-radius: 20px;
   }
 
   .author-img {
@@ -2093,9 +2218,10 @@ video {
     width: 100%;
   }
 
+  /* ✅ แก้ไขรูปโลโก้หน้าจอมือถือให้มีขนาด 35x35 เท่ากัน */
   .author-logos img {
+    width: 35px;
     height: 35px;
-    width: auto;
     object-fit: contain;
   }
 
@@ -2107,10 +2233,6 @@ video {
   .social-btn {
     padding: 8px 15px;
     font-size: 0.85rem;
-  }
-
-  .support-glass-card {
-    border-radius: 20px;
   }
 
   .support-text-side {
@@ -2132,13 +2254,6 @@ video {
     font-size: 0.9rem;
     line-height: 1.5;
     margin-bottom: 15px;
-  }
-
-  .support-creator-tag {
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    font-size: 0.85rem;
   }
 
   .support-qr-side {
@@ -2186,7 +2301,6 @@ video {
   }
 }
 
-/* สำหรับมือถือจอเล็กมากๆ (เช่น iPhone SE หรือต่ำกว่า 360px) */
 @media (max-width: 480px) {
   .hero-main-title {
     font-size: 2rem;
@@ -2213,26 +2327,12 @@ video {
     line-height: 1.2;
   }
 
-  .merch-split-row {
-    gap: 15px;
-  }
-
-  .merch-card img {
-    height: 150px;
-  }
-
-  .merch-card p {
-    font-size: 0.9rem;
-    padding: 10px;
-  }
-
   .speed-dial-container {
     bottom: 15px;
     right: 15px;
   }
 }
 
-/* Background Grids */
 .hero-bg-grid {
   position: absolute;
   top: 0;
@@ -2242,14 +2342,14 @@ video {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   opacity: 0.15;
-  filter: grayscale(50%) blur(1px) brightness(0.6); 
+  filter: grayscale(50%) blur(1px) brightness(0.6);
   z-index: 1;
   pointer-events: none;
 }
 
 [data-theme="dark"] .hero-bg-grid {
   opacity: 0.08;
-  filter: grayscale(100%) blur(5px) brightness(0.5); 
+  filter: grayscale(100%) blur(5px) brightness(0.5);
 }
 
 .bg-item img {
@@ -2269,7 +2369,6 @@ video {
   }
 }
 
-/* 🔥 Background ใหม่ (ปรับให้พอดีทั้ง แนวนอน / แนวตั้ง) */
 .hero-bg {
   position: absolute;
   top: 0;
@@ -2283,20 +2382,18 @@ video {
 .hero-bg img {
   width: 100%;
   height: 100%;
-  object-fit: cover;       /* ยืดภาพให้เต็มกรอบโดยไม่เสียสัดส่วน */
-  object-position: center; /* ล็อกจุดโฟกัสภาพให้อยู่กึ่งกลางเสมอ */
-  opacity: 0.4; 
-  filter: brightness(0.6); /* ดรอปแสงลงไม่ให้กวนตัวหนังสือ */
-  pointer-events: none;    /* ป้องกันผู้ใช้เผลอคลิก/ลากรูปพื้นหลังติดมือ */
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.4;
+  filter: brightness(0.6);
+  pointer-events: none;
 }
 
-/* content ต้องอยู่บน */
 .hero-content-wrapper {
   position: relative;
   z-index: 2;
 }
 
-/* กัน layout shift */
 .hero-visual-content img {
   display: block;
   max-width: 480px;
@@ -2304,68 +2401,10 @@ video {
   height: auto;
 }
 
-.savor-cta-ring-wrapper {
-  position: absolute;
-  bottom: 40px;
-  right: 40px;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
-  text-decoration: none;
-}
-
-/* SVG */
-.cta-ring-svg {
-  width: 100%;
-  height: 100%;
-  animation: rotateRing 12s linear infinite;
-}
-
-/* Text */
-.cta-ring-text {
-  fill: #333;
-  font-size: 10px;
-  font-weight: bold;
-  letter-spacing: 0.15em;
-}
-
-/* Arrow */
-.savor-cta-arrow {
-  position: absolute;
-  font-size: 20px;
-  color: #333;
-}
-
-/* Animation เบา ๆ (ไม่กระทบ performance) */
-@keyframes rotateRing {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Hover */
-.savor-cta-ring-wrapper:hover .cta-ring-svg {
-  animation-duration: 6s;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .savor-cta-ring-wrapper {
-    bottom: 20px;
-    right: 20px;
-    width: 80px;
-    height: 80px;
-  }
-}
-
-.savor-cta-ring-wrapper:hover {
-  transform: scale(1.1);
-  transition: 0.3s ease;
+.scroll-hint {
+  text-align: center;
+  color: var(--ci-orange);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  opacity: 0.8;
 }
