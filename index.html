@@ -57,14 +57,12 @@
 <body>
     <header class="site-header">
         <nav>
-            <div class="hamburger-menu" id="hamburgerBtn" aria-label="เปิดเมนู" role="button" tabindex="0">
-                <i class="fas fa-bars"></i>
-            </div>
             <div class="logo">
                 <a href="#home">
                     <img src="img/logo/savorhappiness-1.png" class="logo-img" id="mainLogo" alt="Savor Happiness" />
                 </a>
             </div>
+
             <div class="nav-right-container">
                 <ul class="nav-links" id="navLinks">
                     <li class="mobile-close-wrapper">
@@ -82,20 +80,27 @@
                     </li>
                 </ul>
             </div>
+
+            <div class="hamburger-menu" id="hamburgerBtn" aria-label="เปิดเมนู" role="button" tabindex="0">
+                <i class="fas fa-bars"></i>
+            </div>
         </nav>
+
         <div class="nav-backdrop" id="navBackdrop"></div>
+
         <div class="search-wrapper">
             <div class="search-input-group">
                 <input type="text" id="shopSearchInput" placeholder="ค้นหาร้านค้าที่นี่..." autocomplete="off" />
-                <button id="searchBtn" aria-label="ค้นหา" title="ค้นหา"><i class="fas fa-search" aria-hidden="true"></i></button>
+                <button id="searchBtn" aria-label="ค้นหา" title="ค้นหา"><i class="fas fa-search"
+                        aria-hidden="true"></i></button>
             </div>
             <div id="searchSuggestions"></div>
         </div>
-    </header>
 
-    <div class="scroll-progress-container">
-        <div class="progress-bar" id="myBar"></div>
-    </div>
+        <div class="scroll-progress-container">
+            <div class="progress-bar" id="myBar"></div>
+        </div>
+    </header>
 
     <main class="one-page-container">
         <section id="home">
@@ -158,12 +163,12 @@
             <div class="video-flex-container">
                 <div class="video-visual-side">
                     <div class="video-wrapper">
-                        <video id="myVideo" autoplay muted loop poster="img/SavorPic6.webp"
-                            preload="metadata">
+                        <video id="myVideo" autoplay muted loop poster="img/SavorPic6.webp" preload="metadata">
                             <source src="video/video0.mp4" type="video/mp4" />
                         </video>
-                        <button id="muteBtn" class="mute-control-btn" aria-label="ปิด/เปิดเสียง" title="ปิด/เปิดเสียง"><i id="muteIcon"
-                                class="fas fa-volume-mute" aria-hidden="true"></i></button>
+                        <button id="muteBtn" class="mute-control-btn" aria-label="ปิด/เปิดเสียง"
+                            title="ปิด/เปิดเสียง"><i id="muteIcon" class="fas fa-volume-mute"
+                                aria-hidden="true"></i></button>
                     </div>
                 </div>
                 <div class="video-text-side">
@@ -363,11 +368,16 @@
             <div class="pdf-modal-body">
                 <div class="pdf-pages-container">
                     <img src="img/preview/page-1.webp" alt="Cover" class="pdf-cover-img">
-                    <div class="pdf-spread"><img src="img/preview/page-2.webp" alt="Page 2"><img src="img/preview/page-3.webp" alt="Page 3"></div>
-                    <div class="pdf-spread"><img src="img/preview/page-4.webp" alt="Page 4"><img src="img/preview/page-5.webp" alt="Page 5"></div>
-                    <div class="pdf-spread"><img src="img/preview/page-6.webp" alt="Page 6"><img src="img/preview/page-7.webp" alt="Page 7"></div>
-                    <div class="pdf-spread"><img src="img/preview/page-8.webp" alt="Page 8"><img src="img/preview/page-9.webp" alt="Page 9"></div>
-                    <div class="pdf-spread"><img src="img/preview/page-10.webp" alt="Page 10"><img src="img/preview/page-11.webp" alt="Page 11">
+                    <div class="pdf-spread"><img src="img/preview/page-2.webp" alt="Page 2"><img
+                            src="img/preview/page-3.webp" alt="Page 3"></div>
+                    <div class="pdf-spread"><img src="img/preview/page-4.webp" alt="Page 4"><img
+                            src="img/preview/page-5.webp" alt="Page 5"></div>
+                    <div class="pdf-spread"><img src="img/preview/page-6.webp" alt="Page 6"><img
+                            src="img/preview/page-7.webp" alt="Page 7"></div>
+                    <div class="pdf-spread"><img src="img/preview/page-8.webp" alt="Page 8"><img
+                            src="img/preview/page-9.webp" alt="Page 9"></div>
+                    <div class="pdf-spread"><img src="img/preview/page-10.webp" alt="Page 10"><img
+                            src="img/preview/page-11.webp" alt="Page 11">
                     </div>
                 </div>
             </div>
@@ -388,10 +398,12 @@
                 height="55" />
         </button>
         <div class="speed-dial-buttons">
-            <a href="tel:0979465925" class="dial-btn" aria-label="Phone" title="Phone"><i class="fas fa-phone" aria-hidden="true"></i></a>
-            <a href="https://line.me/ti/p/hoyPIxxf4K" target="_blank" rel="noopener noreferrer" class="dial-btn" aria-label="LINE" title="LINE"><i
-                    class="fab fa-line" aria-hidden="true"></i></a>
-            <button class="dial-btn copy-btn" onclick="copyContact()" aria-label="Copy Contact" title="Copy Contact"><i class="fas fa-copy" aria-hidden="true"></i></button>
+            <a href="tel:0979465925" class="dial-btn" aria-label="Phone" title="Phone"><i class="fas fa-phone"
+                    aria-hidden="true"></i></a>
+            <a href="https://line.me/ti/p/hoyPIxxf4K" target="_blank" rel="noopener noreferrer" class="dial-btn"
+                aria-label="LINE" title="LINE"><i class="fab fa-line" aria-hidden="true"></i></a>
+            <button class="dial-btn copy-btn" onclick="copyContact()" aria-label="Copy Contact" title="Copy Contact"><i
+                    class="fas fa-copy" aria-hidden="true"></i></button>
         </div>
     </div>
 
