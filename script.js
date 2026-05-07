@@ -1,5 +1,5 @@
 /* ============================================================
-   SAVOR HAPPINESS — CORE SCRIPT
+   SAVOR HAPPINESS — CORE SCRIPT (PERFORMANCE OPTIMIZED)
    ============================================================ */
 
 const CONFIG = {
@@ -412,7 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ==========================================
-// 3. CORE LOGIC
+// 3. CORE LOGIC (ปรับแก้เพื่อลดภาระ DOM)
 // ==========================================
 function renderShops() {
   const minList = document.getElementById("minburi-list");
@@ -424,11 +424,16 @@ function renderShops() {
 
   realShops.forEach((shop, idx) => {
     const staggerDelay = (idx % 5) * 80;
-    const firstImg = `<img class="photo-item active" src="${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.webp" alt="${shop.name}" data-shop-idx="${idx}" data-img-idx="0" width="600" height="400" loading="lazy" decoding="async" onerror="this.style.display='none';">`;
+
+    // ✅ จุดแก้: ใช้ <img> แค่ 2 ตัวสลับคลาส active ทำให้ประหยัดทรัพยากร DOM ไปได้มหาศาล
+    const imgA = `<img class="photo-item active" id="shop-img-a-${idx}" src="${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.webp" alt="${shop.name}" data-shop-idx="${idx}" data-img-idx="0" width="600" height="400" loading="lazy" decoding="async" onerror="this.style.display='none';">`;
+    const imgB = `<img class="photo-item" id="shop-img-b-${idx}" src="" alt="${shop.name}" data-shop-idx="${idx}" data-img-idx="1" width="600" height="400" loading="lazy" decoding="async" onerror="this.style.display='none';">`;
+
     const cardHTML = `
       <div class="shop-card fadeInSlideUp" data-aos="fade-up" data-aos-delay="${staggerDelay}" style="animation-delay: ${idx * 0.05}s;">
-        <div class="photo-gallery" id="gallery-${idx}" title="คลิกรูปเพื่อดูแบบเต็มจอ">
-            ${firstImg}
+        <div class="photo-gallery" id="gallery-${idx}" data-shop-idx="${idx}" title="คลิกรูปเพื่อดูแบบเต็มจอ">
+            ${imgA}
+            ${imgB}
         </div>
         <div class="shop-info" onclick="openCafeModal(${idx})" title="คลิกเพื่อดูรายละเอียดร้าน">
           <div class="shop-name">${shop.name}</div>
@@ -452,19 +457,6 @@ function renderShops() {
     });
   });
 
-  setTimeout(loadRemainingImagesAndSlide, 1000);
-}
-
-function loadRemainingImagesAndSlide() {
-  realShops.forEach((shop, idx) => {
-    const gallery = document.getElementById(`gallery-${idx}`);
-    if (!gallery) return;
-    let extraImages = "";
-    for (let i = 1; i < 8; i++) {
-      extraImages += `<img class="photo-item" src="${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}${i}.webp" alt="${shop.name}" data-shop-idx="${idx}" data-img-idx="${i}" width="600" height="400" loading="lazy" decoding="async" onerror="this.style.display='none';">`;
-    }
-    gallery.insertAdjacentHTML("beforeend", extraImages);
-  });
   startAutoSlide();
 }
 
@@ -473,23 +465,43 @@ function startAutoSlide() {
     (entries) => {
       entries.forEach((entry) => {
         const gallery = entry.target;
-        const items = gallery.querySelectorAll(".photo-item");
-        if (items.length <= 1) return;
+        const shopIdx = gallery.getAttribute("data-shop-idx");
+        const shop = realShops[shopIdx];
+        const imgA = document.getElementById(`shop-img-a-${shopIdx}`);
+        const imgB = document.getElementById(`shop-img-b-${shopIdx}`);
 
         if (entry.isIntersecting) {
-          let currentIdx = parseInt(gallery.dataset.currentIdx || "0");
+          let currentImgIdx = parseInt(
+            gallery.getAttribute("data-current-img-idx") || "0",
+          );
+          let useImgA = gallery.getAttribute("data-use-imga") !== "false";
 
           const interval = setInterval(
             () => {
-              items[currentIdx].classList.remove("active");
-              currentIdx = (currentIdx + 1) % items.length;
-              items[currentIdx].classList.add("active");
-              gallery.dataset.currentIdx = currentIdx;
+              currentImgIdx = (currentImgIdx + 1) % 8; // วนลูปรูปที่ 0 ถึง 7
+              const newSrc = `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}${currentImgIdx}.webp`;
+
+              if (useImgA) {
+                imgB.src = newSrc;
+                imgB.setAttribute("data-img-idx", currentImgIdx);
+                imgB.classList.add("active");
+                imgA.classList.remove("active");
+              } else {
+                imgA.src = newSrc;
+                imgA.setAttribute("data-img-idx", currentImgIdx);
+                imgA.classList.add("active");
+                imgB.classList.remove("active");
+              }
+
+              useImgA = !useImgA;
+              gallery.setAttribute("data-current-img-idx", currentImgIdx);
+              gallery.setAttribute("data-use-imga", useImgA);
             },
             CONFIG.AUTO_SLIDE_INTERVAL + Math.random() * 1000,
           );
           gallery.dataset.intervalId = interval;
         } else {
+          // เคลียร์ Interval ทิ้งตอนผู้ใช้เลื่อนหน้าจอหนี
           if (gallery.dataset.intervalId) {
             clearInterval(gallery.dataset.intervalId);
             gallery.dataset.intervalId = "";
@@ -523,7 +535,6 @@ function setupFilters() {
       if (typeof AOS !== "undefined") AOS.refresh();
     });
   });
-  // Set initial aria-pressed state
   filterBtns.forEach((btn) => {
     btn.setAttribute(
       "aria-pressed",
@@ -654,10 +665,7 @@ window.openCafeModal = function (idx) {
   const lang = AppState.ui.currentLang;
   document.getElementById("modalImg").src =
     `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.webp`;
-
-  // บังคับให้ชื่อร้านคงความออริจินัลเสมอ (ห้ามแปล)
   document.getElementById("modalTitle").innerText = shop.name;
-
   document.getElementById("modalDesc").innerText =
     lang === "th" ? shop.descTH : shop.descEN;
   document.getElementById("cafeModal").style.display = "flex";
@@ -924,14 +932,46 @@ document.addEventListener("keyup", (e) => {
 });
 
 // ==========================================
-// 6. MERCH SLIDER (moved from inline script)
+// 6. MERCH SLIDER
 // ==========================================
+function setupMobileNav() {
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const navCloseBtn = document.getElementById("navCloseBtn");
+  const navLinks = document.getElementById("navLinks");
+  const navBackdrop = document.getElementById("navBackdrop");
+  const navItems = navLinks.querySelectorAll("li a");
+
+  function openNav() {
+    navLinks.classList.add("active");
+    navBackdrop.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeNav() {
+    navLinks.classList.remove("active");
+    navBackdrop.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  hamburgerBtn.addEventListener("click", openNav);
+  navCloseBtn.addEventListener("click", closeNav);
+  navBackdrop.addEventListener("click", closeNav);
+
+  navItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      if (window.innerWidth <= 1200) {
+        closeNav();
+      }
+    });
+  });
+}
+
 function setupMerchSlider() {
   const slider = document.querySelector(".merch-slider-wrapper");
   if (!slider) return;
 
   let isDown = false;
-  let isDragging = false; // ✅
+  let isDragging = false;
   let startX;
   let scrollLeft;
   let autoScrollInterval;
@@ -958,7 +998,7 @@ function setupMerchSlider() {
 
   slider.addEventListener("mousedown", (e) => {
     isDown = true;
-    isDragging = false; // ✅ รีเซ็ตการลากใหม่ทุกครั้งที่กดเมาส์ลง
+    isDragging = false;
     slider.style.cursor = "grabbing";
     startX = e.pageX - slider.offsetLeft;
     scrollLeft = slider.scrollLeft;
@@ -983,7 +1023,6 @@ function setupMerchSlider() {
     const x = e.pageX - slider.offsetLeft;
     const walk = (x - startX) * 2;
 
-    // ✅ ถ้าระยะเมาส์ขยับเกิน 5px ถือว่า "ตั้งใจลาก"
     if (Math.abs(walk) > 5) {
       isDragging = true;
     }
@@ -991,7 +1030,6 @@ function setupMerchSlider() {
     slider.scrollLeft = scrollLeft - walk;
   });
 
-  // ✅ ดักจับการคลิกแบบเด็ดขาด ไม่ให้มันไปทริกเกอร์ Lightbox ถ้ารู้ว่าลากมา
   slider.addEventListener(
     "click",
     (e) => {
