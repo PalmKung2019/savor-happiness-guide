@@ -76,7 +76,7 @@ html {
 body {
   background: var(--bg-main);
   color: var(--text-main);
-  line-height: 0.6;
+  line-height: 1.6;
   font-family: "Anuphan", sans-serif;
   padding-top: 180px;
   transition: background-color 0.4s ease, color 0.4s ease;
@@ -816,8 +816,8 @@ nav {
 .shop-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
-  width: 100%;
+  gap: 45px;
+  width: 90%;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -1450,9 +1450,9 @@ video {
 }
 
 .author-profile-side {
-  padding: 50px;
+  padding: 36px;
   display: flex;
-  gap: 40px;
+  gap: 90px;
   align-items: center;
   justify-content: flex-start;
   max-width: 1000px;
