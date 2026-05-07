@@ -1291,9 +1291,9 @@ nav {
 
 .book-badge-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 10px;
-  margin: 0;
+  margin: 4px;
 }
 
 .badge {
@@ -2118,9 +2118,9 @@ video {
 
   .hero-cta {
     flex-direction: column;
-    width: 100%;
+    width: 50%;
     padding: 0;
-    gap: 12px;
+    gap: 0px;
   }
 
   .btn-main,
