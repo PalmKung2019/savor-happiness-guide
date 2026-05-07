@@ -39,12 +39,11 @@
     <link rel="icon" type="image/png" href="img/logo/logo-light.png?v=2" />
     <link rel="apple-touch-icon" href="img/logo/logo-light.png?v=2" />
 
-    <!-- ✅ พรีโหลดรูปภาพหลัก (LCP) -->
-    <link rel="preload" as="image" href="img/bg-collage-small.webp" type="image/webp" fetchpriority="high" />
-    <link rel="preload" as="image" href="img/Cover_Img.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="img/bg-collage-small.webp" type="image/webp" />
+    <link rel="preload" as="image" href="img/Cover_Img.webp" type="image/webp" />
 
-    <!-- ✅ พรีโหลดฟอนต์หลัก -->
-    <link rel="preload" href="fonts/MN-Nang-Kai-Thot-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="fonts/MN-Nang-Kai-Thot-Regular.woff2" as="font" type="font/woff2"
+        crossorigin="anonymous" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,7 +87,7 @@
         <div class="search-wrapper">
             <div class="search-input-group">
                 <input type="text" id="shopSearchInput" placeholder="ค้นหาร้านค้าที่นี่..." autocomplete="off" />
-                <button id="searchBtn"><i class="fas fa-search"></i></button>
+                <button id="searchBtn" aria-label="ค้นหา" title="ค้นหา"><i class="fas fa-search" aria-hidden="true"></i></button>
             </div>
             <div id="searchSuggestions"></div>
         </div>
@@ -102,7 +101,7 @@
         <section id="home">
             <div class="hero-bg">
                 <img src="img/bg-collage-small.webp" alt="Background" width="1200" height="800" loading="eager"
-                    fetchpriority="high" decoding="async" />
+                    decoding="async" />
             </div>
 
             <div class="hero-content-wrapper" data-aos="zoom-out" data-aos-duration="1200">
@@ -129,7 +128,7 @@
                 </div>
                 <div class="hero-visual-content">
                     <img src="img/Cover_Img.webp" alt="Savor Happiness Book Cover" class="floating-cover" width="500"
-                        height="500" loading="eager" fetchpriority="high" decoding="auto" draggable="false" />
+                        height="500" loading="eager" decoding="auto" draggable="false" />
                 </div>
             </div>
 
@@ -159,12 +158,12 @@
             <div class="video-flex-container">
                 <div class="video-visual-side">
                     <div class="video-wrapper">
-                        <video id="myVideo" autoplay muted loop playsinline poster="img/SavorPic6.webp"
+                        <video id="myVideo" autoplay muted loop poster="img/SavorPic6.webp"
                             preload="metadata">
                             <source src="video/video0.mp4" type="video/mp4" />
                         </video>
-                        <button id="muteBtn" class="mute-control-btn"><i id="muteIcon"
-                                class="fas fa-volume-mute"></i></button>
+                        <button id="muteBtn" class="mute-control-btn" aria-label="ปิด/เปิดเสียง" title="ปิด/เปิดเสียง"><i id="muteIcon"
+                                class="fas fa-volume-mute" aria-hidden="true"></i></button>
                     </div>
                 </div>
                 <div class="video-text-side">
@@ -184,13 +183,13 @@
         <section id="book-feature" class="section">
             <div class="book-grid-container">
                 <div class="book-visual" data-aos="fadeInSlideUp">
-                    <div class="main-img-container" style="position: relative;">
+                    <div class="main-img-container main-img-container-relative">
                         <button class="book-nav-btn prev" aria-label="Previous"
                             onclick="changeBookSlide(-1)">&#10094;</button>
                         <div class="book-float-wrapper">
                             <img src="img/SavorHappiness-Cover.webp" id="mainBookImg" class="inner-mockup"
                                 alt="Savor Happiness Guidebook" width="320" height="450"
-                                onclick="openSimpleLightbox(this.src)" style="cursor: zoom-in" loading="lazy"
+                                onclick="openSimpleLightbox(this.src)" class="cursor-zoom-in" loading="lazy"
                                 decoding="async" />
                         </div>
                         <button class="book-nav-btn next" aria-label="Next"
@@ -209,7 +208,7 @@
                 </div>
                 <div class="book-text book-text--delayed" data-aos="fadeInSlideUp">
                     <div class="book-card">
-                        <h2 class="section-title lang-text" data-key="book-title" style="text-align: left;">THE
+                        <h2 class="section-title lang-text text-align-left" data-key="book-title">THE
                             GUIDEBOOK</h2>
                         <div class="book-badge-row">
                             <span class="badge">A5 Photobook</span>
@@ -231,7 +230,6 @@
             </div>
         </section>
 
-        <!-- ✅ MERCHANDISE SECTION (แบบ Slider ที่มีการ์ดสวยๆ อยู่ข้างใน) -->
         <section id="merch" class="section">
             <h2 class="section-title lang-text" data-key="nav-merch" data-aos="fade-up">Merchandise</h2>
             <div class="merch-slider-container" data-aos="fade-up">
@@ -240,37 +238,30 @@
                 </div>
                 <div class="merch-slider-wrapper">
                     <div class="merch-slider-track">
-                        <!-- Card 1 -->
                         <div class="merch-card" onclick="openSimpleLightbox('img/Postcards.webp')">
                             <img src="img/Postcards.webp" alt="MinBuri Postcard" loading="lazy">
                             <p>MinBuri Postcard Map</p>
                         </div>
-                        <!-- Card 2 -->
                         <div class="merch-card" onclick="openSimpleLightbox('img/Postcards.webp')">
                             <img src="img/Postcards.webp" alt="NongChok Postcard" loading="lazy">
                             <p>NongChok Postcard Map</p>
                         </div>
-                        <!-- Card 3 -->
                         <div class="merch-card" onclick="openSimpleLightbox('img/Sticker1.webp')">
                             <img src="img/Sticker1.webp" alt="Sticker" loading="lazy">
                             <p>Die-cut Stickers</p>
                         </div>
-                        <!-- Card 4 -->
                         <div class="merch-card" onclick="openSimpleLightbox('img/Mockup_Bookmarks.webp')">
                             <img src="img/Mockup_Bookmarks.webp" alt="Bookmarks" loading="lazy">
                             <p>Exclusive Bookmarks</p>
                         </div>
-                        <!-- Card 5 -->
                         <div class="merch-card" onclick="openSimpleLightbox('img/Fashion.webp')">
                             <img src="img/Fashion.webp" alt="T-Shirt" loading="lazy">
                             <p>T-Shirt & Bag Collection</p>
                         </div>
-                        <!-- Card 6 -->
                         <div class="merch-card" onclick="openSimpleLightbox('img/Mug_Mockup_1.webp')">
                             <img src="img/Mug_Mockup_1.webp" alt="Mug" loading="lazy">
                             <p>Savor Happiness Mug</p>
                         </div>
-                        <!-- Card 7 -->
                         <div class="merch-card" onclick="openSimpleLightbox('img/AllMerch.webp')">
                             <img src="img/AllMerch.webp" alt="All Merch" loading="lazy">
                             <p>The Full Collection</p>
@@ -311,7 +302,7 @@
                             <img src="img/logo/spu.jpg" alt="SPU" width="40" height="40" />
                             <img src="img/logo/sdm.jpg" alt="SDM" width="40" height="40" />
                             <img src="img/logo/SavorHappiness.jpg" alt="Theme" width="40" height="40"
-                                style="border-radius: 50%" />
+                                class="rounded-circle" />
                         </div>
                         <div class="author-socials">
                             <a href="mailto:palmy1983ch@gmail.com" class="social-btn"><i class="fas fa-envelope"></i>
@@ -343,7 +334,6 @@
         </section>
     </main>
 
-    <!-- MODALS -->
     <div id="cafeModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-content custom-modal-animation">
             <span class="close-modal" id="closeCafeModal">&times;</span>
@@ -373,11 +363,11 @@
             <div class="pdf-modal-body">
                 <div class="pdf-pages-container">
                     <img src="img/preview/page-1.webp" alt="Cover" class="pdf-cover-img">
-                    <div class="pdf-spread"><img src="img/preview/page-2.webp"><img src="img/preview/page-3.webp"></div>
-                    <div class="pdf-spread"><img src="img/preview/page-4.webp"><img src="img/preview/page-5.webp"></div>
-                    <div class="pdf-spread"><img src="img/preview/page-6.webp"><img src="img/preview/page-7.webp"></div>
-                    <div class="pdf-spread"><img src="img/preview/page-8.webp"><img src="img/preview/page-9.webp"></div>
-                    <div class="pdf-spread"><img src="img/preview/page-10.webp"><img src="img/preview/page-11.webp">
+                    <div class="pdf-spread"><img src="img/preview/page-2.webp" alt="Page 2"><img src="img/preview/page-3.webp" alt="Page 3"></div>
+                    <div class="pdf-spread"><img src="img/preview/page-4.webp" alt="Page 4"><img src="img/preview/page-5.webp" alt="Page 5"></div>
+                    <div class="pdf-spread"><img src="img/preview/page-6.webp" alt="Page 6"><img src="img/preview/page-7.webp" alt="Page 7"></div>
+                    <div class="pdf-spread"><img src="img/preview/page-8.webp" alt="Page 8"><img src="img/preview/page-9.webp" alt="Page 9"></div>
+                    <div class="pdf-spread"><img src="img/preview/page-10.webp" alt="Page 10"><img src="img/preview/page-11.webp" alt="Page 11">
                     </div>
                 </div>
             </div>
@@ -387,7 +377,7 @@
     <div id="simpleLightbox" class="lightbox-overlay">
         <span class="close-btn" id="closeLightboxBtn">&times;</span>
         <button class="nav-btn prev" onclick="event.stopPropagation(); changeImg(-1);">&#10094;</button>
-        <img id="lightboxImg" class="lightbox-content" src="" onclick="event.stopPropagation()" />
+        <img id="lightboxImg" class="lightbox-content" src="" alt="Expanded View" onclick="event.stopPropagation()" />
         <button class="nav-btn next" onclick="event.stopPropagation(); changeImg(1);">&#10095;</button>
     </div>
 
@@ -398,14 +388,13 @@
                 height="55" />
         </button>
         <div class="speed-dial-buttons">
-            <a href="tel:0979465925" class="dial-btn"><i class="fas fa-phone"></i></a>
-            <a href="https://line.me/ti/p/hoyPIxxf4K" target="_blank" rel="noopener noreferrer" class="dial-btn"><i
-                    class="fab fa-line"></i></a>
-            <button class="dial-btn copy-btn" onclick="copyContact()"><i class="fas fa-copy"></i></button>
+            <a href="tel:0979465925" class="dial-btn" aria-label="Phone" title="Phone"><i class="fas fa-phone" aria-hidden="true"></i></a>
+            <a href="https://line.me/ti/p/hoyPIxxf4K" target="_blank" rel="noopener noreferrer" class="dial-btn" aria-label="LINE" title="LINE"><i
+                    class="fab fa-line" aria-hidden="true"></i></a>
+            <button class="dial-btn copy-btn" onclick="copyContact()" aria-label="Copy Contact" title="Copy Contact"><i class="fas fa-copy" aria-hidden="true"></i></button>
         </div>
     </div>
 
-    <!-- ✅ FOOTER SECTION (แบบ 3 คอลัมน์ ครบถ้วน) -->
     <footer class="footer">
         <div class="footer-watermark">SAVOR HAPPINESS</div>
         <div class="footer-inner">
