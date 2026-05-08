@@ -224,9 +224,7 @@ img {
 /* NAVIGATION */
 .scroll-progress-container {
   position: absolute;
-  /* เปลี่ยนจาก fixed เป็น absolute */
   bottom: 0;
-  /* เปลี่ยนจาก top: 85px เป็น bottom: 0 ให้อยู่ขอบล่างสุดของ header */
   left: 0;
   z-index: 10001;
   width: 100%;
@@ -241,7 +239,6 @@ img {
   transition: width 0.15s ease-out;
 }
 
-/* ควบคุมระยะห่างจากขอบจอและแถบเมนูด้านบน */
 .site-header {
   position: fixed;
   top: 0;
@@ -254,23 +251,16 @@ img {
   -webkit-backdrop-filter: blur(24px);
   backdrop-filter: blur(24px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-
-  /* ปรับ Padding ซ้าย-ขวา ตรงนี้เพื่อเพิ่มความสวยงาม (เช่น 5% หรือ 40px) */
   padding: 0 5%;
 }
 
-/* จัด Layout โลโก้ซ้าย เมนูขวา */
 nav {
   display: flex;
   justify-content: space-between;
-  /* ดันไอเทมให้ห่างกันไปชิดซ้ายสุด-ขวาสุด */
   align-items: center;
   padding: 0;
-
-  /* เปลี่ยนให้กางเต็ม 100% แทนที่ max-width: 1200px เดิม */
   width: 100%;
   max-width: 100%;
-
   height: 88px;
   margin: 0 auto;
 }
@@ -521,6 +511,7 @@ nav {
 .hero-text-content {
   flex: 1.1;
   padding-right: 10px;
+  min-width: 0;
 }
 
 .hero-thesis-tag {
@@ -578,6 +569,7 @@ nav {
   justify-content: center;
   position: relative;
   z-index: 15;
+  min-width: 0;
 }
 
 .floating-cover {
@@ -1802,7 +1794,7 @@ video {
 .footer-bottom {
   text-align: center;
   color: #777;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   padding-bottom: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: 40px;
@@ -1997,18 +1989,33 @@ video {
   }
 }
 
-@media (max-width: 1024px) {
+/* ปรับจุดเปลี่ยน Breakpoint เป็น 1023px เพื่อให้ 1024px (Nest Hub) กลายเป็นแบบ Desktop 
+   และเพิ่มเงื่อนไขสำหรับจอ 1024px ในแนวตั้ง (Portrait) ให้ออกมาเป็น Tablet */
+@media (max-width: 1023px),
+(max-width: 1024px) and (orientation: portrait) {
   #home {
     height: auto;
-    min-height: 0;
-    padding-bottom: 340px;
-    padding-top: 40px;
+    /* 🟢 ย่อส่วนสูงลงอีก เพื่อให้เห็นขอบบนของ Section ถัดไปนิดๆ และดึง Ticker ขึ้น */
+    min-height: calc(100vh - 220px);
+    min-height: calc(100svh - 200px);
+    padding-bottom: 15px;
+    padding-top: 15px;
+    display: flex;
+    align-items: center;
   }
 
   .hero-content-wrapper {
     flex-direction: column-reverse;
     text-align: center;
-    gap: 40px;
+    gap: 20px;
+    /* 🟢 ลดช่องว่างลงอีก */
+  }
+
+  /* แก้ไข Flexbox Overlapping */
+  .hero-text-content,
+  .hero-visual-content {
+    flex: unset !important;
+    width: 100%;
   }
 
   .hero-text-content {
@@ -2028,6 +2035,7 @@ video {
 
   .hero-paragraph {
     max-width: 80%;
+    margin-bottom: 20px;
   }
 
   .hero-cta {
@@ -2042,8 +2050,9 @@ video {
   }
 
   .floating-cover {
-    max-width: 350px;
-    width: 80%;
+    max-width: 250px;
+    /* 🟢 ลดขนาดหนังสือลงอีก เพื่อไม่ให้กินพื้นที่แนวตั้ง */
+    width: 70%;
   }
 
   .book-grid-container {
@@ -2098,8 +2107,16 @@ video {
 
 @media (max-width: 768px) {
   #home {
+    /* 🟢 ปรับให้พอดีจอมือถือ และย่อส่วนสูงลงอีก */
+    min-height: calc(100vh - 200px);
+    min-height: calc(100svh - 180px);
     padding-top: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
+  }
+
+  .hero-content-wrapper {
+    gap: 10px;
+    /* 🟢 บีบช่องว่างให้กระชับขึ้นอีกสุดๆ */
   }
 
   .hero-main-title {
@@ -2120,7 +2137,7 @@ video {
     flex-direction: column;
     width: 49%;
     padding: 0px;
-    gap: 20px;
+    gap: 15px;
   }
 
   .btn-main,
@@ -2130,7 +2147,8 @@ video {
   }
 
   .floating-cover {
-    max-width: 220px;
+    max-width: 160px;
+    /* 🟢 ย่อหนังสือบนมือถือลงอีก เพื่อดึง Ticker ขึ้น */
   }
 
   .hero-paragraph {
@@ -2272,9 +2290,9 @@ video {
   }
 
   .qr-image {
-    width: 120px;
+    width: 132px;
     border-width: 4px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
   .qr-hint {
