@@ -79,7 +79,9 @@ body {
   line-height: 1.6;
   font-family: "Anuphan", sans-serif;
   padding-top: 180px;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
   overflow-x: hidden;
   width: 100%;
 }
@@ -187,7 +189,6 @@ img {
 }
 
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0) rotate(-2deg);
@@ -234,7 +235,12 @@ img {
 
 .progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--ci-green), var(--ci-orange), var(--ci-yellow));
+  background: linear-gradient(
+    90deg,
+    var(--ci-green),
+    var(--ci-orange),
+    var(--ci-yellow)
+  );
   width: 0%;
   transition: width 0.15s ease-out;
 }
@@ -267,7 +273,9 @@ nav {
 
 .logo-img {
   height: 40px;
-  transition: transform 0.6s ease, filter 0.4s ease;
+  transition:
+    transform 0.6s ease,
+    filter 0.4s ease;
 }
 
 .logo-img:hover {
@@ -293,7 +301,7 @@ nav {
 }
 
 .nav-links li a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -666,7 +674,9 @@ nav {
   text-decoration: none;
   color: var(--ci-green);
   z-index: 50;
-  transition: transform 0.4s, color 0.4s;
+  transition:
+    transform 0.4s,
+    color 0.4s;
 }
 
 [data-theme="dark"] .savor-cta-ring-wrapper {
@@ -752,7 +762,7 @@ nav {
   width: 100%;
 }
 
-.section>* {
+.section > * {
   width: 100%;
 }
 
@@ -850,7 +860,9 @@ nav {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 1s ease, transform 0.8s ease;
+  transition:
+    opacity 1s ease,
+    transform 0.8s ease;
   z-index: 1;
   cursor: pointer;
 }
@@ -927,8 +939,20 @@ nav {
   white-space: nowrap;
   width: 100%;
   position: relative;
-  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
   -ms-overflow-style: none;
   padding: 20px 0;
 }
@@ -1230,7 +1254,9 @@ nav {
   display: inline-block;
   border-radius: 10px;
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
-  transition: opacity 0.3s ease, transform 0.4s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.4s ease;
 }
 
 .book-thumbs {
@@ -1543,13 +1569,17 @@ video {
 }
 
 .author-support-side::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.1), transparent 60%);
+  background: radial-gradient(
+    circle at top right,
+    rgba(255, 255, 255, 0.1),
+    transparent 60%
+  );
   pointer-events: none;
 }
 
@@ -1751,7 +1781,7 @@ video {
 }
 
 .footer-col-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -8px;
   left: 0;
@@ -1927,441 +1957,6 @@ video {
   z-index: 10;
 }
 
-/* RESPONSIVE DESIGN */
-@media (max-width: 1200px) {
-  .hamburger-menu {
-    display: block;
-  }
-
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: 0;
-    transform: translateX(100%);
-    width: 80%;
-    max-width: 300px;
-    height: 100vh;
-    background: var(--bg-card);
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 80px;
-    transition: 0.4s ease;
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
-    z-index: 10002;
-    gap: 15px;
-  }
-
-  .nav-links.active {
-    transform: translateX(0);
-  }
-
-  .nav-links li a {
-    font-size: 1.2rem;
-  }
-
-  .mobile-close-wrapper {
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 25px;
-    position: absolute;
-    top: 20px;
-    right: 0;
-  }
-
-  .nav-backdrop {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 10001;
-    opacity: 0;
-    transition: 0.3s;
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-  }
-
-  .nav-backdrop.active {
-    display: block;
-    opacity: 1;
-  }
-}
-
-/* ปรับจุดเปลี่ยน Breakpoint เป็น 1023px เพื่อให้ 1024px (Nest Hub) กลายเป็นแบบ Desktop 
-   และเพิ่มเงื่อนไขสำหรับจอ 1024px ในแนวตั้ง (Portrait) ให้ออกมาเป็น Tablet */
-@media (max-width: 1023px),
-(max-width: 1024px) and (orientation: portrait) {
-  #home {
-    height: auto;
-    /* 🟢 ย่อส่วนสูงลงอีก เพื่อให้เห็นขอบบนของ Section ถัดไปนิดๆ และดึง Ticker ขึ้น */
-    min-height: calc(100vh - 220px);
-    min-height: calc(100svh - 200px);
-    padding-bottom: 15px;
-    padding-top: 15px;
-    display: flex;
-    align-items: center;
-  }
-
-  .hero-content-wrapper {
-    flex-direction: column-reverse;
-    text-align: center;
-    gap: 20px;
-    /* 🟢 ลดช่องว่างลงอีก */
-  }
-
-  /* แก้ไข Flexbox Overlapping */
-  .hero-text-content,
-  .hero-visual-content {
-    flex: unset !important;
-    width: 100%;
-  }
-
-  .hero-text-content {
-    padding-right: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero-main-title {
-    font-size: clamp(3rem, 6vw, 4rem);
-  }
-
-  .hero-main-title .highlight {
-    font-size: clamp(3.8rem, 7vw, 5rem);
-  }
-
-  .hero-paragraph {
-    max-width: 80%;
-    margin-bottom: 20px;
-  }
-
-  .hero-cta {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .hero-visual-content {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  .floating-cover {
-    max-width: 250px;
-    /* 🟢 ลดขนาดหนังสือลงอีก เพื่อไม่ให้กินพื้นที่แนวตั้ง */
-    width: 70%;
-  }
-
-  .book-grid-container {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .book-card,
-  .book-card .section-title {
-    text-align: center;
-    align-items: center;
-  }
-
-  .book-card .section-title::after {
-    margin: 20px auto 0 auto;
-  }
-
-  .video-flex-container,
-  .unified-author-card {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .author-support-side {
-    max-width: 100%;
-    border-left: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 30px;
-    flex-direction: column;
-    gap: 30px;
-    text-align: center;
-  }
-
-  .footer-inner {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-  }
-
-  .author-info {
-    align-items: center;
-    text-align: center;
-  }
-
-  .shop-grid {
-    gap: 20px;
-  }
-
-  .photo-gallery {
-    height: 240px;
-  }
-}
-
-@media (max-width: 768px) {
-  #home {
-    /* 🟢 ปรับให้พอดีจอมือถือ และย่อส่วนสูงลงอีก */
-    min-height: calc(100vh - 200px);
-    min-height: calc(100svh - 180px);
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-
-  .hero-content-wrapper {
-    gap: 10px;
-    /* 🟢 บีบช่องว่างให้กระชับขึ้นอีกสุดๆ */
-  }
-
-  .hero-main-title {
-    font-size: 2.2rem;
-    margin-bottom: 5px;
-  }
-
-  .hero-main-title .highlight {
-    font-size: 2.8rem;
-  }
-
-  .hero-sub-tag {
-    font-size: 1rem;
-    margin-bottom: 10px;
-  }
-
-  .hero-cta {
-    flex-direction: column;
-    width: 49%;
-    padding: 0px;
-    gap: 15px;
-  }
-
-  .btn-main,
-  .btn-outline {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .floating-cover {
-    max-width: 160px;
-    /* 🟢 ย่อหนังสือบนมือถือลงอีก เพื่อดึง Ticker ขึ้น */
-  }
-
-  .hero-paragraph {
-    font-size: 0.95rem;
-    margin-bottom: 15px;
-  }
-
-  .section {
-    padding: 50px 5%;
-    gap: 40px;
-  }
-
-  .logo-img {
-    height: 30px;
-  }
-
-  .savor-cta-ring-wrapper {
-    display: none;
-  }
-
-  .shop-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .photo-gallery {
-    height: 200px;
-  }
-
-  .shop-info {
-    padding: 15px 20px;
-  }
-
-  .shop-name {
-    font-size: 1.3rem;
-    margin-bottom: 5px;
-  }
-
-  .shop-tag {
-    font-size: 0.8rem;
-    padding: 5px 12px;
-    margin-bottom: 10px;
-  }
-
-  .click-more-hint {
-    font-size: 0.9rem;
-    padding-top: 5px;
-  }
-
-  .click-more-hint .read-more-text {
-    display: none;
-  }
-
-  .main-img-container {
-    padding: 30px 15px;
-  }
-
-  .book-nav-btn {
-    width: 35px;
-    height: 35px;
-    font-size: 16px;
-  }
-
-  .book-nav-btn.prev {
-    left: 5px;
-  }
-
-  .book-nav-btn.next {
-    right: 5px;
-  }
-
-  .author-profile-side {
-    flex-direction: column;
-    padding: 30px 20px;
-    text-align: center;
-    gap: 20px;
-  }
-
-  .author-img {
-    width: 140px;
-    height: 140px;
-  }
-
-  .author-info h3 {
-    font-size: 1.4rem;
-  }
-
-  .author-role {
-    font-size: 0.9rem;
-    margin-bottom: 15px;
-  }
-
-  .author-logos {
-    gap: 10px;
-    margin: 15px 0;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .author-logos img {
-    width: 35px;
-    height: 35px;
-    object-fit: contain;
-  }
-
-  .author-socials {
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .social-btn {
-    padding: 8px 15px;
-    font-size: 0.85rem;
-  }
-
-  .support-text-side {
-    padding: 30px 20px 20px;
-    text-align: center;
-  }
-
-  .support-heading {
-    font-size: 1.6rem;
-    margin-bottom: 8px;
-  }
-
-  .support-sub {
-    font-size: 0.9rem;
-    margin-bottom: 15px;
-  }
-
-  .support-description {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 15px;
-  }
-
-  .support-qr-side {
-    padding: 20px;
-  }
-
-  .qr-image {
-    width: 132px;
-    border-width: 4px;
-    margin-bottom: 12px;
-  }
-
-  .qr-hint {
-    font-size: 0.9rem;
-  }
-
-  .footer {
-    padding: 60px 5% 30px;
-  }
-
-  .footer-inner {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 35px;
-  }
-
-  .footer-col-title::after {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .footer-nav-list a {
-    justify-content: center;
-  }
-
-  .modal-content {
-    padding: 25px 15px;
-  }
-
-  .close-modal,
-  .close-btn {
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-main-title {
-    font-size: 2rem;
-  }
-
-  .hero-main-title .highlight {
-    font-size: 2.4rem;
-  }
-
-  .shop-grid {
-    gap: 15px;
-  }
-
-  .photo-gallery {
-    height: 180px;
-  }
-
-  .shop-info {
-    padding: 12px;
-  }
-
-  .shop-name {
-    font-size: 1.1rem;
-    line-height: 1.2;
-  }
-
-  .speed-dial-container {
-    bottom: 15px;
-    right: 15px;
-  }
-}
-
 .hero-bg-grid {
   position: absolute;
   top: 0;
@@ -2385,17 +1980,6 @@ video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-@media (max-width: 768px) {
-  .hero-bg-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-  }
-
-  .hide-on-mobile {
-    display: none !important;
-  }
 }
 
 .hero-bg {
@@ -2425,7 +2009,6 @@ video {
 
 .hero-visual-content img {
   display: block;
-  /* max-width: 480px; */
   width: 91%;
   height: auto;
 }
@@ -2438,7 +2021,6 @@ video {
   opacity: 0.8;
 }
 
-/* Custom utility classes */
 .main-img-container-relative {
   position: relative;
 }
@@ -2453,4 +2035,355 @@ video {
 
 .rounded-circle {
   border-radius: 50%;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN (PROFESSIONAL BREAKPOINTS)
+   ============================================================ */
+
+/* 1. TABLET LANDSCAPE (Max 1199px) - แนวนอน อิงตาม Desktop ให้มากที่สุด */
+@media (max-width: 1199px) {
+  .hamburger-menu {
+    display: block;
+  }
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--bg-card);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 80px;
+    transition: 0.4s ease;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+    z-index: 10002;
+    gap: 15px;
+  }
+  .nav-links.active {
+    transform: translateX(0);
+  }
+  .mobile-close-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 25px;
+    position: absolute;
+    top: 20px;
+    right: 0;
+  }
+  .nav-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10001;
+    opacity: 0;
+    transition: 0.3s;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+  }
+  .nav-backdrop.active {
+    display: block;
+    opacity: 1;
+  }
+
+  /* จัด Grid ให้พอดีแนวนอน */
+  .shop-grid {
+    gap: 30px;
+  }
+  .hero-content-wrapper {
+    gap: 20px;
+  }
+  .hero-main-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+  }
+  .hero-main-title .highlight {
+    font-size: clamp(3rem, 6vw, 4.8rem);
+  }
+}
+
+/* 2. TABLET PORTRAIT (Max 991px) - แนวตั้ง จัดระเบียบให้เรียบร้อย */
+@media (max-width: 991px) {
+  #home {
+    height: auto;
+    min-height: calc(100vh - 200px);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+  .hero-content-wrapper {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 30px;
+  }
+  .hero-text-content,
+  .hero-visual-content {
+    flex: unset !important;
+    width: 100%;
+  }
+  .hero-text-content {
+    padding-right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-paragraph {
+    max-width: 80%;
+    margin-bottom: 20px;
+  }
+  .hero-cta {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .floating-cover {
+    max-width: 280px;
+    width: 70%;
+  }
+
+  /* ปรับ Section อื่นๆ เป็นคอลัมน์เดี่ยว แต่ Card ยังเป็น 2 ได้ */
+  .book-grid-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .book-card,
+  .book-card .section-title {
+    text-align: center;
+    align-items: center;
+  }
+  .book-card .section-title::after {
+    margin: 20px auto 0 auto;
+  }
+
+  .video-flex-container,
+  .unified-author-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  .author-support-side {
+    max-width: 100%;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+  .author-info {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .shop-grid {
+    gap: 20px;
+  }
+  .photo-gallery {
+    height: 260px;
+  }
+}
+
+/* 3. MOBILE (Max 767px) - สมาร์ทโฟน เน้น Touch UX และ 1 คอลัมน์ */
+@media (max-width: 767px) {
+  #home {
+    min-height: calc(100svh - 150px);
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .hero-main-title {
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+  }
+  .hero-main-title .highlight {
+    font-size: 2.8rem;
+  }
+  .hero-sub-tag {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+    max-width: 350px;
+    padding: 0;
+    gap: 15px;
+  }
+  .btn-main,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px; /* Touch target */
+  }
+  .floating-cover {
+    max-width: 180px;
+  }
+  .hero-paragraph {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .section {
+    padding: 50px 5%;
+    gap: 40px;
+  }
+  .logo-img {
+    height: 32px;
+  }
+  .savor-cta-ring-wrapper {
+    display: none;
+  }
+
+  /* Shop Grid - 1 คอลัมน์เต็มตา */
+  .shop-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .photo-gallery {
+    height: 220px;
+  }
+  .shop-info {
+    padding: 16px 20px;
+  }
+  .shop-name {
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+  }
+  .shop-tag {
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    margin-bottom: 10px;
+  }
+  .click-more-hint .read-more-text {
+    display: none;
+  }
+
+  /* ปุ่มกดต่างๆ ให้จิ้มง่าย */
+  .book-nav-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+  .book-nav-btn.prev {
+    left: 10px;
+  }
+  .book-nav-btn.next {
+    right: 10px;
+  }
+  .main-img-container {
+    padding: 30px 15px;
+  }
+
+  /* Author & Support */
+  .author-profile-side {
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 20px;
+  }
+  .author-img {
+    width: 150px;
+    height: 150px;
+  }
+  .author-info h3 {
+    font-size: 1.5rem;
+  }
+  .author-logos {
+    gap: 10px;
+    margin: 15px 0;
+    justify-content: center;
+    width: 100%;
+  }
+  .author-socials {
+    justify-content: center;
+    gap: 10px;
+  }
+  .social-btn {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    min-height: 44px;
+  }
+  .support-text-side {
+    padding: 30px 20px 20px;
+  }
+  .support-heading {
+    font-size: 1.6rem;
+  }
+  .support-qr-side {
+    padding: 20px;
+  }
+  .qr-image {
+    width: 140px;
+    border-width: 4px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 60px 5% 30px;
+  }
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .footer-col-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .footer-nav-list a {
+    justify-content: center;
+    padding: 8px 0;
+    min-height: 44px;
+  } /* Touch target */
+
+  .modal-content {
+    padding: 25px 15px;
+  }
+  .close-modal,
+  .close-btn {
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-bg-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
+/* 4. SMALL MOBILE (Max 479px) */
+@media (max-width: 479px) {
+  .hero-main-title {
+    font-size: 2rem;
+  }
+  .hero-main-title .highlight {
+    font-size: 2.4rem;
+  }
+  .photo-gallery {
+    height: 190px;
+  }
+  .shop-name {
+    font-size: 1.2rem;
+  }
+  .speed-dial-container {
+    bottom: 15px;
+    right: 15px;
+  }
 }
