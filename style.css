@@ -483,13 +483,13 @@ nav {
 /* HERO SECTION */
 #home {
   height: calc(100vh - 280px);
-  min-height: 550px;
+  min-height: 425px;
   width: 100%;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 5%;
+  padding: 0px 5%;
   overflow: hidden;
   z-index: 1;
 }
