@@ -35,8 +35,11 @@
       }
     </script>
 
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" crossorigin="anonymous"
-    referrerpolicy="no-referrer" />
+  <!-- AOS CSS: non-blocking preload, swap to stylesheet onload -->
+  <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style"
+    crossorigin="anonymous" referrerpolicy="no-referrer"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" crossorigin="anonymous" /></noscript>
   <link rel="icon" type="image/png" href="img/logo/logo-light.png?v=2" />
   <link rel="apple-touch-icon" href="img/logo/logo-light.png?v=2" />
 
@@ -45,13 +48,18 @@
 
   <link rel="preload" href="fonts/MN-Nang-Kai-Thot-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
 
+  <!-- Google Fonts: non-blocking with media trick -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;700&family=Charm:wght@400;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;700&family=Charm:wght@400;700&display=swap" rel="stylesheet" /></noscript>
+  <!-- Font Awesome: non-blocking, prevents render-blocking -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    as="style" crossorigin="anonymous" referrerpolicy="no-referrer"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" /></noscript>
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -119,7 +127,7 @@
     <section id="home">
       <div class="hero-bg">
         <img src="img/bg-collage-small.webp" alt="Background" width="1200" height="800" loading="eager"
-          decoding="async" />
+          decoding="sync" />
       </div>
 
       <div class="hero-glass-overlay"></div>
@@ -148,7 +156,7 @@
         </div>
         <div class="hero-visual-content">
           <img src="img/Cover_Img.webp" alt="Savor Happiness Book Cover" class="floating-cover" width="500" height="500"
-            loading="eager" decoding="auto" draggable="false" />
+            loading="eager" decoding="async" draggable="false" />
         </div>
       </div>
 
@@ -178,8 +186,8 @@
       <div class="video-flex-container">
         <div class="video-visual-side">
           <div class="video-wrapper">
-            <video id="myVideo" autoplay muted loop preload="metadata">
-              <source src="video/video0.mp4" type="video/mp4" />
+            <video id="myVideo" muted loop preload="none" data-src="video/video0.mp4">
+              <source data-src="video/video0.mp4" type="video/mp4" />
             </video>
             <button id="muteBtn" class="mute-control-btn" aria-label="ปิด/เปิดเสียง" title="ปิด/เปิดเสียง">
               <i id="muteIcon" class="fas fa-volume-mute" aria-hidden="true"></i>
@@ -332,9 +340,9 @@
               นักออกแบบกราฟิก | คณะดิจิทัลมีเดีย มหาวิทยาลัยศรีปทุม #67
             </p>
             <div class="author-logos">
-              <img src="img/logo/spu.jpg" alt="SPU" width="40" height="40" />
-              <img src="img/logo/sdm.jpg" alt="SDM" width="40" height="40" />
-              <img src="img/logo/SavorHappiness.jpg" alt="Theme" width="40" height="40" class="rounded-circle" />
+              <img src="img/logo/spu.jpg" alt="SPU" width="40" height="40" loading="lazy" />
+              <img src="img/logo/sdm.jpg" alt="SDM" width="40" height="40" loading="lazy" />
+              <img src="img/logo/SavorHappiness.jpg" alt="Theme" width="40" height="40" class="rounded-circle" loading="lazy" />
             </div>
             <div class="author-socials">
               <a href="mailto:palmy1983ch@gmail.com" class="social-btn"><i class="fas fa-envelope"></i> Email</a>
@@ -400,21 +408,21 @@
       </div>
       <div class="pdf-modal-body">
         <div class="pdf-pages-container">
-          <img src="img/preview/page-1.webp" alt="Cover" class="pdf-cover-img" />
+          <img src="img/preview/page-1.webp" alt="Cover" class="pdf-cover-img" loading="lazy" />
           <div class="pdf-spread">
-            <img src="img/preview/page-2.webp" alt="Page 2" /><img src="img/preview/page-3.webp" alt="Page 3" />
+            <img src="img/preview/page-2.webp" alt="Page 2" loading="lazy" /><img src="img/preview/page-3.webp" alt="Page 3" loading="lazy" />
           </div>
           <div class="pdf-spread">
-            <img src="img/preview/page-4.webp" alt="Page 4" /><img src="img/preview/page-5.webp" alt="Page 5" />
+            <img src="img/preview/page-4.webp" alt="Page 4" loading="lazy" /><img src="img/preview/page-5.webp" alt="Page 5" loading="lazy" />
           </div>
           <div class="pdf-spread">
-            <img src="img/preview/page-6.webp" alt="Page 6" /><img src="img/preview/page-7.webp" alt="Page 7" />
+            <img src="img/preview/page-6.webp" alt="Page 6" loading="lazy" /><img src="img/preview/page-7.webp" alt="Page 7" loading="lazy" />
           </div>
           <div class="pdf-spread">
-            <img src="img/preview/page-8.webp" alt="Page 8" /><img src="img/preview/page-9.webp" alt="Page 9" />
+            <img src="img/preview/page-8.webp" alt="Page 8" loading="lazy" /><img src="img/preview/page-9.webp" alt="Page 9" loading="lazy" />
           </div>
           <div class="pdf-spread">
-            <img src="img/preview/page-10.webp" alt="Page 10" /><img src="img/preview/page-11.webp" alt="Page 11" />
+            <img src="img/preview/page-10.webp" alt="Page 10" loading="lazy" /><img src="img/preview/page-11.webp" alt="Page 11" loading="lazy" />
           </div>
         </div>
       </div>
@@ -440,8 +448,8 @@
 
   <div class="speed-dial-container" id="speedDialContainer">
     <button class="speed-dial-main-btn" onclick="toggleSpeedDial()">
-      <img src="img/smile-normal.webp" class="speed-dial-img img-normal" alt="Contact" width="55" height="55" />
-      <img src="img/smile-tongue.webp" class="speed-dial-img img-active" alt="Contact Active" width="55" height="55" />
+      <img src="img/smile-normal.webp" class="speed-dial-img img-normal" alt="Contact" width="55" height="55" loading="lazy" />
+      <img src="img/smile-tongue.webp" class="speed-dial-img img-active" alt="Contact Active" width="55" height="55" loading="lazy" />
     </button>
     <div class="speed-dial-buttons">
       <a href="tel:0979465925" class="dial-btn" aria-label="Phone" title="Phone"><i class="fas fa-phone"
@@ -458,7 +466,7 @@
     <div class="footer-watermark">SAVOR HAPPINESS</div>
     <div class="footer-inner">
       <div class="footer-col footer-col--brand">
-        <img src="img/logo/savorhappiness-1.png" alt="Savor Happiness" class="footer-logo" />
+        <img src="img/logo/savorhappiness-1.png" alt="Savor Happiness" class="footer-logo" loading="lazy" />
         <p class="footer-tagline">
           DIGITAL MEDIA · GRAPHIC DESIGN · SPU THESIS
         </p>

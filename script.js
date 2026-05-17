@@ -400,6 +400,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSearch();
   setupModals();
   setupMerchSlider();
+  setupLazyVideo();
 
   if (typeof AOS !== "undefined") {
     AOS.init({
@@ -410,6 +411,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// Lazy-load the background video when it enters viewport
+function setupLazyVideo() {
+  const video = document.getElementById("myVideo");
+  if (!video) return;
+  const src = video.getAttribute("data-src");
+  if (!src) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const source = video.querySelector("source[data-src]");
+          if (source) {
+            source.src = source.getAttribute("data-src");
+            source.removeAttribute("data-src");
+          }
+          video.src = src;
+          video.removeAttribute("data-src");
+          video.load();
+          video.play().catch(() => {});
+          observer.disconnect();
+        }
+      });
+    },
+    { rootMargin: "200px" }
+  );
+  observer.observe(video);
+}
 
 // ==========================================
 // 3. CORE LOGIC (ปรับแก้เพื่อลดภาระ DOM)
