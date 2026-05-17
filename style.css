@@ -189,6 +189,7 @@ img {
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0) rotate(-2deg);
@@ -235,12 +236,10 @@ img {
 
 .progress-bar {
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--ci-green),
-    var(--ci-orange),
-    var(--ci-yellow)
-  );
+  background: linear-gradient(90deg,
+      var(--ci-green),
+      var(--ci-orange),
+      var(--ci-yellow));
   width: 0%;
   transition: width 0.15s ease-out;
 }
@@ -762,7 +761,7 @@ nav {
   width: 100%;
 }
 
-.section > * {
+.section>* {
   width: 100%;
 }
 
@@ -939,20 +938,16 @@ nav {
   white-space: nowrap;
   width: 100%;
   position: relative;
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 5%,
-    black 95%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 5%,
-    black 95%,
-    transparent
-  );
+  -webkit-mask-image: linear-gradient(to right,
+      transparent,
+      black 5%,
+      black 95%,
+      transparent);
+  mask-image: linear-gradient(to right,
+      transparent,
+      black 5%,
+      black 95%,
+      transparent);
   -ms-overflow-style: none;
   padding: 20px 0;
 }
@@ -1575,11 +1570,9 @@ video {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(
-    circle at top right,
-    rgba(255, 255, 255, 0.1),
-    transparent 60%
-  );
+  background: radial-gradient(circle at top right,
+      rgba(255, 255, 255, 0.1),
+      transparent 60%);
   pointer-events: none;
 }
 
@@ -2041,11 +2034,20 @@ video {
    RESPONSIVE DESIGN (PROFESSIONAL BREAKPOINTS)
    ============================================================ */
 
-/* 1. TABLET LANDSCAPE (Max 1199px) - แนวนอน อิงตาม Desktop ให้มากที่สุด */
+/* 1. TABLET LANDSCAPE (Max 1199px) */
 @media (max-width: 1199px) {
+  html {
+    scroll-padding-top: 140px;
+  }
+
+  body {
+    padding-top: 140px;
+  }
+
   .hamburger-menu {
     display: block;
   }
+
   .nav-links {
     position: fixed;
     top: 0;
@@ -2063,9 +2065,11 @@ video {
     z-index: 10002;
     gap: 15px;
   }
+
   .nav-links.active {
     transform: translateX(0);
   }
+
   .mobile-close-wrapper {
     display: flex;
     justify-content: flex-end;
@@ -2074,6 +2078,7 @@ video {
     top: 20px;
     right: 0;
   }
+
   .nav-backdrop {
     display: none;
     position: fixed;
@@ -2088,27 +2093,30 @@ video {
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
   }
+
   .nav-backdrop.active {
     display: block;
     opacity: 1;
   }
 
-  /* จัด Grid ให้พอดีแนวนอน */
   .shop-grid {
     gap: 30px;
   }
+
   .hero-content-wrapper {
-    gap: 20px;
+    gap: 30px;
   }
+
   .hero-main-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
   }
+
   .hero-main-title .highlight {
     font-size: clamp(3rem, 6vw, 4.8rem);
   }
 }
 
-/* 2. TABLET PORTRAIT (Max 991px) - แนวตั้ง จัดระเบียบให้เรียบร้อย */
+/* 2. TABLET PORTRAIT (Max 991px) */
 @media (max-width: 991px) {
   #home {
     height: auto;
@@ -2118,45 +2126,57 @@ video {
     display: flex;
     align-items: center;
   }
+
   .hero-content-wrapper {
     flex-direction: column-reverse;
     text-align: center;
-    gap: 30px;
+    gap: 40px;
   }
-  .hero-text-content,
-  .hero-visual-content {
-    flex: unset !important;
-    width: 100%;
-  }
+
   .hero-text-content {
     padding-right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+
+  .hero-visual-content {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+    flex: unset !important;
+  }
+
   .hero-paragraph {
     max-width: 80%;
-    margin-bottom: 20px;
+    margin: 0 auto 30px;
   }
+
   .hero-cta {
     justify-content: center;
     flex-wrap: wrap;
   }
+
   .floating-cover {
     max-width: 280px;
     width: 70%;
   }
 
-  /* ปรับ Section อื่นๆ เป็นคอลัมน์เดี่ยว แต่ Card ยังเป็น 2 ได้ */
+  .savor-cta-ring-wrapper {
+    display: none;
+  }
+
   .book-grid-container {
     flex-direction: column;
     gap: 40px;
   }
+
   .book-card,
   .book-card .section-title {
     text-align: center;
     align-items: center;
   }
+
   .book-card .section-title::after {
     margin: 20px auto 0 auto;
   }
@@ -2166,6 +2186,7 @@ video {
     flex-direction: column;
     text-align: center;
   }
+
   .author-support-side {
     max-width: 100%;
     border-left: none;
@@ -2175,6 +2196,7 @@ video {
     gap: 30px;
     text-align: center;
   }
+
   .author-info {
     align-items: center;
     text-align: center;
@@ -2184,32 +2206,46 @@ video {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
   }
+
   .shop-grid {
     gap: 20px;
   }
+
   .photo-gallery {
     height: 260px;
   }
 }
 
-/* 3. MOBILE (Max 767px) - สมาร์ทโฟน เน้น Touch UX และ 1 คอลัมน์ */
+/* 3. MOBILE (Max 767px) */
 @media (max-width: 767px) {
+  html {
+    scroll-padding-top: 110px;
+  }
+
+  body {
+    padding-top: 110px;
+  }
+
   #home {
     min-height: calc(100svh - 150px);
     padding-top: 10px;
     padding-bottom: 10px;
   }
+
   .hero-main-title {
     font-size: 2.2rem;
     margin-bottom: 5px;
   }
+
   .hero-main-title .highlight {
     font-size: 2.8rem;
   }
+
   .hero-sub-tag {
     font-size: 1rem;
     margin-bottom: 10px;
   }
+
   .hero-cta {
     flex-direction: column;
     width: 100%;
@@ -2217,15 +2253,18 @@ video {
     padding: 0;
     gap: 15px;
   }
+
   .btn-main,
   .btn-outline {
     width: 100%;
     justify-content: center;
-    min-height: 48px; /* Touch target */
+    min-height: 48px;
   }
+
   .floating-cover {
     max-width: 180px;
   }
+
   .hero-paragraph {
     font-size: 0.95rem;
     margin-bottom: 15px;
@@ -2237,116 +2276,160 @@ video {
     padding: 50px 5%;
     gap: 40px;
   }
+
   .logo-img {
     height: 32px;
   }
-  .savor-cta-ring-wrapper {
-    display: none;
+
+  .hamburger-menu,
+  .nav-close-btn {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  /* Shop Grid - 1 คอลัมน์เต็มตา */
   .shop-grid {
     grid-template-columns: 1fr;
     gap: 24px;
   }
+
   .photo-gallery {
     height: 220px;
   }
+
   .shop-info {
     padding: 16px 20px;
   }
+
   .shop-name {
     font-size: 1.4rem;
     margin-bottom: 6px;
   }
+
   .shop-tag {
     font-size: 0.85rem;
     padding: 6px 14px;
     margin-bottom: 10px;
   }
+
   .click-more-hint .read-more-text {
     display: none;
   }
 
-  /* ปุ่มกดต่างๆ ให้จิ้มง่าย */
+  .merch-slider-wrapper {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 15px 20px;
+  }
+
+  .merch-card {
+    scroll-snap-align: center;
+    width: 280px;
+    flex-shrink: 0;
+  }
+
+  .book-grid-container {
+    gap: 40px;
+    padding: 0 15px;
+  }
+
   .book-nav-btn {
     width: 44px;
     height: 44px;
     font-size: 18px;
   }
+
   .book-nav-btn.prev {
     left: 10px;
   }
+
   .book-nav-btn.next {
     right: 10px;
   }
+
   .main-img-container {
     padding: 30px 15px;
   }
 
-  /* Author & Support */
   .author-profile-side {
     flex-direction: column;
     padding: 30px 20px;
     gap: 20px;
   }
+
   .author-img {
     width: 150px;
     height: 150px;
   }
+
   .author-info h3 {
     font-size: 1.5rem;
   }
+
   .author-logos {
     gap: 10px;
     margin: 15px 0;
     justify-content: center;
     width: 100%;
   }
+
   .author-socials {
     justify-content: center;
     gap: 10px;
   }
+
   .social-btn {
     padding: 10px 18px;
     font-size: 0.9rem;
     min-height: 44px;
   }
+
   .support-text-side {
     padding: 30px 20px 20px;
   }
+
   .support-heading {
     font-size: 1.6rem;
   }
+
   .support-qr-side {
     padding: 20px;
   }
+
   .qr-image {
     width: 140px;
     border-width: 4px;
   }
 
-  /* Footer */
   .footer {
     padding: 60px 5% 30px;
   }
+
   .footer-inner {
     grid-template-columns: 1fr;
     gap: 35px;
   }
+
   .footer-col-title::after {
     left: 50%;
     transform: translateX(-50%);
   }
+
   .footer-nav-list a {
     justify-content: center;
     padding: 8px 0;
     min-height: 44px;
-  } /* Touch target */
+  }
 
   .modal-content {
+    width: 92%;
     padding: 25px 15px;
+    max-height: 85vh;
+    overflow-y: auto;
   }
+
   .close-modal,
   .close-btn {
     top: 10px;
@@ -2363,6 +2446,7 @@ video {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
   }
+
   .hide-on-mobile {
     display: none !important;
   }
@@ -2373,15 +2457,34 @@ video {
   .hero-main-title {
     font-size: 2rem;
   }
+
   .hero-main-title .highlight {
     font-size: 2.4rem;
   }
+
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-main,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .search-input-group {
+    width: 100%;
+  }
+
   .photo-gallery {
     height: 190px;
   }
+
   .shop-name {
     font-size: 1.2rem;
   }
+
   .speed-dial-container {
     bottom: 15px;
     right: 15px;

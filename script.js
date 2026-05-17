@@ -356,7 +356,7 @@ const realShops = [
 const NAV_ITEMS = [
   {
     name: "หน้าแรก (Home)",
-    target: "#home",
+    target: "/",
     icon: "fa-home",
     keywords: ["หน้าแรก", "home"],
   },
@@ -425,7 +425,6 @@ function renderShops() {
   realShops.forEach((shop, idx) => {
     const staggerDelay = (idx % 5) * 80;
 
-    // ✅ จุดแก้: ใช้ <img> แค่ 2 ตัวสลับคลาส active ทำให้ประหยัดทรัพยากร DOM ไปได้มหาศาล
     const imgA = `<img class="photo-item active" id="shop-img-a-${idx}" src="${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.webp" alt="${shop.name}" data-shop-idx="${idx}" data-img-idx="0" width="600" height="400" loading="lazy" decoding="async" onerror="this.style.display='none';">`;
     const imgB = `<img class="photo-item" id="shop-img-b-${idx}" src="" alt="${shop.name}" data-shop-idx="${idx}" data-img-idx="1" width="600" height="400" loading="lazy" decoding="async" onerror="this.style.display='none';">`;
 
@@ -478,7 +477,7 @@ function startAutoSlide() {
 
           const interval = setInterval(
             () => {
-              currentImgIdx = (currentImgIdx + 1) % 8; // วนลูปรูปที่ 0 ถึง 7
+              currentImgIdx = (currentImgIdx + 1) % 8;
               const newSrc = `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}${currentImgIdx}.webp`;
 
               if (useImgA) {
@@ -501,7 +500,6 @@ function startAutoSlide() {
           );
           gallery.dataset.intervalId = interval;
         } else {
-          // เคลียร์ Interval ทิ้งตอนผู้ใช้เลื่อนหน้าจอหนี
           if (gallery.dataset.intervalId) {
             clearInterval(gallery.dataset.intervalId);
             gallery.dataset.intervalId = "";
@@ -874,24 +872,6 @@ function setupScrollProgress() {
   );
 }
 
-function setupMobileNav() {
-  const ham = document.getElementById("hamburgerBtn"),
-    nav = document.getElementById("navLinks"),
-    close = document.getElementById("navCloseBtn"),
-    drop = document.getElementById("navBackdrop");
-  const toggle = (show) => {
-    nav.classList.toggle("active", show);
-    drop.classList.toggle("active", show);
-    document.body.style.overflow = show ? "hidden" : "";
-  };
-  ham.addEventListener("click", () => toggle(true));
-  close.addEventListener("click", () => toggle(false));
-  drop.addEventListener("click", () => toggle(false));
-  document
-    .querySelectorAll(".nav-links a")
-    .forEach((a) => a.addEventListener("click", () => toggle(false)));
-}
-
 window.toggleSpeedDial = function () {
   const cont = document.getElementById("speedDialContainer");
   const btn = document.querySelector(".speed-dial-main-btn");
@@ -932,35 +912,32 @@ document.addEventListener("keyup", (e) => {
 });
 
 // ==========================================
-// 6. MERCH SLIDER
+// 6. MERCH SLIDER & MOBILE NAV
 // ==========================================
 function setupMobileNav() {
   const hamburgerBtn = document.getElementById("hamburgerBtn");
   const navCloseBtn = document.getElementById("navCloseBtn");
   const navLinks = document.getElementById("navLinks");
   const navBackdrop = document.getElementById("navBackdrop");
-  const navItems = navLinks.querySelectorAll("li a");
+  if (!hamburgerBtn || !navLinks) return;
 
-  function openNav() {
-    navLinks.classList.add("active");
-    navBackdrop.classList.add("active");
-    document.body.style.overflow = "hidden";
-  }
+  const toggleNav = (show) => {
+    navLinks.classList.toggle("active", show);
+    if (navBackdrop) navBackdrop.classList.toggle("active", show);
+    document.body.style.overflow = show ? "hidden" : "";
+  };
 
-  function closeNav() {
-    navLinks.classList.remove("active");
-    navBackdrop.classList.remove("active");
-    document.body.style.overflow = "";
-  }
+  hamburgerBtn.addEventListener("click", () => toggleNav(true));
+  if (navCloseBtn)
+    navCloseBtn.addEventListener("click", () => toggleNav(false));
+  if (navBackdrop)
+    navBackdrop.addEventListener("click", () => toggleNav(false));
 
-  hamburgerBtn.addEventListener("click", openNav);
-  navCloseBtn.addEventListener("click", closeNav);
-  navBackdrop.addEventListener("click", closeNav);
-
+  const navItems = navLinks.querySelectorAll("a");
   navItems.forEach((item) => {
     item.addEventListener("click", () => {
       if (window.innerWidth <= 1200) {
-        closeNav();
+        toggleNav(false);
       }
     });
   });
