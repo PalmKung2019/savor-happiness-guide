@@ -2,6 +2,18 @@
    SAVOR HAPPINESS — CORE SCRIPT (PERFORMANCE OPTIMIZED)
    ============================================================ */
 
+// requestIdleCallback polyfill for Safari / older browsers
+window.requestIdleCallback = window.requestIdleCallback ||
+  function (cb, options) {
+    const start = Date.now();
+    return setTimeout(() => {
+      cb({
+        didTimeout: false,
+        timeRemaining: () => Math.max(0, 50 - (Date.now() - start)),
+      });
+    }, options && options.timeout ? Math.min(options.timeout, 1) : 1);
+  };
+
 const CONFIG = {
   IMAGE_BASE_PATH: "img/20ResCafe/",
   LOGO_LIGHT: "img/logo/savorhappiness-1.png",
@@ -391,23 +403,31 @@ const NAV_ITEMS = [
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
   applyTheme(AppState.ui.isDarkMode);
-  renderShops();
   applyLanguage(AppState.ui.currentLang);
-  renderTicker();
+
+  // defer non-critical renders until after first paint
+  requestIdleCallback(() => {
+    renderShops();
+    renderTicker();
+    setupFilters();
+    setupSearch();
+    setupMerchSlider();
+  }, { timeout: 2000 });
+
   setupScrollProgress();
   setupMobileNav();
-  setupFilters();
-  setupSearch();
   setupModals();
-  setupMerchSlider();
   setupLazyVideo();
+
+  const isMobile = window.innerWidth <= 767;
 
   if (typeof AOS !== "undefined") {
     AOS.init({
-      duration: 800,
+      duration: isMobile ? 400 : 800,
       once: true,
-      offset: 50,
+      offset: isMobile ? 0 : 50,   // มือถือ: trigger ทันที ไม่รอ offset
       easing: "ease-out-cubic",
+      disable: false,
     });
   }
 });

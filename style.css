@@ -2278,7 +2278,7 @@ video {
   }
 
   .logo-img {
-    height: 23px;
+    height: 32px;
   }
 
   .hamburger-menu,
@@ -2488,5 +2488,32 @@ video {
   .speed-dial-container {
     bottom: 15px;
     right: 15px;
+  }
+}
+
+/* ============================================================
+   MOBILE PERFORMANCE: ลด paint area hero บนมือถือ
+   ============================================================ */
+@media (max-width: 767px) {
+  /* จำกัดความสูง hero bg ให้พอดีกับ viewport มือถือ
+     ป้องกัน browser วาดพื้นที่เกินความจำเป็น */
+  .hero-bg img {
+    height: 100vh;
+    max-height: 100dvh;
+    object-fit: cover;
+    will-change: auto; /* ปิด will-change บนมือถือ ประหยัด memory */
+  }
+
+  /* ลด animation complexity บน hero สำหรับ mobile */
+  [data-aos="zoom-out"] {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
+  /* ป้องกัน floating-cover ทำ layout shift */
+  .floating-cover {
+    aspect-ratio: 1 / 1;
+    contain: layout style;
   }
 }
