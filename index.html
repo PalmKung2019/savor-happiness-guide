@@ -35,16 +35,26 @@
       }
     </script>
 
+  <!-- DNS prefetch for faster CDN connections on mobile -->
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+
   <!-- AOS CSS: non-blocking preload, swap to stylesheet onload -->
-  <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style"
-    crossorigin="anonymous" referrerpolicy="no-referrer"
-    onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" crossorigin="anonymous" /></noscript>
+  <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" crossorigin="anonymous"
+    referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" crossorigin="anonymous" />
+  </noscript>
   <link rel="icon" type="image/png" href="img/logo/logo-light.png?v=2" />
   <link rel="apple-touch-icon" href="img/logo/logo-light.png?v=2" />
 
-  <link rel="preload" as="image" href="img/bg-collage-small.webp" type="image/webp" />
-  <link rel="preload" as="image" href="img/Cover_Img.webp" type="image/webp" />
+  <!-- Preload LCP images with responsive hints -->
+  <link rel="preload" as="image" href="img/bg-collage-small.webp" type="image/webp"
+    imagesrcset="img/bg-collage-mobile.webp 768w, img/bg-collage-small.webp 1200w" imagesizes="100vw" />
+  <link rel="preload" as="image" href="img/Cover_Img.webp" type="image/webp"
+    imagesrcset="img/Cover_Img-mobile.webp 400w, img/Cover_Img.webp 500w"
+    imagesizes="(max-width: 768px) 280px, 500px" />
 
   <link rel="preload" href="fonts/MN-Nang-Kai-Thot-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
 
@@ -54,12 +64,18 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;700&family=Charm:wght@400;700&display=swap"
     rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;700&family=Charm:wght@400;700&display=swap" rel="stylesheet" /></noscript>
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;700&family=Charm:wght@400;700&display=swap"
+      rel="stylesheet" />
+  </noscript>
   <!-- Font Awesome: non-blocking, prevents render-blocking -->
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    as="style" crossorigin="anonymous" referrerpolicy="no-referrer"
-    onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" /></noscript>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style"
+    crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      crossorigin="anonymous" />
+  </noscript>
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -68,7 +84,8 @@
     <nav>
       <div class="logo">
         <a href="/">
-          <img src="img/logo/savorhappiness-1.png" class="logo-img" id="mainLogo" alt="Savor Happiness" />
+          <img src="img/logo/savorhappiness-1.png" class="logo-img" id="mainLogo" alt="Savor Happiness" width="140"
+            height="40" loading="eager" decoding="async" />
         </a>
       </div>
 
@@ -126,7 +143,8 @@
   <main class="one-page-container">
     <section id="home">
       <div class="hero-bg">
-        <img src="img/bg-collage-small.webp" alt="Background" width="1200" height="800" loading="eager"
+        <img src="img/bg-collage-small.webp" alt="Background" width="1200" height="800"
+          srcset="img/bg-collage-mobile.webp 768w, img/bg-collage-small.webp 1200w" sizes="100vw" loading="eager"
           decoding="sync" />
       </div>
 
@@ -156,6 +174,7 @@
         </div>
         <div class="hero-visual-content">
           <img src="img/Cover_Img.webp" alt="Savor Happiness Book Cover" class="floating-cover" width="500" height="500"
+            srcset="img/Cover_Img-mobile.webp 400w, img/Cover_Img.webp 500w" sizes="(max-width: 768px) 280px, 500px"
             loading="eager" decoding="async" draggable="false" />
         </div>
       </div>
@@ -342,7 +361,8 @@
             <div class="author-logos">
               <img src="img/logo/spu.jpg" alt="SPU" width="40" height="40" loading="lazy" />
               <img src="img/logo/sdm.jpg" alt="SDM" width="40" height="40" loading="lazy" />
-              <img src="img/logo/SavorHappiness.jpg" alt="Theme" width="40" height="40" class="rounded-circle" loading="lazy" />
+              <img src="img/logo/SavorHappiness.jpg" alt="Theme" width="40" height="40" class="rounded-circle"
+                loading="lazy" />
             </div>
             <div class="author-socials">
               <a href="mailto:palmy1983ch@gmail.com" class="social-btn"><i class="fas fa-envelope"></i> Email</a>
@@ -410,19 +430,24 @@
         <div class="pdf-pages-container">
           <img src="img/preview/page-1.webp" alt="Cover" class="pdf-cover-img" loading="lazy" />
           <div class="pdf-spread">
-            <img src="img/preview/page-2.webp" alt="Page 2" loading="lazy" /><img src="img/preview/page-3.webp" alt="Page 3" loading="lazy" />
+            <img src="img/preview/page-2.webp" alt="Page 2" loading="lazy" /><img src="img/preview/page-3.webp"
+              alt="Page 3" loading="lazy" />
           </div>
           <div class="pdf-spread">
-            <img src="img/preview/page-4.webp" alt="Page 4" loading="lazy" /><img src="img/preview/page-5.webp" alt="Page 5" loading="lazy" />
+            <img src="img/preview/page-4.webp" alt="Page 4" loading="lazy" /><img src="img/preview/page-5.webp"
+              alt="Page 5" loading="lazy" />
           </div>
           <div class="pdf-spread">
-            <img src="img/preview/page-6.webp" alt="Page 6" loading="lazy" /><img src="img/preview/page-7.webp" alt="Page 7" loading="lazy" />
+            <img src="img/preview/page-6.webp" alt="Page 6" loading="lazy" /><img src="img/preview/page-7.webp"
+              alt="Page 7" loading="lazy" />
           </div>
           <div class="pdf-spread">
-            <img src="img/preview/page-8.webp" alt="Page 8" loading="lazy" /><img src="img/preview/page-9.webp" alt="Page 9" loading="lazy" />
+            <img src="img/preview/page-8.webp" alt="Page 8" loading="lazy" /><img src="img/preview/page-9.webp"
+              alt="Page 9" loading="lazy" />
           </div>
           <div class="pdf-spread">
-            <img src="img/preview/page-10.webp" alt="Page 10" loading="lazy" /><img src="img/preview/page-11.webp" alt="Page 11" loading="lazy" />
+            <img src="img/preview/page-10.webp" alt="Page 10" loading="lazy" /><img src="img/preview/page-11.webp"
+              alt="Page 11" loading="lazy" />
           </div>
         </div>
       </div>
@@ -448,8 +473,10 @@
 
   <div class="speed-dial-container" id="speedDialContainer">
     <button class="speed-dial-main-btn" onclick="toggleSpeedDial()">
-      <img src="img/smile-normal.webp" class="speed-dial-img img-normal" alt="Contact" width="55" height="55" loading="lazy" />
-      <img src="img/smile-tongue.webp" class="speed-dial-img img-active" alt="Contact Active" width="55" height="55" loading="lazy" />
+      <img src="img/smile-normal.webp" class="speed-dial-img img-normal" alt="Contact" width="55" height="55"
+        loading="lazy" />
+      <img src="img/smile-tongue.webp" class="speed-dial-img img-active" alt="Contact Active" width="55" height="55"
+        loading="lazy" />
     </button>
     <div class="speed-dial-buttons">
       <a href="tel:0979465925" class="dial-btn" aria-label="Phone" title="Phone"><i class="fas fa-phone"
