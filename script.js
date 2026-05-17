@@ -2,18 +2,6 @@
    SAVOR HAPPINESS — CORE SCRIPT (PERFORMANCE OPTIMIZED)
    ============================================================ */
 
-// requestIdleCallback polyfill for Safari / older browsers
-window.requestIdleCallback = window.requestIdleCallback ||
-  function (cb, options) {
-    const start = Date.now();
-    return setTimeout(() => {
-      cb({
-        didTimeout: false,
-        timeRemaining: () => Math.max(0, 50 - (Date.now() - start)),
-      });
-    }, options && options.timeout ? Math.min(options.timeout, 1) : 1);
-  };
-
 const CONFIG = {
   IMAGE_BASE_PATH: "img/20ResCafe/",
   LOGO_LIGHT: "img/logo/savorhappiness-1.png",
@@ -58,93 +46,185 @@ const AppState = {
 // ==========================================
 const translations = {
   th: {
+    // NAV
     "nav-home": "หน้าแรก",
-    "nav-book": "หนังสือ",
+    "nav-book": "ไกด์บุ๊ค",
     "nav-merch": "ของที่ระลึก",
     "nav-highlights": "ร้านแนะนำ",
     "nav-creator": "ผู้จัดทำ",
-    "hero-subtitle": "DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS",
+
+    // HERO
+    "hero-thesis-tag": "นิทรรศการวิทยานิพนธ์ | การออกแบบกราฟิก",
     "hero-title": 'FLAVOR <br><span class="highlight">FIRST</span>',
-    "hero-vibe": "20 คาเฟ่ลับย่านมีนบุรี-หนองจอก ที่คุณไม่ควรพลาด",
+    "hero-vibe": "20 คาเฟ่และร้านอาหารลับ ย่านมีนบุรี–หนองจอก ที่คุณไม่ควรพลาด",
     "hero-desc":
-      "ไกด์บุ๊คฉบับสมบูรณ์ที่รวบรวมเสน่ห์ของชานเมือง<br />บันทึกทุกความรู้สึกผ่านงานออกแบบที่ลิ้มรสความสุขได้จริง",
+      "ไกด์บุ๊คฉบับสมบูรณ์ที่รวบรวมเสน่ห์ชานเมือง<br />บันทึกทุกความรู้สึกผ่านงานออกแบบที่ลิ้มรสความสุขได้จริง",
     "btn-start": '<i class="fas fa-book-open"></i> สำรวจไกด์บุ๊ค',
     "btn-view-shop": '<i class="fas fa-map-marker-alt"></i> ดูรายชื่อร้าน',
+
+    // VIDEO SECTION
+    "video-tag": "บรรยากาศ",
+    "video-title": "สัมผัสความสงบ",
     "video-desc":
-      "สัมผัสความสงบในมุมโปรดที่คุณอาจไม่เคยค้นพบ<br />บันทึกความทรงจำผ่านเลนส์และรสชาติที่ลงตัว",
-    "book-title": "THE GUIDEBOOK",
+      "ค้นพบมุมโปรดที่คุณอาจไม่เคยรู้จัก<br />บันทึกความทรงจำผ่านเลนส์และรสชาติที่ลงตัว",
+
+    // BOOK SECTION
+    "book-title": "ไกด์บุ๊ค",
+    "book-badge-size": "สมุดภาพขนาด A5",
+    "book-badge-pages": "126 หน้า",
+    "book-badge-district": "มีนบุรี & หนองจอก",
     "book-spec": "รวม 20 คาเฟ่และร้านอาหาร",
     "book-desc":
-      "Savor Happiness: ถ่ายทอดเสน่ห์ย่านมีนบุรี–หนองจอก ผ่าน Visual Storytelling ผสมผสานภาพถ่ายบรรยากาศจริงเข้ากับงานกราฟิกสีสันสดใส จัดวางแบบ Dynamic Layout ให้อ่านง่าย พร้อมแผนที่ Postcard ที่พกพาสะดวก",
+      "Savor Happiness ถ่ายทอดเสน่ห์ย่านมีนบุรี–หนองจอก ผ่าน Visual Storytelling ผสมผสานภาพถ่ายบรรยากาศจริงเข้ากับงานกราฟิกสีสันสดใส จัดวางแบบ Dynamic Layout ให้อ่านง่าย พร้อมแผนที่โปสการ์ดที่พกพาสะดวก",
     "btn-pdf": '<i class="fas fa-book-open"></i> เปิดอ่านตัวอย่าง',
+
+    // MERCH SECTION
+    "scroll-hint":
+      '<i class="fas fa-arrows-alt-h"></i> ปัดซ้าย–ขวา เพื่อดูเพิ่มเติม',
+    "merch-postcard-minburi": "โปสการ์ดแผนที่ มีนบุรี",
+    "merch-postcard-nongchok": "โปสการ์ดแผนที่ หนองจอก",
+    "merch-sticker": "สติ๊กเกอร์ตัดรูป",
+    "merch-bookmarks": "ที่คั่นหนังสือพิเศษ",
+    "merch-fashion": "เสื้อและกระเป๋าคอลเลกชัน",
+    "merch-mug": "แก้วมัค Savor Happiness",
+    "merch-full": "คอลเลกชันทั้งหมด",
+
+    // HIGHLIGHTS SECTION
+    "district-minburi": "มีนบุรี",
+    "district-nongchok": "หนองจอก",
+    "zone-minburi": "ย่านมีนบุรี",
+    "zone-nongchok": "ย่านหนองจอก",
+    "filter-all": "ทั้งหมด",
+    "filter-min": "ย่านมีนบุรี",
+    "filter-nong": "ย่านหนองจอก",
+    "read-more": "อ่านรายละเอียด",
+
+    // AUTHOR SECTION
+    "author-title": "ผู้จัดทำ",
+    "author-name": "ปรานต์ แถวอินทร์ (Pran Taewin)",
+    "author-role": "นักออกแบบกราฟิก | คณะดิจิทัลมีเดีย มหาวิทยาลัยศรีปทุม #67",
+    "support-title": '<i class="fas fa-heart"></i> อุดหนุนผลงาน',
+    "support-sub": "โปรเจกต์วิทยานิพนธ์ Savor Happiness",
+    "support-desc":
+      "ทุกการสนับสนุนคือแรงผลักดันสำคัญสำหรับโปรเจกต์จบของเรา<br />ขอบคุณที่ร่วมเดินทางและลิ้มรสความสุขไปด้วยกันครับ ✨",
+    "support-creator": "โดย ปรานต์ แถวอินทร์ (ปาล์ม)",
+    "support-qr-hint": "สแกนเพื่อสนับสนุน",
+
+    // MODALS
+    "modal-btn-guide": '<i class="fas fa-book-open"></i> ดูรูปเต็มในไกด์บุ๊ค',
+    "modal-btn-map": '<i class="fas fa-map-marker-alt"></i> แผนที่ Google Maps',
+    "pdf-preview-title": "ทดลองอ่านบางส่วน",
+
+    // FOOTER
+    "footer-tagline": "DIGITAL MEDIA · GRAPHIC DESIGN · SPU THESIS",
+    "footer-nav-title": "เมนู",
+    "footer-nav-book": "ไกด์บุ๊ค",
+    "footer-connect-title": "ติดต่อ",
+    "footer-desc": "บันทึกความทรงจำผ่านเลนส์<br />ย่านมีนบุรี–หนองจอก",
+    "footer-support": '<i class="fas fa-qrcode"></i> อุดหนุนผลงาน',
+    "footer-copyright":
+      "©2026 SAVOR HAPPINESS | ขอบคุณที่เป็นส่วนหนึ่งของเรื่องราวนี้",
+
+    // MISC
     "merch-postcard-title":
       '<i class="fas fa-map-marked-alt"></i> Postcard Map | โปสการ์ดแผนที่',
     "merch-min-title": "Savor Happiness Sticker set",
     "merch-bookmark-title": "Savor Happiness Bookmarks",
     "btn-more-merch": '<i class="fas fa-images"></i> ของที่ระลึกเพิ่มเติม',
-    "zone-minburi": "ย่านมีนบุรี",
-    "zone-nongchok": "ย่านหนองจอก",
-    "author-title": "ผู้จัดทำ",
-    "author-name": "ปรานต์ แถวอินทร์ (Pran Taewin)",
-    "author-role": "นักออกแบบกราฟิก | คณะดิจิทัลมีเดีย มหาวิทยาลัยศรีปทุม #67",
-    "support-title": '<i class="fas fa-heart"></i> อุดหนุนผลงาน',
-    "support-desc":
-      "ทุกการสนับสนุนของคุณคือแรงผลักดันสำคัญสำหรับโปรเจกต์จบของเรา<br />ขอบคุณที่ร่วมเดินทางและลิ้มรสความสุขของชานเมืองไปด้วยกันครับ ✨",
-    "support-creator": "โดย ปรานต์ แถวอินทร์ (ปาล์ม)",
-    "support-qr-hint": "สแกนเพื่อสนับสนุน",
-    "filter-all": "ทั้งหมด",
-    "filter-min": "ย่านมีนบุรี",
-    "filter-nong": "ย่านหนองจอก",
-    "modal-btn-guide": '<i class="fas fa-book-open"></i> ดูรูปเต็มในไกด์บุ๊ค',
-    "pdf-preview-title": "ทดลองอ่านบางส่วน",
-    "footer-desc": "บันทึกความทรงจำผ่านเลนส์<br />ย่านมีนบุรี–หนองจอก",
-    "footer-support": '<i class="fas fa-qrcode"></i> อุดหนุนผลงาน',
-    "read-more": "อ่านรายละเอียดร้าน",
+    "hero-subtitle": "DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS",
+    "support-creator-label": "โดย ปรานต์ แถวอินทร์ (ปาล์ม)",
   },
   en: {
+    // NAV
     "nav-home": "Home",
     "nav-book": "Guidebook",
     "nav-merch": "Merchandise",
     "nav-highlights": "Highlights",
     "nav-creator": "Creator",
-    "hero-subtitle": "DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS",
+
+    // HERO
+    "hero-thesis-tag": "GRAPHIC DESIGN THESIS EXHIBITION",
     "hero-title": 'FLAVOR <br><span class="highlight">FIRST</span>',
-    "hero-vibe": "20 Hidden Cafes in Minburi-Nong Chok You Shouldn't Miss",
+    "hero-vibe":
+      "20 Hidden Cafés & Restaurants in Minburi–Nong Chok You Shouldn't Miss",
     "hero-desc":
-      "A complete guidebook gathering the charm of the suburbs.<br />Capturing every feeling through design to truly savor happiness.",
+      "A complete guidebook capturing the charm of Bangkok's suburbs.<br />Every feeling, every flavor — beautifully designed to savor happiness.",
     "btn-start": '<i class="fas fa-book-open"></i> Explore Guidebook',
-    "btn-view-shop": '<i class="fas fa-map-marker-alt"></i> View Shops',
+    "btn-view-shop": '<i class="fas fa-map-marker-alt"></i> Browse Venues',
+
+    // VIDEO SECTION
+    "video-tag": "Atmosphere",
+    "video-title": "Savor the Serenity",
     "video-desc":
-      "Experience tranquility in your new favorite spot.<br />Capture memories through the lens and perfect flavors.",
-    "book-title": "THE GUIDEBOOK",
-    "book-spec": "FEATURING 20 CAFES & RESTAURANTS",
+      "Discover your new favorite hideaway in the city's quieter side.<br />Capture memories through the lens and flavors that linger.",
+
+    // BOOK SECTION
+    "book-title": "The Guidebook",
+    "book-badge-size": "A5 Photobook",
+    "book-badge-pages": "126 Pages",
+    "book-badge-district": "Minburi & Nongchok",
+    "book-spec": "Featuring 20 Cafés & Restaurants",
     "book-desc":
-      "Savor Happiness: Conveying the charm of Minburi-Nong Chok through Visual Storytelling. Combining real atmosphere photography with colorful graphics in a dynamic layout, complete with a handy Postcard map.",
-    "btn-pdf": '<i class="fas fa-book-open"></i> Preview Sample',
-    "merch-postcard-title":
-      '<i class="fas fa-map-marked-alt"></i> Postcard Map',
-    "merch-min-title": "Savor Happiness Sticker set",
-    "merch-bookmark-title": "Savor Happiness Bookmarks",
-    "btn-more-merch": '<i class="fas fa-images"></i> More Merchandise',
-    "zone-minburi": "Minburi Zone",
-    "zone-nongchok": "Nong Chok Zone",
-    "author-title": "Creator",
-    "author-name": "Pran Taewin (Palm)",
-    "author-role": "Graphic Designer | School of Digital Media, SPU #67",
-    "support-title": '<i class="fas fa-heart"></i> Support My Work',
-    "support-desc":
-      "Every support is a major driving force for my thesis project.<br />Thank you for joining this journey and savoring happiness with us ✨",
-    "support-creator": "By Pran Taewin (Palm)",
-    "support-qr-hint": "Scan to support",
-    "filter-all": "All",
+      "Savor Happiness conveys the soul of Minburi–Nong Chok through Visual Storytelling — blending real atmosphere photography with vibrant graphic design in a dynamic layout, complete with a handy postcard map.",
+    "btn-pdf": '<i class="fas fa-book-open"></i> Preview Sample Pages',
+
+    // MERCH SECTION
+    "scroll-hint":
+      '<i class="fas fa-arrows-alt-h"></i> Swipe left or right to explore',
+    "merch-postcard-minburi": "Minburi Postcard Map",
+    "merch-postcard-nongchok": "Nong Chok Postcard Map",
+    "merch-sticker": "Die-cut Sticker Set",
+    "merch-bookmarks": "Exclusive Bookmarks",
+    "merch-fashion": "T-Shirt & Tote Bag Collection",
+    "merch-mug": "Savor Happiness Mug",
+    "merch-full": "The Full Collection",
+
+    // HIGHLIGHTS SECTION
+    "district-minburi": "MINBURI",
+    "district-nongchok": "NONGCHOK",
+    "zone-minburi": "Minburi District",
+    "zone-nongchok": "Nong Chok District",
+    "filter-all": "All Venues",
     "filter-min": "Minburi",
     "filter-nong": "Nong Chok",
+    "read-more": "View Details",
+
+    // AUTHOR SECTION
+    "author-title": "About the Creator",
+    "author-name": "Pran Taewin (Palm)",
+    "author-role":
+      "Graphic Designer | School of Digital Media, Sripatum University #67",
+    "support-title": '<i class="fas fa-heart"></i> Support This Project',
+    "support-sub": "Savor Happiness Thesis Project",
+    "support-desc":
+      "Every contribution means the world to this thesis project.<br />Thank you for joining this journey and savoring happiness with us. ✨",
+    "support-creator": "By Pran Taewin (Palm)",
+    "support-qr-hint": "Scan to support",
+
+    // MODALS
     "modal-btn-guide": '<i class="fas fa-book-open"></i> View Full Guidebook',
+    "modal-btn-map": '<i class="fas fa-map-marker-alt"></i> Google Maps',
     "pdf-preview-title": "Preview Sample Pages",
+
+    // FOOTER
+    "footer-tagline": "DIGITAL MEDIA · GRAPHIC DESIGN · SPU THESIS",
+    "footer-nav-title": "Navigate",
+    "footer-nav-book": "The Guidebook",
+    "footer-connect-title": "Connect",
     "footer-desc":
-      "Capturing memories through the lens<br />in Minburi & Nongchok",
-    "footer-support": '<i class="fas fa-qrcode"></i> Support',
-    "read-more": "Read Details",
+      "Capturing memories through the lens<br />in Minburi &amp; Nong Chok",
+    "footer-support": '<i class="fas fa-qrcode"></i> Support Us',
+    "footer-copyright":
+      "©2026 SAVOR HAPPINESS | Thank you for being part of our story.",
+
+    // MISC
+    "merch-postcard-title":
+      '<i class="fas fa-map-marked-alt"></i> Postcard Map',
+    "merch-min-title": "Savor Happiness Sticker Set",
+    "merch-bookmark-title": "Savor Happiness Bookmarks",
+    "btn-more-merch": '<i class="fas fa-images"></i> More Merchandise',
+    "hero-subtitle": "DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS",
+    "support-creator-label": "By Pran Taewin (Palm)",
   },
 };
 
@@ -264,9 +344,9 @@ const realShops = [
     folder: "Voodoo",
     file: "voodoo",
     descTH:
-      "เสน่ห์สไตล์ยุโรปวินเทจ ท่ามกลางสวนสวยที่เนรมิตความสุขให้ทุกย่างก้าว",
+      'เสน่ห์สไตล์ยุโรปวินเทจ ท่ามกลางสวนสวยที่เนรมิตความสุขให้ทุกย่างก้าว<br><span class="closed-notice"><i class="fas fa-info-circle"></i> ปัจจุบันปิดบริการถาวรแล้ว (บันทึกไว้ในความทรงจำแสนพิเศษ)</span>',
     descEN:
-      "Step into vintage European charm surrounded by a breathtakingly beautiful garden.",
+      'Step into vintage European charm surrounded by a breathtakingly beautiful garden.<br><span class="closed-notice"><i class="fas fa-info-circle"></i> Permanently Closed (Preserved in our special memories)</span>',
   },
   {
     name: "All of Me Home Cafe",
@@ -403,31 +483,23 @@ const NAV_ITEMS = [
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
   applyTheme(AppState.ui.isDarkMode);
+  renderShops();
   applyLanguage(AppState.ui.currentLang);
-
-  // defer non-critical renders until after first paint
-  requestIdleCallback(() => {
-    renderShops();
-    renderTicker();
-    setupFilters();
-    setupSearch();
-    setupMerchSlider();
-  }, { timeout: 2000 });
-
+  renderTicker();
   setupScrollProgress();
   setupMobileNav();
+  setupFilters();
+  setupSearch();
   setupModals();
+  setupMerchSlider();
   setupLazyVideo();
-
-  const isMobile = window.innerWidth <= 767;
 
   if (typeof AOS !== "undefined") {
     AOS.init({
-      duration: isMobile ? 400 : 800,
+      duration: 800,
       once: true,
-      offset: isMobile ? 0 : 50,   // มือถือ: trigger ทันที ไม่รอ offset
+      offset: 50,
       easing: "ease-out-cubic",
-      disable: false,
     });
   }
 });
@@ -456,7 +528,7 @@ function setupLazyVideo() {
         }
       });
     },
-    { rootMargin: "200px" }
+    { rootMargin: "200px" },
   );
   observer.observe(video);
 }
@@ -485,7 +557,7 @@ function renderShops() {
             ${imgB}
         </div>
         <div class="shop-info" onclick="openCafeModal(${idx})" title="คลิกเพื่อดูรายละเอียดร้าน">
-          <div class="shop-name">${shop.name}</div>
+          <div class="shop-name">${AppState.ui.currentLang === "th" ? shop.nameTH : shop.name}</div>
           <div class="shop-tag" data-zone="${shop.zone}">${shop.zone === "minburi" ? "ย่านมีนบุรี" : "ย่านหนองจอก"}</div>
           <div class="click-more-hint"><i class="fas fa-arrow-right"></i> <span class="read-more-text lang-text" data-key="read-more">อ่านรายละเอียดร้าน</span></div>
         </div>
@@ -531,15 +603,21 @@ function startAutoSlide() {
               const newSrc = `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}${currentImgIdx}.webp`;
 
               if (useImgA) {
+                imgB.onload = () => {
+                  imgB.classList.add("active");
+                  imgA.classList.remove("active");
+                  imgB.onload = null;
+                };
                 imgB.src = newSrc;
                 imgB.setAttribute("data-img-idx", currentImgIdx);
-                imgB.classList.add("active");
-                imgA.classList.remove("active");
               } else {
+                imgA.onload = () => {
+                  imgA.classList.add("active");
+                  imgB.classList.remove("active");
+                  imgA.onload = null;
+                };
                 imgA.src = newSrc;
                 imgA.setAttribute("data-img-idx", currentImgIdx);
-                imgA.classList.add("active");
-                imgB.classList.remove("active");
               }
 
               useImgA = !useImgA;
@@ -577,10 +655,23 @@ function setupFilters() {
       btn.setAttribute("aria-pressed", "true");
       const filter = btn.getAttribute("data-filter");
       document.getElementById("minburi-section").style.display =
-        filter === "all" || filter === "minburi" ? "block" : "none";
+        filter === "all" || filter === "minburi" ? "flex" : "none";
       document.getElementById("nongchok-section").style.display =
-        filter === "all" || filter === "nongchok" ? "block" : "none";
+        filter === "all" || filter === "nongchok" ? "flex" : "none";
       if (typeof AOS !== "undefined") AOS.refresh();
+
+      // Smoothly scroll to highlights section with an offset for the sticky header
+      const highlightsSec = document.getElementById("highlights");
+      if (highlightsSec) {
+        const headerOffset = 80; // Height of the sticky navbar
+        const elementPosition = highlightsSec.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
     });
   });
   filterBtns.forEach((btn) => {
@@ -708,16 +799,44 @@ function setupSearch() {
 // ==========================================
 // 4. MODALS & LIGHTBOXES
 // ==========================================
+function lockScroll() {
+  document.documentElement.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
+}
+
+function unlockScroll() {
+  document.documentElement.style.overflow = "";
+  document.body.style.overflow = "";
+}
+
 window.openCafeModal = function (idx) {
   const shop = realShops[idx];
   const lang = AppState.ui.currentLang;
   document.getElementById("modalImg").src =
     `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.webp`;
-  document.getElementById("modalTitle").innerText = shop.name;
-  document.getElementById("modalDesc").innerText =
+  document.getElementById("modalTitle").innerText =
+    lang === "th" ? shop.nameTH : shop.name;
+  document.getElementById("modalDesc").innerHTML =
     lang === "th" ? shop.descTH : shop.descEN;
+
+  // Set Google Maps link dynamically
+  const mapLink = document.getElementById("modalMapLink");
+  if (mapLink) {
+    const searchQuery = `${shop.name} ${shop.zone === "minburi" ? "มีนบุรี" : "หนองจอก"} Bangkok`;
+    mapLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(searchQuery)}`;
+  }
+
+  // Translate modal buttons
+  const btnGuide = document.getElementById("modalBtnGuide");
+  if (btnGuide && translations[lang]["modal-btn-guide"]) {
+    btnGuide.innerHTML = translations[lang]["modal-btn-guide"];
+  }
+  if (mapLink && translations[lang]["modal-btn-map"]) {
+    mapLink.innerHTML = translations[lang]["modal-btn-map"];
+  }
+
   document.getElementById("cafeModal").style.display = "flex";
-  document.body.style.overflow = "hidden";
+  lockScroll();
 };
 
 window.openSimpleLightbox = function (src) {
@@ -725,12 +844,51 @@ window.openSimpleLightbox = function (src) {
   const lbImg = document.getElementById("lightboxImg");
   lbImg.src = src;
   lbImg.style.transform = "scale(1)";
-  document
-    .querySelectorAll("#simpleLightbox .nav-btn")
-    .forEach((btn) => (btn.style.display = "none"));
+
+  const bookGallery = [
+    "img/SavorHappiness-Cover.webp",
+    "img/SavorHappiness-Back.webp",
+    "img/SavorHappiness-Inside1.webp",
+    "img/SavorHappiness-Inside2.webp",
+  ];
+
+  const merchGallery = [
+    "img/Postcards.webp",
+    "img/Sticker1.webp",
+    "img/Mockup_Bookmarks.webp",
+    "img/Fashion.webp",
+    "img/Mug_Mockup_1.webp",
+    "img/AllMerch.webp",
+  ];
+
+  // Find if src matches book gallery or merch gallery
+  let matchBookIdx = bookGallery.findIndex((item) => src.endsWith(item));
+  let matchMerchIdx = merchGallery.findIndex((item) => src.endsWith(item));
+
+  if (matchBookIdx !== -1) {
+    AppState.lightbox.currentGallery = bookGallery;
+    AppState.lightbox.currentImgIdx = matchBookIdx;
+    document
+      .querySelectorAll("#simpleLightbox .nav-btn")
+      .forEach((btn) => (btn.style.display = "flex"));
+  } else if (matchMerchIdx !== -1) {
+    AppState.lightbox.currentGallery = merchGallery;
+    AppState.lightbox.currentImgIdx = matchMerchIdx;
+    document
+      .querySelectorAll("#simpleLightbox .nav-btn")
+      .forEach((btn) => (btn.style.display = "flex"));
+  } else {
+    AppState.lightbox.currentGallery = [];
+    AppState.lightbox.currentImgIdx = 0;
+    document
+      .querySelectorAll("#simpleLightbox .nav-btn")
+      .forEach((btn) => (btn.style.display = "none"));
+  }
+
   lb.classList.add("is-open");
-  document.body.style.overflow = "hidden";
+  lockScroll();
   AppState.lightbox.isZoomed = false;
+  updateLightboxCounter();
 };
 
 window.openGalleryLightbox = function (shopIdx, imgIdx) {
@@ -748,8 +906,9 @@ window.openGalleryLightbox = function (shopIdx, imgIdx) {
     .querySelectorAll("#simpleLightbox .nav-btn")
     .forEach((btn) => (btn.style.display = "flex"));
   lb.classList.add("is-open");
-  document.body.style.overflow = "hidden";
+  lockScroll();
   AppState.lightbox.isZoomed = false;
+  updateLightboxCounter();
 };
 
 window.changeImg = function (dir) {
@@ -761,22 +920,36 @@ window.changeImg = function (dir) {
       AppState.lightbox.currentGallery.length;
     document.getElementById("lightboxImg").src =
       AppState.lightbox.currentGallery[AppState.lightbox.currentImgIdx];
+    updateLightboxCounter();
   }
 };
+
+function updateLightboxCounter() {
+  const counterEl = document.getElementById("lightboxCounter");
+  if (!counterEl) return;
+  const gallery = AppState.lightbox.currentGallery;
+  const idx = AppState.lightbox.currentImgIdx;
+  if (gallery && gallery.length > 1) {
+    counterEl.innerText = `${idx + 1} / ${gallery.length}`;
+    counterEl.style.display = "block";
+  } else {
+    counterEl.style.display = "none";
+  }
+}
 
 function setupModals() {
   const closeLightbox = () => {
     document.getElementById("simpleLightbox").classList.remove("is-open");
-    document.body.style.overflow = "";
+    unlockScroll();
   };
 
   document.getElementById("closeCafeModal").addEventListener("click", () => {
     document.getElementById("cafeModal").style.display = "none";
-    document.body.style.overflow = "";
+    unlockScroll();
   });
   document.getElementById("closePdfModal").addEventListener("click", () => {
     document.getElementById("pdfModal").style.display = "none";
-    document.body.style.overflow = "";
+    unlockScroll();
   });
   document
     .getElementById("closeLightboxBtn")
@@ -784,12 +957,12 @@ function setupModals() {
   document.getElementById("previewBtn").addEventListener("click", (e) => {
     e.preventDefault();
     document.getElementById("pdfModal").style.display = "flex";
-    document.body.style.overflow = "hidden";
+    lockScroll();
   });
   window.addEventListener("click", (e) => {
     if (e.target.classList.contains("modal-overlay")) {
       e.target.style.display = "none";
-      document.body.style.overflow = "";
+      unlockScroll();
     }
     if (e.target.classList.contains("lightbox-overlay")) {
       closeLightbox();
@@ -801,7 +974,16 @@ function setupModals() {
         m.style.display = "none";
       });
       closeLightbox();
-      document.body.style.overflow = "";
+      unlockScroll();
+    }
+    if (
+      document.getElementById("simpleLightbox").classList.contains("is-open")
+    ) {
+      if (e.key === "ArrowLeft") {
+        changeImg(-1);
+      } else if (e.key === "ArrowRight") {
+        changeImg(1);
+      }
     }
   });
   const lbImg = document.getElementById("lightboxImg");
@@ -889,17 +1071,46 @@ function applyLanguage(lang) {
         ? translations[lang]["zone-minburi"]
         : translations[lang]["zone-nongchok"];
   });
+  document.querySelectorAll(".shop-name").forEach((el, idx) => {
+    const shop = realShops[idx];
+    if (shop) {
+      el.innerText = lang === "th" ? shop.nameTH : shop.name;
+    }
+  });
+  document.querySelectorAll(".read-more-text").forEach((el) => {
+    el.innerText = translations[lang]["read-more"];
+  });
   const searchInput = document.getElementById("shopSearchInput");
   if (searchInput)
     searchInput.placeholder =
-      lang === "th" ? "ค้นหาร้านค้าที่นี่..." : "Search shops here...";
+      lang === "th" ? "ค้นหาร้านค้าที่นี่..." : "Search venues here...";
+  const muteBtn = document.getElementById("muteBtn");
+  if (muteBtn)
+    muteBtn.setAttribute(
+      "aria-label",
+      lang === "th" ? "ปิด/เปิดเสียง" : "Toggle sound",
+    );
+  const navCloseBtn = document.getElementById("navCloseBtn");
+  if (navCloseBtn)
+    navCloseBtn.setAttribute(
+      "aria-label",
+      lang === "th" ? "ปิดเมนู" : "Close menu",
+    );
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  if (hamburgerBtn)
+    hamburgerBtn.setAttribute(
+      "aria-label",
+      lang === "th" ? "เปิดเมนู" : "Open menu",
+    );
+  renderTicker();
 }
 
 function renderTicker() {
+  const lang = AppState.ui.currentLang;
   const html = realShops
     .map(
       (s) =>
-        `<div class="ticker-item"><i class="fas fa-star" style="color: var(--ci-yellow); margin-right: 8px;"></i>${s.name}</div><div class="ticker-sep">SAVOR HAPPINESS 🍴</div>`,
+        `<div class="ticker-item"><i class="fas fa-star" style="color: var(--ci-yellow); margin-right: 8px;"></i>${lang === "th" ? s.nameTH : s.name}</div><div class="ticker-sep">SAVOR HAPPINESS 🍴</div>`,
     )
     .join("");
   document.getElementById("shopTickerInner").innerHTML = html;
@@ -974,7 +1185,8 @@ function setupMobileNav() {
   const toggleNav = (show) => {
     navLinks.classList.toggle("active", show);
     if (navBackdrop) navBackdrop.classList.toggle("active", show);
-    document.body.style.overflow = show ? "hidden" : "";
+    if (show) lockScroll();
+    else unlockScroll();
   };
 
   hamburgerBtn.addEventListener("click", () => toggleNav(true));
@@ -996,6 +1208,22 @@ function setupMobileNav() {
 function setupMerchSlider() {
   const slider = document.querySelector(".merch-slider-wrapper");
   if (!slider) return;
+
+  const progressBar = document.querySelector(".merch-scroll-progress-bar");
+
+  const updateProgress = () => {
+    if (!progressBar) return;
+    const maxScroll = slider.scrollWidth - slider.clientWidth;
+    if (maxScroll <= 0) {
+      progressBar.style.width = "0%";
+      return;
+    }
+    const scrolledPercentage = (slider.scrollLeft / maxScroll) * 100;
+    progressBar.style.width = `${scrolledPercentage}%`;
+  };
+
+  slider.addEventListener("scroll", updateProgress);
+  updateProgress();
 
   let isDown = false;
   let isDragging = false;

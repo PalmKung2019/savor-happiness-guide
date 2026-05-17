@@ -598,11 +598,12 @@ nav {
   transition: 0.3s;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   border: 2px solid transparent !important;
   cursor: pointer;
   box-shadow: 0 10px 25px rgba(0, 122, 51, 0.25);
-  font-size: 1.1rem !important;
+  font-size: 1.1rem;
 }
 
 .btn-main:hover,
@@ -623,6 +624,7 @@ nav {
   transition: 0.3s;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   font-size: 1.1rem;
 }
@@ -847,7 +849,7 @@ nav {
   height: 300px;
   width: 100%;
   position: relative;
-  background: #000;
+  background: var(--bg-card);
   overflow: hidden;
 }
 
@@ -954,6 +956,32 @@ nav {
 
 .merch-slider-wrapper::-webkit-scrollbar {
   display: none;
+}
+
+.merch-scroll-progress-container {
+  width: 150px;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 3px;
+  margin: 15px auto 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+[data-theme="dark"] .merch-scroll-progress-container {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.merch-scroll-progress-bar {
+  width: 0%;
+  height: 100%;
+  background: var(--ci-green);
+  border-radius: 3px;
+  transition: width 0.1s ease-out;
+}
+
+[data-theme="dark"] .merch-scroll-progress-bar {
+  background: var(--ci-yellow);
 }
 
 .merch-slider-track {
@@ -1082,6 +1110,25 @@ nav {
   transition: opacity 0.3s ease;
 }
 
+.lightbox-counter {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-card);
+  color: var(--text-color);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.5px;
+  z-index: 10;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
 .lightbox-overlay.is-open {
   opacity: 1;
   pointer-events: all;
@@ -1101,6 +1148,14 @@ nav {
 
 [data-theme="dark"] .modal-content {
   border-color: var(--ci-yellow);
+}
+
+.modal-btn-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .close-modal,
@@ -1302,6 +1357,12 @@ nav {
   margin: 20px 0 0 0;
 }
 
+.book-card .btn-group {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
 .book-badge-row {
   display: flex;
   flex-wrap: nowrap;
@@ -1463,13 +1524,14 @@ video {
 }
 
 .author-profile-side {
-  padding: 36px;
+  padding: 40px 50px;
   display: flex;
-  gap: 90px;
+  gap: 100px;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   max-width: 1000px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .author-img {
@@ -1479,6 +1541,7 @@ video {
   box-shadow: -15px 15px 0px rgba(0, 122, 51, 0.1);
   border: 5px solid var(--bg-main);
   flex-shrink: 0;
+  object-fit: cover;
 }
 
 .author-info {
@@ -1615,6 +1678,13 @@ video {
   border: 5px solid white;
   margin-bottom: 10px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qr-image:hover {
+  transform: scale(1.08);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 .qr-hint {
@@ -1727,6 +1797,10 @@ video {
   width: 100%;
 }
 
+[data-theme="dark"] .footer {
+  border-top: 5px solid var(--ci-yellow);
+}
+
 .footer-watermark {
   position: absolute;
   top: -20px;
@@ -1830,8 +1904,8 @@ video {
 }
 
 .btn-primary--sm {
-  padding: 10px 20px;
-  font-size: 0.9rem;
+  padding: 8px 20px !important;
+  font-size: 0.95rem !important;
 }
 
 .pdf-modal-content {
@@ -2181,10 +2255,26 @@ video {
     margin: 20px auto 0 auto;
   }
 
+  .book-card .btn-group {
+    justify-content: center;
+  }
+
   .video-flex-container,
   .unified-author-card {
     flex-direction: column;
     text-align: center;
+  }
+
+  .author-profile-side {
+    flex-direction: column;
+    padding: 40px 30px;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .author-logos,
+  .author-socials {
+    justify-content: center;
   }
 
   .author-support-side {
@@ -2200,6 +2290,18 @@ video {
   .author-info {
     align-items: center;
     text-align: center;
+  }
+
+  .footer {
+    text-align: center;
+  }
+
+  .footer-logo {
+    margin: 0 auto 20px auto;
+  }
+
+  .footer-col--brand .btn-primary--sm {
+    margin: 0 auto;
   }
 
   .footer-inner {
@@ -2495,13 +2597,13 @@ video {
    MOBILE PERFORMANCE: ลด paint area hero บนมือถือ
    ============================================================ */
 @media (max-width: 767px) {
-  /* จำกัดความสูง hero bg ให้พอดีกับ viewport มือถือ
-     ป้องกัน browser วาดพื้นที่เกินความจำเป็น */
+
+  /* ป้องกัน hero bg บนมือถือวาดพื้นที่ใหญ่เกิน */
   .hero-bg img {
     height: 100vh;
     max-height: 100dvh;
     object-fit: cover;
-    will-change: auto; /* ปิด will-change บนมือถือ ประหยัด memory */
+    will-change: auto;
   }
 
   /* ลด animation complexity บน hero สำหรับ mobile */
@@ -2510,10 +2612,50 @@ video {
     opacity: 1 !important;
     transition: none !important;
   }
+}
 
-  /* ป้องกัน floating-cover ทำ layout shift */
-  .floating-cover {
-    aspect-ratio: 1 / 1;
-    contain: layout style;
+/* เพิ่มข้อความแสดงผลภาษาไทย */
+.title-thai {
+  display: inline;
+}
+
+.title-eng {
+  display: none;
+}
+
+/* Responsive ปรับตามขนาดหน้าจอ */
+@media (max-width: 767px) {
+
+  /* บนมือถือ */
+  .title-thai {
+    display: none;
   }
+
+  .title-eng {
+    display: inline;
+  }
+}
+
+/* ============================================================
+   CLOSED NOTICE STYLE: สำหรับร้านที่ปิดบริการถาวร
+   ============================================================ */
+.closed-notice {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 6px 14px;
+  background: rgba(224, 36, 36, 0.08);
+  border: 1px solid rgba(224, 36, 36, 0.2);
+  color: #d11a1a;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 8px;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .closed-notice {
+  background: rgba(240, 82, 82, 0.12);
+  border-color: rgba(240, 82, 82, 0.3);
+  color: #f05252;
 }
