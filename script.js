@@ -37,6 +37,7 @@ const AppState = {
     currentGallery: [],
     currentImgIdx: 0,
   },
+  autoSlideObserver: null,   // single IntersectionObserver (prevent duplicates)
   autoSlideIntervals: [],
   searchTimeout: null,
 };
@@ -46,29 +47,22 @@ const AppState = {
 // ==========================================
 const translations = {
   th: {
-    // NAV
     "nav-home": "หน้าแรก",
     "nav-book": "ไกด์บุ๊ค",
     "nav-merch": "ของที่ระลึก",
     "nav-highlights": "ร้านแนะนำ",
     "nav-creator": "ผู้จัดทำ",
-
-    // HERO
     "hero-thesis-tag": "นิทรรศการวิทยานิพนธ์ | การออกแบบกราฟิก",
     "hero-title": 'FLAVOR <br><span class="highlight">FIRST</span>',
     "hero-vibe": "20 คาเฟ่และร้านอาหารลับ ย่านมีนบุรี–หนองจอก ที่คุณไม่ควรพลาด",
     "hero-desc":
       "ไกด์บุ๊คฉบับสมบูรณ์ที่รวบรวมเสน่ห์ชานเมือง<br />บันทึกทุกความรู้สึกผ่านงานออกแบบที่ลิ้มรสความสุขได้จริง",
-    "btn-start": '<i class="fas fa-book-open"></i> สำรวจไกด์บุ๊ค',
-    "btn-view-shop": '<i class="fas fa-map-marker-alt"></i> ดูรายชื่อร้าน',
-
-    // VIDEO SECTION
+    "btn-start": '<i class="fas fa-book-open" aria-hidden="true"></i> สำรวจไกด์บุ๊ค',
+    "btn-view-shop": '<i class="fas fa-map-marker-alt" aria-hidden="true"></i> ดูรายชื่อร้าน',
     "video-tag": "บรรยากาศ",
     "video-title": "สัมผัสความสงบ",
     "video-desc":
       "ค้นพบมุมโปรดที่คุณอาจไม่เคยรู้จัก<br />บันทึกความทรงจำผ่านเลนส์และรสชาติที่ลงตัว",
-
-    // BOOK SECTION
     "book-title": "ไกด์บุ๊ค",
     "book-badge-size": "สมุดภาพขนาด A5",
     "book-badge-pages": "126 หน้า",
@@ -76,11 +70,9 @@ const translations = {
     "book-spec": "รวม 20 คาเฟ่และร้านอาหาร",
     "book-desc":
       "Savor Happiness ถ่ายทอดเสน่ห์ย่านมีนบุรี–หนองจอก ผ่าน Visual Storytelling ผสมผสานภาพถ่ายบรรยากาศจริงเข้ากับงานกราฟิกสีสันสดใส จัดวางแบบ Dynamic Layout ให้อ่านง่าย พร้อมแผนที่โปสการ์ดที่พกพาสะดวก",
-    "btn-pdf": '<i class="fas fa-book-open"></i> เปิดอ่านตัวอย่าง',
-
-    // MERCH SECTION
+    "btn-pdf": '<i class="fas fa-book-open" aria-hidden="true"></i> เปิดอ่านตัวอย่าง',
     "scroll-hint":
-      '<i class="fas fa-arrows-alt-h"></i> ปัดซ้าย–ขวา เพื่อดูเพิ่มเติม',
+      '<i class="fas fa-arrows-alt-h" aria-hidden="true"></i> ปัดซ้าย–ขวา เพื่อดูเพิ่มเติม',
     "merch-postcard-minburi": "โปสการ์ดแผนที่ มีนบุรี",
     "merch-postcard-nongchok": "โปสการ์ดแผนที่ หนองจอก",
     "merch-sticker": "สติ๊กเกอร์ตัดรูป",
@@ -88,8 +80,6 @@ const translations = {
     "merch-fashion": "เสื้อและกระเป๋าคอลเลกชัน",
     "merch-mug": "แก้วมัค Savor Happiness",
     "merch-full": "คอลเลกชันทั้งหมด",
-
-    // HIGHLIGHTS SECTION
     "district-minburi": "มีนบุรี",
     "district-nongchok": "หนองจอก",
     "zone-minburi": "ย่านมีนบุรี",
@@ -98,67 +88,52 @@ const translations = {
     "filter-min": "ย่านมีนบุรี",
     "filter-nong": "ย่านหนองจอก",
     "read-more": "อ่านรายละเอียด",
-
-    // AUTHOR SECTION
     "author-title": "ผู้จัดทำ",
     "author-name": "ปรานต์ แถวอินทร์ (Pran Taewin)",
     "author-role": "นักออกแบบกราฟิก | คณะดิจิทัลมีเดีย มหาวิทยาลัยศรีปทุม #67",
-    "support-title": '<i class="fas fa-heart"></i> อุดหนุนผลงาน',
+    "support-title": '<i class="fas fa-heart" aria-hidden="true"></i> อุดหนุนผลงาน',
     "support-sub": "โปรเจกต์วิทยานิพนธ์ Savor Happiness",
     "support-desc":
       "ทุกการสนับสนุนคือแรงผลักดันสำคัญสำหรับโปรเจกต์จบของเรา<br />ขอบคุณที่ร่วมเดินทางและลิ้มรสความสุขไปด้วยกันครับ ✨",
     "support-creator": "โดย ปรานต์ แถวอินทร์ (ปาล์ม)",
     "support-qr-hint": "สแกนเพื่อสนับสนุน",
-
-    // MODALS
-    "modal-btn-guide": '<i class="fas fa-book-open"></i> ดูรูปเต็มในไกด์บุ๊ค',
-    "modal-btn-map": '<i class="fas fa-map-marker-alt"></i> แผนที่ Google Maps',
+    "modal-btn-guide": '<i class="fas fa-book-open" aria-hidden="true"></i> ดูรูปเต็มในไกด์บุ๊ค',
+    "modal-btn-map": '<i class="fas fa-map-marker-alt" aria-hidden="true"></i> แผนที่ Google Maps',
     "pdf-preview-title": "ทดลองอ่านบางส่วน",
-
-    // FOOTER
     "footer-tagline": "DIGITAL MEDIA · GRAPHIC DESIGN · SPU THESIS",
     "footer-nav-title": "เมนู",
     "footer-nav-book": "ไกด์บุ๊ค",
     "footer-connect-title": "ติดต่อ",
     "footer-desc": "บันทึกความทรงจำผ่านเลนส์<br />ย่านมีนบุรี–หนองจอก",
-    "footer-support": '<i class="fas fa-qrcode"></i> อุดหนุนผลงาน',
+    "footer-support": '<i class="fas fa-qrcode" aria-hidden="true"></i> อุดหนุนผลงาน',
     "footer-copyright":
       "©2026 SAVOR HAPPINESS | ขอบคุณที่เป็นส่วนหนึ่งของเรื่องราวนี้",
-
-    // MISC
     "merch-postcard-title":
-      '<i class="fas fa-map-marked-alt"></i> Postcard Map | โปสการ์ดแผนที่',
+      '<i class="fas fa-map-marked-alt" aria-hidden="true"></i> Postcard Map | โปสการ์ดแผนที่',
     "merch-min-title": "Savor Happiness Sticker set",
     "merch-bookmark-title": "Savor Happiness Bookmarks",
-    "btn-more-merch": '<i class="fas fa-images"></i> ของที่ระลึกเพิ่มเติม',
+    "btn-more-merch": '<i class="fas fa-images" aria-hidden="true"></i> ของที่ระลึกเพิ่มเติม',
     "hero-subtitle": "DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS",
     "support-creator-label": "โดย ปรานต์ แถวอินทร์ (ปาล์ม)",
   },
   en: {
-    // NAV
     "nav-home": "Home",
     "nav-book": "Guidebook",
     "nav-merch": "Merchandise",
     "nav-highlights": "Highlights",
     "nav-creator": "Creator",
-
-    // HERO
     "hero-thesis-tag": "GRAPHIC DESIGN THESIS EXHIBITION",
     "hero-title": 'FLAVOR <br><span class="highlight">FIRST</span>',
     "hero-vibe":
       "20 Hidden Cafés & Restaurants in Minburi–Nong Chok You Shouldn't Miss",
     "hero-desc":
       "A complete guidebook capturing the charm of Bangkok's suburbs.<br />Every feeling, every flavor — beautifully designed to savor happiness.",
-    "btn-start": '<i class="fas fa-book-open"></i> Explore Guidebook',
-    "btn-view-shop": '<i class="fas fa-map-marker-alt"></i> Browse Venues',
-
-    // VIDEO SECTION
+    "btn-start": '<i class="fas fa-book-open" aria-hidden="true"></i> Explore Guidebook',
+    "btn-view-shop": '<i class="fas fa-map-marker-alt" aria-hidden="true"></i> Browse Venues',
     "video-tag": "Atmosphere",
     "video-title": "Savor the Serenity",
     "video-desc":
       "Discover your new favorite hideaway in the city's quieter side.<br />Capture memories through the lens and flavors that linger.",
-
-    // BOOK SECTION
     "book-title": "The Guidebook",
     "book-badge-size": "A5 Photobook",
     "book-badge-pages": "126 Pages",
@@ -166,11 +141,9 @@ const translations = {
     "book-spec": "Featuring 20 Cafés & Restaurants",
     "book-desc":
       "Savor Happiness conveys the soul of Minburi–Nong Chok through Visual Storytelling — blending real atmosphere photography with vibrant graphic design in a dynamic layout, complete with a handy postcard map.",
-    "btn-pdf": '<i class="fas fa-book-open"></i> Preview Sample Pages',
-
-    // MERCH SECTION
+    "btn-pdf": '<i class="fas fa-book-open" aria-hidden="true"></i> Preview Sample Pages',
     "scroll-hint":
-      '<i class="fas fa-arrows-alt-h"></i> Swipe left or right to explore',
+      '<i class="fas fa-arrows-alt-h" aria-hidden="true"></i> Swipe left or right to explore',
     "merch-postcard-minburi": "Minburi Postcard Map",
     "merch-postcard-nongchok": "Nong Chok Postcard Map",
     "merch-sticker": "Die-cut Sticker Set",
@@ -178,8 +151,6 @@ const translations = {
     "merch-fashion": "T-Shirt & Tote Bag Collection",
     "merch-mug": "Savor Happiness Mug",
     "merch-full": "The Full Collection",
-
-    // HIGHLIGHTS SECTION
     "district-minburi": "MINBURI",
     "district-nongchok": "NONGCHOK",
     "zone-minburi": "Minburi District",
@@ -188,41 +159,33 @@ const translations = {
     "filter-min": "Minburi",
     "filter-nong": "Nong Chok",
     "read-more": "View Details",
-
-    // AUTHOR SECTION
     "author-title": "About the Creator",
     "author-name": "Pran Taewin (Palm)",
     "author-role":
       "Graphic Designer | School of Digital Media, Sripatum University #67",
-    "support-title": '<i class="fas fa-heart"></i> Support This Project',
+    "support-title": '<i class="fas fa-heart" aria-hidden="true"></i> Support This Project',
     "support-sub": "Savor Happiness Thesis Project",
     "support-desc":
       "Every contribution means the world to this thesis project.<br />Thank you for joining this journey and savoring happiness with us. ✨",
     "support-creator": "By Pran Taewin (Palm)",
     "support-qr-hint": "Scan to support",
-
-    // MODALS
-    "modal-btn-guide": '<i class="fas fa-book-open"></i> View Full Guidebook',
-    "modal-btn-map": '<i class="fas fa-map-marker-alt"></i> Google Maps',
+    "modal-btn-guide": '<i class="fas fa-book-open" aria-hidden="true"></i> View Full Guidebook',
+    "modal-btn-map": '<i class="fas fa-map-marker-alt" aria-hidden="true"></i> Google Maps',
     "pdf-preview-title": "Preview Sample Pages",
-
-    // FOOTER
     "footer-tagline": "DIGITAL MEDIA · GRAPHIC DESIGN · SPU THESIS",
     "footer-nav-title": "Navigate",
     "footer-nav-book": "The Guidebook",
     "footer-connect-title": "Connect",
     "footer-desc":
       "Capturing memories through the lens<br />in Minburi &amp; Nong Chok",
-    "footer-support": '<i class="fas fa-qrcode"></i> Support Us',
+    "footer-support": '<i class="fas fa-qrcode" aria-hidden="true"></i> Support Us',
     "footer-copyright":
       "©2026 SAVOR HAPPINESS | Thank you for being part of our story.",
-
-    // MISC
     "merch-postcard-title":
-      '<i class="fas fa-map-marked-alt"></i> Postcard Map',
+      '<i class="fas fa-map-marked-alt" aria-hidden="true"></i> Postcard Map',
     "merch-min-title": "Savor Happiness Sticker Set",
     "merch-bookmark-title": "Savor Happiness Bookmarks",
-    "btn-more-merch": '<i class="fas fa-images"></i> More Merchandise',
+    "btn-more-merch": '<i class="fas fa-images" aria-hidden="true"></i> More Merchandise',
     "hero-subtitle": "DIGITAL MEDIA | GRAPHIC DESIGN | SPU THESIS",
     "support-creator-label": "By Pran Taewin (Palm)",
   },
@@ -344,9 +307,9 @@ const realShops = [
     folder: "Voodoo",
     file: "voodoo",
     descTH:
-      'เสน่ห์สไตล์ยุโรปวินเทจ ท่ามกลางสวนสวยที่เนรมิตความสุขให้ทุกย่างก้าว<br><span class="closed-notice"><i class="fas fa-info-circle"></i> ปัจจุบันปิดบริการถาวรแล้ว (บันทึกไว้ในความทรงจำแสนพิเศษ)</span>',
+      'เสน่ห์สไตล์ยุโรปวินเทจ ท่ามกลางสวนสวยที่เนรมิตความสุขให้ทุกย่างก้าว<br><span class="closed-notice"><i class="fas fa-info-circle" aria-hidden="true"></i> ปัจจุบันปิดบริการถาวรแล้ว (บันทึกไว้ในความทรงจำแสนพิเศษ)</span>',
     descEN:
-      'Step into vintage European charm surrounded by a breathtakingly beautiful garden.<br><span class="closed-notice"><i class="fas fa-info-circle"></i> Permanently Closed (Preserved in our special memories)</span>',
+      'Step into vintage European charm surrounded by a breathtakingly beautiful garden.<br><span class="closed-notice"><i class="fas fa-info-circle" aria-hidden="true"></i> Permanently Closed (Preserved in our special memories)</span>',
   },
   {
     name: "All of Me Home Cafe",
@@ -493,6 +456,8 @@ document.addEventListener("DOMContentLoaded", () => {
   setupModals();
   setupMerchSlider();
   setupLazyVideo();
+  setupMuteButton();
+  setupImageProtection();
 
   if (typeof AOS !== "undefined") {
     AOS.init({
@@ -504,7 +469,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Lazy-load the background video when it enters viewport
+// ── Lazy-load background video when it enters viewport ──
 function setupLazyVideo() {
   const video = document.getElementById("myVideo");
   if (!video) return;
@@ -533,8 +498,38 @@ function setupLazyVideo() {
   observer.observe(video);
 }
 
+// ── Mute button setup (moved inside DOMContentLoaded lifecycle) ──
+function setupMuteButton() {
+  const video = document.getElementById("myVideo");
+  const muteBtn = document.getElementById("muteBtn");
+  const muteIcon = document.getElementById("muteIcon");
+  if (!muteBtn || !video) return;
+
+  muteBtn.addEventListener("click", () => {
+    video.muted = !video.muted;
+    muteIcon.className = video.muted
+      ? "fas fa-volume-mute"
+      : "fas fa-volume-up";
+  });
+}
+
+// ── Image protection (draggable + context-menu) ──
+function setupImageProtection() {
+  document.querySelectorAll("img").forEach((img) => {
+    img.setAttribute("draggable", "false");
+    img.addEventListener("contextmenu", (e) => e.preventDefault());
+  });
+
+  document.addEventListener("keyup", (e) => {
+    if (e.key === "PrintScreen") {
+      navigator.clipboard.writeText("").catch(() => {});
+      alert("ไม่อนุญาตให้แคปภาพลิขสิทธิ์ครับ");
+    }
+  });
+}
+
 // ==========================================
-// 3. CORE LOGIC (ปรับแก้เพื่อลดภาระ DOM)
+// 3. CORE LOGIC
 // ==========================================
 function renderShops() {
   const minList = document.getElementById("minburi-list");
@@ -547,32 +542,49 @@ function renderShops() {
   realShops.forEach((shop, idx) => {
     const staggerDelay = (idx % 5) * 80;
 
-    const imgA = `<img class="photo-item active" id="shop-img-a-${idx}" src="${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.webp" alt="${shop.name}" data-shop-idx="${idx}" data-img-idx="0" width="600" height="400" loading="lazy" decoding="async" onerror="this.style.display='none';">`;
-    const imgB = `<img class="photo-item" id="shop-img-b-${idx}" src="" alt="${shop.name}" data-shop-idx="${idx}" data-img-idx="1" width="600" height="400" loading="lazy" decoding="async" onerror="this.style.display='none';">`;
+    const imgA = `<img class="photo-item active" id="shop-img-a-${idx}"
+      src="${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.webp"
+      alt="${AppState.ui.currentLang === "th" ? shop.nameTH : shop.name}"
+      data-shop-idx="${idx}" data-img-idx="0"
+      width="600" height="400" loading="lazy" decoding="async"
+      onerror="this.style.display='none';">`;
+    const imgB = `<img class="photo-item" id="shop-img-b-${idx}"
+      src="" alt="${AppState.ui.currentLang === "th" ? shop.nameTH : shop.name}"
+      data-shop-idx="${idx}" data-img-idx="1"
+      width="600" height="400" loading="lazy" decoding="async"
+      onerror="this.style.display='none';">`;
 
     const cardHTML = `
-      <div class="shop-card fadeInSlideUp" data-aos="fade-up" data-aos-delay="${staggerDelay}" style="animation-delay: ${idx * 0.05}s;">
-        <div class="photo-gallery" id="gallery-${idx}" data-shop-idx="${idx}" title="คลิกรูปเพื่อดูแบบเต็มจอ">
-            ${imgA}
-            ${imgB}
+      <article class="shop-card fadeInSlideUp" data-aos="fade-up"
+        data-aos-delay="${staggerDelay}" style="animation-delay:${idx * 0.05}s;">
+        <div class="photo-gallery" id="gallery-${idx}"
+          data-shop-idx="${idx}" title="คลิกรูปเพื่อดูแบบเต็มจอ">
+            ${imgA}${imgB}
         </div>
-        <div class="shop-info" onclick="openCafeModal(${idx})" title="คลิกเพื่อดูรายละเอียดร้าน">
+        <div class="shop-info" onclick="openCafeModal(${idx})"
+          role="button" tabindex="0" aria-label="ดูรายละเอียด ${AppState.ui.currentLang === "th" ? shop.nameTH : shop.name}"
+          onkeydown="if(event.key==='Enter'||event.key===' ')openCafeModal(${idx})">
           <div class="shop-name">${AppState.ui.currentLang === "th" ? shop.nameTH : shop.name}</div>
-          <div class="shop-tag" data-zone="${shop.zone}">${shop.zone === "minburi" ? "ย่านมีนบุรี" : "ย่านหนองจอก"}</div>
-          <div class="click-more-hint"><i class="fas fa-arrow-right"></i> <span class="read-more-text lang-text" data-key="read-more">อ่านรายละเอียดร้าน</span></div>
+          <div class="shop-tag" data-zone="${shop.zone}">
+            ${shop.zone === "minburi" ? "ย่านมีนบุรี" : "ย่านหนองจอก"}
+          </div>
+          <div class="click-more-hint" aria-hidden="true">
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            <span class="read-more-text lang-text" data-key="read-more">อ่านรายละเอียดร้าน</span>
+          </div>
         </div>
-      </div>
+      </article>
     `;
-    if (shop.zone === "minburi")
-      minList.insertAdjacentHTML("beforeend", cardHTML);
+    if (shop.zone === "minburi") minList.insertAdjacentHTML("beforeend", cardHTML);
     else nongList.insertAdjacentHTML("beforeend", cardHTML);
   });
 
+  // Delegate click on gallery images → lightbox
   [minList, nongList].forEach((list) => {
     list.addEventListener("click", (e) => {
       if (e.target.classList.contains("photo-item")) {
-        const shopIdx = parseInt(e.target.getAttribute("data-shop-idx"));
-        const imgIdx = parseInt(e.target.getAttribute("data-img-idx"));
+        const shopIdx = parseInt(e.target.getAttribute("data-shop-idx"), 10);
+        const imgIdx = parseInt(e.target.getAttribute("data-img-idx"), 10);
         window.openGalleryLightbox(shopIdx, imgIdx);
       }
     });
@@ -582,6 +594,12 @@ function renderShops() {
 }
 
 function startAutoSlide() {
+  // Disconnect previous observer to prevent memory leak on re-render
+  if (AppState.autoSlideObserver) {
+    AppState.autoSlideObserver.disconnect();
+    AppState.autoSlideObserver = null;
+  }
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -592,44 +610,50 @@ function startAutoSlide() {
         const imgB = document.getElementById(`shop-img-b-${shopIdx}`);
 
         if (entry.isIntersecting) {
+          // Guard: don't start a second interval if one already exists
+          if (gallery.dataset.intervalId) return;
+
           let currentImgIdx = parseInt(
             gallery.getAttribute("data-current-img-idx") || "0",
+            10,
           );
           let useImgA = gallery.getAttribute("data-use-imga") !== "false";
 
-          const interval = setInterval(
-            () => {
-              currentImgIdx = (currentImgIdx + 1) % 8;
-              const newSrc = `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}${currentImgIdx}.webp`;
+          const interval = setInterval(() => {
+            currentImgIdx = (currentImgIdx + 1) % 8;
+            const newSrc = `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}${currentImgIdx}.webp`;
 
-              if (useImgA) {
-                imgB.onload = () => {
-                  imgB.classList.add("active");
-                  imgA.classList.remove("active");
-                  imgB.onload = null;
-                };
-                imgB.src = newSrc;
-                imgB.setAttribute("data-img-idx", currentImgIdx);
-              } else {
-                imgA.onload = () => {
-                  imgA.classList.add("active");
-                  imgB.classList.remove("active");
-                  imgA.onload = null;
-                };
-                imgA.src = newSrc;
-                imgA.setAttribute("data-img-idx", currentImgIdx);
-              }
+            if (useImgA) {
+              imgB.onload = () => {
+                imgB.classList.add("active");
+                imgA.classList.remove("active");
+                imgB.onload = null;
+              };
+              imgB.src = newSrc;
+              imgB.setAttribute("data-img-idx", currentImgIdx);
+              // Update alt for accessibility
+              imgB.alt = AppState.ui.currentLang === "th" ? shop.nameTH : shop.name;
+            } else {
+              imgA.onload = () => {
+                imgA.classList.add("active");
+                imgB.classList.remove("active");
+                imgA.onload = null;
+              };
+              imgA.src = newSrc;
+              imgA.setAttribute("data-img-idx", currentImgIdx);
+              imgA.alt = AppState.ui.currentLang === "th" ? shop.nameTH : shop.name;
+            }
 
-              useImgA = !useImgA;
-              gallery.setAttribute("data-current-img-idx", currentImgIdx);
-              gallery.setAttribute("data-use-imga", useImgA);
-            },
-            CONFIG.AUTO_SLIDE_INTERVAL + Math.random() * 1000,
-          );
-          gallery.dataset.intervalId = interval;
+            useImgA = !useImgA;
+            gallery.setAttribute("data-current-img-idx", currentImgIdx);
+            gallery.setAttribute("data-use-imga", useImgA);
+          }, CONFIG.AUTO_SLIDE_INTERVAL + Math.random() * 1000);
+
+          gallery.dataset.intervalId = String(interval);
         } else {
+          // Gallery left viewport — clear interval to save CPU/memory
           if (gallery.dataset.intervalId) {
-            clearInterval(gallery.dataset.intervalId);
+            clearInterval(Number(gallery.dataset.intervalId));
             gallery.dataset.intervalId = "";
           }
         }
@@ -637,6 +661,8 @@ function startAutoSlide() {
     },
     { threshold: 0.1 },
   );
+
+  AppState.autoSlideObserver = observer;
 
   document.querySelectorAll(".photo-gallery").forEach((gallery) => {
     observer.observe(gallery);
@@ -653,24 +679,21 @@ function setupFilters() {
       });
       btn.classList.add("active");
       btn.setAttribute("aria-pressed", "true");
+
       const filter = btn.getAttribute("data-filter");
       document.getElementById("minburi-section").style.display =
         filter === "all" || filter === "minburi" ? "flex" : "none";
       document.getElementById("nongchok-section").style.display =
         filter === "all" || filter === "nongchok" ? "flex" : "none";
+
       if (typeof AOS !== "undefined") AOS.refresh();
 
-      // Smoothly scroll to highlights section with an offset for the sticky header
       const highlightsSec = document.getElementById("highlights");
       if (highlightsSec) {
-        const headerOffset = 80; // Height of the sticky navbar
-        const elementPosition = highlightsSec.getBoundingClientRect().top;
+        const headerOffset = 80;
         const offsetPosition =
-          elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
+          highlightsSec.getBoundingClientRect().top + window.scrollY - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       }
     });
   });
@@ -696,13 +719,15 @@ function setupSearch() {
       return;
     }
 
-    let navMatch = NAV_ITEMS.find((item) =>
+    const navMatch = NAV_ITEMS.find((item) =>
       item.keywords.some((k) => val.includes(k)),
     );
     let firstFound = null;
 
     cards.forEach((card) => {
-      const name = card.querySelector(".shop-name").innerText.toLowerCase();
+      const nameEl = card.querySelector(".shop-name");
+      if (!nameEl) return;
+      const name = nameEl.innerText.toLowerCase();
       const isMatch =
         name.includes(val) ||
         realShops.some(
@@ -725,6 +750,7 @@ function setupSearch() {
         ?.scrollIntoView({ behavior: "smooth" });
     else if (firstFound)
       firstFound.scrollIntoView({ behavior: "smooth", block: "center" });
+
     searchSuggestions.style.display = "none";
   };
 
@@ -760,8 +786,9 @@ function setupSearch() {
       combined.forEach((item) => {
         const div = document.createElement("div");
         div.className = "suggestion-item";
+        div.setAttribute("role", "option");
         if (item.target) {
-          div.innerHTML = `<i class="fas ${item.icon}"></i> <span><b>เมนู:</b> ${item.name}</span>`;
+          div.innerHTML = `<i class="fas ${item.icon}" aria-hidden="true"></i> <span><b>เมนู:</b> ${item.name}</span>`;
           div.addEventListener("click", () => {
             document
               .querySelector(item.target)
@@ -770,7 +797,7 @@ function setupSearch() {
             searchInput.value = "";
           });
         } else {
-          div.innerHTML = `<i class="fas fa-search"></i> <span>${item.name} <small>(${item.nameTH})</small></span>`;
+          div.innerHTML = `<i class="fas fa-search" aria-hidden="true"></i> <span>${item.name} <small>(${item.nameTH})</small></span>`;
           div.addEventListener("click", () => {
             searchInput.value = item.name;
             searchSuggestions.style.display = "none";
@@ -812,21 +839,21 @@ function unlockScroll() {
 window.openCafeModal = function (idx) {
   const shop = realShops[idx];
   const lang = AppState.ui.currentLang;
-  document.getElementById("modalImg").src =
-    `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.webp`;
+  const modalImg = document.getElementById("modalImg");
+  modalImg.src = `${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.webp`;
+  modalImg.alt = lang === "th" ? shop.nameTH : shop.name;
+
   document.getElementById("modalTitle").innerText =
     lang === "th" ? shop.nameTH : shop.name;
   document.getElementById("modalDesc").innerHTML =
     lang === "th" ? shop.descTH : shop.descEN;
 
-  // Set Google Maps link dynamically
   const mapLink = document.getElementById("modalMapLink");
   if (mapLink) {
     const searchQuery = `${shop.name} ${shop.zone === "minburi" ? "มีนบุรี" : "หนองจอก"} Bangkok`;
     mapLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(searchQuery)}`;
   }
 
-  // Translate modal buttons
   const btnGuide = document.getElementById("modalBtnGuide");
   if (btnGuide && translations[lang]["modal-btn-guide"]) {
     btnGuide.innerHTML = translations[lang]["modal-btn-guide"];
@@ -851,7 +878,6 @@ window.openSimpleLightbox = function (src) {
     "img/SavorHappiness-Inside1.webp",
     "img/SavorHappiness-Inside2.webp",
   ];
-
   const merchGallery = [
     "img/Postcards.webp",
     "img/Sticker1.webp",
@@ -861,9 +887,8 @@ window.openSimpleLightbox = function (src) {
     "img/AllMerch.webp",
   ];
 
-  // Find if src matches book gallery or merch gallery
-  let matchBookIdx = bookGallery.findIndex((item) => src.endsWith(item));
-  let matchMerchIdx = merchGallery.findIndex((item) => src.endsWith(item));
+  const matchBookIdx = bookGallery.findIndex((item) => src.endsWith(item));
+  const matchMerchIdx = merchGallery.findIndex((item) => src.endsWith(item));
 
   if (matchBookIdx !== -1) {
     AppState.lightbox.currentGallery = bookGallery;
@@ -901,6 +926,7 @@ window.openGalleryLightbox = function (shopIdx, imgIdx) {
   AppState.lightbox.currentImgIdx = imgIdx;
   const lbImg = document.getElementById("lightboxImg");
   lbImg.src = AppState.lightbox.currentGallery[imgIdx];
+  lbImg.alt = AppState.ui.currentLang === "th" ? shop.nameTH : shop.name;
   lbImg.style.transform = "scale(1)";
   document
     .querySelectorAll("#simpleLightbox .nav-btn")
@@ -927,8 +953,7 @@ window.changeImg = function (dir) {
 function updateLightboxCounter() {
   const counterEl = document.getElementById("lightboxCounter");
   if (!counterEl) return;
-  const gallery = AppState.lightbox.currentGallery;
-  const idx = AppState.lightbox.currentImgIdx;
+  const { currentGallery: gallery, currentImgIdx: idx } = AppState.lightbox;
   if (gallery && gallery.length > 1) {
     counterEl.innerText = `${idx + 1} / ${gallery.length}`;
     counterEl.style.display = "block";
@@ -959,6 +984,7 @@ function setupModals() {
     document.getElementById("pdfModal").style.display = "flex";
     lockScroll();
   });
+
   window.addEventListener("click", (e) => {
     if (e.target.classList.contains("modal-overlay")) {
       e.target.style.display = "none";
@@ -968,6 +994,7 @@ function setupModals() {
       closeLightbox();
     }
   });
+
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       document.querySelectorAll(".modal-overlay").forEach((m) => {
@@ -979,13 +1006,11 @@ function setupModals() {
     if (
       document.getElementById("simpleLightbox").classList.contains("is-open")
     ) {
-      if (e.key === "ArrowLeft") {
-        changeImg(-1);
-      } else if (e.key === "ArrowRight") {
-        changeImg(1);
-      }
+      if (e.key === "ArrowLeft") changeImg(-1);
+      else if (e.key === "ArrowRight") changeImg(1);
     }
   });
+
   const lbImg = document.getElementById("lightboxImg");
   lbImg.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -1014,7 +1039,7 @@ window.changeBookSlide = function (dir) {
   const thumbs = Array.from(document.querySelectorAll(".thumb-item"));
   const activeIdx = thumbs.findIndex((t) => t.classList.contains("active"));
   if (activeIdx !== -1) {
-    let nextIdx = (activeIdx + dir + thumbs.length) % thumbs.length;
+    const nextIdx = (activeIdx + dir + thumbs.length) % thumbs.length;
     thumbs[nextIdx].click();
   }
 };
@@ -1058,6 +1083,7 @@ function applyLanguage(lang) {
   document
     .querySelectorAll(".lang-btn")
     .forEach((btn) => (btn.innerText = lang.toUpperCase()));
+
   const filterBtns = document.querySelectorAll(".filter-btn");
   if (filterBtns.length >= 3) {
     filterBtns[0].innerText = translations[lang]["filter-all"];
@@ -1073,35 +1099,48 @@ function applyLanguage(lang) {
   });
   document.querySelectorAll(".shop-name").forEach((el, idx) => {
     const shop = realShops[idx];
-    if (shop) {
-      el.innerText = lang === "th" ? shop.nameTH : shop.name;
-    }
+    if (shop) el.innerText = lang === "th" ? shop.nameTH : shop.name;
   });
   document.querySelectorAll(".read-more-text").forEach((el) => {
     el.innerText = translations[lang]["read-more"];
   });
+
+  // Update shop info aria-labels
+  document.querySelectorAll(".shop-info[aria-label]").forEach((el, idx) => {
+    const shop = realShops[idx];
+    if (shop)
+      el.setAttribute(
+        "aria-label",
+        `ดูรายละเอียด ${lang === "th" ? shop.nameTH : shop.name}`,
+      );
+  });
+
   const searchInput = document.getElementById("shopSearchInput");
   if (searchInput)
     searchInput.placeholder =
       lang === "th" ? "ค้นหาร้านค้าที่นี่..." : "Search venues here...";
+
   const muteBtn = document.getElementById("muteBtn");
   if (muteBtn)
     muteBtn.setAttribute(
       "aria-label",
       lang === "th" ? "ปิด/เปิดเสียง" : "Toggle sound",
     );
+
   const navCloseBtn = document.getElementById("navCloseBtn");
   if (navCloseBtn)
     navCloseBtn.setAttribute(
       "aria-label",
       lang === "th" ? "ปิดเมนู" : "Close menu",
     );
+
   const hamburgerBtn = document.getElementById("hamburgerBtn");
   if (hamburgerBtn)
     hamburgerBtn.setAttribute(
       "aria-label",
       lang === "th" ? "เปิดเมนู" : "Open menu",
     );
+
   renderTicker();
 }
 
@@ -1110,14 +1149,20 @@ function renderTicker() {
   const html = realShops
     .map(
       (s) =>
-        `<div class="ticker-item"><i class="fas fa-star" style="color: var(--ci-yellow); margin-right: 8px;"></i>${lang === "th" ? s.nameTH : s.name}</div><div class="ticker-sep">SAVOR HAPPINESS 🍴</div>`,
+        `<div class="ticker-item"><i class="fas fa-star" style="color:var(--ci-yellow);margin-right:8px;" aria-hidden="true"></i>${lang === "th" ? s.nameTH : s.name}</div><div class="ticker-sep">SAVOR HAPPINESS 🍴</div>`,
     )
     .join("");
-  document.getElementById("shopTickerInner").innerHTML = html;
-  document.getElementById("shopTickerInnerDup").innerHTML = html;
+  const inner = document.getElementById("shopTickerInner");
+  const dup = document.getElementById("shopTickerInnerDup");
+  if (inner) inner.innerHTML = html;
+  if (dup) dup.innerHTML = html;
 }
 
 function setupScrollProgress() {
+  const bar = document.getElementById("myBar");
+  const progressContainer = bar && bar.closest("[role='progressbar']");
+  if (!bar) return;
+
   window.addEventListener(
     "scroll",
     () => {
@@ -1126,8 +1171,9 @@ function setupScrollProgress() {
       const height =
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
-      document.getElementById("myBar").style.width =
-        (winScroll / height) * 100 + "%";
+      const pct = height > 0 ? Math.round((winScroll / height) * 100) : 0;
+      bar.style.width = pct + "%";
+      if (progressContainer) progressContainer.setAttribute("aria-valuenow", pct);
     },
     { passive: true },
   );
@@ -1136,41 +1182,21 @@ function setupScrollProgress() {
 window.toggleSpeedDial = function () {
   const cont = document.getElementById("speedDialContainer");
   const btn = document.querySelector(".speed-dial-main-btn");
-  cont.classList.toggle("active");
+  const isActive = cont.classList.toggle("active");
   btn.classList.toggle("active");
+  // Update aria-expanded for accessibility
+  btn.setAttribute("aria-expanded", isActive ? "true" : "false");
 };
 
 window.copyContact = function () {
   navigator.clipboard.writeText("097-946-5925").then(() => {
     const btn = document.querySelector(".copy-btn");
+    if (!btn) return;
     const orig = btn.innerHTML;
-    btn.innerHTML = '<i class="fas fa-check"></i>';
+    btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
     setTimeout(() => (btn.innerHTML = orig), 2000);
-  });
+  }).catch(() => {});
 };
-
-const video = document.getElementById("myVideo"),
-  muteBtn = document.getElementById("muteBtn"),
-  muteIcon = document.getElementById("muteIcon");
-if (muteBtn && video) {
-  muteBtn.addEventListener("click", () => {
-    video.muted = !video.muted;
-    muteIcon.className = video.muted
-      ? "fas fa-volume-mute"
-      : "fas fa-volume-up";
-  });
-}
-
-document.querySelectorAll("img").forEach((img) => {
-  img.setAttribute("draggable", false);
-  img.oncontextmenu = () => false;
-});
-document.addEventListener("keyup", (e) => {
-  if (e.key === "PrintScreen") {
-    navigator.clipboard.writeText("");
-    alert("ไม่อนุญาตให้แคปภาพลิขสิทธิ์ครับ");
-  }
-});
 
 // ==========================================
 // 6. MERCH SLIDER & MOBILE NAV
@@ -1185,22 +1211,20 @@ function setupMobileNav() {
   const toggleNav = (show) => {
     navLinks.classList.toggle("active", show);
     if (navBackdrop) navBackdrop.classList.toggle("active", show);
+    // Sync aria-expanded on the hamburger button
+    hamburgerBtn.setAttribute("aria-expanded", show ? "true" : "false");
     if (show) lockScroll();
     else unlockScroll();
   };
 
   hamburgerBtn.addEventListener("click", () => toggleNav(true));
-  if (navCloseBtn)
-    navCloseBtn.addEventListener("click", () => toggleNav(false));
-  if (navBackdrop)
-    navBackdrop.addEventListener("click", () => toggleNav(false));
+  if (navCloseBtn) navCloseBtn.addEventListener("click", () => toggleNav(false));
+  if (navBackdrop) navBackdrop.addEventListener("click", () => toggleNav(false));
 
-  const navItems = navLinks.querySelectorAll("a");
-  navItems.forEach((item) => {
+  // Close nav when a link is clicked on mobile
+  navLinks.querySelectorAll("a").forEach((item) => {
     item.addEventListener("click", () => {
-      if (window.innerWidth <= 1200) {
-        toggleNav(false);
-      }
+      if (window.innerWidth <= 1200) toggleNav(false);
     });
   });
 }
@@ -1210,6 +1234,7 @@ function setupMerchSlider() {
   if (!slider) return;
 
   const progressBar = document.querySelector(".merch-scroll-progress-bar");
+  const progressContainer = progressBar && progressBar.closest("[role='progressbar']");
 
   const updateProgress = () => {
     if (!progressBar) return;
@@ -1218,11 +1243,12 @@ function setupMerchSlider() {
       progressBar.style.width = "0%";
       return;
     }
-    const scrolledPercentage = (slider.scrollLeft / maxScroll) * 100;
-    progressBar.style.width = `${scrolledPercentage}%`;
+    const pct = Math.round((slider.scrollLeft / maxScroll) * 100);
+    progressBar.style.width = `${pct}%`;
+    if (progressContainer) progressContainer.setAttribute("aria-valuenow", pct);
   };
 
-  slider.addEventListener("scroll", updateProgress);
+  slider.addEventListener("scroll", updateProgress, { passive: true });
   updateProgress();
 
   let isDown = false;
@@ -1241,15 +1267,13 @@ function setupMerchSlider() {
     }, 30);
   };
 
-  const stopAutoScroll = () => {
-    clearInterval(autoScrollInterval);
-  };
+  const stopAutoScroll = () => clearInterval(autoScrollInterval);
 
   startAutoScroll();
 
   slider.addEventListener("mouseenter", stopAutoScroll);
   slider.addEventListener("touchstart", stopAutoScroll, { passive: true });
-  slider.addEventListener("touchend", startAutoScroll);
+  slider.addEventListener("touchend", startAutoScroll, { passive: true });
 
   slider.addEventListener("mousedown", (e) => {
     isDown = true;
@@ -1277,11 +1301,7 @@ function setupMerchSlider() {
     e.preventDefault();
     const x = e.pageX - slider.offsetLeft;
     const walk = (x - startX) * 2;
-
-    if (Math.abs(walk) > 5) {
-      isDragging = true;
-    }
-
+    if (Math.abs(walk) > 5) isDragging = true;
     slider.scrollLeft = scrollLeft - walk;
   });
 
@@ -1295,4 +1315,14 @@ function setupMerchSlider() {
     },
     true,
   );
+
+  // Keyboard support for merch cards
+  slider.querySelectorAll(".merch-card").forEach((card) => {
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        card.click();
+      }
+    });
+  });
 }
