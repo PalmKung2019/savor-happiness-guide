@@ -711,38 +711,83 @@ function setupSearch() {
   const searchBtn = document.getElementById("searchBtn");
   if (!searchInput || !searchSuggestions) return;
 
+  // Zone keyword map – searching "มีนบุรี" / "minburi" shows only Minburi shops
+  const ZONE_KEYWORDS = {
+    minburi:  ["มีนบุรี", "minburi", "min buri", "min-buri"],
+    nongchok: ["หนองจอก", "nongchok", "nong chok", "nong-chok"],
+  };
+
+  const getZoneMatch = (val) =>
+    Object.keys(ZONE_KEYWORDS).find((zone) =>
+      ZONE_KEYWORDS[zone].some((k) => val.includes(k))
+    );
+
   const performSearch = () => {
     const val = searchInput.value.toLowerCase().trim();
     const cards = document.querySelectorAll(".shop-card");
+
     if (val === "") {
+      // Reset: show all cards + both district sections
       cards.forEach((c) => (c.style.display = ""));
+      const ms = document.getElementById("minburi-section");
+      const ns = document.getElementById("nongchok-section");
+      if (ms) ms.style.display = "";
+      if (ns) ns.style.display = "";
+      searchSuggestions.style.display = "none";
       return;
     }
 
+    const matchedZone = getZoneMatch(val);
     const navMatch = NAV_ITEMS.find((item) =>
-      item.keywords.some((k) => val.includes(k)),
+      item.keywords.some((k) => val.includes(k))
     );
     let firstFound = null;
 
-    cards.forEach((card) => {
-      const nameEl = card.querySelector(".shop-name");
-      if (!nameEl) return;
-      const name = nameEl.innerText.toLowerCase();
-      const isMatch =
-        name.includes(val) ||
-        realShops.some(
-          (s) =>
-            s.name.toLowerCase() === name &&
-            s.nameTH &&
-            s.nameTH.toLowerCase().includes(val),
-        );
-      if (isMatch) {
-        card.style.display = "";
-        if (!firstFound) firstFound = card;
-      } else {
-        card.style.display = "none";
-      }
-    });
+    if (matchedZone) {
+      // Zone search: show matching zone section, hide the other
+      const ms = document.getElementById("minburi-section");
+      const ns = document.getElementById("nongchok-section");
+      if (ms) ms.style.display = matchedZone === "minburi"  ? "" : "none";
+      if (ns) ns.style.display = matchedZone === "nongchok" ? "" : "none";
+
+      // Also filter cards so only matching zone cards are visible
+      cards.forEach((card) => {
+        const tagEl = card.querySelector(".shop-tag");
+        const cardZone = tagEl ? tagEl.getAttribute("data-zone") : "";
+        if (cardZone === matchedZone) {
+          card.style.display = "";
+          if (!firstFound) firstFound = card;
+        } else {
+          card.style.display = "none";
+        }
+      });
+    } else {
+      // Regular shop-name search
+      const ms = document.getElementById("minburi-section");
+      const ns = document.getElementById("nongchok-section");
+      if (ms) ms.style.display = "";
+      if (ns) ns.style.display = "";
+
+      cards.forEach((card) => {
+        const nameEl = card.querySelector(".shop-name");
+        if (!nameEl) return;
+        const name = nameEl.innerText.toLowerCase();
+        const isMatch =
+          name.includes(val) ||
+          realShops.some(
+            (s) =>
+              s.name.toLowerCase() === name &&
+              s.nameTH &&
+              s.nameTH.toLowerCase().includes(val)
+          );
+        if (isMatch) {
+          card.style.display = "";
+          if (!firstFound) firstFound = card;
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
 
     if (navMatch)
       document
@@ -1211,8 +1256,8 @@ function setupMobileNav() {
   const toggleNav = (show) => {
     navLinks.classList.toggle("active", show);
     if (navBackdrop) navBackdrop.classList.toggle("active", show);
-    // Sync aria-expanded on the hamburger button
-    hamburgerBtn.setAttribute("aria-expanded", show ? "true" : "false");
+    // Sync aria-expanded on the hamburger (div with role=button)
+    if (hamburgerBtn) hamburgerBtn.setAttribute("aria-expanded", show ? "true" : "false");
     if (show) lockScroll();
     else unlockScroll();
   };

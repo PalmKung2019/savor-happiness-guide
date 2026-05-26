@@ -272,6 +272,9 @@ nav {
 
 .logo-img {
   height: 40px;
+  width: auto; /* คงสัดส่วน 456:79 ของโลโก้จริง */
+  max-width: 100%;
+  display: block;
   transition:
     transform 0.6s ease,
     filter 0.4s ease;
@@ -1826,6 +1829,8 @@ video {
 
 .footer-logo {
   height: 60px;
+  width: auto; /* คงสัดส่วน 456:79 ของโลโก้จริง */
+  max-width: 100%;
   filter: brightness(0) invert(1);
   margin-bottom: 20px;
 }
@@ -2381,6 +2386,7 @@ video {
 
   .logo-img {
     height: 32px;
+    width: auto; /* คงสัดส่วน 456:79 */
   }
 
   .hamburger-menu,
@@ -2660,10 +2666,11 @@ video {
   color: #f05252;
 }
 /* ============================================================
-   LIGHTHOUSE 100 OPTIMIZATIONS — APPENDED PATCH v1.1.0
+   LIGHTHOUSE 100 OPTIMIZATIONS — SAFE PATCH v1.2.0
+   RULES: no contain:strict, no content-visibility, no layout-break
    ============================================================ */
 
-/* Screen-reader only utility (matches inline style in HTML) */
+/* Screen-reader only utility */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -2676,12 +2683,11 @@ video {
   border: 0;
 }
 
-/* ── CONTRAST FIX: Hero Thesis Tag (orange on gradient hero) ──
-   Increase font size to ≥18.67px bold = "large text" threshold.
-   text-shadow adds a light halo to visually aid readability
-   without touching the CI colour value. */
+/* ── CONTRAST FIX: Hero Thesis Tag ──
+   19.2px bold ≥ 18.67px (14pt bold) = "large text" threshold.
+   text-shadow white halo aids readability without changing CI colour. */
 .hero-thesis-tag {
-  font-size: 1.2rem;         /* 19.2px ≥ 18.67px → qualifies as large text */
+  font-size: 1.2rem;
   font-weight: 900;
   letter-spacing: 2.5px;
   text-shadow:
@@ -2689,109 +2695,56 @@ video {
     0 -1px 3px rgba(255, 255, 255, 0.7);
 }
 
-/* ── CONTRAST FIX: Video description muted text (olive on white) ──
-   Increase size & weight, add subtle dark shadow to boost perceived contrast. */
+/* ── CONTRAST FIX: Video description muted text (olive on white) ── */
 .video-description p {
   font-size: 1.15rem;
   font-weight: 600;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
-/* ── CONTRAST FIX: Author role muted text (olive on white) ── */
+/* ── CONTRAST FIX: Author role (olive on white) ── */
 .author-role {
   font-size: 1.05rem;
   font-weight: 600;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
-/* ── CONTRAST FIX: Shop tag (orange on near-white) ──
-   Heavier weight so the stroke width visually compensates. */
+/* ── CONTRAST FIX: Shop tag (orange on near-white) ── */
 .shop-tag {
   font-weight: 800;
   font-size: 0.95rem;
 }
 
 /* ── CLS PREVENTION: Merch card images ──
-   Provides explicit aspect-ratio so the browser reserves space
-   before the image loads, eliminating layout shift. */
+   aspect-ratio:auto honours the HTML width/height attributes so the
+   browser reserves the correct space before the image loads.
+   NO contain:strict — that clips images. */
 .merch-card img {
-  aspect-ratio: auto;          /* honour the HTML width/height attrs  */
+  aspect-ratio: auto;   /* uses HTML width/height attrs for intrinsic ratio */
   height: 220px;
   width: auto;
   max-width: none;
-  contain: strict;             /* isolate paint area */
+  object-fit: cover;    /* fills reserved space without distortion */
 }
 
-/* ── CLS PREVENTION: Logo images ──
-   Fixed height is already set in existing rules; adding contain
-   prevents any ancestor reflow. */
-.logo-img {
-  contain: layout style;
-}
-
-/* ── CLS PREVENTION: Footer logo ── */
-.footer-logo {
-  contain: layout style;
-}
-
-/* ── PERFORMANCE: Promote author image to own layer ── */
-.author-img {
-  will-change: transform;
-  contain: layout style;
-}
-
-/* ── ACCESSIBILITY: Focus-visible ring for keyboard users ──
-   Ensures interactive elements are clearly visible on keyboard nav. */
+/* ── ACCESSIBILITY: Focus-visible ring for keyboard users ── */
 :focus-visible {
   outline: 3px solid var(--ci-orange);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* Remove outline for mouse users only */
 :focus:not(:focus-visible) {
   outline: none;
 }
 
-/* ── ACCESSIBILITY: Ensure hamburger button is a proper tap target ── */
-button.hamburger-menu {
-  display: none;
-  background: none;
-  border: none;
-  padding: 8px;
-  min-width: 44px;
-  min-height: 44px;
-  cursor: pointer;
-  color: var(--ci-orange);
-  font-size: 28px;
-  align-items: center;
-  justify-content: center;
-}
-
-@media (max-width: 1199px) {
-  button.hamburger-menu {
-    display: flex;
-  }
-}
-
-/* ── ACCESSIBILITY: Merch card keyboard interaction ── */
+/* ── ACCESSIBILITY: Merch card keyboard focus ── */
 .merch-card:focus-visible {
   outline: 3px solid var(--ci-orange);
   outline-offset: 4px;
 }
 
-/* ── PERFORMANCE: Prevent large paint on hero background ──
-   content-visibility skips off-screen sections during initial paint. */
-#video-experience,
-#book-feature,
-#merch,
-#highlights,
-#author {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 600px;
-}
-
-/* ── PERFORMANCE: Reduce animation complexity on low-end devices ── */
+/* ── ACCESSIBILITY: Respect reduced-motion preference ── */
 @media (prefers-reduced-motion: reduce) {
   .floating-cover,
   .shop-ticker-track,
