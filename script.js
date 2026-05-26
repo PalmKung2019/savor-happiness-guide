@@ -458,6 +458,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupLazyVideo();
   setupMuteButton();
   setupImageProtection();
+  setupAllHandlers(); // CSP-safe: replaces all inline onclick attributes
 
   if (typeof AOS !== "undefined") {
     AOS.init({
@@ -1370,4 +1371,66 @@ function setupMerchSlider() {
       }
     });
   });
+}
+
+// ============================================================
+// CSP-SAFE: ย้ายทุก inline onclick มาเป็น addEventListener
+// (แทน onclick="..." attributes ที่ถูก CSP บล็อก)
+// ============================================================
+function setupAllHandlers() {
+  // Language & Theme buttons
+  const langBtn = document.querySelector(".lang-btn");
+  const themeBtn = document.querySelector(".theme-btn");
+  if (langBtn) langBtn.addEventListener("click", toggleLang);
+  if (themeBtn) themeBtn.addEventListener("click", toggleTheme);
+
+  // Book slider prev/next
+  const bookPrev = document.getElementById("bookPrevBtn");
+  const bookNext = document.getElementById("bookNextBtn");
+  if (bookPrev) bookPrev.addEventListener("click", () => changeBookSlide(-1));
+  if (bookNext) bookNext.addEventListener("click", () => changeBookSlide(1));
+
+  // Main book image → open lightbox
+  const mainBookImg = document.getElementById("mainBookImg");
+  if (mainBookImg) {
+    mainBookImg.addEventListener("click", () => openSimpleLightbox(mainBookImg.src));
+  }
+
+  // Book thumbnails → changeBookView
+  document.querySelectorAll(".thumb-item[data-thumb]").forEach((img) => {
+    img.addEventListener("click", () => changeBookView(img.src, img));
+  });
+
+  // Merch cards → open lightbox with data-lightbox-src
+  document.querySelectorAll(".merch-card[data-lightbox-src]").forEach((card) => {
+    card.addEventListener("click", () => openSimpleLightbox(card.dataset.lightboxSrc));
+  });
+
+  // QR image (data-lightbox-self)
+  document.querySelectorAll("[data-lightbox-self]").forEach((el) => {
+    el.addEventListener("click", () => openSimpleLightbox(el.src));
+  });
+
+  // Modal: scroll to book-feature
+  const modalBtnGuide = document.getElementById("modalBtnGuide");
+  if (modalBtnGuide) {
+    modalBtnGuide.addEventListener("click", () => {
+      document.getElementById("closeCafeModal").click();
+      document.getElementById("book-feature").scrollIntoView({ behavior: "smooth" });
+    });
+  }
+
+  // Lightbox nav buttons (stopPropagation prevents overlay-close)
+  const lbPrev = document.getElementById("lightboxPrevBtn");
+  const lbNext = document.getElementById("lightboxNextBtn");
+  if (lbPrev) lbPrev.addEventListener("click", (e) => { e.stopPropagation(); changeImg(-1); });
+  if (lbNext) lbNext.addEventListener("click", (e) => { e.stopPropagation(); changeImg(1); });
+
+  // Speed Dial
+  const speedDialBtn = document.querySelector(".speed-dial-main-btn");
+  if (speedDialBtn) speedDialBtn.addEventListener("click", toggleSpeedDial);
+
+  // Copy contact
+  const copyBtn = document.querySelector(".dial-btn.copy-btn");
+  if (copyBtn) copyBtn.addEventListener("click", copyContact);
 }

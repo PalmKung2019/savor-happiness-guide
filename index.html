@@ -48,12 +48,8 @@
   <link rel="preconnect" href="https://unpkg.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 
-  <!-- AOS CSS: non-blocking preload, swap to stylesheet onload -->
-  <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" crossorigin="anonymous"
-    referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript>
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" crossorigin="anonymous" />
-  </noscript>
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <link rel="icon" type="image/png" href="img/logo/logo-light.png?v=2" />
   <link rel="apple-touch-icon" href="img/logo/logo-light.png?v=2" />
@@ -62,23 +58,11 @@
   <link rel="preload" as="image" href="img/Cover_Img.webp" type="image/webp" fetchpriority="high" />
   <link rel="preload" href="fonts/MN-Nang-Kai-Thot-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
 
-  <!-- Google Fonts: non-blocking with media trick -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;700&family=Charm:wght@400;700&display=swap"
-    rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;700&family=Charm:wght@400;700&display=swap"
-      rel="stylesheet" />
-  </noscript>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;700&family=Charm:wght@400;700&display=swap" rel="stylesheet" />
 
-  <!-- Font Awesome: non-blocking, prevents render-blocking -->
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style"
-    crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      crossorigin="anonymous" />
-  </noscript>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css?v=1.0.9" />
 </head>
 
@@ -105,8 +89,8 @@
           <li><a href="#highlights" class="lang-text" data-key="nav-highlights">ร้านแนะนำ</a></li>
           <li><a href="#author" class="lang-text" data-key="nav-creator">ผู้จัดทำ</a></li>
           <li class="nav-controls-wrapper">
-            <button class="lang-btn" onclick="toggleLang()" aria-label="สลับภาษา">TH</button>
-            <button class="theme-btn" onclick="toggleTheme()" aria-label="สลับธีมสี">LIGHT</button>
+            <button class="lang-btn" aria-label="สลับภาษา">TH</button>
+            <button class="theme-btn" aria-label="สลับธีมสี">LIGHT</button>
           </li>
         </ul>
       </div>
@@ -229,33 +213,33 @@
       <div class="book-grid-container">
         <div class="book-visual" data-aos="fadeInSlideUp">
           <div class="main-img-container main-img-container-relative">
-            <button class="book-nav-btn prev" aria-label="ภาพก่อนหน้า" onclick="changeBookSlide(-1)">
+            <button class="book-nav-btn prev" aria-label="ภาพก่อนหน้า" id="bookPrevBtn">
               &#10094;
             </button>
             <div class="book-float-wrapper">
               <img src="img/SavorHappiness-Cover.webp" id="mainBookImg"
                 class="inner-mockup cursor-zoom-in"
                 alt="ปกหนังสือ Savor Happiness Guidebook" width="320" height="450"
-                onclick="openSimpleLightbox(this.src)"
+                data-lightbox-self
                 loading="lazy" decoding="async" />
             </div>
-            <button class="book-nav-btn next" aria-label="ภาพถัดไป" onclick="changeBookSlide(1)">
+            <button class="book-nav-btn next" aria-label="ภาพถัดไป" id="bookNextBtn">
               &#10095;
             </button>
           </div>
           <div class="book-thumbs" role="list" aria-label="เลือกหน้าหนังสือ">
             <img src="img/SavorHappiness-Cover.webp" alt="ปกหน้า" class="thumb-item active"
               width="70" height="70" role="listitem"
-              onclick="changeBookView(this.src, this)" loading="lazy" decoding="async" />
+              data-thumb loading="lazy" decoding="async" />
             <img src="img/SavorHappiness-Back.webp" alt="ปกหลัง" class="thumb-item"
               width="70" height="70" role="listitem"
-              onclick="changeBookView(this.src, this)" loading="lazy" decoding="async" />
+              data-thumb loading="lazy" decoding="async" />
             <img src="img/SavorHappiness-Inside1.webp" alt="ภายในหนังสือหน้า 1" class="thumb-item"
               width="70" height="70" role="listitem"
-              onclick="changeBookView(this.src, this)" loading="lazy" decoding="async" />
+              data-thumb loading="lazy" decoding="async" />
             <img src="img/SavorHappiness-Inside2.webp" alt="ภายในหนังสือหน้า 2" class="thumb-item"
               width="70" height="70" role="listitem"
-              onclick="changeBookView(this.src, this)" loading="lazy" decoding="async" />
+              data-thumb loading="lazy" decoding="async" />
           </div>
         </div>
         <div class="book-text book-text--delayed" data-aos="fadeInSlideUp">
@@ -295,7 +279,7 @@
         </p>
         <div class="merch-slider-wrapper" role="region" aria-label="เลื่อนดูของที่ระลึก" tabindex="0">
           <div class="merch-slider-track">
-            <div class="merch-card" onclick="openSimpleLightbox('img/Postcards.webp')"
+            <div class="merch-card" data-lightbox-src="img/Postcards.webp"
               role="button" tabindex="0" aria-label="ดูภาพ Postcard Map ขนาดเต็ม">
               <img src="img/Postcards.webp" alt="โปสการ์ดแผนที่มีนบุรีและหนองจอก"
                 width="330" height="220" loading="lazy" decoding="async" />
@@ -303,31 +287,31 @@
                 <i class="fas fa-map-marked-alt" aria-hidden="true"></i> Postcard Map
               </p>
             </div>
-            <div class="merch-card" onclick="openSimpleLightbox('img/Sticker1.webp')"
+            <div class="merch-card" data-lightbox-src="img/Sticker1.webp"
               role="button" tabindex="0" aria-label="ดูภาพ Die-cut Stickers ขนาดเต็ม">
               <img src="img/Sticker1.webp" alt="สติ๊กเกอร์ตัดรูป Savor Happiness"
                 width="220" height="220" loading="lazy" decoding="async" />
               <p class="lang-text" data-key="merch-sticker">Die-cut Stickers</p>
             </div>
-            <div class="merch-card" onclick="openSimpleLightbox('img/Mockup_Bookmarks.webp')"
+            <div class="merch-card" data-lightbox-src="img/Mockup_Bookmarks.webp"
               role="button" tabindex="0" aria-label="ดูภาพ Exclusive Bookmarks ขนาดเต็ม">
               <img src="img/Mockup_Bookmarks.webp" alt="ที่คั่นหนังสือพิเศษ Savor Happiness"
                 width="150" height="220" loading="lazy" decoding="async" />
               <p class="lang-text" data-key="merch-bookmarks">Exclusive Bookmarks</p>
             </div>
-            <div class="merch-card" onclick="openSimpleLightbox('img/Fashion.webp')"
+            <div class="merch-card" data-lightbox-src="img/Fashion.webp"
               role="button" tabindex="0" aria-label="ดูภาพ T-Shirt & Bag Collection ขนาดเต็ม">
               <img src="img/Fashion.webp" alt="เสื้อและกระเป๋า Savor Happiness Collection"
                 width="330" height="220" loading="lazy" decoding="async" />
               <p class="lang-text" data-key="merch-fashion">T-Shirt &amp; Bag Collection</p>
             </div>
-            <div class="merch-card" onclick="openSimpleLightbox('img/Mug_Mockup_1.webp')"
+            <div class="merch-card" data-lightbox-src="img/Mug_Mockup_1.webp"
               role="button" tabindex="0" aria-label="ดูภาพ Savor Happiness Mug ขนาดเต็ม">
               <img src="img/Mug_Mockup_1.webp" alt="แก้วมัค Savor Happiness"
                 width="220" height="220" loading="lazy" decoding="async" />
               <p class="lang-text" data-key="merch-mug">Savor Happiness Mug</p>
             </div>
-            <div class="merch-card" onclick="openSimpleLightbox('img/AllMerch.webp')"
+            <div class="merch-card" data-lightbox-src="img/AllMerch.webp"
               role="button" tabindex="0" aria-label="ดูภาพของที่ระลึกทั้งหมด ขนาดเต็ม">
               <img src="img/AllMerch.webp" alt="ของที่ระลึก Savor Happiness ทั้งคอลเลกชัน"
                 width="400" height="220" loading="lazy" decoding="async" />
@@ -417,7 +401,7 @@
           <div class="support-qr-side">
             <img src="img/qr-placeholder.webp" alt="QR Code สำหรับสนับสนุนโปรเจกต์" class="qr-image"
               width="130" height="130"
-              onclick="openSimpleLightbox(this.src)" title="คลิกเพื่อขยายรูปเต็มจอ / Click to expand"
+              data-lightbox-self title="คลิกเพื่อขยายรูปเต็มจอ / Click to expand"
               loading="lazy" decoding="async" />
             <p class="qr-hint lang-text" data-key="support-qr-hint">
               สแกนเพื่อสนับสนุน
@@ -436,12 +420,7 @@
       <h3 id="modalTitle">ชื่อคาเฟ่</h3>
       <p id="modalDesc">รายละเอียดร้าน</p>
       <div class="modal-btn-group">
-        <button class="btn-primary lang-text" id="modalBtnGuide" data-key="modal-btn-guide" onclick="
-              document.getElementById('closeCafeModal').click();
-              document
-                .getElementById('book-feature')
-                .scrollIntoView({ behavior: 'smooth' });
-            ">
+        <button class="btn-primary lang-text" id="modalBtnGuide" data-key="modal-btn-guide" >
           <i class="fas fa-book-open" aria-hidden="true"></i> ดูรูปเต็มในไกด์บุ๊ค
         </button>
         <a id="modalMapLink" href="" target="_blank" rel="noopener noreferrer" class="btn-outline lang-text"
@@ -499,17 +478,11 @@
   <!-- Lightbox -->
   <div id="simpleLightbox" class="lightbox-overlay" role="dialog" aria-modal="true" aria-label="ดูภาพขยาย">
     <button class="close-btn" id="closeLightboxBtn" aria-label="ปิดภาพขยาย">&times;</button>
-    <button class="nav-btn prev" aria-label="ภาพก่อนหน้า" onclick="
-          event.stopPropagation();
-          changeImg(-1);
-        ">
+    <button class="nav-btn prev" id="lightboxPrevBtn" aria-label="ภาพก่อนหน้า">
       &#10094;
     </button>
-    <img id="lightboxImg" class="lightbox-content" src="" alt="ภาพขยาย" onclick="event.stopPropagation()" />
-    <button class="nav-btn next" aria-label="ภาพถัดไป" onclick="
-          event.stopPropagation();
-          changeImg(1);
-        ">
+    <img id="lightboxImg" class="lightbox-content" src="" alt="ภาพขยาย" />
+    <button class="nav-btn next" id="lightboxNextBtn" aria-label="ภาพถัดไป">
       &#10095;
     </button>
     <div id="lightboxCounter" class="lightbox-counter" aria-live="polite"></div>
@@ -517,7 +490,7 @@
 
   <!-- Speed Dial -->
   <div class="speed-dial-container" id="speedDialContainer" aria-label="เมนูติดต่อด่วน">
-    <button class="speed-dial-main-btn" onclick="toggleSpeedDial()" aria-label="เปิด/ปิดเมนูติดต่อ"
+    <button class="speed-dial-main-btn" aria-label="เปิด/ปิดเมนูติดต่อ"
       aria-expanded="false" aria-controls="speedDialButtons">
       <img src="img/smile-normal.webp" class="speed-dial-img img-normal" alt="" role="presentation"
         width="55" height="55" loading="lazy" decoding="async" />
@@ -532,7 +505,7 @@
         class="dial-btn" aria-label="ติดต่อทาง LINE" title="LINE">
         <i class="fab fa-line" aria-hidden="true"></i>
       </a>
-      <button class="dial-btn copy-btn" onclick="copyContact()" aria-label="คัดลอกเบอร์ติดต่อ" title="Copy Contact">
+      <button class="dial-btn copy-btn" aria-label="คัดลอกเบอร์ติดต่อ" title="Copy Contact">
         <i class="fas fa-copy" aria-hidden="true"></i>
       </button>
     </div>
@@ -603,7 +576,6 @@
   </footer>
 
   <!-- Visually hidden utility class for screen readers -->
-  <style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer crossorigin="anonymous"
     referrerpolicy="no-referrer"></script>
