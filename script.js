@@ -547,13 +547,11 @@ function renderShops() {
       src="${CONFIG.IMAGE_BASE_PATH}${shop.folder}/${shop.file}0.webp"
       alt="${AppState.ui.currentLang === "th" ? shop.nameTH : shop.name}"
       data-shop-idx="${idx}" data-img-idx="0"
-      width="600" height="400" loading="lazy" decoding="async"
-      onerror="this.style.display='none';">`;
+      width="600" height="400" loading="lazy" decoding="async">`;
     const imgB = `<img class="photo-item" id="shop-img-b-${idx}"
       src="" alt="${AppState.ui.currentLang === "th" ? shop.nameTH : shop.name}"
       data-shop-idx="${idx}" data-img-idx="1"
-      width="600" height="400" loading="lazy" decoding="async"
-      onerror="this.style.display='none';">`;
+      width="600" height="400" loading="lazy" decoding="async">`;
 
     const cardHTML = `
       <article class="shop-card fadeInSlideUp" data-aos="fade-up"
@@ -562,9 +560,8 @@ function renderShops() {
           data-shop-idx="${idx}" title="คลิกรูปเพื่อดูแบบเต็มจอ">
             ${imgA}${imgB}
         </div>
-        <div class="shop-info" onclick="openCafeModal(${idx})"
-          role="button" tabindex="0" aria-label="ดูรายละเอียด ${AppState.ui.currentLang === "th" ? shop.nameTH : shop.name}"
-          onkeydown="if(event.key==='Enter'||event.key===' ')openCafeModal(${idx})">
+        <div class="shop-info" data-modal-idx="${idx}"
+          role="button" tabindex="0" aria-label="ดูรายละเอียด ${AppState.ui.currentLang === "th" ? shop.nameTH : shop.name}">
           <div class="shop-name">${AppState.ui.currentLang === "th" ? shop.nameTH : shop.name}</div>
           <div class="shop-tag" data-zone="${shop.zone}">
             ${shop.zone === "minburi" ? "ย่านมีนบุรี" : "ย่านหนองจอก"}
@@ -581,14 +578,38 @@ function renderShops() {
   });
 
   // Delegate click on gallery images → lightbox
+  // Delegate click/keydown on .shop-info → openCafeModal (CSP-safe, replaces inline onclick/onkeydown)
+  // Delegate onerror on img.photo-item → hide broken image (CSP-safe, replaces inline onerror)
   [minList, nongList].forEach((list) => {
     list.addEventListener("click", (e) => {
       if (e.target.classList.contains("photo-item")) {
         const shopIdx = parseInt(e.target.getAttribute("data-shop-idx"), 10);
         const imgIdx = parseInt(e.target.getAttribute("data-img-idx"), 10);
         window.openGalleryLightbox(shopIdx, imgIdx);
+        return;
+      }
+      const shopInfo = e.target.closest(".shop-info[data-modal-idx]");
+      if (shopInfo) {
+        openCafeModal(parseInt(shopInfo.getAttribute("data-modal-idx"), 10));
       }
     });
+
+    list.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        const shopInfo = e.target.closest(".shop-info[data-modal-idx]");
+        if (shopInfo) {
+          e.preventDefault();
+          openCafeModal(parseInt(shopInfo.getAttribute("data-modal-idx"), 10));
+        }
+      }
+    });
+
+    // useCapture=true เพราะ error event ไม่ bubble ขึ้น DOM
+    list.addEventListener("error", (e) => {
+      if (e.target.classList && e.target.classList.contains("photo-item")) {
+        e.target.style.display = "none";
+      }
+    }, true);
   });
 
   startAutoSlide();
