@@ -91,6 +91,31 @@
           <li class="nav-controls-wrapper">
             <button class="lang-btn" aria-label="สลับภาษา">TH</button>
             <button class="theme-btn" aria-label="สลับธีมสี">LIGHT</button>
+            <!-- Auth button (state toggled by JS) -->
+            <div class="auth-nav-wrapper" id="authNavWrapper">
+              <button class="auth-login-btn" id="navLoginBtn" aria-label="เข้าสู่ระบบ">
+                <i class="fas fa-user" aria-hidden="true"></i>
+                <span class="auth-btn-label">เข้าสู่ระบบ</span>
+              </button>
+              <div class="auth-user-menu" id="authUserMenu" hidden>
+                <button class="auth-avatar-btn" id="authAvatarBtn" aria-haspopup="true" aria-expanded="false" aria-label="เมนูผู้ใช้">
+                  <span class="auth-avatar" id="authAvatar">P</span>
+                </button>
+                <div class="auth-dropdown" id="authDropdown" hidden>
+                  <div class="auth-dropdown-header">
+                    <span id="authDropdownName">ผู้ใช้</span>
+                    <small id="authDropdownEmail">email</small>
+                  </div>
+                  <a href="#highlights" class="auth-dropdown-item" id="authBookmarksLink">
+                    <i class="fas fa-bookmark" aria-hidden="true"></i> รายการโปรด
+                    <span class="bookmark-count-badge" id="bookmarkCountBadge" hidden>0</span>
+                  </a>
+                  <button class="auth-dropdown-item auth-logout-btn" id="authLogoutBtn">
+                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i> ออกจากระบบ
+                  </button>
+                </div>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
@@ -577,9 +602,85 @@
 
   <!-- Visually hidden utility class for screen readers -->
 
+  <!-- Toast Container -->
+  <div id="toastContainer" aria-live="polite" aria-atomic="false" class="toast-container"></div>
+
+  <!-- Scroll-to-top button -->
+  <button id="scrollTopBtn" class="scroll-top-btn" aria-label="กลับขึ้นด้านบน" title="กลับขึ้นด้านบน" hidden>
+    <i class="fas fa-chevron-up" aria-hidden="true"></i>
+  </button>
+
+  <!-- Auth Modal -->
+  <div id="authModal" class="modal-overlay auth-modal-overlay" role="dialog" aria-modal="true"
+    aria-labelledby="authModalTitle">
+    <div class="modal-content auth-modal-content custom-modal-animation">
+      <!-- Green header band -->
+      <div class="auth-modal-header-band">
+        <button class="close-btn" id="closeAuthModal" aria-label="ปิดหน้าต่างเข้าสู่ระบบ">&times;</button>
+        <div class="auth-modal-logo">
+          <img src="img/logo/savorhappiness-1.png" alt="Savor Happiness" width="180" height="31"
+            loading="lazy" decoding="async" id="authModalLogo" />
+        </div>
+      </div>
+      <!-- Body -->
+      <div class="auth-modal-body">
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" id="tabLogin" role="tab" aria-selected="true" aria-controls="panelLogin">เข้าสู่ระบบ</button>
+        <button class="auth-tab" id="tabRegister" role="tab" aria-selected="false" aria-controls="panelRegister">สมัครสมาชิก</button>
+      </div>
+      <div id="panelLogin" role="tabpanel" aria-labelledby="tabLogin" class="auth-panel">
+        <h2 id="authModalTitle" class="auth-modal-title">ยินดีต้อนรับกลับ</h2>
+        <p class="auth-modal-subtitle">เข้าสู่ระบบเพื่อบันทึกร้านโปรดของคุณ</p>
+        <div class="auth-form">
+          <div class="auth-field">
+            <label for="loginEmail">อีเมล</label>
+            <input type="email" id="loginEmail" autocomplete="email" placeholder="your@email.com" aria-required="true" />
+          </div>
+          <div class="auth-field">
+            <label for="loginPassword">รหัสผ่าน</label>
+            <div class="auth-password-wrapper">
+              <input type="password" id="loginPassword" autocomplete="current-password" placeholder="••••••••" aria-required="true" />
+              <button type="button" class="auth-toggle-pass" aria-label="แสดง/ซ่อนรหัสผ่าน" data-target="loginPassword"><i class="fas fa-eye" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <p class="auth-error" id="loginError" role="alert" hidden></p>
+          <button class="btn-main auth-submit-btn" id="loginSubmitBtn"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> เข้าสู่ระบบ</button>
+        </div>
+        <p class="auth-switch-text">ยังไม่มีบัญชี? <button class="auth-switch-link" id="switchToRegister">สมัครสมาชิกเลย</button></p>
+      </div>
+      <div id="panelRegister" role="tabpanel" aria-labelledby="tabRegister" class="auth-panel" style="display:none">
+        <h2 class="auth-modal-title">สร้างบัญชีใหม่</h2>
+        <p class="auth-modal-subtitle">เริ่มบันทึกการเดินทางรสชาติของคุณ</p>
+        <div class="auth-form">
+          <div class="auth-field">
+            <label for="regName">ชื่อของคุณ</label>
+            <input type="text" id="regName" autocomplete="name" placeholder="ชื่อ-นามสกุล" aria-required="true" />
+          </div>
+          <div class="auth-field">
+            <label for="regEmail">อีเมล</label>
+            <input type="email" id="regEmail" autocomplete="email" placeholder="your@email.com" aria-required="true" />
+          </div>
+          <div class="auth-field">
+            <label for="regPassword">รหัสผ่าน</label>
+            <div class="auth-password-wrapper">
+              <input type="password" id="regPassword" autocomplete="new-password" placeholder="อย่างน้อย 6 ตัวอักษร" aria-required="true" />
+              <button type="button" class="auth-toggle-pass" aria-label="แสดง/ซ่อนรหัสผ่าน" data-target="regPassword"><i class="fas fa-eye" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <p class="auth-error" id="registerError" role="alert" hidden></p>
+          <button class="btn-main auth-submit-btn" id="registerSubmitBtn"><i class="fas fa-user-plus" aria-hidden="true"></i> สมัครสมาชิก</button>
+        </div>
+        <p class="auth-switch-text">มีบัญชีแล้ว? <button class="auth-switch-link" id="switchToLogin">เข้าสู่ระบบ</button></p>
+      </div>
+      </div><!-- /.auth-modal-body -->
+    </div>
+  </div>
+
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer crossorigin="anonymous"
     referrerpolicy="no-referrer"></script>
-  <script src="script.js?v=1.1.0" defer></script>
+  <script src="auth.js?v=1.0.0" defer></script>
+  <script src="script.js?v=1.2.0" defer></script>
+  <script src="auth-ui.js?v=1.0.0" defer></script>
 </body>
 
 </html>

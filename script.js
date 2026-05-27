@@ -408,6 +408,9 @@ const realShops = [
   },
 ];
 
+// expose realShops globally for auth-ui bookmark module
+window._realShops = realShops;
+
 const NAV_ITEMS = [
   {
     name: "หน้าแรก (Home)",
@@ -524,7 +527,8 @@ function setupImageProtection() {
   document.addEventListener("keyup", (e) => {
     if (e.key === "PrintScreen") {
       navigator.clipboard.writeText("").catch(() => {});
-      alert("ไม่อนุญาตให้แคปภาพลิขสิทธิ์ครับ");
+      if (window.Toast) Toast.show("ไม่อนุญาตให้แคปภาพลิขสิทธิ์ครับ", "warning");
+      else alert("ไม่อนุญาตให้แคปภาพลิขสิทธิ์ครับ");
     }
   });
 }
@@ -1258,10 +1262,12 @@ window.toggleSpeedDial = function () {
 window.copyContact = function () {
   navigator.clipboard.writeText("097-946-5925").then(() => {
     const btn = document.querySelector(".copy-btn");
-    if (!btn) return;
-    const orig = btn.innerHTML;
-    btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
-    setTimeout(() => (btn.innerHTML = orig), 2000);
+    if (btn) {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+      setTimeout(() => (btn.innerHTML = orig), 2000);
+    }
+    if (window.Toast) Toast.show("คัดลอกเบอร์โทรแล้ว 📋", "success", 2000);
   }).catch(() => {});
 };
 
