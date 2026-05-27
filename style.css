@@ -2249,11 +2249,11 @@ video {
 /* 1. TABLET LANDSCAPE (Max 1199px) */
 @media (max-width: 1199px) {
   html {
-    scroll-padding-top: 140px;
+    scroll-padding-top: 180px;
   }
 
   body {
-    padding-top: 140px;
+    padding-top: 180px;
   }
 
   .hamburger-menu {
@@ -2365,6 +2365,7 @@ video {
   }
 
   .hero-text-content {
+    flex: unset;
     padding-right: 0;
     display: flex;
     flex-direction: column;
@@ -2478,11 +2479,11 @@ video {
 /* 3. MOBILE (Max 767px) */
 @media (max-width: 767px) {
   html {
-    scroll-padding-top: 110px;
+    scroll-padding-top: 180px;
   }
 
   body {
-    padding-top: 110px;
+    padding-top: 180px;
   }
 
   #home {
