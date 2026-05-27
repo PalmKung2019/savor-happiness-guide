@@ -16,7 +16,5 @@
   ],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@vercel/speed-insights": "^1.0.14"
-  }
+  "dependencies": {}
 }

@@ -63,7 +63,7 @@
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="style.css?v=1.0.9" />
+  <link rel="stylesheet" href="style.css?v=2.0.0" />
 </head>
 
 <body>
@@ -84,13 +84,31 @@
             </button>
           </li>
           <li><a href="/" class="lang-text" data-key="nav-home">หน้าแรก</a></li>
-          <li><a href="#book-feature" class="lang-text" data-key="nav-book">หนังสือ</a></li>
+          <li><a href="#book-feature" class="lang-text" data-key="nav-book">ไกด์บุ๊ค</a></li>
           <li><a href="#merch" class="lang-text" data-key="nav-merch">ของที่ระลึก</a></li>
           <li><a href="#highlights" class="lang-text" data-key="nav-highlights">ร้านแนะนำ</a></li>
           <li><a href="#author" class="lang-text" data-key="nav-creator">ผู้จัดทำ</a></li>
-          <li class="nav-controls-wrapper">
-            <button class="lang-btn" aria-label="สลับภาษา">TH</button>
-            <button class="theme-btn" aria-label="สลับธีมสี">LIGHT</button>
+          <li class="nav-controls-wrapper" id="navControlsWrapper">
+            <!-- TH / LIGHT pill toggles -->
+            <div class="nav-controls-lang-row">
+              <button class="nav-pill-btn lang-btn" aria-label="สลับภาษา">TH</button>
+              <button class="nav-pill-btn theme-btn" aria-label="สลับธีมสี">LIGHT</button>
+            </div>
+
+            <!-- Icon action buttons: Favorites + Cart -->
+            <div class="nav-icon-actions">
+              <!-- Favourites -->
+              <button class="nav-icon-btn" id="navFavBtn" aria-label="รายการโปรด" title="รายการโปรด">
+                <i class="fas fa-heart" aria-hidden="true"></i>
+                <span class="nav-icon-badge" id="favBadge" hidden>0</span>
+              </button>
+              <!-- Cart -->
+              <button class="nav-icon-btn" id="navCartBtn" aria-label="ตะกร้าสินค้า" title="ตะกร้าสินค้า">
+                <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                <span class="nav-icon-badge" id="cartBadge" hidden>0</span>
+              </button>
+            </div>
+
             <!-- Auth button (state toggled by JS) -->
             <div class="auth-nav-wrapper" id="authNavWrapper">
               <button class="auth-login-btn" id="navLoginBtn" aria-label="เข้าสู่ระบบ">
@@ -107,8 +125,12 @@
                     <small id="authDropdownEmail">email</small>
                   </div>
                   <a href="#highlights" class="auth-dropdown-item" id="authBookmarksLink">
-                    <i class="fas fa-bookmark" aria-hidden="true"></i> รายการโปรด
+                    <i class="fas fa-heart" aria-hidden="true"></i> รายการโปรด
                     <span class="bookmark-count-badge" id="bookmarkCountBadge" hidden>0</span>
+                  </a>
+                  <a href="#" class="auth-dropdown-item" id="authCartLink">
+                    <i class="fas fa-shopping-cart" aria-hidden="true"></i> ตะกร้าสินค้า
+                    <span class="bookmark-count-badge" id="cartCountBadge" hidden>0</span>
                   </a>
                   <button class="auth-dropdown-item auth-logout-btn" id="authLogoutBtn">
                     <i class="fas fa-sign-out-alt" aria-hidden="true"></i> ออกจากระบบ
@@ -678,9 +700,9 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer crossorigin="anonymous"
     referrerpolicy="no-referrer"></script>
-  <script src="auth.js?v=1.0.0" defer></script>
-  <script src="script.js?v=1.2.0" defer></script>
-  <script src="auth-ui.js?v=1.0.0" defer></script>
+  <script src="auth.js?v=2.0.0" defer></script>
+  <script src="script.js?v=2.0.0" defer></script>
+  <script src="auth-ui.js?v=2.0.0" defer></script>
 </body>
 
 </html>
