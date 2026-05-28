@@ -3,6 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
+  <!-- CSP: unsafe-eval required by AOS.js 2.3.1 (uses new Function internally) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-h5IA1UrpAezmflmoK8RyDgKVUIplOCKLDSPXTrtqqkc=' https://unpkg.com https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; script-src-elem 'self' 'sha256-h5IA1UrpAezmflmoK8RyDgKVUIplOCKLDSPXTrtqqkc=' https://unpkg.com https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://static.cloudflareinsights.com https://cloudflareinsights.com; frame-ancestors 'none';" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Savor Happiness | ลิ้มรสความสุข</title>
 
@@ -49,7 +51,7 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 
   <!-- AOS CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="fonts/aos.css" />
 
   <link rel="icon" type="image/png" href="img/logo/logo-light.png?v=2" />
   <link rel="apple-touch-icon" href="img/logo/logo-light.png?v=2" />
@@ -322,7 +324,7 @@
       </h2>
       <div class="merch-slider-container" data-aos="fade-up">
         <p class="scroll-hint lang-text" data-key="scroll-hint" aria-hidden="true">
-          <i class="fas fa-arrows-alt-h" aria-hidden="true"></i> ปัดซ้าย-ขวา เพื่อดูเพิ่มเติม
+          <i class="fas fa-arrows-alt-h" aria-hidden="true"></i> ปัดซ้าย–ขวา เพื่อดูเพิ่มเติม
         </p>
         <div class="merch-slider-wrapper" role="region" aria-label="เลื่อนดูของที่ระลึก" tabindex="0">
           <div class="merch-slider-track">
@@ -331,38 +333,38 @@
               <img src="img/Postcards.webp" alt="โปสการ์ดแผนที่มีนบุรีและหนองจอก"
                 width="330" height="220" loading="lazy" decoding="async" />
               <p class="lang-text" data-key="merch-postcard-title">
-                <i class="fas fa-map-marked-alt" aria-hidden="true"></i> Postcard Map
+                <i class="fas fa-map-marked-alt" aria-hidden="true"></i> Postcard Map | โปสการ์ดแผนที่
               </p>
             </div>
             <div class="merch-card" data-lightbox-src="img/Sticker1.webp"
               role="button" tabindex="0" aria-label="ดูภาพ Die-cut Stickers ขนาดเต็ม">
               <img src="img/Sticker1.webp" alt="สติ๊กเกอร์ตัดรูป Savor Happiness"
                 width="220" height="220" loading="lazy" decoding="async" />
-              <p class="lang-text" data-key="merch-sticker">Die-cut Stickers</p>
+              <p class="lang-text" data-key="merch-sticker">สติ๊กเกอร์ตัดรูป</p>
             </div>
             <div class="merch-card" data-lightbox-src="img/Mockup_Bookmarks.webp"
               role="button" tabindex="0" aria-label="ดูภาพ Exclusive Bookmarks ขนาดเต็ม">
               <img src="img/Mockup_Bookmarks.webp" alt="ที่คั่นหนังสือพิเศษ Savor Happiness"
                 width="150" height="220" loading="lazy" decoding="async" />
-              <p class="lang-text" data-key="merch-bookmarks">Exclusive Bookmarks</p>
+              <p class="lang-text" data-key="merch-bookmarks">ที่คั่นหนังสือพิเศษ</p>
             </div>
             <div class="merch-card" data-lightbox-src="img/Fashion.webp"
-              role="button" tabindex="0" aria-label="ดูภาพ T-Shirt & Bag Collection ขนาดเต็ม">
+              role="button" tabindex="0" aria-label="ดูภาพ T-Shirt &amp; Bag Collection ขนาดเต็ม">
               <img src="img/Fashion.webp" alt="เสื้อและกระเป๋า Savor Happiness Collection"
                 width="330" height="220" loading="lazy" decoding="async" />
-              <p class="lang-text" data-key="merch-fashion">T-Shirt &amp; Bag Collection</p>
+              <p class="lang-text" data-key="merch-fashion">เสื้อและกระเป๋าคอลเลกชัน</p>
             </div>
             <div class="merch-card" data-lightbox-src="img/Mug_Mockup_1.webp"
               role="button" tabindex="0" aria-label="ดูภาพ Savor Happiness Mug ขนาดเต็ม">
               <img src="img/Mug_Mockup_1.webp" alt="แก้วมัค Savor Happiness"
                 width="220" height="220" loading="lazy" decoding="async" />
-              <p class="lang-text" data-key="merch-mug">Savor Happiness Mug</p>
+              <p class="lang-text" data-key="merch-mug">แก้วมัค Savor Happiness</p>
             </div>
             <div class="merch-card" data-lightbox-src="img/AllMerch.webp"
               role="button" tabindex="0" aria-label="ดูภาพของที่ระลึกทั้งหมด ขนาดเต็ม">
               <img src="img/AllMerch.webp" alt="ของที่ระลึก Savor Happiness ทั้งคอลเลกชัน"
                 width="400" height="220" loading="lazy" decoding="async" />
-              <p class="lang-text" data-key="merch-full">The Full Collection</p>
+              <p class="lang-text" data-key="merch-full">คอลเลกชันทั้งหมด</p>
             </div>
           </div>
         </div>
@@ -634,7 +636,7 @@
 
   <!-- Auth Modal -->
   <div id="authModal" class="modal-overlay auth-modal-overlay" role="dialog" aria-modal="true"
-    aria-labelledby="authModalTitle">
+    aria-labelledby="authModalTitle" hidden>
     <div class="modal-content auth-modal-content custom-modal-animation">
       <!-- Green header band -->
       <div class="auth-modal-header-band">

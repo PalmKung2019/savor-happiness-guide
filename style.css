@@ -264,7 +264,7 @@ img {
   top: 0;
   left: 0;
   width: 100%;
-  background: var(--bg-nav);
+  background: rgb(255 255 255 / 85%);
   box-shadow: 0 4px 32px rgba(0, 122, 51, 0.05);
   z-index: 10000;
   transition: all 0.5s ease;
@@ -623,9 +623,9 @@ nav {
   background: linear-gradient(
     to right,
     var(--bg-main) 0%,
-    rgba(248, 242, 230, 0.88) 25%,
-    rgba(248, 242, 230, 0.40) 55%,
-    transparent 80%
+    rgba(248, 242, 230, 0.88) 0%,
+    rgba(248, 242, 230, 0.40) 33%,
+    transparent 70%
   );
   opacity: 1;
 }
@@ -719,7 +719,7 @@ nav {
   width: 100%;
   border-radius: 12px;
   box-shadow: -20px 30px 60px rgba(0, 0, 0, 0.3);
-  animation: float 6s ease-in-out infinite;
+  /* animation: float removed — ป้องกันภาพกระโดด */
 }
 
 /* BUTTONS */
@@ -895,7 +895,7 @@ nav {
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 50px;
+  gap: 35px;
   width: 100%;
 }
 
@@ -1190,6 +1190,10 @@ nav {
   font-weight: 700;
   font-size: 1rem;
   transition: 0.3s;
+  min-width: 150px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .filter-btn.active,
@@ -1501,9 +1505,10 @@ nav {
 
 .book-badge-row {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
-  margin: 4px;
+  margin: 10px 0;
 }
 
 .badge {
@@ -2219,6 +2224,7 @@ video {
 }
 
 .scroll-hint {
+  display: none; /* ซ่อนบน desktop/tablet — auto-scroll + drag ทำงานอยู่แล้ว */
   text-align: center;
   color: var(--ci-orange);
   font-size: 1.5rem;
@@ -2358,40 +2364,32 @@ video {
     align-items: center;
   }
 
+  /* ── Tablet: hero row layout ── */
   .hero-content-wrapper {
-    flex-direction: column-reverse;
-    text-align: center;
-    gap: 40px;
-  }
-
-  .hero-text-content {
-    flex: unset;
-    padding-right: 0;
-    display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    text-align: left;
+    gap: 30px;
     align-items: center;
   }
 
-  .hero-visual-content {
-    max-width: 400px;
-    width: 100%;
-    margin: 0 auto;
-    flex: unset !important;
+  .hero-text-content {
+    flex: 1;
+    padding-right: 0;
   }
 
-  .hero-paragraph {
-    max-width: 80%;
-    margin: 0 auto 30px;
+  .hero-visual-content {
+    flex: 0 0 200px;
+    width: 200px;
   }
 
   .hero-cta {
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
   }
 
   .floating-cover {
-    max-width: 280px;
-    width: 70%;
+    max-width: 200px;
+    width: 100%;
   }
 
   .savor-cta-ring-wrapper {
@@ -2492,44 +2490,96 @@ video {
     padding-bottom: 10px;
   }
 
+  .filter-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;   /* บังคับ 1 แถว — 3 ปุ่มพอดีกัน */
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .filter-btn {
+    min-width: unset;
+    flex: 1 1 0;         /* แบ่งพื้นที่เท่าๆ กัน */
+    max-width: 160px;
+    padding: 8px 10px;
+    font-size: 0.88rem;
+  }
+
+  .filter-btn:first-child {
+    grid-column: unset;  /* reset grid override เดิม */
+  }
+
+  /* ── Mobile: hero layout ── */
+  .hero-content-wrapper {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 0 4px;
+  }
+
+  .hero-text-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .hero-visual-content {
+    flex: 0 0 110px;
+    width: 110px;
+    padding-top: 4px;
+  }
+
+  .floating-cover {
+    width: 110px;
+    max-width: 110px;
+    border-radius: 8px;
+    box-shadow: -6px 10px 20px rgba(0,0,0,0.2);
+  }
+
   .hero-main-title {
-    font-size: 2.2rem;
-    margin-bottom: 5px;
+    font-size: 1.7rem;
+    margin-bottom: 2px;
+    line-height: 1.15;
   }
 
   .hero-main-title .highlight {
-    font-size: 2.8rem;
+    font-size: 2.1rem;
   }
 
   .hero-sub-tag {
-    font-size: 1rem;
-    margin-bottom: 10px;
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+    line-height: 1.4;
   }
 
+  .hero-paragraph {
+    font-size: 0.78rem;
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+
+  /* ── Buttons: แนวนอน ไม่ซ้อนกัน ── */
   .hero-cta {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
     width: 100%;
-    max-width: 350px;
     padding: 0;
-    gap: 15px;
   }
 
   .btn-main,
   .btn-outline {
-    width: 100%;
-    justify-content: center;
-    min-height: 48px;
-  }
-
-  .floating-cover {
-    max-width: 180px;
-  }
-
-  .hero-paragraph {
-    font-size: 0.95rem;
-    margin-bottom: 15px;
-    width: 100%;
-    max-width: 100%;
+    flex: 1 1 auto;
+    min-width: 120px;
+    min-height: 42px;
+    font-size: 0.8rem;
+    padding: 9px 10px;
+    gap: 6px;
   }
 
   .section {
@@ -2711,27 +2761,97 @@ video {
   .hide-on-mobile {
     display: none !important;
   }
+
+  /* ── Hero bg: prevent oversized paint area ── */
+  .hero-bg img {
+    height: 100vh;
+    max-height: 100dvh;
+    object-fit: cover;
+    will-change: auto;
+  }
+
+  /* ── AOS: disable zoom-out on mobile ── */
+  [data-aos="zoom-out"] {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
+  /* ── Language labels ── */
+  .title-thai { display: none; }
+  .title-eng  { display: inline; }
+
+  /* ── Scroll-to-top + Toast ── */
+  .scroll-top-btn {
+    left: 16px;
+    bottom: 80px;
+    width: 40px;
+    height: 40px;
+    font-size: 0.85rem;
+  }
+  .toast-container {
+    right: 12px;
+    bottom: 70px;
+    max-width: calc(100vw - 24px);
+  }
+  .toast {
+    min-width: 0;
+    max-width: 100%;
+    font-size: 0.82rem;
+    padding: 11px 14px;
+  }
+
+  /* ── Ticker ── */
+  .shop-ticker-banner { display: block !important; padding: 12px 0; }
+  .ticker-item { font-size: 1rem; }
+  .ticker-sep  { font-size: 0.85rem; }
 }
 
 /* 4. SMALL MOBILE (Max 479px) */
 @media (max-width: 479px) {
+  /* filter buttons: ยังคง 1 แถว 3 ปุ่ม แต่ font เล็กลงนิดหน่อยสำหรับจอ 360px */
+  .filter-btn {
+    font-size: 0.8rem;
+    padding: 7px 8px;
+    border-width: 2px;
+  }
+
+  .filter-container {
+    gap: 6px;
+    padding: 0 8px;
+  }
+
   .hero-main-title {
-    font-size: 2rem;
+    font-size: 1.55rem;
   }
 
   .hero-main-title .highlight {
-    font-size: 2.4rem;
+    font-size: 1.9rem;
   }
 
+  .hero-visual-content {
+    flex: 0 0 90px;
+    width: 90px;
+  }
+
+  .floating-cover {
+    width: 90px;
+    max-width: 90px;
+  }
+
+  /* ยังคง row แต่ปุ่ม wrap ถ้าแคบเกิน */
   .hero-cta {
-    flex-direction: column;
-    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 7px;
   }
 
   .btn-main,
   .btn-outline {
-    width: 100%;
-    justify-content: center;
+    flex: 1 1 auto;
+    min-width: 110px;
+    font-size: 0.75rem;
+    padding: 8px 8px;
   }
 
   .search-input-group {
@@ -2750,28 +2870,17 @@ video {
     bottom: 15px;
     right: 15px;
   }
+
+  /* ── Auth modal ── */
+  .auth-modal-body { padding: 20px 20px 24px; }
+  .auth-modal-header-band { padding: 22px 20px 18px; }
+  .auth-modal-title { font-size: 1.25rem; }
 }
 
 /* ============================================================
    MOBILE PERFORMANCE: ลด paint area hero บนมือถือ
    ============================================================ */
-@media (max-width: 767px) {
-
-  /* ป้องกัน hero bg บนมือถือวาดพื้นที่ใหญ่เกิน */
-  .hero-bg img {
-    height: 100vh;
-    max-height: 100dvh;
-    object-fit: cover;
-    will-change: auto;
-  }
-
-  /* ลด animation complexity บน hero สำหรับ mobile */
-  [data-aos="zoom-out"] {
-    transform: none !important;
-    opacity: 1 !important;
-    transition: none !important;
-  }
-}
+/* hero-bg mobile — merged into main 767px block above */
 
 /* เพิ่มข้อความแสดงผลภาษาไทย */
 .title-thai {
@@ -2782,18 +2891,7 @@ video {
   display: none;
 }
 
-/* Responsive ปรับตามขนาดหน้าจอ */
-@media (max-width: 767px) {
-
-  /* บนมือถือ */
-  .title-thai {
-    display: none;
-  }
-
-  .title-eng {
-    display: inline;
-  }
-}
+/* title-thai/eng mobile — merged into main 767px block above */
 
 /* ============================================================
    CLOSED NOTICE STYLE: สำหรับร้านที่ปิดบริการถาวร
@@ -3353,11 +3451,7 @@ video {
 [data-theme="dark"] .auth-switch-link:hover { color: var(--ci-yellow); }
 
 /* Mobile */
-@media (max-width: 479px) {
-  .auth-modal-body { padding: 20px 20px 24px; }
-  .auth-modal-header-band { padding: 22px 20px 18px; }
-  .auth-modal-title { font-size: 1.25rem; }
-}
+/* auth-modal 479px — merged into main 479px block above */
 
 /* ── Bookmark Button on Shop Cards ── */
 .bookmark-btn {
@@ -3470,53 +3564,117 @@ video {
 
 /* ── Mobile Burger Menu: nav-controls-wrapper ── */
 @media (max-width: 1199px) {
+  /* ── Slide Panel ── */
+  .nav-links {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Close button: โดดเด่นขึ้น ── */
+  .nav-close-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ci-green);
+    font-size: 20px;
+    transition: background 0.2s;
+  }
+  .nav-close-btn:hover {
+    background: rgba(255,140,0,0.12);
+    color: var(--ci-orange);
+  }
+  [data-theme="dark"] .nav-close-btn {
+    background: rgba(255,255,255,0.08);
+    color: var(--ci-yellow);
+  }
+
+  /* ── Nav links: border-bottom separator ── */
+  .nav-links > li:not(.mobile-close-wrapper):not(.nav-controls-wrapper) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  [data-theme="dark"] .nav-links > li:not(.mobile-close-wrapper):not(.nav-controls-wrapper) {
+    border-bottom-color: rgba(255,255,255,0.07);
+  }
+  .nav-links > li:not(.mobile-close-wrapper):not(.nav-controls-wrapper) > a {
+    color: var(--text-main);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: color 0.2s, padding-left 0.2s;
+  }
+  .nav-links > li:not(.mobile-close-wrapper):not(.nav-controls-wrapper) > a:hover {
+    color: var(--ci-green);
+    padding-left: 6px;
+  }
+
+  /* ── Controls block ── */
   .nav-controls-wrapper {
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
     width: 100%;
-    padding: 24px;
+    padding: 20px 24px 24px;
     margin-top: auto;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 2px solid rgba(0, 0, 0, 0.06);
+    background: rgba(0,0,0,0.02);
   }
-
   [data-theme="dark"] .nav-controls-wrapper {
-    border-top-color: rgba(255, 255, 255, 0.1);
+    border-top-color: rgba(255, 255, 255, 0.08);
+    background: rgba(255,255,255,0.03);
   }
 
-  /* TH + LIGHT แถวเดียวกัน ตรงกลาง */
+  /* TH + LIGHT + icons ── แถวเดียวกัน ── */
   .nav-controls-lang-row {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     justify-content: center;
   }
 
-  /* Icon actions แถวเดียวกัน ตรงกลาง */
   .nav-icon-actions {
     justify-content: center;
+    gap: 12px;
   }
 
-  /* Auth wrapper เต็มความกว้าง */
+  /* ── Auth wrapper เต็มแถว ── */
   .auth-nav-wrapper {
     width: 100%;
     justify-content: center;
-    order: unset;
   }
 
-  /* Login button เต็มแถว */
   .auth-login-btn {
     width: 100%;
     justify-content: center;
-    padding: 0 20px;
+    padding: 12px 20px;
     font-size: 0.95rem;
     border-radius: 24px;
     gap: 8px;
     min-width: unset;
+    font-weight: 700;
   }
 
-  /* คืน auth-btn-label บน mobile */
   .auth-btn-label {
     display: inline;
+  }
+
+  /* ── Panel header: label + close ── */
+  .mobile-close-wrapper {
+    padding: 0 20px;
+    top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .mobile-close-wrapper::before {
+    content: "SAVOR HAPPINESS";
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--ci-green);
+    opacity: 0.5;
   }
 }
 
@@ -3568,23 +3726,92 @@ video {
 }
 
 /* ── Scroll-to-top: hide on mobile bottom area ── */
+/* scroll-top + toast mobile — merged into main 767px block above */
+
+
+/* ticker mobile — merged into main 767px block above */
+
+/* ── Mobile Burger: Panel header logo area ── */
+/* mobile-close-wrapper — merged into burger 1199px block above */
+
+/* ============================================================
+   MERCH: PORTRAIT vs LANDSCAPE — แนวตั้ง/แนวนอนต้องต่างกัน
+   ============================================================ */
+
+/* แสดง scroll-hint เฉพาะมือถือ (touch-first) */
 @media (max-width: 767px) {
-  .scroll-top-btn {
-    left: 16px;
-    bottom: 80px;
-    width: 40px;
-    height: 40px;
-    font-size: 0.85rem;
+  .scroll-hint {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+    opacity: 0.75;
   }
-  .toast-container {
-    right: 12px;
-    bottom: 70px;
-    max-width: calc(100vw - 24px);
+}
+
+/* ── Portrait: เน้น 1 การ์ดเด่น + peek ขวาชัด ── */
+@media (max-width: 767px) and (orientation: portrait) {
+  .merch-slider-container {
+    margin-top: 30px;
   }
-  .toast {
-    min-width: 0;
-    max-width: 100%;
-    font-size: 0.82rem;
-    padding: 11px 14px;
+
+  /*
+   * Mask เฉพาะขวาเท่านั้น:
+   * - ซ้าย = solid black ตลอด → card ใบแรกชัดเต็ม (snap:start ทำให้ card ชนซ้ายเสมอ)
+   * - ขวา = fade ที่ 82% → บอก user ว่ามีต่อ ให้ปัดขวา
+   * ถ้า fade ซ้ายด้วย card ใบแรกจะโดนกลืนเข้า transparent zone
+   */
+  .merch-slider-wrapper {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      black 0%,
+      black 82%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      black 0%,
+      black 82%,
+      transparent 100%
+    );
+    padding: 15px 0 15px 16px; /* leading padding ซ้ายให้ card หายใจ */
+  }
+
+  .merch-slider-track {
+    gap: 16px;
+    padding: 10px 32px 10px 8px; /* trailing padding ขวามากขึ้น → peek ก่อน fade */
+  }
+
+  /* การ์ดกว้าง 78vw → เห็น peek การ์ดถัดไป ~18% ทางขวา */
+  .merch-card {
+    width: min(78vw, 270px);
+    scroll-snap-align: start;
+  }
+}
+
+/* ── Landscape: เห็นหลายการ์ด เน้น scroll อิสระ ── */
+@media (max-width: 767px) and (orientation: landscape) {
+  .merch-slider-container {
+    margin-top: 25px;
+  }
+
+  .merch-slider-wrapper {
+    padding: 12px 20px;
+  }
+
+  .merch-card {
+    width: 240px;
+    scroll-snap-align: center;
+  }
+}
+
+/* ── Portrait 479px: safe-guard สำหรับ iPhone SE/Mini ── */
+@media (max-width: 479px) and (orientation: portrait) {
+  .merch-card {
+    width: min(80vw, 240px);
+  }
+
+  .merch-slider-track {
+    gap: 12px;
+    padding: 10px 28px 10px 6px; /* ขวา trailing สำหรับ peek, ซ้ายน้อย */
   }
 }

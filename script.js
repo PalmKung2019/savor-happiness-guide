@@ -1329,24 +1329,51 @@ function setupMerchSlider() {
   let startX;
   let scrollLeft;
   let autoScrollInterval;
+  let restartTimer = null;
+
+  const stopAutoScroll = () => {
+    clearInterval(autoScrollInterval);
+    autoScrollInterval = null;
+  };
 
   const startAutoScroll = () => {
     stopAutoScroll();
+    // ตรวจว่ามีพื้นที่ให้ scroll จริง ก่อนเริ่ม interval
+    if (slider.scrollWidth <= slider.clientWidth) return;
     autoScrollInterval = setInterval(() => {
+      const maxScroll = slider.scrollWidth - slider.clientWidth;
+      if (maxScroll <= 0) {
+        stopAutoScroll();
+        return;
+      }
       slider.scrollLeft += 1.5;
-      if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth) {
+      if (slider.scrollLeft >= maxScroll) {
         slider.scrollLeft = 0;
       }
+      updateProgress();
     }, 30);
   };
 
-  const stopAutoScroll = () => clearInterval(autoScrollInterval);
-
   startAutoScroll();
+
+  // ── Restart auto-scroll เมื่อ zoom/resize เปลี่ยน layout ──
+  const resizeObserver = new ResizeObserver(() => {
+    stopAutoScroll();
+    clearTimeout(restartTimer);
+    restartTimer = setTimeout(() => {
+      slider.scrollLeft = 0;
+      updateProgress();
+      startAutoScroll();
+    }, 300); // รอให้ layout นิ่งก่อน
+  });
+  resizeObserver.observe(slider);
 
   slider.addEventListener("mouseenter", stopAutoScroll);
   slider.addEventListener("touchstart", stopAutoScroll, { passive: true });
-  slider.addEventListener("touchend", startAutoScroll, { passive: true });
+  slider.addEventListener("touchend", () => {
+    clearTimeout(restartTimer);
+    restartTimer = setTimeout(startAutoScroll, 500);
+  }, { passive: true });
 
   slider.addEventListener("mousedown", (e) => {
     isDown = true;
@@ -1417,10 +1444,37 @@ function setupAllHandlers() {
   if (bookPrev) bookPrev.addEventListener("click", () => changeBookSlide(-1));
   if (bookNext) bookNext.addEventListener("click", () => changeBookSlide(1));
 
-  // Main book image → open lightbox
+  // Main book image   open lightbox & swipe
   const mainBookImg = document.getElementById("mainBookImg");
-  if (mainBookImg) {
-    mainBookImg.addEventListener("click", () => openSimpleLightbox(mainBookImg.src));
+  const mainImgContainer = document.querySelector(".main-img-container");
+  
+  if (mainImgContainer) {
+    let touchstartX = 0;
+    let touchendX = 0;
+    let isSwiping = false;
+
+    mainImgContainer.addEventListener('touchstart', e => {
+      touchstartX = e.changedTouches[0].screenX;
+      isSwiping = false;
+    }, {passive: true});
+
+    mainImgContainer.addEventListener('touchend', e => {
+      touchendX = e.changedTouches[0].screenX;
+      if (touchendX < touchstartX - 40) {
+        changeBookSlide(1);
+        isSwiping = true;
+      }
+      if (touchendX > touchstartX + 40) {
+        changeBookSlide(-1);
+        isSwiping = true;
+      }
+    }, {passive: true});
+
+    if (mainBookImg) {
+      mainBookImg.addEventListener("click", (e) => {
+        if (!isSwiping) openSimpleLightbox(mainBookImg.src);
+      });
+    }
   }
 
   // Book thumbnails → changeBookView
