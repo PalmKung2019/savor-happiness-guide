@@ -21,7 +21,7 @@
 2. **Merchandise:** โปสการ์ดแผนที่ย่านมีนบุรี-หนองจอก, ที่คั่นหนังสือ (Bookmark) และสติ๊กเกอร์
 3. **Website Platform:** เว็บไซต์แนะนำข้อมูลร้านรองรับ Responsive Design (Mobile, Tablet, Desktop)
 
-🌐 **Live Website:** [https://savor-happiness-guide.vercel.app](https://savor-happiness-guide.vercel.app)
+🌐 **Live Website:** [https://savor-happiness-guide.pages.dev](https://savor-happiness-guide.pages.dev)
 
 ## Creator
 
