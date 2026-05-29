@@ -629,9 +629,9 @@ nav {
   background: linear-gradient(
     to right,
     var(--bg-main) 0%,
-    rgba(248, 242, 230, 0.88) 0%,
-    rgba(248, 242, 230, 0.40) 33%,
-    transparent 70%
+    rgba(248, 242, 230, 0.92) 0%,
+    rgba(248, 242, 230, 0.55) 38%,
+    transparent 72%
   );
   opacity: 1;
 }
@@ -697,6 +697,7 @@ nav {
   margin-bottom: 20px;
   font-weight: 800;
   color: var(--text-main);
+  text-shadow: 0 1px 6px rgba(255, 255, 255, 0.75);
 }
 
 .hero-paragraph {
@@ -705,11 +706,38 @@ nav {
   font-weight: 500;
   max-width: 550px;
   line-height: 1.6;
+  text-shadow: 0 1px 5px rgba(255, 255, 255, 0.8), 0 2px 10px rgba(248, 242, 230, 0.6);
 }
 
 .hero-cta {
   display: flex;
   gap: 20px;
+}
+
+/* ── Hero primary CTA — ส้มจากโลโก้ เด่นกว่า secondary ── */
+.hero-cta .btn-main {
+  background: var(--ci-orange) !important;
+  border-color: var(--ci-orange) !important;
+  box-shadow: 0 10px 28px rgba(255, 140, 0, 0.35);
+}
+
+.hero-cta .btn-main:hover {
+  background: #d97500 !important;
+  border-color: #d97500 !important;
+  box-shadow: 0 15px 36px rgba(255, 140, 0, 0.50);
+}
+
+[data-theme="dark"] .hero-cta .btn-main {
+  background: var(--ci-orange) !important;
+  border-color: var(--ci-orange) !important;
+  color: white !important;
+  box-shadow: 0 8px 22px rgba(255, 140, 0, 0.30);
+}
+
+[data-theme="dark"] .hero-cta .btn-main:hover {
+  background: #d97500 !important;
+  border-color: #d97500 !important;
+  color: white !important;
 }
 
 .hero-visual-content {
@@ -3337,7 +3365,7 @@ body {
 /* ── Ticker ── */
 .shop-ticker-banner {
   display: block;
-  padding: 8px 0;
+  padding: 12px 0;
 }
 
 .ticker-item {
