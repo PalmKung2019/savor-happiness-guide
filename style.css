@@ -3202,7 +3202,7 @@ body {
   order: 1;
   flex: unset;
   width: 100%;
-  height: 240px;
+  height: 190px;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -3213,11 +3213,11 @@ body {
 
 .floating-cover {
   width: auto;
-  height: 280px;
-  max-width: none;
+  height: 210px;
+  max-width: 85%;
   border-radius: 12px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
-  transform: rotate(0deg) translateY(10px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  transform: rotate(0deg) translateY(8px);
   object-fit: contain;
   position: relative;
   z-index: 2;
@@ -3678,17 +3678,17 @@ body {
 @media (min-width: 480px) {
 
   .hero-visual-content {
-    height: 270px;
+    height: 220px;
   }
 
   .hero-bg,
   .hero-bg img,
   .hero-glass-overlay {
-    height: 270px;
+    height: 220px;
   }
 
   .floating-cover {
-    height: 310px;
+    height: 245px;
   }
 
   .hero-main-title {
