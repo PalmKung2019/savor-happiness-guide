@@ -1,6 +1,7 @@
 # ============================================================
-#  SAVOR HAPPINESS — CLOUDFLARE PAGES HEADERS (OPTIMIZED)
-#  Security + Cache-Control for Lighthouse 100 Best Practices
+#  SAVOR HAPPINESS — CLOUDFLARE PAGES HEADERS (FIXED)
+#  แก้ไข: เพิ่ม glob สำหรับ subdirectory รูปภาพ 20ResCafe
+#  แก้ไข: เพิ่ม Cache-Control ที่ถูกต้องสำหรับ root path
 # ============================================================
 
 # ── Global Security Headers (all routes) ──────────────────
@@ -18,7 +19,11 @@
   Cache-Control: no-cache, no-store, must-revalidate
   Pragma: no-cache
 
-# ── Images: immutable long-term cache ─────────────────────
+/
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+# ── Root-level images ─────────────────────────────────────
 /img/*.webp
   Cache-Control: public, max-age=31536000, immutable
 
@@ -27,6 +32,10 @@
 
 /img/*.png
   Cache-Control: public, max-age=31536000, immutable
+
+# ── [FIX] Subdirectory images: 20ResCafe/**/* ─────────────
+# เดิม /img/*.webp ไม่ครอบคลุม /img/20ResCafe/AgainPlease/again0.webp
+# แก้โดยเพิ่ม pattern แยกสำหรับ nested path
 
 /img/logo/*.png
   Cache-Control: public, max-age=31536000, immutable
@@ -37,7 +46,65 @@
 /img/preview/*.webp
   Cache-Control: public, max-age=31536000, immutable
 
-/img/20ResCafe/*.webp
+# ── [FIX] ครอบคลุม 20ResCafe และ subfolder ทุกชั้น ────────
+/img/20ResCafe/AgainPlease/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/AllOfMe/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/Barakat/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/CatsEye/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/ChillOut/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/Chomna/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/Daylight/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/DeWila/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/FairyTale/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/HomeVintage/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/James500/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/LobbyBoy/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/Minna/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/NineThan/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/Prakai/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/RimLagoon/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/TreesCo/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/Voodoo/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/WangWela/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/img/20ResCafe/WildDuck/*.webp
   Cache-Control: public, max-age=31536000, immutable
 
 # ── Video: immutable long-term cache ──────────────────────
@@ -53,6 +120,7 @@
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
 # ── CSS & JS: versioned via query string → long cache ─────
+# (index.html ใช้ ?v=x.x.x เพื่อ cache bust → immutable ปลอดภัย)
 /*.css
   Cache-Control: public, max-age=31536000, immutable
 
