@@ -1057,7 +1057,11 @@ function setupModals() {
   });
 
   window.addEventListener("click", (e) => {
-    if (e.target.classList.contains("modal-overlay")) {
+    // authModal ใช้ hidden attribute — auth-ui.js เป็น owner จัดการเอง ไม่ยุ่งที่นี่
+    if (
+      e.target.classList.contains("modal-overlay") &&
+      !e.target.classList.contains("auth-modal-overlay")
+    ) {
       e.target.style.display = "none";
       unlockScroll();
     }
@@ -1068,8 +1072,13 @@ function setupModals() {
 
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      document.querySelectorAll(".modal-overlay").forEach((m) => {
-        m.style.display = "none";
+      // ปิดเฉพาะ cafeModal และ pdfModal — authModal มี hidden attribute ให้ auth-ui.js จัดการ
+      const managedModals = ["cafeModal", "pdfModal"];
+      managedModals.forEach((id) => {
+        const m = document.getElementById(id);
+        if (m && m.style.display !== "none" && m.style.display !== "") {
+          m.style.display = "none";
+        }
       });
       closeLightbox();
       unlockScroll();

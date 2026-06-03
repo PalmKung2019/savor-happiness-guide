@@ -74,7 +74,11 @@ function setupAuthUI() {
   if (closeBtn) closeBtn.addEventListener("click", closeAuthModal);
   modal.addEventListener("click", (e) => { if (e.target === modal) closeAuthModal(); });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !modal.hasAttribute("hidden")) closeAuthModal();
+    if (e.key === "Escape" && !modal.hasAttribute("hidden")) {
+      // stopPropagation ป้องกัน script.js จับ Escape event เดียวกัน
+      e.stopPropagation();
+      closeAuthModal();
+    }
   });
 
   /* ── focus trap inside modal ── */

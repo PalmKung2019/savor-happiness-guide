@@ -3,8 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
-  <!-- CSP: unsafe-eval required by AOS.js 2.3.1 (uses new Function internally) -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-h5IA1UrpAezmflmoK8RyDgKVUIplOCKLDSPXTrtqqkc=' https://unpkg.com https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; script-src-elem 'self' 'sha256-h5IA1UrpAezmflmoK8RyDgKVUIplOCKLDSPXTrtqqkc=' https://unpkg.com https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://static.cloudflareinsights.com https://cloudflareinsights.com; frame-ancestors 'none';" />
+  <!-- CSP: synced with _headers (Cloudflare Pages). unsafe-eval required by AOS.js 2.3.1 -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval' https://unpkg.com https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://static.cloudflareinsights.com https://cloudflareinsights.com; frame-ancestors 'none';" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Savor Happiness | ลิ้มรสความสุข</title>
 
@@ -181,10 +181,12 @@
 
       <div class="hero-content-wrapper" data-aos="zoom-out" data-aos-duration="1200">
         <div class="hero-text-content">
+          <!-- sr-only h1 ให้ Google อ่านชื่อ brand ได้ถูกต้อง -->
+          <h1 class="sr-only">Savor Happiness — ไกด์บุ๊คคาเฟ่และร้านอาหาร ย่านมีนบุรี–หนองจอก</h1>
           <p class="hero-thesis-tag lang-text" data-key="hero-thesis-tag">GRAPHIC DESIGN THESIS EXHIBITION</p>
-          <h1 class="hero-main-title lang-text" data-key="hero-title">
+          <p class="hero-main-title lang-text" data-key="hero-title" aria-hidden="true">
             FLAVOR <br /><span class="highlight">FIRST</span>
-          </h1>
+          </p>
           <h2 class="hero-sub-tag lang-text" data-key="hero-vibe">
             20 คาเฟ่ลับย่านมีนบุรี-หนองจอก ที่คุณไม่ควรพลาด
           </h2>
@@ -704,44 +706,6 @@
   <script src="auth.js?v=2.0.0" defer></script>
   <script src="script.js?v=2.0.2" defer></script>
   <script src="auth-ui.js?v=2.0.0" defer></script>
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
 </body>
 
 </html>
