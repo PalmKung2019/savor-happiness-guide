@@ -1,0 +1,14 @@
+Savor Happiness Guide - V2 Refactor Notes
+
+Changes applied:
+- Responsive patch retained
+- Added audit notes file
+- Recommended next targets:
+  * Navbar mobile collapse
+  * Hero spacing on small screens
+  * Card grid breakpoints
+  * Auth system migration from localStorage
+  * Image optimization and lazy loading
+  * Lighthouse audit
+
+This package is not a full redesign; it is a preparation package for deeper refactoring.

@@ -331,19 +331,18 @@
             <div class="merch-card" data-lightbox-src="img/Postcards.webp"
               role="button" tabindex="0" aria-label="ดูภาพ Postcard Map ขนาดเต็ม">
               <img src="img/Postcards.webp" alt="โปสการ์ดแผนที่มีนบุรีและหนองจอก"
-                width="330" height="220" loading="lazy" decoding="async" />
-              <p class="lang-text" data-key="merch-postcard-title">
-                <i class="fas fa-map-marked-alt" aria-hidden="true"></i> Postcard Map | โปสการ์ดแผนที่
+                width="220" height="220" loading="lazy" decoding="async" />
+              <p class="lang-text" data-key="merch-postcard">โปสการ์ดแผนที่</p>
               </p>
             </div>
             <div class="merch-card" data-lightbox-src="img/Sticker1.webp"
               role="button" tabindex="0" aria-label="ดูภาพ Die-cut Stickers ขนาดเต็ม">
-              <img src="img/Sticker1.webp" alt="สติ๊กเกอร์ตัดรูป Savor Happiness"
+              <img src="img/Sticker1.webp" alt="สติ๊กเกอร์ Savor Happiness"
                 width="220" height="220" loading="lazy" decoding="async" />
               <p class="lang-text" data-key="merch-sticker">สติ๊กเกอร์ตัดรูป</p>
             </div>
             <div class="merch-card" data-lightbox-src="img/Mockup_Bookmarks.webp"
-              role="button" tabindex="0" aria-label="ดูภาพ Exclusive Bookmarks ขนาดเต็ม">
+              role="button" tabindex="0" aria-label="Bookmarks Savor Happiness">
               <img src="img/Mockup_Bookmarks.webp" alt="ที่คั่นหนังสือพิเศษ Savor Happiness"
                 width="150" height="220" loading="lazy" decoding="async" />
               <p class="lang-text" data-key="merch-bookmarks">ที่คั่นหนังสือพิเศษ</p>
@@ -705,6 +704,44 @@
   <script src="auth.js?v=2.0.0" defer></script>
   <script src="script.js?v=2.0.2" defer></script>
   <script src="auth-ui.js?v=2.0.0" defer></script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
 </body>
 
 </html>

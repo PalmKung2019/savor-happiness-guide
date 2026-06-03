@@ -3516,7 +3516,10 @@ body {
 .merch-card {
   flex: 0 0 auto;
   width: min(76vw, 260px);
+  height: clamp(260px, calc(52vw + 60px), 280px);
   scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
 }
 
 .merch-card img {
@@ -3524,6 +3527,20 @@ body {
   width: auto;
   max-width: none;
   object-fit: cover;
+  flex-shrink: 0;
+}
+
+.merch-card p {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin: 0;
+  width: 100%;
 }
 
 /* ── Author Section ── */
@@ -3743,6 +3760,7 @@ body {
 
   .merch-card {
     width: min(72vw, 280px);
+    height: clamp(270px, calc(50vw + 70px), 290px);
   }
 
   .merch-card img {
