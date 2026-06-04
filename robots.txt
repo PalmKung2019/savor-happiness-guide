@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow:
+
+Sitemap: https://savor-happiness-guide.pages.dev/sitemap.xml

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <!-- CSP: synced with _headers (Cloudflare Pages). unsafe-eval required by AOS.js 2.3.1 -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval' https://unpkg.com https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://static.cloudflareinsights.com https://cloudflareinsights.com; frame-ancestors 'none';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval' https://unpkg.com https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://static.cloudflareinsights.com https://cloudflareinsights.com; frame-ancestors 'none';" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Savor Happiness | ลิ้มรสความสุข</title>
 
@@ -44,14 +44,18 @@
       }
     </script>
 
-  <!-- Preconnect for external resources -->
+  <!-- Preconnect for external resources (max 3 to avoid Lighthouse warning) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://unpkg.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <!-- AOS (deferred) ใช้ dns-prefetch แทน preconnect เพื่อไม่ให้เกิน 3 รายการ -->
+  <link rel="dns-prefetch" href="https://unpkg.com" />
 
-  <!-- AOS CSS -->
-  <link rel="stylesheet" href="fonts/aos.css" />
+  <!-- Preload Font Awesome CSS + woff2 เพื่อเริ่ม download ก่อน render ถึงจะ block อยู่ -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" crossorigin="anonymous" />
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
+  <!-- AOS CSS: ย้ายออกจาก head ไปท้าย body เพื่อลด render-blocking resource -->
 
   <link rel="icon" type="image/png" href="img/logo/logo-light.png?v=2" />
   <link rel="apple-touch-icon" href="img/logo/logo-light.png?v=2" />
@@ -240,6 +244,7 @@
             <video id="myVideo" muted loop preload="none" data-src="video/video0.mp4"
               aria-label="วิดีโอบรรยากาศคาเฟ่ย่านมีนบุรี–หนองจอก">
               <source data-src="video/video0.mp4" type="video/mp4" />
+              <track kind="captions" src="video/captions.vtt" srclang="th" label="ภาษาไทย" default />
             </video>
             <button id="muteBtn" class="mute-control-btn" aria-label="ปิด/เปิดเสียง" title="ปิด/เปิดเสียง">
               <i id="muteIcon" class="fas fa-volume-mute" aria-hidden="true"></i>
@@ -701,6 +706,8 @@
     </div>
   </div>
 
+  <!-- AOS CSS โหลดท้าย body ลด render-blocking (AOS init อยู่ใน defer script) -->
+  <link rel="stylesheet" href="fonts/aos.css" />
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer crossorigin="anonymous"
     referrerpolicy="no-referrer"></script>
   <script src="auth.js?v=2.0.0" defer></script>

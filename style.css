@@ -23,6 +23,33 @@
   font-display: swap;
 }
 
+/*
+ * font-display: swap overrides สำหรับ Font Awesome webfonts จาก CDN
+ * CDN CSS ไม่มี font-display ทำให้ Lighthouse แจ้ง "Ensure text remains visible"
+ * Override ด้วย @font-face ที่โหลดหลัง FA CSS จะ override ค่า default (block)
+ */
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-solid-900.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-regular-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Font Awesome 6 Brands";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-brands-400.woff2") format("woff2");
+}
+
 :root {
   --ci-green: #007a33;
   --ci-olive: #93a35a;
@@ -3256,7 +3283,7 @@ body {
   order: 2;
   flex: unset;
   width: 100%;
-  padding: 45px 5% 165px;
+  padding: 45px 5% 60px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
